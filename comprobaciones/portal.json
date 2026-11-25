@@ -2,7 +2,7 @@
   "nota": "Versión del portal revisada para el libro. «revisado»: commit hasta el que se ha comprobado que los cambios no alteran los ejemplos. Al volver a comprobar, actualizarlo y explicar en «comentario» qué ha cambiado. Lo usa comprobaciones/comprobar.cjs.",
   "repositorio": "josemagalan/project-network-lab",
   "url": "https://josemagalan.github.io/project-network-lab/",
-  "revisado": "5d7c359",
-  "comentario": "Punto de partida (2026-11-25): main en la F5b, T011. Aún no hay ejemplos en el libro.",
+  "revisado": "709ec05",
+  "comentario": "709ec05 (2026-11-25): F5b T012–T015 (coste–tiempo y pestaña «Extensiones»); la ruta guiada no cambia. Capítulo 1 comprobado con esta versión servida en local.",
   "ignorar": ["README.md", "LICENSE", "LICENSE-CONTENT.md", "tests/", ".github/", "img/", "scripts/", ".gitignore", "package.json", "eslint.config.cjs"]
 }

@@ -6,4 +6,25 @@ Aquí están todas las cajas de trabajo del libro. Los **ejemplos reproducibles*
 
 ## Por pestaña del portal {.unnumbered #por-pestana}
 
+### Ruta guiada {.unnumbered #h-route}
+
+2 ejemplos reproducibles y 1 caja «En el portal».
+
+| Actividad | Título | Sección | Nivel |
+|---|---|:-:|:-:|
+| [Ejemplo 1.1](01-redes.qmd#ejemplo-redes-tabla) | Quién empieza y quién termina | [1.1](01-redes.qmd#sec-redes-proyecto) | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejemplo 1.3](01-redes.qmd#ejemplo-redes-dos-lenguajes) | La misma actividad en las dos redes | [1.3](01-redes.qmd#sec-redes-dos-lenguajes) | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [En el portal](01-redes.qmd#sec-redes-preguntas) | «Camino crítico» | [1.4](01-redes.qmd#sec-redes-preguntas) | [[B]{.corto}]{.nivel .basico .solo-corto} |
+
 ## Por capítulo {.unnumbered #por-capitulo}
+
+### 1. Proyectos, actividades y redes {.unnumbered #a-cap-1}
+
+| Actividad | Título | Sección | Pestaña | Nivel |
+|---|---|:-:|---|:-:|
+| [Ejemplo 1.1](01-redes.qmd#ejemplo-redes-tabla) | Quién empieza y quién termina | [1.1](01-redes.qmd#sec-redes-proyecto) | Ruta guiada | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejercicio 1.2](01-redes.qmd#ejercicio-redes-gantt) | ¿Cuánto puede retrasarse C? | [1.2](01-redes.qmd#sec-redes-gantt) | — | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejemplo 1.3](01-redes.qmd#ejemplo-redes-dos-lenguajes) | La misma actividad en las dos redes | [1.3](01-redes.qmd#sec-redes-dos-lenguajes) | Ruta guiada | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejercicio 1.3](01-redes.qmd#ejercicio-redes-dos-lenguajes) | Buscar las esperas | [1.3](01-redes.qmd#sec-redes-dos-lenguajes) | — | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejercicio 1.4](01-redes.qmd#ejercicio-redes-preguntas) | Predice · El camino más largo | [1.4](01-redes.qmd#sec-redes-preguntas) | — | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [En el portal](01-redes.qmd#sec-redes-preguntas) | «Camino crítico» | [1.4](01-redes.qmd#sec-redes-preguntas) | Ruta guiada | [[B]{.corto}]{.nivel .basico .solo-corto} |

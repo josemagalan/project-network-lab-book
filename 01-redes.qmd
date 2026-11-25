@@ -1,40 +1,195 @@
 # Proyectos, actividades y redes {#sec-redes}
 
-<!-- ESQUELETO (2026-11-25): secciones del índice aprobado (https://claude.ai/artifact/UuNfZyEKb4QLWdn84t55fZ). El contenido se escribe en la etapa 1, con esquema aprobado por el autor antes del borrador. -->
+<!-- Seguimiento interno (no visible): primer borrador del 2026-11-25, con el esquema aprobado por el autor tras la revisión crítica de un agente (sección 1.3 sin historia; historia en Ampliaciones; recuento de nodos con Inicio y Fin; ejercicio del Gantt reordenado; aclaración de ROY, PERT y CPM). Estados del portal comprobados el 2026-11-25 en una copia de project-network-lab 709ec05 servida en local (Chromium sin interfaz): la ruta guiada de ej6 tiene 32 pasos en ROY (paso 1 tabla, paso 2 red ROY, paso 31 camino crítico B → E → I → J → K) y 27 en PERT (paso 6, «Numerar los sucesos», con 9 sucesos y las ficticias F1, F2 y F3). «Lado a lado» solo existe en PERT y muestra la red ROY ya calculada: por eso el ejemplo 1.3 avisa de los números. Cifras de la red cotejadas con js/core/examples.js (ej6: duración 13, ES, LF, TF). Fuentes cotejadas en memoria/bibliografía: PMBOK 8.ª ed. (definición de proyecto, p. 5; CPM, p. 160; método de diagramación por precedencias, p. 185); Malcolm et al. (1959, pp. 646–647); Kelley y Walker (1959, pp. 160–161); Kelley, Walker y Sayer (1989), versión web del PMI, sin paginación; Weaver (2007, pp. 2–3); Fondahl (1962, p. 20); boletín 40 de la ROADEF (Bouyssou y Vanderpooten, p. 5; Carlier et al., p. 11), que discrepan en qué aplicación fue la primera; Söderlund y Geraldi (2012, p. 570), que resumen a Engwall (2012) sobre Sapolsky (1972), no leídos directamente. -->
 
-**Portal:** [Project Network Lab](https://josemagalan.github.io/project-network-lab/), pestaña [Ruta guiada](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es).
+**Portal:** [Project Network Lab](https://josemagalan.github.io/project-network-lab/), pestaña [Ruta guiada](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=route&ex=ej6&step=0){target="_blank"}.
 
 ::: {.callout-warning .objetivos title="Objetivos del capítulo"}
 Al terminar el recorrido básico de este capítulo podrás:
 
-- *(en preparación)*
+- describir un proyecto con sus actividades, sus duraciones y sus precedencias;
+- explicar qué información le falta a un diagrama de Gantt de barras para saber cuánto puede retrasarse una actividad;
+- localizar una actividad y sus precedentes en la red ROY y en la red PERT;
+- distinguir qué designan en este libro *red ROY*, *red PERT*, *PERT* y *CPM*;
+- enumerar las preguntas que responde una red de proyecto.
 :::
 
-## Qué es un proyecto y por qué se dibuja como una red [[Básico]{.largo}[B]{.corto}]{.nivel .basico} {#sec-redes-proyecto}
+## Proyecto, actividades y precedencias [[Básico]{.largo}[B]{.corto}]{.nivel .basico} {#sec-redes-proyecto}
 
-*En preparación.*
+¿Qué tienen en común montar una máquina por encargo, reformar una cocina y organizar un congreso?
+
+Los tres son **proyectos**. La guía del Project Management Institute (PMI), una de las referencias de la profesión, define un proyecto como una iniciativa temporal, en un contexto único, que se emprende para crear valor [@pmi2025, p. 5]. *Temporal* quiere decir que tiene un comienzo y un fin. *Único* quiere decir que no se repite igual: cada máquina por encargo, cada reforma y cada congreso tienen sus propias condiciones.
+
+Para planificar un proyecto se descompone en **actividades**: trabajos con un comienzo y un fin que se pueden asignar y medir. Cada actividad tiene una **duración**, el tiempo que se estima que tardará. Y entre las actividades hay **precedencias**: una actividad no puede empezar hasta que terminen otras. No se puede alicatar una pared antes de levantarla.
+
+Con esas tres cosas se escribe la **tabla de precedencias**. En este libro nos acompañará siempre la misma, la de la ruta guiada del portal. Es un pedido de la empresa Mecánicas del Sureste: once actividades, de la A a la K, con sus duraciones en días. La tabla se puede escribir de dos maneras. Aquí, para cada actividad, se indican las que van inmediatamente detrás, sus **sucesoras**; la otra manera, con las **predecesoras**, la veremos en el capítulo siguiente.
+
+| Actividad | A | B | C | D | E | F | G | H | I | J | K |
+|---|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| Duración (días) | 2 | 3 | 2 | 8 | 4 | 3 | 2 | 1 | 2 | 3 | 1 |
+| Sucesoras | E | E, F, G | G | K | H, I | H, I | I | K | J | K | — |
+
+: Tabla de precedencias de Mecánicas del Sureste. {#tbl-redes-mecanicas}
+
+La fila de sucesoras se lee así: cuando termina B pueden empezar E, F y G, si ya han terminado también sus demás predecesoras. E, por ejemplo, tiene que esperar a A y a B.
+
+::: {.callout-tip .ejemplo #ejemplo-redes-tabla title="Ejemplo reproducible · Quién empieza y quién termina"}
+**Datos.** La tabla de Mecánicas del Sureste.
+
+**Predice.** ¿Qué actividades pueden empezar el primer día, sin esperar a ninguna otra? ¿Cuál es la última del proyecto?
+
+[Abrir: la tabla en la ruta guiada](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=route&ex=ej6&step=0){.abrir target="_blank"}
+
+Pulsa **→** para pasar al paso 2, la red ROY, y comprueba tu predicción.
+
+<details>
+<summary>**Ver el resultado**</summary>
+
+Pueden empezar el primer día A, B, C y D: ninguna aparece como sucesora de otra. La última es K: no tiene sucesoras. En la red ROY del paso 2, el nodo **Inicio** está unido a A, B, C y D, y K es la única unida al nodo **Fin**.
+</details>
+:::
+
+## Por qué un Gantt no basta [[Básico]{.largo}[B]{.corto}]{.nivel .basico} {#sec-redes-gantt}
+
+La forma más habitual de mostrar un plan es el **diagrama de Gantt**: una barra por actividad sobre un eje de tiempo. Cada barra empieza el día en que empieza la actividad y es tan larga como su duración. La figura -@fig-redes-gantt es el Gantt de Mecánicas del Sureste, con cada actividad empezando lo antes posible.
+
+![Diagrama de Gantt de barras de Mecánicas del Sureste. Cada actividad empieza lo antes posible; el proyecto termina el día 13. Figura propia, generada con `figuras/01-gantt.py`.](figuras/01-gantt.svg){#fig-redes-gantt fig-alt="Diagrama de Gantt con once barras horizontales, de A a K, sobre un eje de días de 0 a 13. A, B, C y D empiezan en 0 y duran 2, 3, 2 y 8 días. E, F y G empiezan en 3 y duran 4, 3 y 2. H e I empiezan en 7 y duran 1 y 2. J empieza en 9 y dura 3. K empieza en 12 y dura 1, hasta el día 13."}
+
+El Gantt responde bien a la pregunta *¿cuándo?*: qué se hace cada día y cuándo termina todo. Pero un Gantt de barras, sin flechas entre ellas, no dice *quién espera a quién*. Y para saber si una actividad puede retrasarse hace falta saberlo.
+
+:::: {.callout-note .ejercicio #ejercicio-redes-gantt title="Ejercicio · ¿Cuánto puede retrasarse C?"}
+En el Gantt, C ocupa los días 0 a 2 y nada empieza hasta el día 3.
+
+1. Mirando solo el Gantt, ¿cuántos días puede retrasarse C sin que termine más tarde el proyecto?
+2. Ahora sabes, por la tabla, que la única sucesora de C es G, y que la única sucesora de G es I, que empieza el día 7. ¿Cuántos días puede retrasarse C?
+3. Imagina que C precediera a E en lugar de a G. ¿Cambia la respuesta? Fíjate en que todo lo que viene detrás de E (H, I, J y K) empieza justo cuando termina lo anterior.
+
+<details>
+<summary>**Ver la solución**</summary>
+
+1. No se puede saber. El Gantt dice cuándo está programada C, pero no qué actividades la esperan.
+2. Tres días. Si C termina el día 5, G puede ir del 5 al 7, y I sigue empezando el día 7. Con un día más, I empezaría el 8 y todo lo que la sigue se retrasaría.
+3. Sí: solo un día. E empieza el día 3 porque espera a B; si C acabara el día 3, E seguiría empezando a tiempo. Pero un día más retrasaría E y, con ella, H, I, J y K.
+
+El margen de una actividad no depende de su barra, sino de quién la espera. Ese margen se llama **holgura**, y se calcula en el capítulo 6. Para calcularla, primero hay que dibujar las esperas: eso es una red.
+</details>
+::::
 
 ## Una red, dos lenguajes [[Básico]{.largo}[B]{.corto}]{.nivel .basico} {#sec-redes-dos-lenguajes}
 
-*En preparación.* La red ROY (actividad en nodo) y la red PERT (actividad en arco).
+Una **red de proyecto** dibuja las precedencias: quién espera a quién. Hay dos maneras de dibujarla, y este libro usa las dos a la vez.
 
-## La red que nos acompaña [[Básico]{.largo}[B]{.corto}]{.nivel .basico} {#sec-redes-ejemplo}
+En la **red ROY**, cada actividad es un **nodo**, una caja, y cada flecha es una precedencia: la flecha de B a E dice que E espera a B. Se añaden dos nodos más, **Inicio** y **Fin**, de duración cero, para que la red tenga un solo comienzo y un solo final (figura -@fig-redes-roy). La de Mecánicas del Sureste tiene, por tanto, 13 nodos.
 
-*En preparación.* La red de la ruta guiada del portal, que se usa en todo el libro.
+![Red ROY de Mecánicas del Sureste en el portal (ruta guiada, paso 2). Cada caja es una actividad, con su duración arriba; los demás campos, aún con puntos, se rellenan en el capítulo 5. Captura del portal, generada con `figuras/01-capturas.cjs`.](figuras/01-roy.png){#fig-redes-roy fig-alt="Red de nodos dibujada de izquierda a derecha. Un óvalo Inicio con flechas a las cajas D, A, B y C. A va a E; B va a E, F y G; C va a G. E y F van a H y a I; G va a I. I va a J. D, H y J van a K, y K va a un óvalo Fin."}
+
+En la **red PERT**, al revés, cada actividad es una **flecha**, y los nodos, los círculos numerados, son **sucesos**: instantes en los que terminan unas actividades y pueden empezar otras (figura -@fig-redes-pert). La de Mecánicas del Sureste tiene 11 flechas de actividad entre 9 sucesos, y además 3 flechas de trazos, F1, F2 y F3, que no son actividades. Se llaman **ficticias**: no consumen tiempo y solo están para que la red diga exactamente lo mismo que la tabla. Por qué hacen falta, y cómo saber cuántas, es el tema del capítulo 4.
+
+![Red PERT de Mecánicas del Sureste en el portal (ruta guiada de la red PERT, paso 6). Cada flecha continua es una actividad con su duración; los círculos son sucesos, y las flechas de trazos, ficticias. Captura del portal, generada con `figuras/01-capturas.cjs`.](figuras/01-pert.png){#fig-redes-pert fig-alt="Red de círculos numerados del 1 al 9. Del suceso 1 salen A hacia el 3, B hacia el 2, C hacia el 4 y D, por abajo, hacia el 8. Del 2 salen F hacia el 5 y dos flechas de trazos, F1 hacia el 3 y F2 hacia el 4. Del 3 sale E hacia el 5; del 4, G hacia el 6. Del 5 salen H hacia el 8 y una flecha de trazos, F3, hacia el 6. Del 6 sale I hacia el 7; del 7, J hacia el 8; del 8, K hacia el 9."}
+
+Las dos redes representan la misma tabla. Lo que cambia es el lenguaje: en la red ROY se ve cada actividad como una pieza; en la red PERT se ve cada momento en que el proyecto cambia de fase.
+
+**Los nombres.** Este libro llama *red ROY* a la red con las actividades en los nodos, por Bernard Roy, que propuso uno de los primeros métodos con esa representación (sección -@sec-redes-ampliaciones); en inglés se llama *activity-on-node* (AON). Llama *red PERT* a la red con las actividades en las flechas; en inglés, *activity-on-arrow* (AOA). *PERT* a secas es otra cosa: el método que estima la duración de cada actividad con tres valores, que se verá en el capítulo 7. Y *CPM*, el método del camino crítico, es el cálculo de fechas y márgenes que se hace sobre cualquiera de las dos redes [@pmi2025, p. 160], el de los capítulos 5 y 6.
+
+Las dos maneras de dibujar nacieron casi a la vez, a finales de los años cincuenta. Los dos métodos que más se difundieron, CPM en la industria química estadounidense y PERT en la Marina de los Estados Unidos, usaban flechas [@kelley1959; @malcolm1959]. Las representaciones con las actividades en los nodos, de Roy en Francia y de Fondahl en Estados Unidos, son de las mismas fechas [@bouyssou2019, p. 5; @weaver2007, p. 3], pero tardaron más en extenderse; desde los años noventa son las más usadas [@weaver2007, p. 3].
+
+::: {.callout-tip .ejemplo #ejemplo-redes-dos-lenguajes title="Ejemplo reproducible · La misma actividad en las dos redes"}
+**Datos.** Mecánicas del Sureste, con la red ROY y la red PERT lado a lado.
+
+**Predice.** La actividad E espera a A y a B. En la red ROY eso son dos flechas que llegan a E. ¿Cómo lo dirá la red PERT, si E es una flecha?
+
+[Abrir: las dos redes lado a lado](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=route&ex=ej6&graph=aoa&view=side&step=5){.abrir target="_blank"}
+
+Pulsa E en cualquiera de las dos redes: se resalta en ambas. En esta vista, las cajas de la red ROY ya llevan sus fechas calculadas y las actividades críticas en rojo; de momento, fíjate solo en las letras y en las flechas.
+
+<details>
+<summary>**Ver el resultado**</summary>
+
+E sale del suceso 3. A ese suceso llegan A y la ficticia F1, que viene del suceso 2, donde termina B. Así, E no puede empezar hasta que terminen A y B: la ficticia F1 lleva la espera de B hasta el comienzo de E.
+</details>
+:::
+
+:::: {.callout-note .ejercicio #ejercicio-redes-dos-lenguajes title="Ejercicio · Buscar las esperas"}
+Con las figuras -@fig-redes-roy y -@fig-redes-pert:
+
+1. ¿Qué actividades preceden directamente a H? Encuéntralas en las dos redes.
+2. ¿Y a K?
+3. En la red PERT, I sale del suceso 6, al que solo llega G. ¿Cómo sabe la red que I también espera a E y a F?
+
+<details>
+<summary>**Ver la solución**</summary>
+
+1. E y F. En la red ROY, son las dos flechas que llegan a H. En la red PERT, H sale del suceso 5, al que llegan E y F.
+2. D, H y J. En la red ROY llegan tres flechas a K; en la red PERT, las tres actividades terminan en el suceso 8, del que sale K.
+3. Por la ficticia F3, que va del suceso 5 al 6. Lo que llega al 5 (E y F) también tiene que haber terminado para que ocurra el 6. En la red ROY no hace falta nada: hay una flecha de E a I y otra de F a I.
+</details>
+::::
+
+## Las preguntas que responde una red [[Básico]{.largo}[B]{.corto}]{.nivel .basico} {#sec-redes-preguntas}
+
+Una red no es solo un dibujo. Sobre ella se responden las preguntas que importan a quien dirige un proyecto. Este libro las recorre en orden:
+
+| Pregunta | Qué se calcula | Capítulos |
+|---|---|:-:|
+| ¿Cómo se pasa de un encargo a una red? | La tabla de precedencias, la red ROY y la red PERT | 2–4 |
+| ¿Cuándo acaba el proyecto? | Las fechas más tempranas y más tardías de cada actividad | 5 |
+| ¿Qué actividades no pueden retrasarse y cuánto margen tienen las demás? | El camino crítico y las holguras | 6 |
+| ¿Y si las duraciones son inciertas? | La probabilidad de cumplir un plazo | 7–9 |
+| ¿Y si las precedencias tienen desfases, se puede pagar por acortar o hay recursos limitados? | Las extensiones del modelo | 11–13 |
+
+: Las preguntas del libro y dónde se responden. El capítulo 10 las reúne todas en un caso. {#tbl-redes-preguntas}
+
+La primera respuesta ya está a nuestro alcance. Si E espera a A y a B, y H espera a E, entonces B, E y H van en fila: forman un **camino** de la red, una cadena de actividades en la que cada una espera a la anterior. Un proyecto no puede terminar antes de que termine su camino más largo.
+
+:::: {.callout-note .ejercicio #ejercicio-redes-preguntas title="Ejercicio · Predice · El camino más largo"}
+Suma las duraciones de estos dos caminos de Mecánicas del Sureste:
+
+- B → E → I → J → K
+- D → K
+
+¿Cuál de los dos marca la duración del proyecto? ¿Encaja con el final del Gantt de la figura -@fig-redes-gantt?
+
+<details>
+<summary>**Ver la solución**</summary>
+
+B → E → I → J → K dura 3 + 4 + 2 + 3 + 1 = 13 días, y D → K, 8 + 1 = 9 días. El proyecto no puede durar menos de 13 días, que es justo cuando termina K en el Gantt. Ningún otro camino de la red dura más, así que B → E → I → J → K es el **camino crítico**: si cualquiera de sus actividades se retrasa, se retrasa el proyecto. Comprobar que no hay un camino más largo, sin probarlos todos, es lo que enseña el capítulo 5.
+</details>
+::::
+
+::: {.callout-note .en-app title="En el portal · Ruta guiada, «Camino crítico»"}
+[Explorar en la ruta guiada](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=route&ex=ej6&step=30){.explorar target="_blank"}
+
+- El enlace abre el paso 31 de la ruta guiada, «Camino crítico». Comprueba que las actividades en rojo son las del camino B → E → I → J → K.
+- Pulsa **→** para ver el paso 32, el diagrama de Gantt del portal, y compáralo con el de la figura -@fig-redes-gantt.
+- Vuelve al principio con **Inicio** y recorre la ruta paso a paso. Aún no hace falta entender cada cálculo: fíjate en el orden en que se recorren las actividades, primero hacia delante y después hacia atrás.
+:::
 
 ## Resumen {.unnumbered #resumen}
 
-*En preparación.*
+- Un proyecto es una iniciativa temporal y única. Para planificarlo se describe con actividades, duraciones y precedencias, que se recogen en una tabla.
+- El diagrama de Gantt dice cuándo se hace cada actividad, pero no quién espera a quién. Sin eso no se puede saber cuánto puede retrasarse una actividad.
+- La misma tabla se dibuja de dos maneras: en la red ROY, las actividades son nodos; en la red PERT, son flechas entre sucesos, a veces con ficticias.
+- *Red ROY* y *red PERT* son dibujos; *PERT* es también un método de estimación con tres tiempos, y *CPM*, el cálculo del camino crítico.
+- La duración del proyecto la marca su camino más largo, el camino crítico: en Mecánicas del Sureste, B → E → I → J → K, de 13 días.
 
-Para seguir el recorrido básico, continúa por el capítulo «Del enunciado a la tabla» (en preparación).
+Para seguir el recorrido básico, continúa por el capítulo «Del enunciado a la tabla» (en preparación). En este capítulo la tabla venía dada; allí aprenderás a sacarla de un enunciado.
 
-## Historia de los métodos [[Avanzado]{.largo}[A]{.corto}]{.nivel .avanzado} {#sec-redes-historia}
+## Ampliaciones [[Para saber más]{.largo}[+]{.corto}]{.nivel .saber-mas} {#sec-redes-ampliaciones}
 
-*En preparación.* PERT y el programa Polaris, CPM en DuPont y el método de los potenciales de Roy.
+**CPM: de la «cadena principal» al camino crítico.** A finales de 1956, un grupo de ingeniería de DuPont empezó a estudiar si un ordenador podía preparar el programa de sus proyectos de ingeniería y revisarlo cuando cambiaran las condiciones [@kelley1959, p. 160]. Morgan R. Walker, de DuPont, y James E. Kelley, de Remington Rand UNIVAC, trabajaron en ello entre diciembre de 1956 y febrero de 1959 [@kelley1989]. Representaron cada trabajo con una flecha, y llamaron sucesos a los puntos donde se encuentran las flechas [@kelley1959, p. 161]. Las ficticias aparecieron al dibujar su primera red de prueba: Kelley recuerda que las descubrieron en una pizarra el 3 de julio de 1957 [@kelley1989]. A la cadena de actividades más larga la llamaban «cadena principal»; el nombre de *camino crítico* lo pusieron los creadores del PERT [@kelley1989].
 
-## Por qué conviven dos notaciones [[Para saber más]{.largo}[+]{.corto}]{.nivel .saber-mas} {#sec-redes-notaciones}
+**PERT y el programa Polaris.** El PERT nació en la Oficina de Proyectos Especiales de la Marina de los Estados Unidos, con la consultora Booz, Allen and Hamilton, para seguir el desarrollo del misil balístico Polaris, lanzado desde submarinos. Al principio, sus siglas significaban *Program Evaluation Research Task*; después pasaron a ser *Program Evaluation and Review Technique*. Representaba el programa como una red de sucesos y expresaba los plazos en términos de probabilidad, y la Marina lo implantó en 1958 [@malcolm1959, pp. 646–647]. Su fama de herramienta milagrosa se ha discutido: el estudio de Sapolsky (1972) sobre Polaris concluye que el PERT tuvo un papel mucho menor en el éxito del programa de lo que suele contarse [@soderlund2012, p. 570].
 
-*En preparación.*
+**Las redes de nodos: Roy y Fondahl.** En Francia, Bernard Roy desarrolló hacia 1958, en la consultora SEMA de París, el método de los potenciales (MPM, por *Méthode des Potentiels Metra*), basado en lo que hoy llamamos red de actividades en los nodos. Lo aplicó a la construcción de la sede de una gran empresa en París, con cientos de tareas y más de mil restricciones, y a la fabricación de cigüeñales en la empresa Mavilor; poco después, a la construcción del trasatlántico *France* [@bouyssou2019, p. 5; @carlier2019, p. 11]. En Estados Unidos, John W. Fondahl, de la Universidad de Stanford, propuso en 1961 un método para aplicar el camino crítico sin ordenador, con una notación de círculos unidos por líneas: cada operación es un círculo [@fondahl1962, p. 20]. De su trabajo deriva el método de diagramación por precedencias [@weaver2007, p. 3], que es como la guía del PMI describe hoy las redes de proyecto: actividades en los nodos, unidas por relaciones lógicas [@pmi2025, p. 185].
+
+**Dos redes equivalentes.** Kelley explicaba que las dos representaciones son matemáticamente equivalentes: basta sustituir cada nodo por una flecha y quitar las flechas de unión que sobren; las que quedan son las ficticias [@kelley1989]. Según Weaver, a finales de los años sesenta CPM y PERT se habían fundido en un enfoque general de redes de flechas; desde mediados de los setenta, las redes de nodos fueron ganando terreno, y en los noventa ya eran las más usadas [@weaver2007, p. 3].
+
+**Antes de las redes, las barras.** Los diagramas de barras son anteriores a Henry Gantt, que les dio nombre: Weaver los remonta a la *Chart of Biography* de Joseph Priestley (1765) y a William Playfair (1786) [@weaver2007, p. 2].
+
+::: {.callout-note .mas-portal title="Más en el portal"}
+- En la pestaña **Taller**, el selector **Elige un ejemplo** carga otras redes, y también puedes escribir o pegar una tabla tuya. El portal la dibuja como red ROY y como red PERT y la recorre paso a paso, como la ruta guiada. La usaremos en los capítulos 2 a 4.
+- El portal está en español y en inglés: el idioma se cambia en **Ajustes**.
+:::
 
 ## Referencias del capítulo {.unnumbered #referencias}
 
