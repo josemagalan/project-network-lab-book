@@ -1,0 +1,22 @@
+# Índice general {.unnumbered #sec-indice}
+
+<!-- Archivo generado por filtros/indices.py en cada «quarto render» (pre-render). No lo edites a mano: los cambios se perderían. Para cambiar el contenido, cambia los capítulos; para cambiar el formato, cambia el script. -->
+
+El libro tiene 1 capítulos y 5 secciones: 3 de nivel [[Básico]{.largo}[B]{.corto}]{.nivel .basico}, 1 de nivel [[Avanzado]{.largo}[A]{.corto}]{.nivel .avanzado} y 1 de nivel [[Para saber más]{.largo}[+]{.corto}]{.nivel .saber-mas}. El **recorrido básico** son las secciones azules: se leen seguidas, capítulo a capítulo, sin las demás. Las avanzadas amplían el recorrido básico y suelen apoyarse en él; «Para saber más» cierra cada capítulo con lecturas y temas que el libro no desarrolla.
+
+Las actividades —0 ejemplos reproducibles, 0 cajas «En el portal» y 0 ejercicios— están listadas en el [índice de actividades](actividades.qmd), por capítulo y por pestaña del portal.
+
+## El libro de un vistazo {.unnumbered #vistazo}
+
+| Capítulo | B | A | + | Ejemplos | En el portal | Ejercicios |
+|---|:-:|:-:|:-:|:-:|:-:|:-:|
+| [1. Proyectos, actividades y redes](01-redes.qmd) | 3 | 1 | 1 | 0 | 0 | 0 |
+| **Total** | **3** | **1** | **1** | **0** | **0** | **0** |
+
+## 1. Proyectos, actividades y redes {.unnumbered #cap-1}
+
+- [1.1 Qué es un proyecto y por qué se dibuja como una red](01-redes.qmd#sec-redes-proyecto) [[B]{.corto}]{.nivel .basico .solo-corto}
+- [1.2 Una red, dos lenguajes](01-redes.qmd#sec-redes-dos-lenguajes) [[B]{.corto}]{.nivel .basico .solo-corto}
+- [1.3 La red que nos acompaña](01-redes.qmd#sec-redes-ejemplo) [[B]{.corto}]{.nivel .basico .solo-corto}
+- [1.4 Historia de los métodos](01-redes.qmd#sec-redes-historia) [[A]{.corto}]{.nivel .avanzado .solo-corto}
+- [1.5 Por qué conviven dos notaciones](01-redes.qmd#sec-redes-notaciones) [[+]{.corto}]{.nivel .saber-mas .solo-corto}

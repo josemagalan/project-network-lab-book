@@ -1,0 +1,25 @@
+# Comprueba el libro frente a la versión actual del portal (comprobaciones/LEEME.md).
+# Va aparte de la publicación: si falla, avisa, pero no impide publicar.
+name: Comprobar el libro frente al portal
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: "17 6 * * 1"   # cada lunes, 06:17 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  comprobar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Versión del portal y estados de las direcciones
+        run: node comprobaciones/comprobar.cjs

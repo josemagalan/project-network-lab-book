@@ -1,0 +1,25 @@
+# Salidas de Quarto (las genera GitHub Actions)
+/_book/
+/.quarto/
+*_files/
+*.html
+!vendor/**/*.html
+
+# Plantillas fuente de Quarto
+!/plantillas/*.html
+
+**/*.quarto_ipynb
+
+# Numeración que calcula filtros/indices.py en cada render
+/_numeracion.json
+
+# Documentos del proceso (decisiones, guía de redacción, sesiones): se quedan en el equipo del autor
+/memoria/
+
+# Copias del portal y resultados de las comprobaciones
+/_portal/
+/comprobaciones/node_modules/
+/comprobaciones/resultados/
+
+# Cachés de Python
+__pycache__/

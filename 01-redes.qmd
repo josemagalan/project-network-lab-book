@@ -1,0 +1,42 @@
+# Proyectos, actividades y redes {#sec-redes}
+
+<!-- ESQUELETO (2026-11-25): secciones del índice aprobado (https://claude.ai/artifact/UuNfZyEKb4QLWdn84t55fZ). El contenido se escribe en la etapa 1, con esquema aprobado por el autor antes del borrador. -->
+
+**Portal:** [Project Network Lab](https://josemagalan.github.io/project-network-lab/), pestaña [Ruta guiada](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es).
+
+::: {.callout-warning .objetivos title="Objetivos del capítulo"}
+Al terminar el recorrido básico de este capítulo podrás:
+
+- *(en preparación)*
+:::
+
+## Qué es un proyecto y por qué se dibuja como una red [[Básico]{.largo}[B]{.corto}]{.nivel .basico} {#sec-redes-proyecto}
+
+*En preparación.*
+
+## Una red, dos lenguajes [[Básico]{.largo}[B]{.corto}]{.nivel .basico} {#sec-redes-dos-lenguajes}
+
+*En preparación.* La red ROY (actividad en nodo) y la red PERT (actividad en arco).
+
+## La red que nos acompaña [[Básico]{.largo}[B]{.corto}]{.nivel .basico} {#sec-redes-ejemplo}
+
+*En preparación.* La red de la ruta guiada del portal, que se usa en todo el libro.
+
+## Resumen {.unnumbered #resumen}
+
+*En preparación.*
+
+Para seguir el recorrido básico, continúa por el capítulo «Del enunciado a la tabla» (en preparación).
+
+## Historia de los métodos [[Avanzado]{.largo}[A]{.corto}]{.nivel .avanzado} {#sec-redes-historia}
+
+*En preparación.* PERT y el programa Polaris, CPM en DuPont y el método de los potenciales de Roy.
+
+## Por qué conviven dos notaciones [[Para saber más]{.largo}[+]{.corto}]{.nivel .saber-mas} {#sec-redes-notaciones}
+
+*En preparación.*
+
+## Referencias del capítulo {.unnumbered #referencias}
+
+::: {.referencias-capitulo #refs}
+:::

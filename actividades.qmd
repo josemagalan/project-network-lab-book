@@ -1,0 +1,9 @@
+# Índice de actividades {.unnumbered #sec-actividades}
+
+<!-- Archivo generado por filtros/indices.py en cada «quarto render» (pre-render). No lo edites a mano: los cambios se perderían. Para cambiar el contenido, cambia los capítulos; para cambiar el formato, cambia el script. -->
+
+Aquí están todas las cajas de trabajo del libro. Los **ejemplos reproducibles** abren el portal en un estado fijado, de modo que el resultado coincide con el del libro; las cajas **En el portal** proponen explorar sin resultados fijados; los **ejercicios** se resuelven con papel y lápiz. La primera parte las ordena por pestaña del portal, para preparar una sesión con una pestaña concreta; la segunda, por capítulo. La columna de nivel es la de la sección en la que está la caja.
+
+## Por pestaña del portal {.unnumbered #por-pestana}
+
+## Por capítulo {.unnumbered #por-capitulo}

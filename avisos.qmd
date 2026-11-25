@@ -1,0 +1,33 @@
+# Agradecimientos y avisos {.unnumbered #sec-avisos}
+
+## Cómo citar este libro {#como-citar}
+
+<!-- PENDIENTE: la referencia y el DOI se añaden con la primera edición archivada en Zenodo (versión 1.0). -->
+
+Este libro es un borrador (versión {{< meta libro-version >}}). La forma de citarlo y su DOI se publicarán con la primera edición, que se archivará en Zenodo junto con la versión del portal que usa.
+
+## Agradecimientos {#agradecimientos}
+
+Los autores agradecen el apoyo del plan Claude Team para científicos de Anthropic.
+
+## Uso de asistentes de IA {#uso-ia}
+
+En la elaboración de este material se han utilizado asistentes de inteligencia artificial. Los contenidos originales y de partida —el portal, los materiales docentes y las publicaciones— son obra de los autores. Los autores revisan, corrigen y verifican todos los materiales y son los responsables de esta publicación.
+
+## Licencia {#licencia}
+
+El texto, las figuras propias y los ejercicios se distribuyen con la licencia [Creative Commons Atribución 4.0 Internacional (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/deed.es){target="_blank"}: puedes copiarlos, adaptarlos y redistribuirlos, también con fines comerciales, siempre que cites la autoría. El código del repositorio (los guiones de las figuras, los filtros y las comprobaciones) tiene licencia MIT. La biblioteca KaTeX, el estilo de citas y el portal enlazado conservan su propia licencia; el detalle está en el [repositorio del libro](https://github.com/josemagalan/project-network-lab-book/blob/main/LICENSE-CONTENT.md){target="_blank"}.
+
+## Comentarios y contacto {#contacto}
+
+Nos ayuda mucho saber qué falla: una errata, un resultado que no coincide con el del libro, un enlace o un botón que no funciona. Al final de cada página, y en el índice lateral, está el enlace **Enviar un comentario sobre esta página**. Abre un formulario de GitHub con la página y la versión del libro ya rellenas.
+
+Si no tienes cuenta de GitHub, puedes escribir a cualquiera de los autores a través de su página:
+
+- [José Manuel Galán](https://sites.google.com/site/josemagalan/){target="_blank"}\*. ORCID: [0000-0003-3360-7602](https://orcid.org/0000-0003-3360-7602){target="_blank"}. Departamento de Ingeniería de Organización, Escuela Politécnica Superior, Universidad de Burgos. Edificio A1, Avda. Cantabria s/n, 09006 Burgos, España.
+- [Silvia Díaz-de la Fuente](https://produccioncientifica.usal.es/investigadores/2300823/detalle){target="_blank"}. ORCID: [0000-0002-5961-3368](https://orcid.org/0000-0002-5961-3368){target="_blank"}. Departamento de Cartografía e Ingeniería del Terreno, Escuela Politécnica Superior de Ávila, Universidad de Salamanca. Hornos Caleros 50, 05003 Ávila, España.
+- [Virginia Ahedo](https://investigacion.ubu.es/investigadores/34947/detalle){target="_blank"}. ORCID: [0000-0002-9812-388X](https://orcid.org/0000-0002-9812-388X){target="_blank"}. Departamento de Ingeniería de Organización, Escuela Politécnica Superior, Universidad de Burgos. Edificio A1, Avda. Cantabria s/n, 09006 Burgos, España.
+- [María Pereda](https://portalcientifico.upm.es/es/ipublic/researcher/331932){target="_blank"}. ORCID: [0000-0002-6151-1176](https://orcid.org/0000-0002-6151-1176){target="_blank"}. Grupo de investigación Ingeniería de Organización y Logística (IOL), Escuela Técnica Superior de Ingenieros Industriales, Universidad Politécnica de Madrid. C/ José Gutiérrez Abascal 2, 28006 Madrid, España; y Grupo Interdisciplinar de Sistemas Complejos, Madrid, España.
+- [José Ignacio Santos](https://investigacion.ubu.es/investigadores/35543/detalle){target="_blank"}. ORCID: [0000-0002-6653-043X](https://orcid.org/0000-0002-6653-043X){target="_blank"}. Departamento de Ingeniería de Organización, Escuela Politécnica Superior, Universidad de Burgos. Edificio A1, Avda. Cantabria s/n, 09006 Burgos, España.
+
+\* Autor de correspondencia.

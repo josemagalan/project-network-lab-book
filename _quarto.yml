@@ -1,0 +1,124 @@
+project:
+  type: book
+  output-dir: _book
+  pre-render: python3 filtros/indices.py    # numera ejemplos y ejercicios (_numeracion.json) y genera indice.qmd y actividades.qmd
+  post-render:
+    - python3 filtros/e-ante-i.py   # «y» → «e» ante i-/hi-
+    - python3 filtros/busqueda.py   # quita la sigla de nivel duplicada de los extractos de búsqueda
+  resources:
+    - vendor/
+    - comentarios.js
+    - favicon.svg
+
+book:
+  title: "Proyectos a la vista"                                   # elegido por el autor el 2026-11-25 (serie con «Evolución a la vista»)
+  subtitle: "Redes PERT, CPM y ROY en un laboratorio interactivo"
+  favicon: favicon.svg
+  site-url: https://josemagalan.github.io/project-network-lab-book/
+  repo-url: https://github.com/josemagalan/project-network-lab-book
+  repo-branch: main
+  repo-actions: [edit, source]   # «Editar esta página» y «Ver el código»; comentarios.js añade «Enviar un comentario» con la página y la versión
+  author:   # el equipo del portal (README de project-network-lab); con su página web y sin correos, como en el libro de algoritmos genéticos
+    - name: José Manuel Galán
+      orcid: 0000-0003-3360-7602
+      corresponding: true
+      url: https://sites.google.com/site/josemagalan/
+      affiliations:
+        - name: Universidad de Burgos
+          department: Departamento de Ingeniería de Organización, Escuela Politécnica Superior
+          address: Edificio A1, Avda. Cantabria s/n
+          postal-code: "09006"
+          city: Burgos
+          country: España
+    - name: Silvia Díaz-de la Fuente
+      orcid: 0000-0002-5961-3368
+      url: https://produccioncientifica.usal.es/investigadores/2300823/detalle
+      affiliations:
+        - name: Universidad de Salamanca
+          department: Departamento de Cartografía e Ingeniería del Terreno, Escuela Politécnica Superior de Ávila
+          address: Hornos Caleros 50
+          postal-code: "05003"
+          city: Ávila
+          country: España
+    - name: Virginia Ahedo
+      orcid: 0000-0002-9812-388X
+      url: https://investigacion.ubu.es/investigadores/34947/detalle
+      affiliations:
+        - name: Universidad de Burgos
+          department: Departamento de Ingeniería de Organización, Escuela Politécnica Superior
+          address: Edificio A1, Avda. Cantabria s/n
+          postal-code: "09006"
+          city: Burgos
+          country: España
+    - name: María Pereda
+      orcid: 0000-0002-6151-1176
+      url: https://portalcientifico.upm.es/es/ipublic/researcher/331932
+      affiliations:
+        - name: Universidad Politécnica de Madrid
+          department: Grupo de investigación Ingeniería de Organización y Logística (IOL), Escuela Técnica Superior de Ingenieros Industriales
+          address: C/ José Gutiérrez Abascal 2
+          postal-code: "28006"
+          city: Madrid
+          country: España
+        - name: Grupo Interdisciplinar de Sistemas Complejos
+          city: Madrid
+          country: España
+    - name: José Ignacio Santos
+      orcid: 0000-0002-6653-043X
+      url: https://investigacion.ubu.es/investigadores/35543/detalle
+      affiliations:
+        - name: Universidad de Burgos
+          department: Departamento de Ingeniería de Organización, Escuela Politécnica Superior
+          address: Edificio A1, Avda. Cantabria s/n
+          postal-code: "09006"
+          city: Burgos
+          country: España
+  page-footer:
+    center: "Texto: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.es) · Código: [MIT](https://github.com/josemagalan/project-network-lab-book/blob/main/LICENSE) · [Comentarios y contacto](https://josemagalan.github.io/project-network-lab-book/avisos.html#contacto)"
+  language: es
+  chapters:
+    - index.qmd
+    - indice.qmd            # generado por filtros/indices.py
+    - part: "Teoría y práctica"
+      chapters:
+        - 01-redes.qmd
+    - actividades.qmd       # generado por filtros/indices.py
+    - avisos.qmd            # siempre al final: los capítulos nuevos van antes
+
+lang: es
+libro-version: "0.1"                         # borrador; la 1.0 será la primera edición archivada en Zenodo
+libro-revision: "25 de noviembre de 2026"    # fecha de la última revisión; cambiarla con cada versión
+portal-url: https://josemagalan.github.io/project-network-lab/
+
+language:   # etiquetas accesibles
+  search-submit-button-title: "Buscar en el libro"
+  search-label: "Buscar en el libro"
+  search-text-placeholder: "Buscar en el libro"
+  code-tools-source-code: "Repositorio del libro"
+bibliography: referencias.bib
+csl: vendor/csl/apa.csl           # APA 7.ª ed. (CC BY-SA 3.0), en local y adaptada al castellano (vendor/csl/LEEME.md)
+link-citations: true
+
+filters:
+  - filtros/numeracion.lua   # número de ejemplos y ejercicios y referencias a ellos
+  - filtros/version.lua      # <meta name="libro-version"> para comentarios.js
+
+crossref:
+  fig-title: Figura
+  title-delim: "."
+
+format:
+  html:
+    theme: default          # sin fuentes de Google: el libro no depende de CDN, como el portal
+    css: estilos.css
+    template-partials:
+      - plantillas/title-metadata.html # autores agrupados; filiaciones numeradas debajo
+    include-after-body:
+      text: '<script src="comentarios.js"></script>'
+    html-math-method:
+      method: katex
+      url: "vendor/katex/"   # KaTeX 0.19.0 (MIT) copiado en local
+    toc: true
+    toc-title: "En esta página"
+    number-sections: true
+    number-depth: 2         # los apartados de nivel 3 no llevan número

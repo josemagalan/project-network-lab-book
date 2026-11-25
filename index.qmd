@@ -1,0 +1,66 @@
+# Cómo leer este libro {.unnumbered}
+
+<!-- BORRADOR (2026-11-25): adaptado de «Cómo leer este libro» del libro de algoritmos genéticos. Pendiente de la revisión del autor. -->
+
+::: {.version-beta}
+**Borrador, versión {{< meta libro-version >}}**, revisado el {{< meta libro-revision >}}. El libro se está escribiendo: los capítulos aparecen a medida que se terminan. Si encuentras una errata o un resultado que no coincide, [cuéntanoslo](avisos.qmd#contacto).
+:::
+
+Este libro enseña a planificar proyectos con redes: a pasar de un enunciado a una tabla de precedencias, a dibujar la red de dos maneras, la red ROY (actividad en nodo) y la red PERT (actividad en arco), a calcular fechas y holguras, y a estimar el riesgo de no cumplir un plazo cuando las duraciones son inciertas. Está pensado para estudiantes de grado en ingeniería que cursan organización o dirección de proyectos, y sus secciones avanzadas sirven también para el máster.
+
+**Empieza por el [capítulo «Proyectos, actividades y redes»](01-redes.qmd).** Sigue las secciones azules: al final de cada recorrido básico encontrarás su resumen y el enlace al capítulo siguiente.
+
+## El portal {.unnumbered #portal}
+
+Las actividades del libro se hacen con [Project Network Lab](https://josemagalan.github.io/project-network-lab/), un portal gratuito que se usa en el navegador, sin instalar nada ni crear una cuenta, en español y en inglés.
+
+- **El laboratorio** (`cpm.html`) reúne las pestañas de trabajo: del enunciado a la tabla, la ruta guiada por las redes ROY y PERT, el taller para trabajar con una red propia, las extensiones, las duraciones inciertas y los ejercicios autocorregidos.
+- **El examen imprimible** (`examen.html`) y **los bancos de preguntas para Moodle** (`moodle.html`) son para el profesorado.
+
+Todas las pestañas guardan su estado en la dirección. Por eso cada ejemplo del libro abre el portal exactamente en la red y el paso que se están explicando.
+
+## Una red, dos lenguajes {.unnumbered #notacion}
+
+El libro trabaja siempre con las dos redes a la vez, como el portal. La notación por defecto es la anglosajona: comienzo y fin tempranos (ES y EF), comienzo y fin tardíos (LS y LF), holgura total (TF) y holgura libre (FF). En el portal se puede cambiar a la notación española en **Ajustes**.
+
+## Explicaciones y actividades {.unnumbered #explicaciones-actividades}
+
+El libro distingue a simple vista lo que se lee de lo que se hace. La teoría va como texto normal; todo lo que te pide trabajar va dentro de una caja.
+
+**Explicaciones.** Son el texto y las figuras que presentan los conceptos. Se leen como cualquier libro y no necesitan el portal.
+
+::: {.callout-tip .ejemplo title="Ejemplo reproducible"}
+Plantea una situación concreta, con la red y, si hace falta, la semilla fijadas. Intenta predecir el resultado antes de abrirlo; después abre el portal y explica qué coincide con tu predicción y qué te ha hecho cambiar de idea. El botón **Abrir** lleva al portal exactamente en el estado del ejemplo, de modo que el resultado coincide con el del libro.
+:::
+
+::: {.callout-note .en-app title="En el portal"}
+Da instrucciones para seguir explorando por cuenta propia: qué control mover, qué botón pulsar y qué observar. Aquí los resultados ya no están fijados de antemano. El botón **Explorar** abre la pestaña correspondiente.
+:::
+
+::: {.callout-note .ejercicio title="Ejercicio"}
+Se resuelve con papel y lápiz: predecir, calcular o argumentar. Cuando tiene solución, está plegada al final de la caja; intenta resolverlo antes de abrirla.
+:::
+
+::: {.callout-note .mas-portal title="Más en el portal"}
+Cierra el recorrido de cada capítulo con lo que ofrece su pestaña además de lo que se ha visto: otros ejemplos, modos de práctica, comparaciones. No es una actividad: es un mapa para seguir explorando.
+:::
+
+Cada capítulo empieza con sus **objetivos**, en una caja como esta:
+
+::: {.callout-warning .objetivos title="Objetivos del capítulo"}
+Lo que podrás hacer al terminar el recorrido básico del capítulo.
+:::
+
+## Niveles e itinerarios {.unnumbered #niveles}
+
+Las secciones llevan una etiqueta de nivel: [[Básico]{.largo}[B]{.corto}]{.nivel .basico}, [[Avanzado]{.largo}[A]{.corto}]{.nivel .avanzado} y [[Para saber más]{.largo}[+]{.corto}]{.nivel .saber-mas}. En el índice lateral «En esta página» aparecen abreviadas como [[B]{.corto}]{.nivel .basico .solo-corto}, [[A]{.corto}]{.nivel .avanzado .solo-corto} y [[+]{.corto}]{.nivel .saber-mas .solo-corto}. El recorrido básico puede leerse de forma continua sin las ampliaciones: incluye los objetivos y el resumen de cada capítulo.
+
+- **Solo el recorrido básico.** Cubre lo que se enseña en una asignatura de grado: la tabla de precedencias, las redes ROY y PERT, el cálculo de tiempos y holguras, los caminos críticos, las tres estimaciones del PERT, la probabilidad de cumplir un plazo y la simulación de Montecarlo.
+- **Básico y avanzado.** Añade los algoritmos que hay detrás (ordenación topológica, construcción de la red PERT con el mínimo de ficticias), las holguras independiente y de suceso, las otras distribuciones y los índices de criticidad y crucialidad. Sirve para una asignatura más completa o para el máster.
+- **Para saber más.** Historia, resultados teóricos y lecturas para seguir por cuenta propia.
+
+El [índice general](indice.qmd) muestra todas las secciones con su nivel, y el [índice de actividades](actividades.qmd) reúne los ejemplos, las cajas «En el portal» y los ejercicios, por capítulo y por pestaña del portal.
+
+## Para el profesorado {.unnumbered #profesorado}
+
+El portal ofrece, además de las actividades del texto, recursos para la clase y para la evaluación: animaciones paso a paso con predicción para proyectar, ejercicios autocorregidos con corrección por error consecuente, exámenes imprimibles con su solución y bancos de preguntas para Moodle. La segunda parte del libro, en preparación, explica cómo usarlos en una asignatura.
