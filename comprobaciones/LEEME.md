@@ -8,7 +8,7 @@ Los ejemplos del libro abren el portal [Project Network Lab](https://josemagalan
 
 ## Frente al portal (`comprobar.cjs`)
 
-1. **Versión.** Clona el portal y lo compara con `revisado`. Si han cambiado archivos que pueden alterar los ejemplos, falla y dice qué capítulos enlazan con el portal. Los cambios en README, pruebas, imágenes o la integración continua solo se anotan.
+1. **Versión.** Clona el portal y lo compara con `revisado`. Si han cambiado archivos que pueden alterar los ejemplos, falla y dice qué capítulos enlazan con el portal. Los cambios en README, pruebas, imágenes o la integración continua solo se anotan, y también los de archivos propios de una pestaña a la que el libro aún no enlaza (`pestanas` en `portal.json`; por ejemplo, los de coste–tiempo mientras ningún capítulo use «Extensiones»).
 2. **Direcciones.** Descodifica cada dirección del portal que hay en los capítulos con el propio `js/core/urlstate.js` del portal. Falla si lleva un parámetro desconocido o un valor que el portal no acepta (el portal abriría su estado por defecto y el resultado no coincidiría con el del libro), o si la página no existe. Las instrucciones del texto que piden un estado sin enlace se comprueban con una anotación invisible junto a ellas:
 
    ```html

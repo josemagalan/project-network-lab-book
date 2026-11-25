@@ -4,5 +4,53 @@
   "url": "https://josemagalan.github.io/project-network-lab/",
   "revisado": "709ec05",
   "comentario": "709ec05 (2026-11-25): F5b T012–T015 (coste–tiempo y pestaña «Extensiones»); la ruta guiada no cambia. Capítulo 1 comprobado con esta versión servida en local.",
-  "ignorar": ["README.md", "LICENSE", "LICENSE-CONTENT.md", "tests/", ".github/", "img/", "scripts/", ".gitignore", "package.json", "eslint.config.cjs"]
+  "ignorar": [
+    "README.md",
+    "LICENSE",
+    "LICENSE-CONTENT.md",
+    "tests/",
+    ".github/",
+    "img/",
+    "scripts/",
+    ".gitignore",
+    "package.json",
+    "eslint.config.cjs"
+  ],
+  "pestanas_nota": "Archivos propios de una pestaña o página del portal. Si solo cambian archivos de pestañas a las que el libro aún no enlaza, la comprobación lo anota sin fallar. Cualquier otro archivo (núcleo compartido, app.js, i18n.js, vistas comunes…) se considera común a todas.",
+  "pestanas": {
+    "ext": [
+      "js/ct.js",
+      "js/i18n-ct.js",
+      "js/learn-ct.js",
+      "css/ct.css",
+      "js/views/ct-chart.js",
+      "js/core/crash.js",
+      "js/core/crashex.js",
+      "js/core/lp.js",
+      "js/gpr.js",
+      "js/i18n-gpr.js",
+      "js/learn-gpr.js",
+      "css/gpr.css",
+      "js/views/gpr-gantt.js",
+      "js/core/gpr.js",
+      "js/core/gprex.js",
+      "js/core/gprpert.js"
+    ],
+    "moodle": [
+      "moodle.html",
+      "js/moodle-app.js",
+      "js/moodle-page.js",
+      "js/i18n-moodle.js",
+      "css/moodle.css",
+      "js/core/moodle.js"
+    ],
+    "examen": [
+      "examen.html",
+      "js/exam-app.js",
+      "js/i18n-exam.js",
+      "js/views/exam-view.js",
+      "css/exam.css",
+      "js/core/exam.js"
+    ]
+  }
 }
