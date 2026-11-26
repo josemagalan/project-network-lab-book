@@ -2,8 +2,8 @@
   "nota": "Versión del portal revisada para el libro. «revisado»: commit hasta el que se ha comprobado que los cambios no alteran los ejemplos. Al volver a comprobar, actualizarlo y explicar en «comentario» qué ha cambiado. Lo usa comprobaciones/comprobar.cjs.",
   "repositorio": "josemagalan/project-network-lab",
   "url": "https://josemagalan.github.io/project-network-lab/",
-  "revisado": "709ec05",
-  "comentario": "709ec05 (2026-11-25): F5b T012–T015 (coste–tiempo y pestaña «Extensiones»); la ruta guiada no cambia. Capítulo 1 comprobado con esta versión servida en local.",
+  "revisado": "9f55e73",
+  "comentario": "9f55e73 (2026-11-26): F5b T016–T019 y el enlace al libro en la portada. En el núcleo solo cambia el enlace de los costes de coste–tiempo (urlstate.js, kc). Capítulo 1 comprobado con esta versión servida en local: los pasos de la ruta guiada (tabla, red ROY, camino crítico; red PERT numerada) no cambian y las capturas de figuras/01-capturas.cjs salen idénticas.",
   "ignorar": [
     "README.md",
     "LICENSE",
