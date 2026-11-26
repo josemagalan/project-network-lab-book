@@ -75,3 +75,50 @@ def documento(ancho, alto, cuerpo, separadores=()):
     s += cuerpo
     s.append('</svg>')
     return '\n'.join(s) + '\n'
+
+
+AZUL = '#dbe7f5'      # fila de las actividades, como en las transparencias
+ROJO = '#c0392b'      # lo que comparten las columnas
+
+
+def tabla(x0, y0, filas, ancho_etiqueta=92, ancho_col=64, alto=26, hueco=16):
+    """Tabla de precedencias en miniatura, como en las transparencias de clase.
+
+    filas: [(etiqueta, [celda, celda], es_actividad)], con cada celda como lista de (texto, resaltado).
+    Las columnas de los extremos van en blanco y con trazo discontinuo: es un trozo de una tabla mayor.
+    """
+    s = []
+    n = len(filas[0][1])
+    xs = [x0, x0 + ancho_etiqueta, x0 + ancho_etiqueta + hueco]
+    for _ in range(n):
+        xs.append(xs[-1] + ancho_col)
+    xs.append(xs[-1] + hueco)
+    total_alto = alto * len(filas)
+    for i, (etiqueta, celdas, es_act) in enumerate(filas):
+        y = y0 + i * alto
+        if es_act:
+            s.append(f'<rect x="{x0}" y="{y}" width="{xs[-1] - x0}" height="{alto}" fill="{AZUL}"/>')
+        s.append(f'<text x="{x0 + 6}" y="{y + 17.5}" font-size="12.5" font-weight="600" fill="{TINTA}">{etiqueta}</text>')
+        for j, celda in enumerate(celdas):
+            cx = (xs[2 + j] + xs[3 + j]) / 2
+            partes = []
+            for k, (texto, resaltado) in enumerate(celda):
+                sep = ', ' if k else ''
+                color = ROJO if resaltado else TINTA
+                peso = ' font-weight="600"' if resaltado else ''
+                partes.append(f'<tspan fill="{TINTA}">{sep}</tspan><tspan fill="{color}"{peso}>{texto}</tspan>')
+            s.append(f'<text x="{cx}" y="{y + 17.5}" text-anchor="middle" font-size="13">{"".join(partes)}</text>')
+        if i:
+            s.append(f'<line x1="{x0}" y1="{y}" x2="{xs[-1]}" y2="{y}" stroke="{TINTA}" stroke-width="0.8"/>')
+    # Bordes: macizos en la etiqueta y en las columnas con datos; discontinuos en las columnas en blanco.
+    y1, y2 = y0, y0 + total_alto
+    d = ' stroke-dasharray="4 3"'
+    s.append(f'<rect x="{x0}" y="{y1}" width="{xs[1] - x0}" height="{total_alto}" fill="none" stroke="{TINTA}" stroke-width="1.4"/>')
+    s.append(f'<rect x="{xs[2]}" y="{y1}" width="{xs[-2] - xs[2]}" height="{total_alto}" fill="none" stroke="{TINTA}" stroke-width="1.4"/>')
+    for x in xs[3:-2]:
+        s.append(f'<line x1="{x}" y1="{y1}" x2="{x}" y2="{y2}" stroke="{TINTA}" stroke-width="1"/>')
+    for a, b in ((xs[1], xs[2]), (xs[-2], xs[-1])):
+        for y in (y1, y2):
+            s.append(f'<line x1="{a}" y1="{y}" x2="{b}" y2="{y}" stroke="{TINTA}" stroke-width="1.4"{d}/>')
+    s.append(f'<line x1="{xs[-1]}" y1="{y1}" x2="{xs[-1]}" y2="{y2}" stroke="{TINTA}" stroke-width="1.4"{d}/>')
+    return s, xs[-1] - x0
