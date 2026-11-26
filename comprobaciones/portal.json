@@ -2,8 +2,8 @@
   "nota": "Versión del portal revisada para el libro. «revisado»: commit hasta el que se ha comprobado que los cambios no alteran los ejemplos. Al volver a comprobar, actualizarlo y explicar en «comentario» qué ha cambiado. Lo usa comprobaciones/comprobar.cjs.",
   "repositorio": "josemagalan/project-network-lab",
   "url": "https://josemagalan.github.io/project-network-lab/",
-  "revisado": "9f55e73",
-  "comentario": "9f55e73 (2026-11-26): F5b T016–T019 y el enlace al libro en la portada. En el núcleo solo cambia el enlace de los costes de coste–tiempo (urlstate.js, kc). Capítulo 1 comprobado con esta versión servida en local: los pasos de la ruta guiada (tabla, red ROY, camino crítico; red PERT numerada) no cambian y las capturas de figuras/01-capturas.cjs salen idénticas.",
+  "revisado": "74055bb",
+  "comentario": "74055bb (2026-11-26): F5c T002–T009, núcleo de recursos y vista oculta de recursos (v=rs). En los archivos compartidos solo se añaden la vista rs y sus parámetros (urlstate.js, app.js, store.js, i18n.js, cpm.html); nada de lo que usan los capítulos 1 a 4. Capítulo 4 comprobado con esta versión: cifras de los siete métodos del comparador, mensajes del Reto y Detective PERT de la semilla 23, iguales que con 4c4818e.",
   "ignorar": [
     "README.md",
     "LICENSE",
@@ -36,7 +36,10 @@
       "js/core/gprex.js",
       "js/core/gprpert.js",
       "js/core/resource.js",
-      "js/core/resex.js"
+      "js/core/resex.js",
+      "js/rs.js",
+      "js/i18n-rs.js",
+      "css/rs.css"
     ],
     "moodle": [
       "moodle.html",

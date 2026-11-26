@@ -1,6 +1,6 @@
 # La red PERT y las ficticias {#sec-pert}
 
-<!-- Seguimiento interno (no visible): primer borrador del 2026-11-26. El autor pidió el borrador directamente; el esquema se revisó antes con un agente (orden de las reglas en los ejemplos, fragmentos con flechas abiertas en las figuras porque una tabla completa A, B < C, D necesita ficticias de unicidad, condición de unicidad en el teorema de Sysło, tres niveles: incorrecta, con ficticias que sobran y mínima; los dos sentidos de «sobra» en el Reto y en el Detective; criterio práctico sin ficticias en el básico). Reglas de los conjuntos: las del portal (js/core/aoa.js y «Aprende más» de M2); atribuidas a José Manuel Galán, coautor, que las usa en sus clases (decisión del autor, sin citar sus apuntes). Cifras comprobadas el 2026-11-26 con el núcleo de project-network-lab 4c4818e (aoa.build, mindummy.solve, aoacheck.diagnose, detective.forSeed): Mecánicas 9 sucesos y 3 ficticias de contenidos (F1 2→3, F2 2→4, F3 5→6), mínimo 3, también con el dibujo progresivo; ejercicio 7 del portal 9 sucesos y 5 ficticias (unicidad G/I, F1 8→9; compartidos {D}: F2 2→4 y F4 3→4; {H}: F3 2→6 y F5 5→6), mínimo 5; mudanza depurada 8 sucesos y 3 ficticias (A 1→2, B 2→5, C 2→4, D 1→3, E 5→6, F 7→8, G 6→8, H 3→7; F1 4→5 unicidad, F2 3→5 y F3 6→7 contenidos), mínimo 3; tablas pequeñas del ejercicio 4.1: (a) 1 de unicidad, (b) 0, (c) 1 de contenidos, todas en el mínimo; caso tipo, reglas 3 (F3 se puede quitar fundiendo sus sucesos) y mínimo 2; Reto de Mecánicas: sin F2, «Falta una precedencia: B … G»; F1 al revés, precedencias falsas A → F y A → G, falta B → E y F1 no cumple i < j; con una ficticia más del suceso 2 al 6, red correcta y «La ficticia F4 sobra»; Detective PERT, difícil, semilla 23: B y J del suceso 1 al 11 (falta F2), F3 al revés (9 → 4 en lugar de 4 → 9) y F6 del 2 al 5 que sobra. Mensajes copiados de js/i18n.js (aoa.diag, reto) y js/i18n-det.js. Fuentes cotejadas en memoria/bibliografía: Taha (2012, pp. 247–248: reglas 1 a 3, figuras 6.37 y 6.38; la ficticia de unicidad, de «una de las cuatro maneras» de la figura 6.37, a petición del autor); Rama Murthy (2007, p. 641: regla de Fulkerson, numeración con saltos); Krishnamoorthy y Deo (1979, p. 189); Sysło (1981, pp. 244, 246 y 252: teoremas 2.2 y 2.4, afirmación de Corneil et al.); Corneil, Gotlieb y Lee (1973, p. 296); Spinrad (1986, p. 331); Kim (2008, p. 739); Kelley y Walker (1959, p. 168: 393 trabajos y 297 ficticias); Fondahl (1962, pp. 24 y 70); Sniedovich (2005, p. 51). -->
+<!-- Seguimiento interno (no visible): primer borrador del 2026-11-26. El autor pidió el borrador directamente; el esquema se revisó antes con un agente (orden de las reglas en los ejemplos, fragmentos con flechas abiertas en las figuras porque una tabla completa A, B < C, D necesita ficticias de unicidad, condición de unicidad en el teorema de Sysło, tres niveles: incorrecta, con ficticias que sobran y mínima; los dos sentidos de «sobra» en el Reto y en el Detective; criterio práctico sin ficticias en el básico). Reglas de los conjuntos: las del portal (js/core/aoa.js y «Aprende más» de M2); atribuidas a José Manuel Galán, coautor, que las usa en sus clases (decisión del autor, sin citar sus apuntes). Cifras comprobadas el 2026-11-26 con el núcleo de project-network-lab 4c4818e (aoa.build, mindummy.solve, aoacheck.diagnose, detective.forSeed): Mecánicas 9 sucesos y 3 ficticias de contenidos (F1 2→3, F2 2→4, F3 5→6), mínimo 3, también con el dibujo progresivo; ejercicio 7 del portal 9 sucesos y 5 ficticias (unicidad G/I, F1 8→9; compartidos {D}: F2 2→4 y F4 3→4; {H}: F3 2→6 y F5 5→6), mínimo 5; mudanza depurada 8 sucesos y 3 ficticias (A 1→2, B 2→5, C 2→4, D 1→3, E 5→6, F 7→8, G 6→8, H 3→7; F1 4→5 unicidad, F2 3→5 y F3 6→7 contenidos), mínimo 3; tablas pequeñas del ejercicio 4.1: (a) 1 de unicidad, (b) 0, (c) 1 de contenidos, todas en el mínimo; caso tipo, reglas 3 (F3 se puede quitar fundiendo sus sucesos) y mínimo 2; Reto de Mecánicas: sin F2, «Falta una precedencia: B … G»; F1 al revés, precedencias falsas A → F y A → G, falta B → E y F1 no cumple i < j; con una ficticia más del suceso 2 al 6, red correcta y «La ficticia F4 sobra»; Detective PERT, difícil, semilla 23: B y J del suceso 1 al 11 (falta F2), F3 al revés (9 → 4 en lugar de 4 → 9) y F6 del 2 al 5 que sobra. Mensajes copiados de js/i18n.js (aoa.diag, reto) y js/i18n-det.js. Reestructuración del 2026-11-26, aprobada por el autor: dibujo progresivo como sección básica (4.2; ejercicio con el ejercicio 1, trazas de aoamethods prog), reglas de los conjuntos en 4.3 con nota para citarlas; en [A], Cohen y Sadeh (pasos de su sección 5; Mecánicas 6 ficticias y 11 sucesos, mudanza 3 y 8), Kim (Mecánicas 3; ejercicio 4: A→D,E, E→G,H y H→I, 3 ficticias), Spinrad y Corneil, Gotlieb y Lee (contraejemplo de Sysło: CGL 9 y 9, reglas 8 y 11, mínimo entre 4 y 8) y la tabla de comparación con las cifras del comparador (portal 74055bb); porcentajes de acierto copiados del «Aprende más» de cada método. Cohen y Sadeh (2007): revista según el preprint; año, volumen y número según el portal. Fuentes cotejadas en memoria/bibliografía: Taha (2012, pp. 247–248: reglas 1 a 3, figuras 6.37 y 6.38; la ficticia de unicidad, de «una de las cuatro maneras» de la figura 6.37, a petición del autor); Rama Murthy (2007, p. 641: regla de Fulkerson, numeración con saltos); Krishnamoorthy y Deo (1979, p. 189); Sysło (1981, pp. 244, 246 y 252: teoremas 2.2 y 2.4, afirmación de Corneil et al.); Corneil, Gotlieb y Lee (1973, p. 296); Spinrad (1986, pp. 331 y 337); Kim (2008, pp. 739–741); Kelley y Walker (1959, p. 168: 393 trabajos y 297 ficticias); Fondahl (1962, pp. 24 y 70); Sniedovich (2005, p. 51). -->
 
 **Portal:** [Project Network Lab](https://josemagalan.github.io/project-network-lab/), pestañas [Ruta guiada](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=route&ex=ej6&graph=aoa) (Red PERT, Lado a lado, Comparar métodos y Reto de ficticias), [Taller](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=work) y [Ejercicios](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=ex&xk=pert) (Construir la PERT, Detective).
 
@@ -8,7 +8,7 @@
 Al terminar el recorrido básico de este capítulo podrás:
 
 - explicar qué representan las flechas y los sucesos de una red PERT, y por qué a veces hacen falta actividades ficticias;
-- aplicar las reglas de los conjuntos a una tabla depurada para obtener una red PERT correcta;
+- construir una red PERT correcta con el dibujo progresivo y con las reglas de los conjuntos;
 - numerar los sucesos de modo que cada flecha vaya de un número menor a uno mayor;
 - comprobar una red PERT frente a su tabla, y distinguir una red correcta de una red con el mínimo de ficticias.
 :::
@@ -40,30 +40,22 @@ Son fragmentos. En una tabla completa, las actividades iniciales salen todas del
 
 De aquí sale un criterio práctico. En una tabla depurada no hace falta ninguna ficticia si se cumplen dos condiciones: dos actividades cualesquiera tienen las mismas sucesoras o no comparten ninguna, y no hay dos actividades con las mismas predecesoras y las mismas sucesoras. La sección -@sec-pert-cuantas explica de dónde sale.
 
-::: {.callout-tip .ejemplo #ejemplo-pert-progresivo title="Ejemplo reproducible · Mecánicas del Sureste, flecha a flecha"}
-**Datos.** La tabla de Mecánicas del Sureste: A, B, C y D sin predecesoras; E (A, B); F (B); G (B, C); H (E, F); I (E, F, G); J (I); K (D, H, J).
+::: {.callout-tip .ejemplo #ejemplo-pert-lado title="Ejemplo reproducible · ROY y PERT lado a lado"}
+**Datos.** Las redes ROY y PERT de Mecánicas del Sureste (figuras -@fig-redes-roy y -@fig-redes-pert).
 
-**Predice.** Dibuja la red PERT añadiendo las actividades una a una, en orden alfabético. Cuando una actividad dependa de varias, ¿pueden terminar todas ellas directamente en el suceso del que sale, o alguna necesita una ficticia?
+**Predice.** ¿Qué precedencias de la tabla representa cada ficticia, F1, F2 y F3? ¿Alguna representa más de una?
 
-[Abrir: Mecánicas del Sureste con el dibujo progresivo](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=route&ex=ej6&graph=aoa&m=prog){.abrir target="_blank"}
+[Abrir: Mecánicas del Sureste, ROY y PERT lado a lado](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=route&ex=ej6&graph=aoa&view=side&step=5){.abrir target="_blank"}
 
-Es la manera de dibujar que se enseña en muchos cursos, y el portal la llama **dibujo progresivo**. Una actividad sin predecesoras sale del suceso inicial; con una sola, del final de esa predecesora; con varias, del suceso al que llegan exactamente sus predecesoras, si ya existe, o de uno nuevo. Cada predecesora termina directamente en ese suceso si su final sigue libre y todas sus sucesoras dependen también de las demás; si no, se une con una ficticia de dependencia.
+La vista pone la red PERT y la red ROY una junto a otra. Pulsa una actividad o una ficticia de la red PERT para verla también en la red ROY.
 
 <details>
 <summary>**Ver el resultado**</summary>
 
-E depende de A y B, y sale de un suceso nuevo. A termina directamente en él, porque E es su única sucesora; B no, porque F y G no dependen de A: hace falta la ficticia F1, del final de B al suceso de E. F sale del final de B. G depende de B y C: C termina directamente en su suceso, y B llega con la ficticia F2. H depende de E y F, que terminan directamente en el suceso de H. I depende de E, F y G: G termina directamente en el suceso de I, y E y F, que ya terminan en el de H, llegan con la ficticia F3. Al final, la red tiene 9 sucesos y 3 ficticias, las de la figura -@fig-redes-pert.
+F1 representa B → E, y F2, B → G: cada una, una sola precedencia. Al pulsar F3 se marcan en la red ROY dos flechas, E → I y F → I: una sola ficticia representa dos precedencias, porque une el suceso al que llegan E y F con el suceso del que sale I.
 
-Son las ficticias que el ejercicio de la sección -@sec-roy-prelaciones situaba alrededor de B, E y F: B comparte E con A y G con C, y E y F comparten I con G.
+Son las ficticias que el ejercicio de la sección -@sec-roy-prelaciones situaba alrededor de B, E y F: B comparte E con A y G con C, y E y F comparten I con G. Las dos secciones siguientes enseñan dos maneras de colocarlas sin tantear.
 </details>
-:::
-
-::: {.callout-note .en-app title="En el portal · Ruta guiada, «Lado a lado»"}
-[Explorar Mecánicas del Sureste lado a lado](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=route&ex=ej6&graph=aoa&view=side&step=5){.explorar target="_blank"}
-
-- La vista pone la red PERT y la red ROY una junto a otra.
-- Pulsa la ficticia F3 en la red PERT: en la red ROY se marcan las flechas E → I y F → I. Una sola ficticia representa dos precedencias.
-- Pulsa F1 y F2: cada una representa una sola precedencia, B → E y B → G.
 :::
 
 :::: {.callout-note .ejercicio #ejercicio-pert-hace-falta title="Ejercicio · ¿Hace falta una ficticia?"}
@@ -82,11 +74,59 @@ c. Una, de dependencia. C precede solo a E, y D precede a E y a F. Es una conver
 </details>
 ::::
 
+## El dibujo progresivo [[Básico]{.largo}[B]{.corto}]{.nivel .basico} {#sec-pert-progresivo}
+
+¿Cómo se dibuja una red PERT actividad a actividad?
+
+Es la manera de dibujar que se enseña en muchos cursos de secundaria y de primeros años de universidad, y el portal la llama **dibujo progresivo**. Las fuentes de aula suelen dar solo los dos motivos de ficticia de la sección anterior, no un procedimiento; el portal lo formaliza así:
+
+1. Se toman las actividades en un orden en que cada una vaya después de sus predecesoras, un orden topológico (capítulo 3); en caso de empate, el alfabético.
+2. Una actividad sin predecesoras sale del suceso inicial; con una sola, del final de esa predecesora; con varias, del suceso al que llegan exactamente sus predecesoras, si ya existe, o de uno nuevo.
+3. Cada predecesora termina directamente en ese suceso nuevo si su final sigue libre y todas sus sucesoras dependen también de las demás predecesoras. Si no, se une al suceso con una ficticia de dependencia.
+4. Al final, las actividades sin sucesoras llegan al suceso final, y las que irían del mismo suceso al mismo suceso reciben una ficticia de unicidad.
+
+El dibujo progresivo siempre da una red correcta. No garantiza la mínima, y el resultado puede depender del orden en que se dibujan las actividades.
+
+::: {.callout-tip .ejemplo #ejemplo-pert-progresivo title="Ejemplo reproducible · Mecánicas del Sureste, flecha a flecha"}
+**Datos.** La tabla de Mecánicas del Sureste: A, B, C y D sin predecesoras; E (A, B); F (B); G (B, C); H (E, F); I (E, F, G); J (I); K (D, H, J).
+
+**Predice.** Dibuja la red PERT añadiendo las actividades una a una, en orden alfabético. Cuando una actividad dependa de varias, ¿pueden terminar todas ellas directamente en el suceso del que sale, o alguna necesita una ficticia?
+
+[Abrir: Mecánicas del Sureste con el dibujo progresivo](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=route&ex=ej6&graph=aoa&m=prog){.abrir target="_blank"}
+
+Avanza con **→**: cada paso dibuja una actividad, y el panel explica de qué suceso sale y si sus predecesoras necesitan ficticia. Con **Modo predicción**, el portal te lo pregunta antes.
+
+<details>
+<summary>**Ver el resultado**</summary>
+
+E depende de A y B, y sale de un suceso nuevo. A termina directamente en él, porque E es su única sucesora; B no, porque F y G no dependen de A: hace falta la ficticia F1, del final de B al suceso de E. F sale del final de B. G depende de B y C: C termina directamente en su suceso, y B llega con la ficticia F2. H depende de E y F, que terminan directamente en el suceso de H. I depende de E, F y G: G termina directamente en el suceso de I, y E y F, que ya terminan en el de H, llegan con la ficticia F3. Al final, la red tiene 9 sucesos y 3 ficticias, las de la figura -@fig-redes-pert.
+</details>
+:::
+
+
+:::: {.callout-note .ejercicio #ejercicio-pert-progresivo title="Ejercicio · La nave almacén, flecha a flecha"}
+Dibuja con el dibujo progresivo la red PERT del ejercicio 1 del portal, la construcción de una nave almacén: A precede a D, a E y a G; B precede a D; C precede a H y a I; D precede a H; G y H preceden a J. E, I y J no tienen sucesoras.
+
+1. ¿Qué actividades salen de un suceso nuevo?
+2. ¿Qué predecesoras necesitan una ficticia, y por qué?
+3. ¿Cuántos sucesos y ficticias tiene la red?
+
+[Abrir: la nave almacén con el dibujo progresivo](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=route&ex=ej1&graph=aoa&m=prog){.abrir target="_blank"}
+
+<details>
+<summary>**Ver la solución**</summary>
+
+1. D, H y J, que tienen varias predecesoras. E y G salen del final de A, su única predecesora, e I, del final de C.
+2. D depende de A y B: B termina directamente en el suceso de D, pero A no, porque E y G no dependen de B, así que A llega con una ficticia. H depende de C y D: D termina directamente, y C llega con una ficticia, porque I no depende de D. J depende de G y H, que terminan directamente en su suceso: todo lo que sigue a G sigue también a H, y al revés.
+3. Siete sucesos y dos ficticias, las dos de dependencia. E, I y J llegan al suceso final.
+</details>
+::::
+
 ## Las reglas de los conjuntos [[Básico]{.largo}[B]{.corto}]{.nivel .basico} {#sec-pert-reglas}
 
 ¿Se pueden colocar las ficticias sin tantear?
 
-El dibujo progresivo depende del orden en que se añaden las actividades. Las **reglas de los conjuntos** miran la tabla entera de una vez. Las enunció José Manuel Galán, coautor de este libro, que las utiliza en sus clases, y son las que sigue la ruta guiada del portal. Usan el vocabulario del portal: las **posteriores** de una actividad son sus sucesoras inmediatas, y sus **precedentes**, sus predecesoras inmediatas. Escribiremos post(X) para el conjunto de posteriores de X, y pre(X) para el de sus precedentes.
+El dibujo progresivo depende del orden en que se añaden las actividades. Las **reglas de los conjuntos** miran la tabla entera de una vez. Las enunció José Manuel Galán, coautor de este libro, que las utiliza en sus clases, y son las que sigue la ruta guiada del portal. Las reglas no están publicadas en ningún otro sitio: si quieres citarlas, cita este libro (véase [Cómo citar este libro](avisos.qmd#como-citar)). Usan el vocabulario del portal: las **posteriores** de una actividad son sus sucesoras inmediatas, y sus **precedentes**, sus predecesoras inmediatas. Escribiremos post(X) para el conjunto de posteriores de X, y pre(X) para el de sus precedentes.
 
 Se parte de la **tabla depurada** del capítulo 2. Una precedencia redundante, que en la red ROY era una flecha de más, aquí puede convertirse en una ficticia de más. En la mudanza sin depurar, la precedencia A → E añade una ficticia del final de A al suceso del que sale E, que no hace ninguna falta. El portal depura la tabla antes de aplicar las reglas.
 
@@ -252,27 +292,154 @@ Si no los encuentras todos, **Ver los errores** los marca en la red.
 
 - En la red PERT, cada actividad es una flecha y los nodos son sucesos. Hay un solo suceso inicial y uno final, y cada actividad tiene su propio par de sucesos.
 - Las ficticias son flechas de duración cero que unen sucesos. Las de dependencia aparecen cuando unas actividades comparten solo una parte de sus sucesoras; las de unicidad, cuando dos actividades irían del mismo suceso al mismo suceso.
+- El dibujo progresivo añade las actividades una a una, en orden topológico, y pone una ficticia cuando una predecesora no puede terminar directamente en el suceso del que sale la actividad.
 - Las reglas de los conjuntos parten de la tabla depurada de posteriores: iguales, contenidos (ficticia del conjunto mayor al menor) y compartidos (un suceso para la parte común).
 - Los sucesos se numeran de modo que cada flecha, también las ficticias, vaya de un número menor a uno mayor. Es un orden topológico de los sucesos, y no es único.
 - Una red puede ser incorrecta, correcta con ficticias que sobran, o mínima. Una ficticia de más no cambia el proyecto, pero no es la mejor red.
 
 Para seguir el recorrido básico, continúa por el capítulo «Calcular los tiempos» (en preparación).
 
-## Cuántas ficticias hacen falta [[Avanzado]{.largo}[A]{.corto}]{.nivel .avanzado} {#sec-pert-cuantas}
+## Agrupar por precedentes [[Avanzado]{.largo}[A]{.corto}]{.nivel .avanzado} {#sec-pert-cs}
 
-**Cuándo no hace falta ninguna.** La red PERT también es un grafo dirigido acíclico, un DAG, pero con las actividades en los arcos y los sucesos en los vértices. Si una red PERT no tiene ficticias, la red ROY se obtiene de ella poniendo un vértice por cada flecha y uniendo a con b cuando la flecha de a termina en el suceso donde empieza la de b. Ese grafo se llama **grafo de líneas** (en inglés, *line digraph*) de la red PERT. Sysło recogió una caracterización clásica: un grafo dirigido es un grafo de líneas si y solo si dos vértices cualesquiera tienen los mismos sucesores o no comparten ninguno [@syslo1981, p. 244]. Y demostró que un proyecto tiene una red PERT sin ficticias si y solo si la reducción transitiva de su red ROY es un grafo de líneas [@syslo1981, p. 246].
+Las reglas de los conjuntos agrupan las actividades por sus **posteriores**: las que tienen las mismas terminan en el mismo suceso. Cohen y Sadeh proponen lo simétrico: agrupar por **precedentes**. En su red, cada suceso corresponde a una fila distinta de la tabla de predecesoras inmediatas: le llegan las predecesoras de esa fila, y de él salen las actividades que la tienen. Así, la red es única para cada tabla, y se puede volver a leer la tabla en ella; los autores no buscan el mínimo de ficticias, aunque advierten que su método da pocas como consecuencia [@cohen2007, resumen]. Sus siete pasos se resumen así [@cohen2007, sec. 5]:
+
+1. Se escribe la tabla de predecesoras inmediatas.
+2. Cada conjunto distinto de predecesoras es un suceso, también el vacío, que es el suceso inicial; de él salen todas las actividades que tienen ese conjunto. Si varias actividades no tienen sucesoras, se añade un suceso final.
+3. Una actividad que aparece en un solo conjunto termina en su suceso. Si aparece en varios, necesita ficticias. Cuando es la única predecesora de alguna actividad, esa actividad sale directamente de su final, y hacia los demás conjuntos va una ficticia desde ese final. Si no, termina en un suceso propio, con una ficticia hacia cada conjunto en que aparece.
+4. Los pasos 4 a 7 añaden las ficticias a la tabla, asignan a cada flecha sus dos sucesos y la nombran por ellos. El portal añade al final las ficticias de unicidad.
+
+Es fácil de aplicar a mano, y su coste crece con el cuadrado del número de actividades. Su punto débil es que no funde los finales de las actividades que tienen las mismas posteriores: cada una lleva sus propias ficticias.
+
+::: {.callout-tip .ejemplo #ejemplo-pert-cs title="Ejemplo reproducible · Mecánicas del Sureste, por precedentes"}
+**Datos.** La tabla de predecesoras de Mecánicas del Sureste.
+
+**Predice.** ¿Cuántos conjuntos distintos de predecesoras hay? ¿Qué actividades aparecen en más de uno? ¿Saldrán más o menos ficticias que con las reglas?
+
+[Abrir: Mecánicas del Sureste, agrupar por precedentes frente a las reglas](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=route&ex=ej6&graph=aoa&view=cmp&pair=cs,rules){.abrir target="_blank"}
+
+<details>
+<summary>**Ver el resultado**</summary>
+
+Hay ocho conjuntos distintos: el vacío (de A, B, C y D), {A, B} (de E), {B} (de F), {B, C} (de G), {E, F} (de H), {E, F, G} (de I), {I} (de J) y {D, H, J} (de K). B aparece en tres: F sale de su final, porque B es su única predecesora, y dos ficticias lo llevan a los sucesos de {A, B} y de {B, C}. E y F aparecen las dos en {E, F} y en {E, F, G}, y ninguna es la única predecesora de nada: cada una termina en un suceso propio, con dos ficticias. La red tiene 11 sucesos y 6 ficticias, el doble que con las reglas. Las reglas hacen terminar a E y a F en el mismo suceso, porque tienen las mismas posteriores, y una sola ficticia, F3, sirve para las dos.
+</details>
+:::
+
+:::: {.callout-note .ejercicio #ejercicio-pert-cs title="Ejercicio · La mudanza, por precedentes"}
+Aplica el método de Cohen y Sadeh a la mudanza depurada: A sin predecesoras; B (A); C (A); D sin predecesoras; E (B, C, D); F (E, H); G (E); H (D). ¿Cuántos sucesos y ficticias salen? Compáralo con la red de las reglas del ejercicio de la sección -@sec-pert-numerar.
+
+<details>
+<summary>**Ver la solución**</summary>
+
+Los conjuntos distintos son el vacío (de A y D), {A} (de B y C), {B, C, D} (de E), {D} (de H), {E, H} (de F) y {E} (de G). D aparece en {B, C, D} y en {D}: H sale de su final, porque D es su única predecesora, y una ficticia lleva ese final al suceso de {B, C, D}. Con E pasa lo mismo: G sale de su final, y una ficticia lo lleva al suceso de {E, H}. B y C aparecen solo en {B, C, D}, y las dos salen del final de A: irían del mismo suceso al mismo suceso, así que C termina en uno propio, con una ficticia de unicidad. Son 8 sucesos y 3 ficticias, la misma red que con las reglas.
+</details>
+::::
+
+## El método de Kim [[Avanzado]{.largo}[A]{.corto}]{.nivel .avanzado} {#sec-pert-kim}
+
+Kim propuso un método heurístico para identificar de forma sistemática las ficticias de una red PERT: primero encuentra las ficticias de una a una, y después las agrupa paso a paso para quitar las redundantes [@kim2008, p. 739]. Se recorre la tabla actividad a actividad, y solo hay que mirar las que tienen dos o más predecesoras [@kim2008, p. 740]:
+
+- **De una a una.** Hace falta una ficticia de una predecesora a la actividad cuando las sucesoras de esa predecesora no están contenidas en las de las demás predecesoras. Si lo están, no hace falta: todo lo que sigue a esa predecesora sigue también a las demás [@kim2008, p. 741]. El portal lee «las demás» como «cada una de las demás», que es la lectura que reproduce el ejemplo del artículo.
+- **De varias a una.** Si a una actividad le llegan varias ficticias de una a una desde predecesoras con las mismas sucesoras, se sustituyen por una sola.
+- **De una a varias.** Si de una actividad salen varias ficticias de una a una hacia sucesoras con las mismas predecesoras, se sustituyen por una sola.
+- **De varias a varias.** Si se dan a la vez las dos situaciones anteriores, basta una ficticia para todas [@kim2008, p. 741].
+
+Kim admite a propósito varios sucesos iniciales y finales, para dejar fuera las ficticias de unicidad y centrarse en las de dependencia [@kim2008, p. 740]; el portal los funde en uno y añade las ficticias de unicidad, como en las demás redes.
+
+::: {.callout-tip .ejemplo #ejemplo-pert-kim title="Ejemplo reproducible · Mecánicas del Sureste, con Kim"}
+**Datos.** La tabla de Mecánicas del Sureste, con las sucesoras de cada actividad: A {E}; B {E, F, G}; C {G}; D {K}; E {H, I}; F {H, I}; G {I}; H {K}; I {J}; J {K}.
+
+**Predice.** Mira E, G, H, I y K, las actividades con varias predecesoras. ¿Qué predecesoras necesitan una ficticia hacia ellas? ¿Se puede agrupar alguna?
+
+[Abrir: Mecánicas del Sureste, Kim frente a las reglas](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=route&ex=ej6&graph=aoa&view=cmp&pair=kim,rules){.abrir target="_blank"}
+
+<details>
+<summary>**Ver el resultado**</summary>
+
+- **E**, con A y B: las sucesoras de A, {E}, están en las de B; las de B no están en las de A. Una ficticia de B a E.
+- **G**, con B y C: igual, una ficticia de B a G.
+- **H**, con E y F: tienen las mismas sucesoras, así que ninguna.
+- **I**, con E, F y G: las de G, {I}, están en las de E y en las de F; las de E, {H, I}, no están en las de G, y las de F tampoco. Dos ficticias, de E a I y de F a I.
+- **K**, con D, H y J: las tres tienen solo K. Ninguna.
+
+Las dos ficticias que llegan a I salen de E y de F, que tienen las mismas sucesoras: se agrupan en una de varias a una. Las dos que salen de B van a E y a G, que no tienen las mismas predecesoras: no se agrupan. Son 3 ficticias, como con las reglas.
+</details>
+:::
+
+:::: {.callout-note .ejercicio #ejercicio-pert-kim title="Ejercicio · Kim en el proyecto industrial"}
+Aplica el método de Kim al ejercicio 4 del portal: A precede a C, a D y a E; B precede a D y a E; C y D preceden a G y a H; E precede a F, a G y a H; F y G preceden a I; H precede a I, a J y a K; I y J preceden a L; K precede a M.
+
+1. ¿Qué ficticias de una a una hacen falta?
+2. ¿Cuáles se agrupan?
+3. ¿Cuántas quedan?
+
+[Abrir: el ejercicio 4, Kim frente al mínimo exacto](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=route&ex=ej4&graph=aoa&view=cmp&pair=kim,min){.abrir target="_blank"}
+
+<details>
+<summary>**Ver la solución**</summary>
+
+1. D y E tienen como predecesoras a A y B: las sucesoras de B, {D, E}, están en las de A, {C, D, E}, pero no al revés, así que hacen falta ficticias de A a D y de A a E. G y H tienen como predecesoras a C, D y E: las de C y D, {G, H}, están en las de E, {F, G, H}, pero no al revés, así que hacen falta ficticias de E a G y de E a H. I tiene como predecesoras a F, G y H: las de F y G, {I}, están en las de H, {I, J, K}, pero no al revés, así que hace falta una de H a I. L, con I y J, no necesita ninguna: las dos tienen solo L.
+2. Las dos que salen de A van a D y a E, que tienen las mismas predecesoras: se agrupan en una de una a varias. Lo mismo las dos que salen de E hacia G y H.
+3. Tres ficticias, que es el mínimo.
+</details>
+::::
+
+## Spinrad y Corneil, Gotlieb y Lee [[Avanzado]{.largo}[A]{.corto}]{.nivel .avanzado} {#sec-pert-spinrad}
+
+Los dos métodos que quedan en el comparador del portal vienen de la investigación sobre el mínimo de ficticias, y no están pensados para aplicarlos a mano.
+
+**Spinrad (1986)** trabaja en un modelo propio: cada actividad tiene su suceso de inicio y su suceso de fin, y solo se funden los finales de las actividades con las mismas sucesoras y los inicios de las que tienen las mismas predecesoras. Sobre ese modelo da una heurística muy sencilla, en tres fases, que añade ficticias **legales**, que no crean precedencias falsas, y **útiles**, que cumplen alguna precedencia aún pendiente: primero entre finales, después entre inicios, y por último del final de una actividad al inicio de otra, para las precedencias que falten [@spinrad1986, p. 337]. Demostró que la heurística da el óptimo en su modelo para varias familias de proyectos, entre ellas los serie-paralelo [@spinrad1986, p. 331]. Como no funde sucesos que una red de clase sí fundiría, en su modelo cuenta más ficticias: en Mecánicas del Sureste, 10. El portal contrae después la red, quitando o fundiendo una a una las ficticias que sobran, y así llega a 3; ese paso no es del artículo.
+
+**Corneil, Gotlieb y Lee (1973)** presentaron un procedimiento para construir, en redes sin actividades paralelas, una red con el menor número de sucesos y de flechas a la vez. Primero reparten los sucesos para que haya los menos posibles, y después eligen las ficticias resolviendo un problema de recubrimiento de conjuntos, por lo que el tiempo puede crecer exponencialmente con el número de actividades [@corneil1973, p. 296]. Sysło mostró con un contraejemplo que, en general, el número de sucesos y el de ficticias no se pueden minimizar a la vez [@syslo1981, p. 252].
+
+:::: {.callout-note .ejercicio #ejercicio-pert-syslo title="Ejercicio · El contraejemplo de Sysło"}
+Abre en el comparador la tabla del contraejemplo de Sysło, con 14 actividades.
+
+1. ¿Cuántas ficticias y sucesos da el método de Corneil, Gotlieb y Lee? ¿Y las reglas de los conjuntos?
+2. ¿Qué dice el portal del mínimo?
+
+[Abrir: el contraejemplo de Sysło en el comparador](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=route&ex=syslo1981&graph=aoa&view=cmp&ms=rules,cgl,min){.abrir target="_blank"}
+
+<details>
+<summary>**Ver la solución**</summary>
+
+1. Corneil, Gotlieb y Lee: 9 ficticias y 9 sucesos. Las reglas de los conjuntos: 8 ficticias y 11 sucesos. Las reglas ahorran una ficticia a cambio de dos sucesos más: es justo lo que mostraba Sysło, que no siempre se pueden tener a la vez los menos sucesos y las menos ficticias.
+2. «Mínimo: entre 4 y 8 ficticias». La búsqueda agota su presupuesto sin demostrar el mínimo: solo sabe que no hay una red con menos de 4 y que la mejor encontrada tiene 8.
+</details>
+::::
+
+## Comparar los métodos [[Avanzado]{.largo}[A]{.corto}]{.nivel .avanzado} {#sec-pert-cuantas}
+
+La tabla -@tbl-pert-metodos reúne el número de ficticias que da cada método en las tablas del portal.
+
+| Tabla (actividades) | Prog. | Reglas | C. y S. | Kim | Spinrad | CGL | Mín. |
+|:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| Mecánicas del Sureste (11) | 3 | 3 | 6 | 3 | 3 | 3 | 3 |
+| Mudanza (8) | 3 | 3 | 3 | 3 | 3 | 3 | 3 |
+| Ejercicio 1 (9) | 2 | 2 | 2 | 2 | 2 | 2 | 2 |
+| Ejercicio 2 (13) | 2 | 2 | 5 | 2 | 2 | 2 | 2 |
+| Ejercicio 3 (14) | 4 | 4 | 4 | 4 | 4 | 4 | 4 |
+| Ejercicio 4 (13) | 3 | 3 | 3 | 3 | 3 | 3 | 3 |
+| Ejercicio 7 (9) | 5 | 5 | 5 | 5 | 5 | 5 | 5 |
+| Caso tipo (5) | 2 | 3 | 3 | 3 | 2 | 2 | 2 |
+| Cohen y Sadeh, tabla 1 (15) | 4 | 5 | 5 | 5 | 4 | 4 | 3–4 |
+| Kim, tabla 1 (17) | 10 | 10 | 15 | 10 | 10 | 10 | 7–10 |
+| Sysło, figura 2.3 (14) | 9 | 8 | 9 | 9 | 9 | 9 | 4–8 |
+
+: Ficticias de cada método en las tablas del portal: dibujo progresivo (Prog.), reglas de los conjuntos, Cohen y Sadeh (C. y S.), Kim, Spinrad (red contraída), Corneil, Gotlieb y Lee (CGL) y mínimo (Mín.). Un intervalo en el mínimo indica que la búsqueda agotó su presupuesto: el mínimo está entre la cota inferior y la mejor red encontrada. Cifras del comparador del portal. {#tbl-pert-metodos}
+
+En las tablas de clase, todos los métodos llegan al mínimo salvo el de Cohen y Sadeh, que se queda por encima en Mecánicas y en el ejercicio 2 porque no funde los finales de las actividades con las mismas posteriores. En el caso tipo, el dibujo progresivo, Spinrad y Corneil, Gotlieb y Lee llegan a 2, y las reglas, Cohen y Sadeh y Kim se quedan en 3. En la tabla de Sysło, en cambio, las reglas son las únicas que bajan a 8. Ningún método gana siempre. En las pruebas del portal con tablas pequeñas al azar, la red contraída de Spinrad llega al mínimo en el 95,8 % de los casos; el dibujo progresivo, en el 93,5 %; las reglas, en el 85,5 %, y Kim, en el 83,9 %.
+
+**Cuándo no hace falta ninguna ficticia.** La red PERT también es un grafo dirigido acíclico, un DAG, pero con las actividades en los arcos y los sucesos en los vértices. Si una red PERT no tiene ficticias, la red ROY se obtiene de ella poniendo un vértice por cada flecha y uniendo a con b cuando la flecha de a termina en el suceso donde empieza la de b. Ese grafo se llama **grafo de líneas** (en inglés, *line digraph*) de la red PERT. Sysło recogió una caracterización clásica: un grafo dirigido es un grafo de líneas si y solo si dos vértices cualesquiera tienen los mismos sucesores o no comparten ninguno [@syslo1981, p. 244]. Y demostró que un proyecto tiene una red PERT sin ficticias si y solo si la reducción transitiva de su red ROY es un grafo de líneas [@syslo1981, p. 246].
 
 Es el criterio práctico de la sección -@sec-pert-flechas, con un matiz: Sysło trabaja con redes que admiten flechas paralelas, así que en su resultado no cuentan las ficticias de unicidad. Con las normas de este capítulo hay que añadir que no haya dos actividades con las mismas predecesoras y las mismas sucesoras. Y es también lo que hacen las reglas de los conjuntos: las ficticias de dependencia nacen justo donde dos conjuntos de posteriores se tocan sin coincidir.
 
-Kelley contaba la construcción inversa (capítulo 1): sustituir cada nodo por una flecha y quitar las flechas de unión que sobren; las que quedan son las ficticias. Sysło describe la misma idea: si cada actividad tiene sus dos sucesos propios y cada precedencia es una ficticia, la red es correcta, pero tiene tantas ficticias como precedencias; el problema es cuántas se pueden ahorrar [@syslo1981, pp. 252–253].
+Kelley contaba la construcción inversa (capítulo 1): sustituir cada nodo por una flecha y quitar las flechas de unión que sobren; las que quedan son las ficticias. Sysło describe la misma idea: si cada actividad tiene sus dos sucesos propios y cada precedencia es una ficticia, la red es correcta, pero tiene tantas ficticias como precedencias; el problema es cuántas se pueden ahorrar [@syslo1981, pp. 252–253]. Es también el punto de partida del modelo de Spinrad.
 
-**El mínimo es difícil.** Krishnamoorthy y Deo demostraron en 1979 que el problema de decisión asociado, ¿existe una red con k ficticias o menos?, es NP-completo [@krishnamoorthy1979, p. 189]. No se conoce ningún método rápido que encuentre siempre la red mínima. El portal la busca con una búsqueda exacta entre dos cotas: la superior son las ficticias de las reglas, y la inferior sale de contar los sucesos que no se pueden fundir. La búsqueda tiene un presupuesto fijo de trabajo; si se agota, el portal da un intervalo, «entre L y V ficticias», y el mismo enlace da el mismo intervalo en cualquier ordenador.
+**El mínimo es difícil.** Krishnamoorthy y Deo demostraron en 1979 que el problema de decisión asociado, ¿existe una red con k ficticias o menos?, es NP-completo [@krishnamoorthy1979, p. 189]. No se conoce ningún método rápido que encuentre siempre la red mínima, y por eso todos los métodos de este capítulo son heurísticos. El portal la busca con una búsqueda exacta entre dos cotas: la superior son las ficticias de las reglas, y la inferior sale de contar los sucesos que no se pueden fundir. La búsqueda tiene un presupuesto fijo de trabajo; si se agota, el portal da un intervalo, «entre L y V ficticias», y el mismo enlace da el mismo intervalo en cualquier ordenador.
 
 **Cuando las reglas no llegan.** Las reglas trabajan con la tabla depurada y no aprovechan las precedencias implícitas. En el **caso tipo** del portal, A precede a C y a D; B precede a C y a E; D precede a E. Las reglas dan 3 ficticias, y el mínimo es 2 (figura -@fig-pert-tipo). La red mínima hace que E espere a A, cosa que la tabla no dice directamente, pero que ya era cierta: A precede a D, y D precede a E. En el comparador, la red de las reglas marca F3 en rojo: se puede quitar fundiendo sus dos sucesos.
 
 ![El caso tipo en el comparador de métodos del portal: a la izquierda, la red de las reglas de los conjuntos, con 3 ficticias y F3 en rojo; a la derecha, la red mínima, con 2. Captura del portal, generada con `figuras/04-capturas.cjs`.](figuras/04-tipo-comparador.png){#fig-pert-tipo fig-alt="Dos tarjetas. Reglas de los conjuntos: 3 ficticias, 6 sucesos, correcta, una por encima del mínimo. A va del suceso 1 al 2, B del 1 al 3, D del 2 al 5, E del 5 al 6 y C del 4 al 6; ficticias F2 del 2 al 4, F3 del 3 al 4, marcada en rojo, y F1 del 3 al 5. Debajo, «F3 se puede quitar». Mínimo exacto: 2 ficticias, 5 sucesos, correcta, en el mínimo. A va del 1 al 2, B del 1 al 3, D del 2 al 4, E del 4 al 5 y C del 3 al 5; ficticias F1 del 2 al 3 y F2 del 3 al 4."}
-
-**Otros métodos.** El comparador del portal aplica a la misma tabla varios métodos publicados. Corneil, Gotlieb y Lee (1973) presentaron un procedimiento para construir una red con el menor número de sucesos y de flechas a la vez [@corneil1973, p. 296]; Sysło mostró que, en general, las dos cosas no se pueden minimizar a la vez [@syslo1981, p. 252], y el portal trae la tabla de su contraejemplo. Spinrad (1986) dio una heurística muy sencilla que encuentra la red óptima en varias familias de proyectos, como los serie-paralelo [@spinrad1986, p. 331]. Kim (2008) propuso un método heurístico para identificar de forma sistemática las ficticias necesarias [@kim2008, p. 739].
 
 :::: {.callout-note .ejercicio #ejercicio-pert-tipo title="Ejercicio · Una ficticia menos"}
 Con la tabla del caso tipo (A precede a C y a D; B precede a C y a E; D precede a E):
@@ -297,7 +464,7 @@ Con la tabla del caso tipo (A precede a C y a D; B precede a C y a E; D precede 
 **¿Por qué seguir enseñando la red PERT?** Sniedovich, desde su experiencia docente, afirma que muchos estudiantes tienen grandes dificultades con las ficticias, y que no está claro qué se gana con ellas si no son esenciales para entender el método del camino crítico [@sniedovich2005, p. 51]. Hay buenas razones para conocerla de todos modos: muchos manuales y exámenes la usan, sus sucesos son hitos naturales del proyecto, y entender por qué hacen falta las ficticias obliga a pensar con cuidado qué espera a qué. El capítulo 5 calcula los tiempos en las dos redes y muestra que los resultados de las actividades son los mismos.
 
 ::: {.callout-note .mas-portal title="Más en el portal"}
-- **Comparar métodos**, en la red PERT de la ruta guiada: la misma tabla con el dibujo progresivo, las reglas de los conjuntos, la agrupación por precedentes de Cohen y Sadeh, Kim, Spinrad, Corneil, Gotlieb y Lee, y el mínimo exacto. «Ver lado a lado» pone dos redes juntas.
+- **Comparar métodos**, en la red PERT de la ruta guiada: la misma tabla con los siete métodos de este capítulo. Cada tarjeta tiene su «Aprende más», con lo que hace el método, qué garantiza y cómo lo aplica el portal; «Ver lado a lado» pone dos redes juntas, y el dibujo progresivo se puede seguir paso a paso.
 - **Construir la PERT**, en la pestaña Ejercicios: el portal genera una tabla nueva y corrige tu red, con la nota de la sección -@sec-pert-comprobar. En Practicar, «Ver la red mínima» y «Ver la red de las reglas» enseñan dos soluciones.
 - **Detective**, con la red PERT y los errores de la red, de cálculo o todos. Los de cálculo, en el capítulo 5.
 - **Taller:** escribe o pega tu tabla y pasa a la red PERT para ver la ruta guiada de las reglas, compararla con otros métodos o hacer el Reto de ficticias.
