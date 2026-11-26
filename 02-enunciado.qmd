@@ -237,7 +237,7 @@ Un departamento organiza un congreso con siete tareas: elegir la fecha y la sede
 - Una precedencia redundante es la que otras ya implican: no es un error, pero conviene quitarla antes de dibujar. La tabla sin redundancias es la tabla depurada.
 - Un ciclo es un error: el proyecto no podría empezar. Casi siempre viene de una frase leída al revés.
 
-Para seguir el recorrido básico, continúa por el capítulo «La red ROY» (en preparación), donde la tabla depurada se convierte en una red.
+Para seguir el recorrido básico, continúa por el [capítulo «La red ROY»](03-roy.qmd), donde la tabla depurada se convierte en una red.
 
 ## Cierre y reducción transitiva [[Avanzado]{.largo}[A]{.corto}]{.nivel .avanzado} {#sec-enunciado-transitiva}
 

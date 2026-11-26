@@ -34,7 +34,9 @@
       "js/views/gpr-gantt.js",
       "js/core/gpr.js",
       "js/core/gprex.js",
-      "js/core/gprpert.js"
+      "js/core/gprpert.js",
+      "js/core/resource.js",
+      "js/core/resex.js"
     ],
     "moodle": [
       "moodle.html",

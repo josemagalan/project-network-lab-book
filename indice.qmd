@@ -2,9 +2,9 @@
 
 <!-- Archivo generado por filtros/indices.py en cada «quarto render» (pre-render). No lo edites a mano: los cambios se perderían. Para cambiar el contenido, cambia los capítulos; para cambiar el formato, cambia el script. -->
 
-El libro tiene 2 capítulos y 11 secciones: 8 de nivel [[Básico]{.largo}[B]{.corto}]{.nivel .basico}, 1 de nivel [[Avanzado]{.largo}[A]{.corto}]{.nivel .avanzado} y 2 de nivel [[Para saber más]{.largo}[+]{.corto}]{.nivel .saber-mas}. El **recorrido básico** son las secciones azules: se leen seguidas, capítulo a capítulo, sin las demás. Las avanzadas amplían el recorrido básico y suelen apoyarse en él; «Para saber más» cierra cada capítulo con lecturas y temas que el libro no desarrolla.
+El libro tiene 3 capítulos y 17 secciones: 12 de nivel [[Básico]{.largo}[B]{.corto}]{.nivel .basico}, 2 de nivel [[Avanzado]{.largo}[A]{.corto}]{.nivel .avanzado} y 3 de nivel [[Para saber más]{.largo}[+]{.corto}]{.nivel .saber-mas}. El **recorrido básico** son las secciones azules: se leen seguidas, capítulo a capítulo, sin las demás. Las avanzadas amplían el recorrido básico y suelen apoyarse en él; «Para saber más» cierra cada capítulo con lecturas y temas que el libro no desarrolla.
 
-Las actividades —5 ejemplos reproducibles, 3 cajas «En el portal» y 8 ejercicios— están listadas en el [índice de actividades](actividades.qmd), por capítulo y por pestaña del portal.
+Las actividades —7 ejemplos reproducibles, 3 cajas «En el portal» y 12 ejercicios— están listadas en el [índice de actividades](actividades.qmd), por capítulo y por pestaña del portal.
 
 ## El libro de un vistazo {.unnumbered #vistazo}
 
@@ -12,7 +12,8 @@ Las actividades —5 ejemplos reproducibles, 3 cajas «En el portal» y 8 ejerci
 |---|:-:|:-:|:-:|:-:|:-:|:-:|
 | [1. Proyectos, actividades y redes](01-redes.qmd) | 4 | 0 | 1 | 2 | 1 | 3 |
 | [2. Del enunciado a la tabla](02-enunciado.qmd) | 4 | 1 | 1 | 3 | 2 | 5 |
-| **Total** | **8** | **1** | **2** | **5** | **3** | **8** |
+| [3. La red ROY](03-roy.qmd) | 4 | 1 | 1 | 2 | 0 | 4 |
+| **Total** | **12** | **2** | **3** | **7** | **3** | **12** |
 
 ## 1. Proyectos, actividades y redes {.unnumbered #cap-1}
 
@@ -30,3 +31,12 @@ Las actividades —5 ejemplos reproducibles, 3 cajas «En el portal» y 8 ejerci
 - [2.4 Validar y depurar la tabla](02-enunciado.qmd#sec-enunciado-validar) [[B]{.corto}]{.nivel .basico .solo-corto}
 - [2.5 Cierre y reducción transitiva](02-enunciado.qmd#sec-enunciado-transitiva) [[A]{.corto}]{.nivel .avanzado .solo-corto}
 - [2.6 Ampliaciones](02-enunciado.qmd#sec-enunciado-ampliaciones) [[+]{.corto}]{.nivel .saber-mas .solo-corto}
+
+## 3. La red ROY {.unnumbered #cap-3}
+
+- [3.1 De la tabla a la red](03-roy.qmd#sec-roy-dibujar) [[B]{.corto}]{.nivel .basico .solo-corto}
+- [3.2 Tipos de prelación](03-roy.qmd#sec-roy-prelaciones) [[B]{.corto}]{.nivel .basico .solo-corto}
+- [3.3 Niveles, columnas y orden topológico](03-roy.qmd#sec-roy-niveles) [[B]{.corto}]{.nivel .basico .solo-corto}
+- [3.4 Comprobar una red dibujada](03-roy.qmd#sec-roy-comprobar) [[B]{.corto}]{.nivel .basico .solo-corto}
+- [3.5 Orden topológico y dibujo por capas](03-roy.qmd#sec-roy-topologico) [[A]{.corto}]{.nivel .avanzado .solo-corto}
+- [3.6 Ampliaciones](03-roy.qmd#sec-roy-ampliaciones) [[+]{.corto}]{.nivel .saber-mas .solo-corto}

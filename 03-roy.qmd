@@ -1,0 +1,245 @@
+# La red ROY {#sec-roy}
+
+<!-- Seguimiento interno (no visible): primer borrador del 2026-11-26, con el esquema aprobado por el autor tras la revisión crítica de un agente (la red que se construye es la mudanza depurada, no Mecánicas, que ya salió en el capítulo 1; el orden topológico intuitivo pasa al recorrido básico porque el capítulo 5 lo necesita; la matriz de encadenamiento pasa al capítulo 5; el corrector compara por cierre transitivo; ejercicio de 3.4 con el Detective en lugar de una figura nueva). El autor pidió no citar sus apuntes (Tema 6b), que solo guían el contenido: normas de construcción y tipos de prelación. Estados del portal comprobados el 2026-11-26 en una copia de project-network-lab 9f55e73 servida en local (Chromium sin interfaz): el taller con la mudanza depurada (paso 2) dibuja 10 nodos y 13 flechas en las columnas Inicio | A D | B C H | E | F G | Fin, con D → E y H → F saltando columnas (figura 3.1, generada con figuras/03-capturas.cjs); el Reto ROY de ej6 (fichas, Unir, Mover, Borrar, «Colocar por niveles», Comprobar, «Ver la red correcta»); el Detective con red ROY, solo errores de la red, nivel difícil y semilla 11 siembra «C → G, arco que sobra», «H → B, arco que cierra un ciclo» y «E → J, falta un arco» sobre la tabla A 13 —; B 15 —; C 1 —; D 6 A, B; E 7 A, B; F 2 D; G 13 A; H 2 C, F; I 1 G, H; J 5 E; K 3 H, J; L 6 I, J. Mensajes del corrector copiados de js/i18n-build.js (xb.issue). Niveles comprobados con js/core/topo.js: Mecánicas A–D 1, E–G 2, H–I 3, J 4, K 5, Fin 6; mudanza A, D 1, B, C, H 2, E 3, F, G 4, Fin 5; orden de Kahn con desempate alfabético de la mudanza: A, B, C, D, E, G, H, F. Fuentes cotejadas en memoria/bibliografía: PMBOK 8.ª ed., guía, p. 127 (convergencia y divergencia de caminos); Kahn (1962, pp. 558–559: motivación en PERT, orden topológico, cuenta de predecesoras); Sugiyama, Tagawa y Toda (1981, pp. 110–111: jerarquías de PERT, los cuatro pasos, vértices ficticios, método baricéntrico). -->
+
+**Portal:** [Project Network Lab](https://josemagalan.github.io/project-network-lab/), pestañas [Taller](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=work), [Ruta guiada](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=route&ex=ej6&view=reto) (Reto ROY) y [Ejercicios](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=ex&xk=roy) (Construir la ROY, Detective).
+
+::: {.callout-warning .objetivos title="Objetivos del capítulo"}
+Al terminar el recorrido básico de este capítulo podrás:
+
+- dibujar la red ROY de una tabla depurada, con sus nodos de inicio y fin, y comprobar el número de flechas;
+- clasificar los nodos de una red según sus prelaciones: lineales, convergentes y divergentes;
+- calcular el nivel de cada actividad, colocar la red por columnas y obtener un orden topológico;
+- comprobar una red dibujada frente a su tabla, distinguiendo los errores de los avisos.
+:::
+
+## De la tabla a la red [[Básico]{.largo}[B]{.corto}]{.nivel .basico} {#sec-roy-dibujar}
+
+¿Cómo se pasa de una tabla de precedencias a un dibujo que se pueda calcular?
+
+En el capítulo 1 vimos la red ROY de Mecánicas del Sureste ya dibujada. Ahora la construimos nosotros, siguiendo unas normas que no dejan nada al azar:
+
+- Cada **actividad** es un **nodo**: una caja con su nombre y su duración.
+- Cada **precedencia inmediata** de la tabla es una **flecha**, de la predecesora a la sucesora.
+- Se añaden dos nodos más, **Inicio** y **Fin**. Son hitos, no trabajos: duran 0. Inicio se une a todas las actividades iniciales, las que no tienen predecesoras, y todas las actividades finales, las que no tienen sucesoras, se unen a Fin.
+- No hace falta ningún otro nodo ni ninguna otra flecha. A diferencia de la red PERT, la red ROY no necesita ficticias.
+
+Inicio y Fin solo son imprescindibles cuando hay varias actividades iniciales o varias finales: así la red tiene un solo principio y un solo final, que es donde empiezan y terminan los cálculos de los capítulos 5 y 6. El portal los dibuja siempre, por uniformidad.
+
+La red se dibuja a partir de la **tabla depurada** del capítulo 2. Si la tabla tiene una precedencia redundante, la red tendrá una flecha que no hace falta: no cambia el proyecto, pero complica el dibujo.
+
+Con estas normas, el número de flechas se puede prever antes de dibujar, y sirve para comprobar el dibujo al terminar:
+
+```{=html}
+<p style="text-align:center"><strong>flechas = precedencias inmediatas + actividades iniciales + actividades finales</strong></p>
+```
+
+En Mecánicas del Sureste son 14 precedencias, 4 iniciales (A, B, C y D) y 1 final (K): 19 flechas, las de la figura -@fig-redes-roy.
+
+::: {.callout-tip .ejemplo #ejemplo-roy-mudanza title="Ejemplo reproducible · La red ROY de la mudanza"}
+**Datos.** La tabla depurada de la mudanza del capítulo 2: A 3 días, sin predecesoras; B 2 (A); C 2 (A); D 5, sin predecesoras; E 1 (B, C, D); F 3 (E, H); G 1 (E); H 1 (D).
+
+**Predice.** ¿Cuántos nodos tendrá la red ROY? ¿Cuántas flechas? ¿Qué actividades saldrán de Inicio y cuáles llegarán a Fin?
+
+[Abrir: la mudanza en el taller, como red ROY](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=work&t=A%2C3%2C%2CInventario%3BB%2C2%2CA%2CEmbalar%2520el%2520vidrio%3BC%2C2%2CA%2CEmbalar%2520equipos%3BD%2C5%2C%2CPreparar%2520el%2520laboratorio%3BE%2C1%2CB%252C%2520C%252C%2520D%2CTransporte%3BF%2C3%2CE%252C%2520H%2CInstalar%2520equipos%3BG%2C1%2CE%2CDesembalar%2520el%2520vidrio%3BH%2C1%2CD%2CRevisar%2520la%2520seguridad&step=1){.abrir target="_blank"}
+
+En el capítulo 2 se llegaba a esta misma red desde «Del enunciado a la tabla», con el botón **Red ROY (M1)** de la tabla depurada.
+
+<details>
+<summary>**Ver el resultado**</summary>
+
+Diez nodos: las ocho actividades más Inicio y Fin. Trece flechas: 9 precedencias inmediatas (A → B, A → C, B → E, C → E, D → E, D → H, E → F, E → G y H → F), 2 desde Inicio (a A y a D) y 2 hacia Fin (desde F y G). La precedencia A → E del enunciado no aparece: era redundante, y la tabla depurada ya no la tiene. La red es la de la figura -@fig-roy-mudanza, en la sección siguiente.
+</details>
+:::
+
+## Tipos de prelación [[Básico]{.largo}[B]{.corto}]{.nivel .basico} {#sec-roy-prelaciones}
+
+Mirada de cerca, una red ROY está hecha de unas pocas piezas que se repiten. Los manuales en español las llaman **tipos de prelación**, según cuántas flechas entran y salen de cada nodo:
+
+- **Lineal:** una actividad tiene una sola predecesora, y esta una sola sucesora. A → B, en fila.
+- **Convergente:** varias actividades tienen que terminar para que empiece otra. A → C y B → C.
+- **Divergente:** varias actividades pueden empezar al terminar una. A → B y A → C.
+- **Convergente-divergente:** varias actividades empiezan al terminar varias otras. A y B preceden a C y a D.
+
+Los tipos no son una curiosidad de vocabulario. La guía del PMI llama **convergencia de caminos** a una actividad con varias predecesoras y **divergencia** a una con varias sucesoras, y advierte que son las de más riesgo: a una actividad convergente la puede retrasar cualquiera de sus predecesoras, y una divergente retrasa a todas sus sucesoras [@pmi2025, guía, p. 127]. La convergencia volverá a aparecer en los capítulos 8 y 9, cuando las duraciones sean inciertas.
+
+Para clasificar los nodos no contaremos las flechas de Inicio ni las de Fin: son de la red, no del proyecto.
+
+:::: {.callout-note .ejercicio #ejercicio-roy-prelaciones title="Ejercicio · Las piezas de Mecánicas del Sureste"}
+Con la red ROY de Mecánicas del Sureste (figura -@fig-redes-roy), sin contar Inicio ni Fin:
+
+1. ¿Qué nodos son divergentes, es decir, tienen varias sucesoras?
+2. ¿Cuáles son convergentes, con varias predecesoras?
+3. ¿Hay algún nodo con varias predecesoras y varias sucesoras a la vez?
+4. En el capítulo 1 vimos que la red PERT de Mecánicas del Sureste necesita 3 ficticias. ¿Alrededor de qué nodos crees que aparecen?
+
+<details>
+<summary>**Ver la solución**</summary>
+
+1. B (sucesoras E, F y G) y F (H e I). También E, que aparece en la respuesta 3.
+2. G (B y C), H (E y F), I (E, F y G) y K (D, H y J).
+3. Sí: E, con dos predecesoras (A y B) y dos sucesoras (H e I).
+4. Donde varias actividades comparten solo una parte de sus predecesoras. E espera a A y B; F, solo a B; G, a B y C: B aparece en las tres, cada vez con compañías distintas. Y H espera a E y F, mientras que I espera a E, F y G. Son justo los lugares de las ficticias F1, F2 y F3 de la figura -@fig-redes-pert: las dos primeras salen del suceso donde termina B, y la tercera une E y F con el comienzo de I. El capítulo 4 explica por qué.
+</details>
+::::
+
+## Niveles, columnas y orden topológico [[Básico]{.largo}[B]{.corto}]{.nivel .basico} {#sec-roy-niveles}
+
+¿Dónde va cada nodo en el dibujo?
+
+Una red se lee mejor si todas las flechas van en el mismo sentido, de izquierda a derecha. Para conseguirlo, cada actividad se coloca en una **columna** según su **nivel**:
+
+- Inicio está en el nivel 0.
+- El nivel de una actividad es 1 más el nivel más alto de sus predecesoras. Las actividades iniciales, cuya única predecesora es Inicio, están en el nivel 1.
+- Fin va en la columna siguiente a la última actividad.
+
+Dicho de otra manera, el nivel de una actividad es el número de flechas del **camino más largo** desde Inicio hasta ella, contando flechas y no días. Por eso una precedencia redundante no cambia ningún nivel: siempre hay otro camino más largo que ella.
+
+![Red ROY de la mudanza (tabla depurada del capítulo 2) en el taller del portal. Columnas por niveles: Inicio; A y D; B, C y H; E; F y G; Fin. Captura del portal, generada con `figuras/03-capturas.cjs`.](figuras/03-roy-mudanza.png){#fig-roy-mudanza fig-alt="Red de nodos de izquierda a derecha. Inicio va a A y a D. A va a B y a C, en la columna siguiente, igual que H, que sale de D. B y C van a E; D también va a E con una flecha larga que pasa por debajo. E va a G y a F; H va a F con una flecha larga. F y G van a Fin."}
+
+En la mudanza (figura -@fig-roy-mudanza), A y D son iniciales: nivel 1. B y C esperan a A, y H a D: nivel 2. E espera a B, C y D; la más alta de las tres está en el nivel 2, así que E está en el 3. F espera a E (nivel 3) y a H (nivel 2), así que va en el 4, igual que G. Fin, en el 5.
+
+Fíjate en las flechas **D → E** y **H → F**: saltan una columna. Una flecha así no es un error. Significa que la sucesora tiene otra predecesora más alejada del inicio, que es la que fija su nivel.
+
+**El orden topológico.** Leer la red columna a columna da una lista de las actividades en la que cada una aparece después de todas sus predecesoras: A, D, B, C, H, E, F, G. Una lista así se llama **orden topológico**. Es lo primero que hacen los cálculos de los capítulos 5 y 6: para calcular cuándo puede empezar una actividad, hay que haber calculado antes todas sus predecesoras, y el orden topológico garantiza que así es.
+
+El orden topológico no es único. Dentro de una columna, el orden da igual, y a veces se puede adelantar una actividad de una columna posterior: A, B, C, D, E, G, H, F también es un orden topológico de la mudanza, porque H solo espera a D y F, a E y a H.
+
+:::: {.callout-note .ejercicio #ejercicio-roy-niveles title="Ejercicio · Los niveles de Mecánicas del Sureste"}
+Calcula el nivel de cada actividad de Mecánicas del Sureste (tabla de predecesoras del capítulo 2) y compáralo con las columnas de la figura -@fig-redes-roy.
+
+1. ¿En qué nivel está cada actividad? ¿Y Fin?
+2. ¿Qué flechas saltan columnas?
+3. Escribe un orden topológico.
+
+<details>
+<summary>**Ver la solución**</summary>
+
+1. A, B, C y D: nivel 1. E, F y G: 2. H e I: 3, porque esperan a actividades del nivel 2. J: 4, porque espera a I. K: 5, porque espera a J, que está en el 4 (D está en el 1 y H en el 3). Fin: 6.
+2. D → K (del nivel 1 al 5) y H → K (del 3 al 5).
+3. Por columnas: A, B, C, D, E, F, G, H, I, J, K. Aquí coincide con el orden alfabético, pero no tiene por qué: los nombres de las actividades no dicen nada del orden.
+</details>
+::::
+
+## Comprobar una red dibujada [[Básico]{.largo}[B]{.corto}]{.nivel .basico} {#sec-roy-comprobar}
+
+Una red dibujada a mano puede tener errores que no se ven a simple vista. Comprobarla es comparar lo que dice el dibujo con lo que dice la tabla.
+
+La comparación se hace, como en el capítulo 2, por lo que **implican** el dibujo y la tabla, y no flecha a flecha. Estos son los problemas que detecta el corrector del portal, con los mensajes que muestra:
+
+- **Arco al revés:** «la tabla pide A antes que B, y tu arco va de B a A».
+- **Precedencia falsa:** «el arco A → B hace esperar a B por A, y la tabla no lo pide». Es una flecha que sobra.
+- **Falta una precedencia:** «A va antes que B y ningún camino los une».
+- **Ciclo:** «C, D y E acaban esperándose a sí mismas».
+- **Uniones con Inicio y Fin:** «A no tiene predecesoras: sale de Inicio», «A tiene predecesoras: no sale de Inicio», y lo mismo con Fin.
+- **Aviso de redundancia:** «El arco A → C ya lo implica A → B → C: sobra, pero no resta».
+
+Que la comparación sea por lo que implican las dos tiene una consecuencia. Si falta una flecha, pero hay otro camino que une las dos actividades, el corrector no dice que falta: ese otro camino hace que alguna actividad espere a otra sin que la tabla lo pida, y el aviso es de **precedencia falsa** en una de sus flechas. «Falta una precedencia» solo aparece cuando ningún camino une las dos actividades.
+
+Como en la tabla, una flecha redundante es un **aviso**, no un error: la red sigue diciendo lo mismo que la tabla. Los demás problemas sí son errores, porque cambian el proyecto.
+
+En el portal, el botón **Colocar por niveles** coloca tu dibujo en columnas según **tus** flechas, no según la tabla. Por eso sirve también para diagnosticar: una flecha que sobra o que va al revés desplaza algún nodo a una columna que no es la suya.
+
+::: {.callout-tip .ejemplo #ejemplo-roy-reto title="Ejemplo reproducible · El Reto ROY"}
+**Datos.** La tabla de Mecánicas del Sureste.
+
+**Predice.** Dibuja la red ROY en papel, sin mirar la figura del capítulo 1. Después, reprodúcela en el portal: coloca cada ficha en el lienzo y une los nodos.
+
+[Abrir: el Reto ROY de Mecánicas del Sureste](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=route&ex=ej6&view=reto){.abrir target="_blank"}
+
+Cuando esté, pulsa **Colocar por niveles** para ver la estructura y, después, **Comprobar**. Si quieres ver cómo reacciona el corrector, provoca un error a propósito: dibuja una flecha de E a B, o quita la de D a K.
+
+<details>
+<summary>**Ver el resultado**</summary>
+
+Si la red está bien, el corrector dice «Tu red es correcta». Si cambias B → E por E → B, avisa de un **arco al revés**. Y, de paso, de dos redundancias: E → H y E → I sobran, porque ahora E llega a H y a I a través de B y F. Un solo error puede cambiar lo que implica el resto de la red. Si dejas las dos flechas, B → E y E → B, señala además un **ciclo** entre B y E. Si quitas D → K, dice que **falta una precedencia**: D va antes que K y ningún camino los une; y si unes D a Fin, añade que D tiene posteriores y no llega a Fin. **Ver la red correcta** muestra la de la ruta guiada.
+</details>
+:::
+
+:::: {.callout-note .ejercicio #ejercicio-roy-detective title="Ejercicio · El detective"}
+El portal tiene un modo **Detective**: muestra una red ya dibujada con errores sembrados, junto con su tabla, y hay que encontrarlos. En este ejercicio, la tabla es: A 13, sin predecesoras; B 15, sin predecesoras; C 1, sin predecesoras; D 6 (A, B); E 7 (A, B); F 2 (D); G 13 (A); H 2 (C, F); I 1 (G, H); J 5 (E); K 3 (H, J); L 6 (I, J).
+
+[Abrir: el detective, red ROY, semilla 11](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=ex&xk=det&dg=aon&dk=net&lv=hard&sd=11){.abrir target="_blank"}
+
+La red tiene tres errores. Encuéntralos: pulsa cada arco o nodo sospechoso y elige qué le pasa. Después, pulsa **Comprobar**.
+
+<details>
+<summary>**Ver la solución**</summary>
+
+- **C → G es un arco que sobra:** C y G no tienen ninguna relación en la tabla.
+- **H → B cierra un ciclo:** B → D → F → H, y el arco H → B vuelve a B.
+- **Falta el arco E → J:** la tabla pone E como predecesora inmediata de J, y la red no los une.
+
+Si no los encuentras todos, **Ver los errores** los marca en la red.
+</details>
+::::
+
+## Resumen {.unnumbered #resumen}
+
+- En la red ROY, cada actividad es un nodo y cada precedencia inmediata, una flecha. Se añaden Inicio y Fin, de duración 0, unidos a las actividades iniciales y finales. No hacen falta ficticias.
+- El número de flechas es la suma de las precedencias inmediatas, las actividades iniciales y las finales.
+- Según sus flechas, los nodos son lineales, convergentes, divergentes o convergentes-divergentes. Los convergentes y los divergentes son los de más riesgo.
+- El nivel de una actividad es el número de flechas del camino más largo desde Inicio. Colocar la red por niveles hace que todas las flechas vayan hacia la derecha; algunas saltan columnas.
+- Un orden topológico pone cada actividad después de sus predecesoras. No es único, y es el punto de partida de los cálculos.
+- Al comprobar una red, una flecha redundante es un aviso; las flechas al revés, las que sobran, las que faltan y los ciclos son errores.
+
+Para seguir el recorrido básico, continúa por el capítulo «La red PERT y las ficticias» (en preparación).
+
+## Orden topológico y dibujo por capas [[Avanzado]{.largo}[A]{.corto}]{.nivel .avanzado} {#sec-roy-topologico}
+
+**Existe si y solo si no hay ciclos.** Si la red tiene un ciclo, ninguna de sus actividades puede ir la primera: cada una espera a otra del ciclo, y no hay orden topológico. Si no hay ciclos, siempre hay al menos una actividad sin predecesoras pendientes, porque si no, recorriendo predecesoras hacia atrás volveríamos a pasar por una actividad ya vista, y eso sería un ciclo. Se pone esa actividad la primera, se quita de la red y se repite.
+
+Ese razonamiento es un algoritmo, y Kahn lo publicó en 1962 pensando precisamente en las redes PERT. Explicaba que, en el cálculo de una red PERT, ordenarla topológicamente era la parte más difícil desde el punto de vista computacional, y que la solución manual, numerar los sucesos de modo que los números crezcan a lo largo de cada camino, se volvía inmanejable en redes grandes que se revisan periódicamente [@kahn1962, p. 558]. Su método lleva la cuenta de cuántas predecesoras le quedan a cada elemento: los que llegan a 0 pasan a la lista ordenada, y su salida descuenta una predecesora a cada uno de sus sucesores [@kahn1962, p. 559]. Con él estimaba ordenar una red PERT de 30 000 actividades en menos de una hora de un IBM 7090 [@kahn1962, p. 558].
+
+```
+para cada actividad X: cuenta[X] ← número de predecesoras de X
+listas ← actividades con cuenta 0
+mientras listas no esté vacía:
+    sacar de listas una actividad X y añadirla al orden
+    para cada sucesora Y de X:
+        cuenta[Y] ← cuenta[Y] − 1
+        si cuenta[Y] = 0, añadir Y a listas
+si el orden no tiene todas las actividades: hay un ciclo
+```
+
+El portal usa este método con un desempate: cuando hay varias actividades listas, saca primero la de nombre menor. Así, el mismo proyecto da siempre el mismo orden, el primero en orden alfabético de entre todos los posibles. Los niveles salen del mismo recorrido: cada actividad toma 1 más el nivel más alto de sus predecesoras, que ya están calculadas.
+
+Una consecuencia: si se ordenan las filas y las columnas de la matriz del capítulo 2 en orden topológico, todas las marcas quedan a un lado de la diagonal. La matriz es **triangular**, y eso solo es posible si no hay ciclos.
+
+**Dibujar por capas.** Colocar los nodos en columnas no basta para que la red se lea bien: dentro de cada columna, el orden de los nodos decide cuántas flechas se cruzan. Sugiyama, Tagawa y Toda (1981) propusieron un método en cuatro pasos para dibujar estas jerarquías, y citaban como ejemplo las redes PERT, que los ingenieros de un proyecto necesitan ver a diario [@sugiyama1981, p. 110]:
+
+1. Se asigna un nivel a cada nodo, y cada flecha que salta niveles se parte con **vértices ficticios**, uno en cada nivel intermedio.
+2. Se reordenan los nodos de cada nivel para reducir los cruces de flechas. Uno de sus métodos, el **baricéntrico**, coloca cada nodo según la posición media de sus vecinos en el nivel contiguo.
+3. Se fijan las posiciones horizontales sin deshacer lo conseguido en el paso anterior.
+4. Se dibuja la red, y los vértices ficticios se convierten en los puntos por los que pasan las flechas largas [@sugiyama1981, p. 111].
+
+El portal sigue esta idea. En la figura -@fig-roy-mudanza, la flecha D → E da un rodeo por debajo de la columna de B, C y H: pasa por un vértice ficticio que ocupa su propio carril, para no cruzar por detrás de una caja. En el dibujo por capas, esos vértices son una herramienta de dibujo, no actividades: no tienen nada que ver con las ficticias de la red PERT.
+
+:::: {.callout-note .ejercicio #ejercicio-roy-kahn title="Ejercicio · Kahn a mano"}
+Aplica el algoritmo de Kahn a la mudanza, sacando siempre primero la actividad de nombre menor, como hace el portal.
+
+1. ¿Qué orden sale?
+2. Compáralo con el orden por columnas de la sección -@sec-roy-niveles. ¿Son los dos válidos?
+
+<details>
+<summary>**Ver la solución**</summary>
+
+1. Al principio están listas A y D. Sale A, y B y C quedan listas. Sale B (E pasa a esperar a 2), después C (E espera a 1) y después D (E y H quedan listas). Sale E (G queda lista; F espera a 1), después G, después H (F queda lista) y por último F. El orden es A, B, C, D, E, G, H, F.
+2. El orden por columnas era A, D, B, C, H, E, F, G. Son distintos, y los dos son órdenes topológicos: en los dos, cada actividad va después de sus predecesoras.
+</details>
+::::
+
+## Ampliaciones [[Para saber más]{.largo}[+]{.corto}]{.nivel .saber-mas} {#sec-roy-ampliaciones}
+
+**Más allá del fin a comienzo.** En la red ROY, una flecha une dos actividades y nada más. Por eso es fácil ponerle una etiqueta que diga qué tipo de relación es: de comienzo a comienzo, de fin a fin, con un desfase de dos días… Los nodos no cambian. En la red PERT, en cambio, las flechas son las actividades, y una relación que no sea de fin a comienzo obliga a partir actividades o a añadir sucesos y ficticias. Esa flexibilidad es una de las ventajas de la red de nodos, y es el tema del capítulo 11.
+
+::: {.callout-note .mas-portal title="Más en el portal"}
+- **Construir la ROY**, en la pestaña Ejercicios: el portal genera una tabla nueva y corrige tu red. En el modo examen, la corrección aparece al entregar, con una nota.
+- **Detective**, en la misma pestaña: elige la red ROY y el tipo de errores (de la red, de cálculo o todos). Los errores de cálculo, en los capítulos 5 y 6.
+- **Taller:** escribe o pega tu propia tabla y obtén su red ROY. La vista **Reto ROY** del taller te deja dibujarla y comprobarla.
+:::
+
+## Referencias del capítulo {.unnumbered #referencias}
+
+::: {.referencias-capitulo #refs}
+:::
