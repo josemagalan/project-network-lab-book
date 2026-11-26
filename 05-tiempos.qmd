@@ -1,0 +1,413 @@
+# Calcular los tiempos {#sec-tiempos}
+
+<!-- Seguimiento interno (no visible): primer borrador del 2026-11-26, con el esquema revisado por un agente crítico y aprobado por el autor (memoria/esquemas/05-tiempos.md): la palabra «holgura» se deja para el capítulo 6; la caja de errores frecuentes va como texto, porque las cajas son solo para actividades; la matriz de encadenamiento, en el nivel avanzado (propuesta por defecto, a falta de que el autor decida). Cifras comprobadas con el núcleo de project-network-lab 74055bb (cpm.solve, aoa.build y aoa.times; detective.forSeed): Mecánicas, ES/EF/LS/LF A 0 2 1 3, B 0 3 0 3, C 0 2 3 5, D 0 8 4 12, E 3 7 3 7, F 3 6 4 7, G 3 5 5 7, H 7 8 11 12, I 7 9 7 9, J 9 12 9 12, K 12 13 12 13; duración 13; 9 caminos de inicio a fin. Red PERT de Mecánicas: TE 1:0 2:3 3:3 4:3 5:7 6:7 7:9 8:12 9:13 y TL igual salvo 4:5; sin F1, duración 12 (calculado a mano por el revisor y aquí). Mudanza: duración 9; A 0 3 0 3, B 3 5 3 5, C 3 5 3 5, D 0 5 0 5, E 5 6 5 6, F 6 9 6 9, G 6 7 8 9, H 5 6 5 6; sucesos con TE = TL. Mudanza con D de 3 días: D 0 3 2 5, H 3 4 5 6, duración 9; suceso 3 con TE 3 y TL 5. Detective, red ROY, errores de cálculo, nivel medio, semilla 1: I.ES 5 en lugar de 11 y E.LF 14 en lugar de 7. Pasos de la ruta guiada (step = paso − 1): ROY hacia delante 3–14, hacia atrás 15–26, Gantt 32; PERT hacia delante 7–15, hacia atrás 16–24. Estados del portal vistos el 2026-11-26 en una copia local de 74055bb (Chromium sin interfaz): modo predicción en el paso 3; matriz en el paso 7 con la fila de E (celdas 2 y 3, ES 3); caja de 4 campos con notación española en el paso 26; Gantt del paso 32 con el botón «Fechas tardías» y la lista de los 9 caminos. Fuentes cotejadas: PMBOK 8.ª ed., guía, pp. 160–161 (pasadas, convención del día 1); Taha (2012, pp. 253 y 255); Kelley y Walker (1959, pp. 161–163) y Malcolm et al. (1959, pp. 655–656), por OCR de los PDF escaneados; Domínguez Machuca et al. (1995, pp. 333, 338, 340 y 356), por OCR: confirman la observación del revisor sobre el nombre (matriz de encadenamientos para las prelaciones, citando a Romero, 1983; matriz de Zaderenko, 1968, para los tiempos de los sucesos); el nudo ROY de siete datos de su figura 10.22. -->
+
+**Portal:** [Project Network Lab](https://josemagalan.github.io/project-network-lab/), pestañas [Ruta guiada](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=route&ex=ej6&step=2) (red ROY, red PERT y Matriz), [Taller](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=work) y [Ejercicios](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=ex&xk=calc) (Cálculo, Detective).
+
+::: {.callout-warning .objetivos title="Objetivos del capítulo"}
+Al terminar el recorrido básico de este capítulo podrás:
+
+- calcular el comienzo y el fin tempranos y tardíos de cada actividad en la red ROY, y la duración del proyecto;
+- calcular los tiempos temprano y tardío de cada suceso de la red PERT y deducir de ellos las fechas de las actividades;
+- leer los resultados en las dos notaciones, en los tres formatos de caja del portal y en el diagrama de Gantt;
+- reconocer los errores más frecuentes al hacer los cálculos a mano.
+:::
+
+## Cuatro fechas por actividad [[Básico]{.largo}[B]{.corto}]{.nivel .basico} {#sec-tiempos-fechas}
+
+¿Cuándo puede empezar cada actividad? ¿Y hasta cuándo puede esperar?
+
+En el capítulo 1 sumamos las duraciones de dos caminos de Mecánicas del Sureste y vimos que el proyecto no puede durar menos de 13 días. Ahora vamos a ponerle fechas a cada actividad. Son cuatro:
+
+- **Comienzo temprano** (ES, *early start*): lo antes que puede empezar la actividad, si todo lo anterior va lo más rápido posible.
+- **Fin temprano** (EF, *early finish*): lo antes que puede terminar.
+- **Comienzo tardío** (LS, *late start*): lo más tarde que puede empezar sin retrasar el proyecto.
+- **Fin tardío** (LF, *late finish*): lo más tarde que puede terminar sin retrasar el proyecto.
+
+Las cuatro no son independientes. Una actividad que empieza en ES termina una duración d después, y lo mismo con las tardías:
+
+```{=html}
+<p style="text-align:center"><strong>EF = ES + d &nbsp;&nbsp;&nbsp;&nbsp; LS = LF − d</strong></p>
+```
+
+Basta, por tanto, con calcular dos: las tempranas se calculan recorriendo la red hacia delante, y las tardías, hacia atrás. Es el cálculo que la guía del PMI llama **método del camino crítico** (CPM): las fechas tempranas y tardías de cada actividad, obtenidas con una pasada hacia delante y otra hacia atrás por la red [@pmi2025, guía, p. 160].
+
+**¿Qué quiere decir «ES = 3»?** En este libro, como en el portal, el tiempo se mide desde el comienzo del proyecto, que es el **instante 0**, y las fechas son instantes, no días. «ES = 3» quiere decir que la actividad puede empezar cuando se cumplen 3 días, es decir, al terminar el tercer día. Con este convenio, el fin de una actividad y el comienzo de la que la espera son **el mismo número**: si E termina en 7, I puede empezar en 7. No hay que sumar 1 al pasar de una a otra.
+
+Los calendarios funcionan de otra manera: un trabajo de 3 días que empieza el día 1 ocupa los días 1, 2 y 3, y el siguiente empieza el día 4. La guía del PMI usa ese convenio en su ejemplo (ES = día 1 y EF = ES + d − 1) y advierte que hay otros igual de aceptados [@pmi2025, guía, pp. 160–161]. Los dos dan el mismo plan; lo que no se puede es mezclarlos. En este libro, siempre instantes.
+
+El portal escribe las cuatro fechas en la **caja** de cada actividad. Por defecto usa una caja de 7 campos: ES, d y EF arriba; el nombre de la actividad en medio; LS, un séptimo campo y LF abajo (primer panel de la figura -@fig-tiempos-cajas, en la sección -@sec-tiempos-leer). El campo del centro de abajo es la holgura total, que se calcula en el capítulo 6.
+
+:::: {.callout-note .ejercicio #ejercicio-tiempos-fechas title="Ejercicio · De instantes a días"}
+En Mecánicas del Sureste, la actividad F dura 3 días y tiene ES = 3 y LS = 4.
+
+1. ¿Cuánto valen EF y LF?
+2. Con el convenio de este libro, ¿en qué instante puede empezar F, como pronto? ¿Y la actividad H, que la espera, si F termina lo antes posible?
+3. Si el proyecto empieza un lunes y se trabaja todos los días, ¿qué días ocupa F con fechas tempranas? ¿Qué escribiría un programa que use el convenio del PMI?
+
+<details>
+<summary>**Ver la solución**</summary>
+
+1. EF = 3 + 3 = 6 y LF = 4 + 3 = 7.
+2. F puede empezar en el instante 3, al terminar el tercer día. Si termina en 6, H puede empezar en 6: el mismo número, sin sumar 1.
+3. Los días cuarto, quinto y sexto: jueves, viernes y sábado. Con el convenio del PMI, F empieza el día 4 y termina el día 6 (4 + 3 − 1). El fin coincide con el de este libro; el comienzo, no: con instantes se escribe el momento en que acaba el día anterior.
+</details>
+::::
+
+## La pasada hacia delante [[Básico]{.largo}[B]{.corto}]{.nivel .basico} {#sec-tiempos-delante}
+
+¿Cuándo puede empezar una actividad que espera a otras tres?
+
+Una actividad no puede empezar hasta que terminen **todas** sus predecesoras. Así que su comienzo temprano es el **mayor** de los fines tempranos de sus predecesoras:
+
+```{=html}
+<p style="text-align:center"><strong>ES = máx { EF de las predecesoras } &nbsp;&nbsp;&nbsp;&nbsp; EF = ES + d</strong></p>
+```
+
+Las actividades iniciales, cuya única predecesora es Inicio, tienen ES = 0. La predecesora que da el máximo es la que **manda**: si se retrasa, retrasa a la sucesora. Si varias empatan, mandan todas; para la cifra da igual, pero en el capítulo 6 veremos que el empate importa.
+
+Para aplicar la fórmula a una actividad hay que conocer antes el EF de todas sus predecesoras. Por eso las actividades se recorren en **orden topológico**, el del capítulo 3: cada una aparece después de todas sus predecesoras. En la red ROY dibujada por columnas, basta con ir de izquierda a derecha.
+
+En Mecánicas del Sureste, A, B, C y D empiezan en 0 y terminan en 2, 3, 2 y 8. E espera a A y a B: ES = máx {2, 3} = 3, manda B, y EF = 3 + 4 = 7. F solo espera a B: empieza en 3 y termina en 6. G espera a B y a C: empieza en 3 y termina en 5. Y así hasta el final. Fin, que dura 0, «empieza» cuando termina la última actividad: su ES es la **duración del proyecto**.
+
+Fíjate en lo que hace el máximo. El ES de cada actividad es la duración del camino más largo desde Inicio hasta ella: el máximo se queda, en cada nodo, con el camino más largo que llega, y descarta los demás para siempre. Por eso la pasada hacia delante encuentra la duración del proyecto **sin probar todos los caminos**, como prometía el capítulo 1. Mecánicas tiene 9 caminos de Inicio a Fin, y la pasada visita cada actividad una sola vez.
+
+::: {.callout-tip .ejemplo #ejemplo-tiempos-delante title="Ejemplo reproducible · La pasada hacia delante de Mecánicas del Sureste"}
+**Datos.** La red ROY de Mecánicas del Sureste, sin fechas.
+
+**Predice.** Calcula en papel el ES y el EF de cada actividad. ¿Cuál es la duración del proyecto? ¿Qué predecesora manda en I, que espera a E, F y G?
+
+[Abrir: la pasada hacia delante en modo predicción](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=route&ex=ej6&step=2&pred=1){.abrir target="_blank"}
+
+En modo predicción, el portal te pide el ES y el EF de cada actividad antes de enseñarlos. Escríbelos y pulsa **Comprobar**; el panel muestra la fórmula con las cifras, y la predecesora que manda se resalta en la red.
+
+<details>
+<summary>**Ver el resultado**</summary>
+
+ES y EF: A 0 y 2; B 0 y 3; C 0 y 2; D 0 y 8; E 3 y 7; F 3 y 6; G 3 y 5; H 7 y 8; I 7 y 9; J 9 y 12; K 12 y 13. En I, máx {7, 6, 5} = 7: manda E. En K, que espera a D, H y J, máx {8, 8, 12} = 12: manda J. La duración del proyecto es 13 días, la del camino B → E → I → J → K del capítulo 1. En el último paso de la ruta, el portal lista los 9 caminos con su duración: ninguno pasa de 13.
+</details>
+:::
+
+:::: {.callout-note .ejercicio #ejercicio-tiempos-delante title="Ejercicio · La pasada hacia delante de la mudanza"}
+La tabla depurada de la mudanza (capítulo 2) es: A 3 días, sin predecesoras; B 2 (A); C 2 (A); D 5, sin predecesoras; E 1 (B, C, D); F 3 (E, H); G 1 (E); H 1 (D). Su red ROY es la de la figura -@fig-roy-mudanza.
+
+1. Calcula el ES y el EF de cada actividad, en orden topológico.
+2. ¿Qué predecesora manda en E? ¿Y en F?
+3. ¿Cuánto dura la mudanza?
+
+<details>
+<summary>**Ver la solución**</summary>
+
+1. A 0 y 3; D 0 y 5; B 3 y 5; C 3 y 5; H 5 y 6; E 5 y 6; G 6 y 7; F 6 y 9.
+2. En E, máx {5, 5, 5} = 5: B, C y D empatan, y mandan las tres. En F, máx {6, 6} = 6: también empatan E y H.
+3. Nueve días: Fin espera a F y a G, y máx {9, 7} = 9.
+</details>
+::::
+
+## La pasada hacia atrás [[Básico]{.largo}[B]{.corto}]{.nivel .basico} {#sec-tiempos-atras}
+
+¿Hasta cuándo puede esperar una actividad sin retrasar el proyecto?
+
+La pasada hacia atrás empieza por el final. Si el proyecto dura 13 días, lo más tarde que puede terminar es en 13: ese es el **fin tardío de Fin**. Desde ahí, se recorre la red en orden topológico **inverso**, de derecha a izquierda. Una actividad tiene que terminar a tiempo de que empiece la **más urgente** de sus sucesoras, la de menor comienzo tardío:
+
+```{=html}
+<p style="text-align:center"><strong>LF = mín { LS de las sucesoras } &nbsp;&nbsp;&nbsp;&nbsp; LS = LF − d</strong></p>
+```
+
+En Mecánicas, K es la única actividad final: LF = 13 y LS = 13 − 1 = 12. J termina antes de K: LF = 12 y LS = 9. K espera a D, H y J, así que las tres tienen LF = 12. E tiene dos sucesoras, H (LS = 11) e I (LS = 7): manda I, y LF = 7.
+
+Cuando termina la pasada hacia atrás, se puede comprobar el cálculo. Si se ha partido de la duración, el menor de los LS de las actividades iniciales tiene que ser 0: si fuera mayor, el proyecto podría empezar más tarde y seguir terminando a tiempo, y eso contradice que su duración sea la mínima. Taha lo dice así para la red de flechas: los cálculos correctos siempre terminan con un tiempo tardío 0 en el suceso inicial [@taha2012, p. 255]. Y en cada actividad, ES ≤ LS.
+
+**Un plazo impuesto.** A veces el proyecto tiene que terminar en una fecha fijada, que no tiene por qué coincidir con su duración. Entonces la pasada hacia atrás parte de ese plazo en lugar de la duración, y todas las fechas tardías se desplazan con él. Kelley y Walker ya planteaban así el cálculo, con una fecha de fin del proyecto fijada, igual o posterior a la más temprana [@kelley1959, p. 163]. Qué pasa cuando el plazo es más corto que la duración se ve en el capítulo 6.
+
+**Errores frecuentes.** Estos son los que más se repiten al hacer las dos pasadas a mano:
+
+- **Cambiar el máximo por el mínimo.** Hacia delante se toma el máximo, porque hay que esperar a todas las predecesoras; hacia atrás, el mínimo, porque hay que llegar a tiempo a todas las sucesoras.
+- **Comparar las fechas equivocadas.** El ES se calcula con los **EF** de las predecesoras, no con sus ES. El LF, con los **LS** de las sucesoras, no con sus LF.
+- **Dar a una actividad final su propio EF como LF.** Toda actividad final tiene LF igual a la duración del proyecto (o al plazo), aunque termine antes. En la mudanza, G termina como pronto en 7, pero su LF es 9.
+- **Sumar 1** al pasar de una actividad a otra, mezclando instantes y días de calendario (sección -@sec-tiempos-fechas).
+
+::: {.callout-tip .ejemplo #ejemplo-tiempos-atras title="Ejemplo reproducible · El detective de los cálculos"}
+**Datos.** El portal muestra una red ROY ya calculada, de 9 actividades: A 1 día, sin predecesoras; B 5 (A); C 11 (B); D 11 (A); E 5, sin predecesoras; F 10 (A, E); G 10 (A); H 8, sin predecesoras; I 3 (E, G, H). La duración es 17. Dos casillas tienen un error de cálculo.
+
+**Predice.** Antes de abrir, calcula tú el ES de I y el LF de E. Después, busca las dos casillas en la red del portal: pulsa cada casilla sospechosa y elige qué le pasa. Por último, pulsa **Comprobar**.
+
+[Abrir: el detective, red ROY, errores de cálculo, semilla 1](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=ex&xk=det&dg=aon&dk=calc&lv=medium&sd=1){.abrir target="_blank"}
+
+Las cajas del detective tienen siete campos: ES, d y EF arriba; LS, la holgura total y LF abajo. De momento, mira solo las cuatro fechas.
+
+<details>
+<summary>**Ver el resultado**</summary>
+
+- **El ES de I es 5, y debería ser 11.** I espera a E, G y H, que terminan en 5, 11 y 8. Se ha tomado el mínimo en lugar del máximo. Se nota sin calcular nada: con ES = 5 y d = 3, el EF no puede ser 14.
+- **El LF de E es 14, y debería ser 7.** E tiene dos sucesoras, F (LS = 7) e I (LS = 14). Se ha tomado el máximo en lugar del mínimo. También se nota en la caja: LS = 2 y d = 5 dan LF = 7.
+
+Los dos son los errores del primer punto de la lista. Comprobar que EF = ES + d y LF = LS + d en cada caja es una manera rápida de encontrar casillas mal copiadas o mal calculadas.
+</details>
+:::
+
+:::: {.callout-note .ejercicio #ejercicio-tiempos-atras title="Ejercicio · La pasada hacia atrás de la mudanza"}
+Con los resultados del ejercicio [](#ejercicio-tiempos-delante):
+
+1. Calcula el LF y el LS de cada actividad de la mudanza, en orden topológico inverso.
+2. Comprueba el cálculo: ¿cuál es el menor LS? ¿Hay alguna actividad con ES > LS?
+3. ¿En qué actividades coincide ES con LS?
+
+<details>
+<summary>**Ver la solución**</summary>
+
+1. F y G son finales: LF = 9 las dos, y LS = 6 y 8. E tiene como sucesoras a F y G: LF = mín {6, 8} = 6 y LS = 5. H solo precede a F: LF = 6 y LS = 5. B y C preceden a E: LF = 5 y LS = 3. D precede a E y a H: LF = mín {5, 5} = 5 y LS = 0. A precede a B y a C: LF = mín {3, 3} = 3 y LS = 0.
+2. El menor LS es 0, el de A y el de D, y en ninguna actividad ES > LS. El cálculo cuadra.
+3. En todas menos en G, que puede empezar en 6 y también en 8. Qué significa esa diferencia, y por qué en las demás no hay ninguna, es la pregunta del capítulo 6.
+</details>
+::::
+
+::: {.callout-note .en-app title="En el portal · Ruta guiada, «Pasada hacia atrás»"}
+[Explorar la pasada hacia atrás en modo predicción](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=route&ex=ej6&step=14&pred=1){.explorar target="_blank"}
+
+- Calcula en papel el LF y el LS de Mecánicas y comprueba cada uno en los pasos 15 a 26. La sucesora que manda se resalta en la red.
+- En el paso 22, E: ¿cuál de sus dos sucesoras manda? En el paso 23, D, que solo precede a K: ¿de dónde sale su LF?
+- Activa **Matriz** en cualquier paso: la misma pasada se ve sobre la matriz de encadenamiento de la sección -@sec-tiempos-matriz.
+:::
+
+## Los tiempos de los sucesos en la red PERT [[Básico]{.largo}[B]{.corto}]{.nivel .basico} {#sec-tiempos-sucesos}
+
+¿Y si las actividades son flechas?
+
+En la red PERT los nodos son sucesos, y el cálculo se hace sobre ellos. Cada suceso tiene dos tiempos:
+
+- **Tiempo temprano (TE):** lo antes que puede ocurrir. Un suceso ocurre cuando han terminado todas las flechas que llegan a él, así que TE es el **máximo**, sobre esas flechas, del tiempo temprano del suceso de origen más la duración de la flecha. El suceso inicial tiene TE = 0.
+- **Tiempo tardío (TL):** lo más tarde que puede ocurrir sin retrasar el proyecto. Se parte del suceso final, con TL igual a su TE, y TL es el **mínimo**, sobre las flechas que salen del suceso, del tiempo tardío del suceso de destino menos la duración de la flecha.
+
+Las ficticias cuentan como flechas de duración 0. Los sucesos se recorren por su número, de menor a mayor hacia delante y de mayor a menor hacia atrás. Eso funciona porque, como vimos en el capítulo 4, cada flecha va de un número menor a uno mayor: la numeración es un orden topológico de los sucesos. Taha llama a estos recorridos **paso adelantado** y **paso retrasado**, y observa que el tiempo temprano de un suceso es la duración de la ruta más larga hasta él [@taha2012, p. 253].
+
+En la notación española, el tiempo temprano y el tardío de un suceso se escriben tᵢ y tᵢ*. Los nombres TE y TL ya aparecen en el artículo de 1959 que presentó PERT, que llamaba así al tiempo esperado más temprano de cada suceso y al más tardío, este último calculado hacia atrás desde la fecha fijada para el suceso final [@malcolm1959, pp. 655–656].
+
+En Mecánicas, el suceso 5 recibe E, desde el 3 (TE = 3), y F, desde el 2 (TE = 3): TE(5) = máx {3 + 4, 3 + 3} = 7. El suceso final, el 9, tiene TE = 13: la misma duración que en la red ROY. Las dos redes representan el mismo proyecto, y dan lo mismo.
+
+**De los sucesos a las actividades.** Para una actividad que va del suceso i al suceso j, Kelley y Walker leían sus fechas en los dos sucesos [@kelley1959, p. 163]:
+
+- su **comienzo temprano** es el tiempo temprano del suceso del que sale: ES = TE(i);
+- su **fin tardío** es el tiempo tardío del suceso al que llega: LF = TL(j);
+- las otras dos se calculan con la duración: EF = ES + d y LS = LF − d.
+
+Las dos últimas no se leen en los sucesos, y ahí está la trampa. F va del suceso 2 al 5: empieza en TE(2) = 3 y termina en 6, pero el suceso 5 no ocurre hasta 7, porque también espera a E. El EF de una actividad puede ser **menor** que el tiempo temprano del suceso al que llega. Y el LS de A, que va del 1 al 3, es TL(3) − 2 = 1, no TL(1) = 0.
+
+::: {.callout-tip .ejemplo #ejemplo-tiempos-sucesos title="Ejemplo reproducible · Sin la ficticia F1"}
+**Datos.** La red PERT de Mecánicas del Sureste (figura -@fig-redes-pert). La ficticia F1 va del suceso 2, el final de B, al 3, el final de A, del que sale E.
+
+**Predice.** Calcula el TE de cada suceso. Después, imagina que alguien olvida dibujar F1. ¿Cuánto duraría entonces el proyecto? ¿Qué precedencia se ha perdido?
+
+[Abrir: los tiempos de los sucesos en modo predicción](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=route&ex=ej6&graph=aoa&step=6&pred=1){.abrir target="_blank"}
+
+El portal pide el TE de cada suceso en los pasos 7 a 15, y el TL en los pasos 16 a 24.
+
+<details>
+<summary>**Ver el resultado**</summary>
+
+TE: 1: 0; 2: 3; 3: 3; 4: 3; 5: 7; 6: 7; 7: 9; 8: 12; 9: 13. TL: igual en todos menos en el 4, que tiene TE = 3 y TL = 5.
+
+Sin F1, al suceso 3 solo llega A: TE(3) = 2. E empieza en 2 y termina en 6, así que TE(5) = máx {6, 6} = 6; TE(6) = máx {5, 6} = 6, TE(7) = 8 y TE(8) = máx {8, 7, 11} = 11. El proyecto duraría 12 días, uno menos: E ya no espera a B, y el cálculo da por buena una red que no es la del proyecto. Olvidar una ficticia de dependencia no da error en el cálculo; da una red equivocada, y fechas equivocadas.
+</details>
+:::
+
+:::: {.callout-note .ejercicio #ejercicio-tiempos-sucesos title="Ejercicio · La mudanza, con D más corta"}
+Supón que preparar el laboratorio nuevo, D, dura 3 días en lugar de 5. La red PERT de la mudanza es la del capítulo 4: A (1, 2), D (1, 3), C (2, 4), B (2, 5), E (5, 6), H (3, 7), G (6, 8) y F (7, 8), con las ficticias F1 del 4 al 5, F2 del 3 al 5 y F3 del 6 al 7.
+
+1. Calcula el TE y el TL de cada suceso. ¿Cuánto dura el proyecto?
+2. Deduce de los sucesos las cuatro fechas de D y de H.
+3. Comprueba el resultado con la red ROY en el taller.
+
+[Abrir: la mudanza con D de 3 días en el taller](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=work&t=A%2C3%2C%2CInventario%3BB%2C2%2CA%2CEmbalar%2520el%2520vidrio%3BC%2C2%2CA%2CEmbalar%2520equipos%3BD%2C3%2C%2CPreparar%2520el%2520laboratorio%3BE%2C1%2CB%252C%2520C%252C%2520D%2CTransporte%3BF%2C3%2CE%252C%2520H%2CInstalar%2520equipos%3BG%2C1%2CE%2CDesembalar%2520el%2520vidrio%3BH%2C1%2CD%2CRevisar%2520la%2520seguridad&step=25){.abrir target="_blank"}
+
+<details>
+<summary>**Ver la solución**</summary>
+
+1. TE: 1: 0; 2: 3; 3: 3; 4: 5; 5: 5; 6: 6; 7: máx {3 + 1, 6 + 0} = 6; 8: máx {6 + 1, 6 + 3} = 9. El proyecto sigue durando 9 días. TL: 8: 9; 7: 6; 6: mín {9 − 1, 6 − 0} = 6; 5: 5; 4: 5; 3: mín {6 − 1, 5 − 0} = 5; 2: mín {5 − 2, 5 − 2} = 3; 1: mín {3 − 3, 5 − 3} = 0. El suceso 3 tiene ahora TE = 3 y TL = 5; todos los demás, TE = TL.
+2. D va del 1 al 3: ES = TE(1) = 0, LF = TL(3) = 5, EF = 3 y LS = 2. H va del 3 al 7: ES = TE(3) = 3, LF = TL(7) = 6, EF = 4 y LS = 5.
+3. El último paso del taller da las mismas fechas para D y H, y para las demás actividades, las de la mudanza original.
+</details>
+::::
+
+## Leer los resultados: notaciones, cajas y Gantt [[Básico]{.largo}[B]{.corto}]{.nivel .basico} {#sec-tiempos-leer}
+
+Las mismas fechas se escriben de varias maneras, según el manual o el programa. Conviene reconocerlas todas.
+
+**Dos notaciones.** Este libro usa por defecto la notación anglosajona, la de la guía del PMI y la de casi todos los programas. Muchos manuales en español usan otra, que el portal ofrece en **Ajustes**:
+
+| Fecha | Anglosajona | Española |
+|---|:---:|:---:|
+| Comienzo temprano, o tiempo mínimo de comienzo | ES | tᵢ |
+| Fin temprano | EF | fᵢ |
+| Comienzo tardío, o tiempo máximo de comienzo | LS | tᵢ* |
+| Fin tardío | LF | fᵢ* |
+| Tiempo temprano de un suceso | TE | tᵢ |
+| Tiempo tardío de un suceso | TL | tᵢ* |
+
+: Las dos notaciones del portal. En la española, la misma letra sirve para actividades y sucesos: el contexto dice cuál es. {#tbl-tiempos-notaciones}
+
+**Tres cajas.** El portal ofrece, también en **Ajustes**, tres formatos de caja para la red ROY (figura -@fig-tiempos-cajas). La de **7 campos** es la de este libro; Domínguez Machuca et al. presentan como el nudo ROY más utilizado uno con esos mismos siete datos [@machuca1995, p. 356]. La de **4 campos** pone el nombre de la actividad arriba, el comienzo temprano a la izquierda, el comienzo tardío a la derecha y la duración abajo: solo los comienzos, porque los fines se obtienen sumando la duración. La **compacta** escribe sobre cada nodo tres cifras: ES / d / LS.
+
+![La caja de la actividad F de Mecánicas del Sureste en los tres formatos del portal. Figura propia, generada con `figuras/05-cajas.py`.](figuras/05-cajas.svg){#fig-tiempos-cajas fig-alt="Tres paneles. 7 campos: una caja con tres filas; arriba 3, 3 y 6 (ES, d y EF), en medio F, abajo 4, 1 y 7 (LS, TF y LF). 4 campos: una caja con F arriba, 3 a la izquierda (ES), 4 a la derecha (LS) y 3 abajo (d). Compacta: un nodo redondeado con F y, encima, 3/3/4 (ES / d / LS)."}
+
+**El diagrama de Gantt.** El Gantt del capítulo 1 (figura -@fig-redes-gantt) ya tenía fechas: cada barra empezaba en el ES de su actividad y terminaba en su EF. Es el Gantt **con fechas tempranas**. Con las fechas tardías se puede dibujar otro, el Gantt **con fechas tardías**, en el que cada barra empieza en su LS y termina en su LF. Las barras de las actividades con ES = LS están en el mismo sitio en los dos; las demás se desplazan hacia la derecha.
+
+::: {.callout-tip .ejemplo #ejemplo-tiempos-leer title="Ejemplo reproducible · La caja de 4 campos"}
+**Datos.** Mecánicas del Sureste, con las dos pasadas terminadas, en notación española y con la caja de 4 campos.
+
+**Predice.** ¿Qué cifras tendrá la caja de D? ¿Y la de F? ¿Qué cifras de la caja de 7 campos no aparecen en la de 4?
+
+[Abrir: la caja de 4 campos con notación española](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=route&ex=ej6&step=25&box=4&nota=es){.abrir target="_blank"}
+
+El paso abierto es el último de la pasada hacia atrás, el de A. El panel escribe la fórmula en notación española.
+
+<details>
+<summary>**Ver el resultado**</summary>
+
+D: 0 a la izquierda, 4 a la derecha y 8 abajo. F: 3, 4 y 3. Faltan los fines (EF y LF) y la holgura total; los fines se recuperan sumando la duración a los comienzos. En el panel, la fórmula del paso es fᵢ*(A) = mín { tᵢ*(E) } = 3 y tᵢ*(A) = fᵢ*(A) − d(A) = 3 − 2 = 1: el LF de A es el LS de E, y su LS es 1.
+</details>
+:::
+
+:::: {.callout-note .ejercicio #ejercicio-tiempos-leer title="Ejercicio · Dos Gantt de la mudanza"}
+Con las fechas de los ejercicios [](#ejercicio-tiempos-delante) y [](#ejercicio-tiempos-atras):
+
+1. Dibuja el Gantt de la mudanza con fechas tempranas y con fechas tardías.
+2. ¿Qué barras cambian de sitio de uno a otro? ¿Cuánto se desplazan?
+3. Haz lo mismo con la mudanza con D de 3 días (ejercicio [](#ejercicio-tiempos-sucesos)).
+
+<details>
+<summary>**Ver la solución**</summary>
+
+1. Tempranas: A de 0 a 3, D de 0 a 5, B y C de 3 a 5, E y H de 5 a 6, G de 6 a 7 y F de 6 a 9. Tardías: iguales, salvo G, de 8 a 9.
+2. Solo G, dos días.
+3. Ahora cambian D, que pasa de 0–3 a 2–5, y H, de 3–4 a 5–6: dos días cada una. G sigue desplazándose dos días. Comprueba los dos Gantt en el último paso del taller, con el botón **Fechas tardías**.
+</details>
+::::
+
+::: {.callout-note .en-app title="En el portal · Ruta guiada, «Diagrama de Gantt»"}
+[Explorar el Gantt de Mecánicas del Sureste](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=route&ex=ej6&step=31){.explorar target="_blank"}
+
+- El último paso de la ruta enseña la tabla con todas las fechas, la lista de los 9 caminos y el Gantt con fechas tempranas. Pulsa **Fechas tardías** y mira qué barras se mueven.
+- La línea discontinua de cada barra es la holgura total, que se calcula en el capítulo 6. ¿Coincide su longitud con LS − ES?
+- En **Ajustes**, cambia la notación y la caja: la red, la tabla y las fórmulas del panel cambian a la vez.
+:::
+
+## Resumen {.unnumbered #resumen}
+
+- Cada actividad tiene cuatro fechas: ES, EF, LS y LF, con EF = ES + d y LS = LF − d. Las fechas son instantes medidos desde el comienzo del proyecto, en el instante 0.
+- La pasada hacia delante recorre las actividades en orden topológico: ES = máx EF de las predecesoras. El ES de Fin es la duración del proyecto, la del camino más largo, sin probar todos los caminos.
+- La pasada hacia atrás parte de la duración (o de un plazo) y recorre la red al revés: LF = mín LS de las sucesoras. Toda actividad final tiene LF igual a la duración.
+- En la red PERT, cada suceso tiene un tiempo temprano y uno tardío. Para una actividad del suceso i al j, ES = TE(i) y LF = TL(j); EF y LS se calculan con la duración.
+- Las mismas fechas se escriben en notación anglosajona o española, en cajas de 7 campos, de 4 o compactas, y en un Gantt con fechas tempranas o tardías.
+- En algunas actividades, ES = LS; en otras, no. Qué significa esa diferencia es el tema del capítulo siguiente.
+
+Para seguir el recorrido básico, continúa por el capítulo «Holguras y caminos críticos» (en preparación).
+
+## La matriz de encadenamiento [[Avanzado]{.largo}[A]{.corto}]{.nivel .avanzado} {#sec-tiempos-matriz}
+
+Las dos pasadas se pueden hacer **sin dibujar la red**, sobre una tabla cuadrada que este libro, como el portal, llama **matriz de encadenamiento**. El nombre no es el de todos los manuales. Domínguez Machuca et al. llaman matriz de encadenamientos a la que solo recoge las prelaciones, como la del capítulo 2, y calculan los tiempos sobre los sucesos de la red PERT con otra matriz, que atribuyen a Zaderenko [@machuca1995, pp. 333, 338 y 340]. La de este libro trabaja sobre las actividades de la red ROY: cada actividad, Inicio y Fin incluidos, tiene una fila y una columna:
+
+- la celda de la fila X y la columna Y tiene un número si Y es predecesora de X, y ese número es la **duración de Y**;
+- a la derecha se añade una columna con el ES de cada fila, y abajo, una fila con el LS de cada columna.
+
+La matriz es la misma que la del capítulo 2, pero con duraciones en lugar de marcas. Si las filas y las columnas están en orden topológico, todas las celdas quedan debajo de la diagonal: la matriz es triangular (sección -@sec-roy-topologico).
+
+**Hacia delante.** El ES de Inicio es 0. Para cada fila, de arriba abajo: se suma a cada celda de la fila el ES de su columna, que ya está calculado, porque la columna es una predecesora y su fila está más arriba; el **máximo** de esas sumas es el ES de la fila. Cada suma es ES(Y) + d(Y), es decir, el EF de la predecesora Y.
+
+**Hacia atrás.** El LS de Fin es su ES, la duración del proyecto. Para cada columna, de derecha a izquierda: se resta cada celda de la columna al LS de su fila, que ya está calculado, porque la fila es una sucesora; el **mínimo** de esas restas es el LS de la columna. Cada resta es LS(X) − d(Y), es decir, el LF de Y menos su duración.
+
+En Mecánicas, la fila de E tiene un 2 en la columna de A y un 3 en la de B: ES(E) = máx {0 + 2, 0 + 3} = 3. La columna de E tiene un 4 en la fila de H y otro en la de I: LS(E) = mín {11 − 4, 7 − 4} = 3.
+
+La matriz no añade nada que no haga la red, pero tiene dos ventajas: no exige dibujar, y deja a la vista que cada celda es el «peso» de una flecha, la duración que hay que esperar al recorrerla. Es la idea que permite ver la pasada hacia delante como un cálculo de caminos en un grafo, en la sección siguiente.
+
+::: {.callout-tip .ejemplo #ejemplo-tiempos-matriz title="Ejemplo reproducible · La pasada en la matriz"}
+**Datos.** Mecánicas del Sureste en la vista **Matriz** de la ruta guiada.
+
+**Predice.** ¿Qué celdas tiene la fila de K? ¿Y la columna de B? Calcula con ellas el ES de K y el LS de B.
+
+[Abrir: la matriz de Mecánicas en el paso de E](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=route&ex=ej6&step=6&view=matrix){.abrir target="_blank"}
+
+La vista Matriz sigue los mismos pasos que la red: en cada uno se resaltan la fila (hacia delante) o la columna (hacia atrás) que se calcula, y la celda que manda.
+
+<details>
+<summary>**Ver el resultado**</summary>
+
+La fila de K tiene un 8 en la columna de D, un 1 en la de H y un 3 en la de J: ES(K) = máx {0 + 8, 7 + 1, 9 + 3} = 12. La columna de B tiene un 3 en las filas de E, F y G: LS(B) = mín {3 − 3, 4 − 3, 5 − 3} = 0. Avanza hasta el paso 13 para ver K, y hasta el 25 para ver B.
+</details>
+:::
+
+:::: {.callout-note .ejercicio #ejercicio-tiempos-matriz title="Ejercicio · La matriz de la mudanza"}
+1. Escribe la matriz de encadenamiento de la mudanza, con Inicio y Fin.
+2. Calcula con ella la columna de ES y la fila de LS, y compáralas con los ejercicios [](#ejercicio-tiempos-delante) y [](#ejercicio-tiempos-atras).
+
+<details>
+<summary>**Ver la solución**</summary>
+
+1. En orden topológico (Inicio, A, D, B, C, H, E, G, F, Fin): A y D tienen un 0 en la columna de Inicio; B y C, un 3 en la de A; H, un 5 en la de D; E, un 2 en la de B, otro en la de C y un 5 en la de D; G, un 1 en la de E; F, un 1 en la de E y otro en la de H; Fin, un 1 en la de G y un 3 en la de F.
+2. ES: Inicio 0, A 0, D 0, B 3, C 3, H 5, E máx {3 + 2, 3 + 2, 0 + 5} = 5, G 6, F máx {5 + 1, 5 + 1} = 6, Fin máx {6 + 1, 6 + 3} = 9. LS, de derecha a izquierda: Fin 9, F 6, G 8, E mín {8 − 1, 6 − 1} = 5, H 5, C 3, B 3, D mín {5 − 5, 5 − 5} = 0, A mín {3 − 3, 3 − 3} = 0, Inicio 0. Coinciden.
+</details>
+::::
+
+## Por qué funciona: el camino más largo [[Avanzado]{.largo}[A]{.corto}]{.nivel .avanzado} {#sec-tiempos-dag}
+
+El «Aprende más» del portal resume las dos pasadas en pseudocódigo:
+
+```
+orden ← orden topológico de las actividades
+ES(Inicio) ← 0
+para cada actividad j en orden:
+    ES(j) ← máx { EF(i) : i predecesora de j }
+    EF(j) ← ES(j) + d(j)
+LF(Fin) ← LS(Fin) ← EF(Fin)            // duración del proyecto
+para cada actividad i en orden inverso:
+    LF(i) ← mín { LS(j) : j sucesora de i }
+    LS(i) ← LF(i) − d(i)
+```
+
+**Por qué el ES es un camino más largo.** Llamemos *longitud* de un camino de Inicio a una actividad j a la suma de las duraciones de las actividades del camino sin contar j. Se demuestra por inducción, siguiendo el orden topológico, que ES(j) es la mayor de esas longitudes:
+
+- Para las actividades iniciales es cierto: el único camino es Inicio → j, de longitud 0.
+- Supón que es cierto para todas las actividades anteriores a j en el orden. Todo camino a j llega por alguna predecesora i, y su longitud es la de un camino a i más d(i). La mayor posible, pasando por i, es ES(i) + d(i) = EF(i). Y el máximo sobre todas las predecesoras es justo el ES(j) que calcula el algoritmo.
+
+En particular, ES(Fin) es la longitud del camino más largo de toda la red: la duración del proyecto. La pasada hacia atrás es el mismo razonamiento desde el final: LF(i) es la duración del proyecto menos la duración del camino más largo que va de una sucesora de i hasta Fin.
+
+**En el lenguaje de los grafos.** La red ROY pesa los **nodos**: cada actividad tiene su duración. Para hablar de caminos más largos es más cómodo pesar las **flechas**: a la flecha de Y a X se le da como peso la duración de Y, que es lo que X tiene que esperar al recorrerla. Son los números de la matriz de encadenamiento. Con esos pesos, la duración del proyecto es el camino más largo de Inicio a Fin, y el ES de cada actividad, el camino más largo de Inicio hasta ella.
+
+La red es un DAG (sección -@sec-roy-topologico), y eso lo cambia todo. En un DAG, el camino más largo se calcula con un solo recorrido en orden topológico, que visita cada nodo y cada flecha una vez: el tiempo es proporcional al número de actividades más el de flechas. En un grafo con ciclos, en cambio, encontrar el camino simple más largo es un problema NP-difícil, porque contiene como caso particular el de saber si hay un camino que pase una vez por cada nodo, el camino hamiltoniano. No es un problema práctico para los proyectos, porque un proyecto con un ciclo no se puede realizar: el capítulo 2 los descarta antes de llegar aquí. Pero explica por qué el orden topológico es imprescindible: es lo que convierte un problema difícil en uno fácil.
+
+El mismo razonamiento sirve para la red PERT, donde los nodos son sucesos y las flechas ya tienen peso, la duración de cada actividad o 0 en las ficticias. Es lo que dice Taha: el tiempo temprano de un suceso es la ruta más larga hasta él [@taha2012, p. 253].
+
+**Muchos caminos, una pasada.** Probar todos los caminos sería inviable, porque el número de caminos puede crecer de forma exponencial con el tamaño de la red. El portal los cuenta siempre, con otro recorrido de la red, y solo los lista si son 50 como mucho.
+
+:::: {.callout-note .ejercicio #ejercicio-tiempos-dag title="Ejercicio · La escalera"}
+Una red tiene n etapas con dos actividades cada una, X₁ e Y₁, X₂ e Y₂…, hasta Xₙ e Yₙ. Las de la primera etapa son iniciales, las de la última son finales, y cada actividad de una etapa espera a las dos de la etapa anterior.
+
+1. ¿Cuántas actividades, cuántas flechas entre actividades y cuántos caminos de Inicio a Fin tiene la red?
+2. ¿Cuántas sumas hacen falta para obtener la duración probando todos los caminos? ¿Y con la pasada hacia delante?
+3. Calcula las dos cifras para n = 10 y n = 30.
+
+<details>
+<summary>**Ver la solución**</summary>
+
+1. 2n actividades y 4(n − 1) flechas entre ellas: entre cada dos etapas consecutivas, cuatro. Un camino elige una de las dos actividades en cada etapa: 2ⁿ caminos.
+2. Cada camino tiene n actividades, y sumar sus duraciones lleva n − 1 sumas: 2ⁿ(n − 1) sumas, y además 2ⁿ − 1 comparaciones para quedarse con el mayor. La pasada hace una suma por actividad, EF = ES + d, y un máximo de dos números en cada actividad de las etapas 2 a n y en Fin: 2n sumas y 2n − 1 comparaciones.
+3. Con n = 10, 9216 sumas frente a 20. Con n = 30, más de 31 000 millones frente a 60. La pasada no repite trabajo: el EF de cada actividad se calcula una vez y lo aprovechan todos los caminos que pasan por ella.
+</details>
+::::
+
+## Ampliaciones [[Para saber más]{.largo}[+]{.corto}]{.nivel .saber-mas} {#sec-tiempos-ampliaciones}
+
+**Del instante 0 al calendario.** Las fechas de este capítulo son instantes contados en días de trabajo desde el comienzo. Para llevarlas a un calendario hay que decidir qué días se trabaja (fines de semana, festivos, turnos) y qué convenio se usa para el comienzo y el fin de cada día. Los programas de gestión de proyectos hacen esa traducción por su cuenta, y por eso pueden mostrar como día 4 lo que aquí es el instante 3. El ejemplo de la guía del PMI empieza el proyecto en el día 1 [@pmi2025, guía, p. 161].
+
+**El cálculo, en 1959.** Los dos métodos originales calculaban sobre la red de flechas. Kelley y Walker obtenían primero los tiempos temprano y tardío de cada suceso, con fórmulas recursivas de máximos y mínimos, y de ellos las cuatro fechas de cada trabajo [@kelley1959, pp. 162–163]. Su método estaba programado ya para tres ordenadores, el UNIVAC I, el 1103A y el 1105 [@kelley1959, p. 161]. El PERT de la Marina estadounidense hacía el mismo cálculo con duraciones esperadas: llamaba T~E~ al tiempo esperado más temprano de cada suceso, y T~L~ al más tardío, calculado hacia atrás desde la fecha fijada para el suceso final [@malcolm1959, pp. 655–656].
+
+::: {.callout-note .mas-portal title="Más en el portal"}
+- **Cálculo**, en la pestaña Ejercicios: el portal genera un proyecto nuevo a partir de una semilla y te pide las fechas, la duración y, más adelante, las holguras y los caminos críticos. Corrige con error consecuente: si una fecha está mal, las que dependen de ella se juzgan con tus datos, y un solo error se penaliza una sola vez.
+- **Detective**, con la red ROY o la PERT y los errores de cálculo: además de fechas mal calculadas, siembra holguras y actividades críticas equivocadas, que se ven en el capítulo 6.
+- **Taller:** escribe o pega tu propia tabla y recórrela paso a paso, con el modo predicción, en la red ROY, en la red PERT o en la matriz.
+:::
+
+## Referencias del capítulo {.unnumbered #referencias}
+
+::: {.referencias-capitulo #refs}
+:::

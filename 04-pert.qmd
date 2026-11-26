@@ -297,7 +297,7 @@ Si no los encuentras todos, **Ver los errores** los marca en la red.
 - Los sucesos se numeran de modo que cada flecha, también las ficticias, vaya de un número menor a uno mayor. Es un orden topológico de los sucesos, y no es único.
 - Una red puede ser incorrecta, correcta con ficticias que sobran, o mínima. Una ficticia de más no cambia el proyecto, pero no es la mejor red.
 
-Para seguir el recorrido básico, continúa por el capítulo «Calcular los tiempos» (en preparación).
+Para seguir el recorrido básico, continúa por el [capítulo «Calcular los tiempos»](05-tiempos.qmd), donde las dos redes se llenan de fechas.
 
 ## Agrupar por precedentes [[Avanzado]{.largo}[A]{.corto}]{.nivel .avanzado} {#sec-pert-cs}
 

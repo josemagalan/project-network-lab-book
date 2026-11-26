@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 232" width="750" height="232" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+<text x="125.0" y="28" text-anchor="middle" font-size="15" font-weight="600" fill="#222222">7 campos</text>
+<text x="125.0" y="48" text-anchor="middle" font-size="12.5" font-weight="400" fill="#6b6862">el formato por defecto del portal</text>
+<rect x="59.0" y="92" width="132" height="96" rx="6" fill="#ffffff" stroke="#8a8781" stroke-width="1.6"/>
+<line x1="59.0" y1="124.0" x2="191.0" y2="124.0" stroke="#c9c6bf" stroke-width="1"/>
+<line x1="59.0" y1="156.0" x2="191.0" y2="156.0" stroke="#c9c6bf" stroke-width="1"/>
+<line x1="103.0" y1="92" x2="103.0" y2="124.0" stroke="#c9c6bf" stroke-width="1"/>
+<line x1="103.0" y1="156.0" x2="103.0" y2="188.0" stroke="#c9c6bf" stroke-width="1"/>
+<line x1="147.0" y1="92" x2="147.0" y2="124.0" stroke="#c9c6bf" stroke-width="1"/>
+<line x1="147.0" y1="156.0" x2="147.0" y2="188.0" stroke="#c9c6bf" stroke-width="1"/>
+<text x="81.0" y="113.0" text-anchor="middle" font-size="15" font-weight="400" fill="#222222">3</text>
+<text x="81.0" y="84" text-anchor="middle" font-size="12" font-weight="400" fill="#6b6862">ES</text>
+<text x="125.0" y="113.0" text-anchor="middle" font-size="15" font-weight="400" fill="#222222">3</text>
+<text x="125.0" y="84" text-anchor="middle" font-size="12" font-weight="400" fill="#6b6862">d</text>
+<text x="169.0" y="113.0" text-anchor="middle" font-size="15" font-weight="400" fill="#222222">6</text>
+<text x="169.0" y="84" text-anchor="middle" font-size="12" font-weight="400" fill="#6b6862">EF</text>
+<text x="125.0" y="146.0" text-anchor="middle" font-size="17" font-weight="700" fill="#222222">F</text>
+<text x="81.0" y="177.0" text-anchor="middle" font-size="15" font-weight="400" fill="#222222">4</text>
+<text x="81.0" y="208" text-anchor="middle" font-size="12" font-weight="400" fill="#6b6862">LS</text>
+<text x="125.0" y="177.0" text-anchor="middle" font-size="15" font-weight="400" fill="#222222">1</text>
+<text x="125.0" y="208" text-anchor="middle" font-size="12" font-weight="400" fill="#6b6862">TF</text>
+<text x="169.0" y="177.0" text-anchor="middle" font-size="15" font-weight="400" fill="#222222">7</text>
+<text x="169.0" y="208" text-anchor="middle" font-size="12" font-weight="400" fill="#6b6862">LF</text>
+<text x="375.0" y="28" text-anchor="middle" font-size="15" font-weight="600" fill="#222222">4 campos</text>
+<text x="375.0" y="48" text-anchor="middle" font-size="12.5" font-weight="400" fill="#6b6862">actividad, ES, LS y duración</text>
+<line x1="250" y1="14" x2="250" y2="218" stroke="#e2e0da" stroke-width="1"/>
+<rect x="319.0" y="92" width="112" height="96" rx="6" fill="#ffffff" stroke="#8a8781" stroke-width="1.6"/>
+<line x1="319.0" y1="124.0" x2="431.0" y2="124.0" stroke="#c9c6bf" stroke-width="1"/>
+<line x1="319.0" y1="156.0" x2="431.0" y2="156.0" stroke="#c9c6bf" stroke-width="1"/>
+<line x1="375.0" y1="124.0" x2="375.0" y2="156.0" stroke="#c9c6bf" stroke-width="1"/>
+<text x="375.0" y="114.0" text-anchor="middle" font-size="17" font-weight="700" fill="#222222">F</text>
+<text x="347.0" y="145.0" text-anchor="middle" font-size="15" font-weight="400" fill="#222222">3</text>
+<text x="403.0" y="145.0" text-anchor="middle" font-size="15" font-weight="400" fill="#222222">4</text>
+<text x="375.0" y="177.0" text-anchor="middle" font-size="15" font-weight="400" fill="#222222">3</text>
+<text x="309.0" y="145.0" text-anchor="end" font-size="12" font-weight="400" fill="#6b6862">ES</text>
+<text x="441.0" y="145.0" text-anchor="start" font-size="12" font-weight="400" fill="#6b6862">LS</text>
+<text x="375.0" y="208" text-anchor="middle" font-size="12" font-weight="400" fill="#6b6862">d</text>
+<text x="625.0" y="28" text-anchor="middle" font-size="15" font-weight="600" fill="#222222">Compacta</text>
+<text x="625.0" y="48" text-anchor="middle" font-size="12.5" font-weight="400" fill="#6b6862">tres cifras sobre el nodo</text>
+<line x1="500" y1="14" x2="500" y2="218" stroke="#e2e0da" stroke-width="1"/>
+<rect x="593.0" y="120" width="64" height="40" rx="20" fill="#ffffff" stroke="#8a8781" stroke-width="1.6"/>
+<text x="625.0" y="146.0" text-anchor="middle" font-size="17" font-weight="700" fill="#222222">F</text>
+<text x="625.0" y="110" text-anchor="middle" font-size="15" font-weight="400" fill="#222222">3/3/4</text>
+<text x="625.0" y="88" text-anchor="middle" font-size="12" font-weight="400" fill="#6b6862">ES / d / LS</text>
+</svg>

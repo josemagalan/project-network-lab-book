@@ -2,9 +2,9 @@
 
 <!-- Archivo generado por filtros/indices.py en cada «quarto render» (pre-render). No lo edites a mano: los cambios se perderían. Para cambiar el contenido, cambia los capítulos; para cambiar el formato, cambia el script. -->
 
-El libro tiene 4 capítulos y 27 secciones: 17 de nivel [[Básico]{.largo}[B]{.corto}]{.nivel .basico}, 6 de nivel [[Avanzado]{.largo}[A]{.corto}]{.nivel .avanzado} y 4 de nivel [[Para saber más]{.largo}[+]{.corto}]{.nivel .saber-mas}. El **recorrido básico** son las secciones azules: se leen seguidas, capítulo a capítulo, sin las demás. Las avanzadas amplían el recorrido básico y suelen apoyarse en él; «Para saber más» cierra cada capítulo con lecturas y temas que el libro no desarrolla.
+El libro tiene 5 capítulos y 35 secciones: 22 de nivel [[Básico]{.largo}[B]{.corto}]{.nivel .basico}, 8 de nivel [[Avanzado]{.largo}[A]{.corto}]{.nivel .avanzado} y 5 de nivel [[Para saber más]{.largo}[+]{.corto}]{.nivel .saber-mas}. El **recorrido básico** son las secciones azules: se leen seguidas, capítulo a capítulo, sin las demás. Las avanzadas amplían el recorrido básico y suelen apoyarse en él; «Para saber más» cierra cada capítulo con lecturas y temas que el libro no desarrolla.
 
-Las actividades —14 ejemplos reproducibles, 3 cajas «En el portal» y 21 ejercicios— están listadas en el [índice de actividades](actividades.qmd), por capítulo y por pestaña del portal.
+Las actividades —19 ejemplos reproducibles, 5 cajas «En el portal» y 28 ejercicios— están listadas en el [índice de actividades](actividades.qmd), por capítulo y por pestaña del portal.
 
 ## El libro de un vistazo {.unnumbered #vistazo}
 
@@ -14,7 +14,8 @@ Las actividades —14 ejemplos reproducibles, 3 cajas «En el portal» y 21 ejer
 | [2. Del enunciado a la tabla](02-enunciado.qmd) | 4 | 1 | 1 | 3 | 2 | 5 |
 | [3. La red ROY](03-roy.qmd) | 4 | 1 | 1 | 2 | 0 | 4 |
 | [4. La red PERT y las ficticias](04-pert.qmd) | 5 | 4 | 1 | 7 | 0 | 9 |
-| **Total** | **17** | **6** | **4** | **14** | **3** | **21** |
+| [5. Calcular los tiempos](05-tiempos.qmd) | 5 | 2 | 1 | 5 | 2 | 7 |
+| **Total** | **22** | **8** | **5** | **19** | **5** | **28** |
 
 ## 1. Proyectos, actividades y redes {.unnumbered #cap-1}
 
@@ -54,3 +55,14 @@ Las actividades —14 ejemplos reproducibles, 3 cajas «En el portal» y 21 ejer
 - [4.8 Spinrad y Corneil, Gotlieb y Lee](04-pert.qmd#sec-pert-spinrad) [[A]{.corto}]{.nivel .avanzado .solo-corto}
 - [4.9 Comparar los métodos](04-pert.qmd#sec-pert-cuantas) [[A]{.corto}]{.nivel .avanzado .solo-corto}
 - [4.10 Ampliaciones](04-pert.qmd#sec-pert-ampliaciones) [[+]{.corto}]{.nivel .saber-mas .solo-corto}
+
+## 5. Calcular los tiempos {.unnumbered #cap-5}
+
+- [5.1 Cuatro fechas por actividad](05-tiempos.qmd#sec-tiempos-fechas) [[B]{.corto}]{.nivel .basico .solo-corto}
+- [5.2 La pasada hacia delante](05-tiempos.qmd#sec-tiempos-delante) [[B]{.corto}]{.nivel .basico .solo-corto}
+- [5.3 La pasada hacia atrás](05-tiempos.qmd#sec-tiempos-atras) [[B]{.corto}]{.nivel .basico .solo-corto}
+- [5.4 Los tiempos de los sucesos en la red PERT](05-tiempos.qmd#sec-tiempos-sucesos) [[B]{.corto}]{.nivel .basico .solo-corto}
+- [5.5 Leer los resultados: notaciones, cajas y Gantt](05-tiempos.qmd#sec-tiempos-leer) [[B]{.corto}]{.nivel .basico .solo-corto}
+- [5.6 La matriz de encadenamiento](05-tiempos.qmd#sec-tiempos-matriz) [[A]{.corto}]{.nivel .avanzado .solo-corto}
+- [5.7 Por qué funciona: el camino más largo](05-tiempos.qmd#sec-tiempos-dag) [[A]{.corto}]{.nivel .avanzado .solo-corto}
+- [5.8 Ampliaciones](05-tiempos.qmd#sec-tiempos-ampliaciones) [[+]{.corto}]{.nivel .saber-mas .solo-corto}
