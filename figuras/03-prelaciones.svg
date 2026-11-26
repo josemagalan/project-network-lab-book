@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 928 222" width="928" height="222" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+<defs><marker id="punta" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#8a8781"/></marker></defs>
+<text x="116.0" y="28" text-anchor="middle" font-size="15" font-weight="600" fill="#222222">Lineal</text>
+<text x="116.0" y="48" text-anchor="middle" font-size="12.5" fill="#6b6862">A → B</text>
+<line x1="84" y1="135" x2="148" y2="135" stroke="#8a8781" stroke-width="1.6" marker-end="url(#punta)"/>
+<rect x="34" y="118.0" width="50" height="34" rx="5" fill="#ffffff" stroke="#8a8781" stroke-width="1.6"/>
+<text x="59.0" y="141" text-anchor="middle" font-size="17" font-weight="700" fill="#222222">A</text>
+<rect x="148" y="118.0" width="50" height="34" rx="5" fill="#ffffff" stroke="#8a8781" stroke-width="1.6"/>
+<text x="173.0" y="141" text-anchor="middle" font-size="17" font-weight="700" fill="#222222">B</text>
+<text x="348.0" y="28" text-anchor="middle" font-size="15" font-weight="600" fill="#222222">Convergente</text>
+<text x="348.0" y="48" text-anchor="middle" font-size="12.5" fill="#6b6862">A → C · B → C</text>
+<line x1="232" y1="14" x2="232" y2="208" stroke="#e2e0da" stroke-width="1"/>
+<line x1="316" y1="88" x2="380" y2="135" stroke="#8a8781" stroke-width="1.6" marker-end="url(#punta)"/>
+<line x1="316" y1="182" x2="380" y2="135" stroke="#8a8781" stroke-width="1.6" marker-end="url(#punta)"/>
+<rect x="266" y="71.0" width="50" height="34" rx="5" fill="#ffffff" stroke="#8a8781" stroke-width="1.6"/>
+<text x="291.0" y="94" text-anchor="middle" font-size="17" font-weight="700" fill="#222222">A</text>
+<rect x="266" y="165.0" width="50" height="34" rx="5" fill="#ffffff" stroke="#8a8781" stroke-width="1.6"/>
+<text x="291.0" y="188" text-anchor="middle" font-size="17" font-weight="700" fill="#222222">B</text>
+<rect x="380" y="118.0" width="50" height="34" rx="5" fill="#ffffff" stroke="#8a8781" stroke-width="1.6"/>
+<text x="405.0" y="141" text-anchor="middle" font-size="17" font-weight="700" fill="#222222">C</text>
+<text x="580.0" y="28" text-anchor="middle" font-size="15" font-weight="600" fill="#222222">Divergente</text>
+<text x="580.0" y="48" text-anchor="middle" font-size="12.5" fill="#6b6862">A → B · A → C</text>
+<line x1="464" y1="14" x2="464" y2="208" stroke="#e2e0da" stroke-width="1"/>
+<line x1="548" y1="135" x2="612" y2="88" stroke="#8a8781" stroke-width="1.6" marker-end="url(#punta)"/>
+<line x1="548" y1="135" x2="612" y2="182" stroke="#8a8781" stroke-width="1.6" marker-end="url(#punta)"/>
+<rect x="498" y="118.0" width="50" height="34" rx="5" fill="#ffffff" stroke="#8a8781" stroke-width="1.6"/>
+<text x="523.0" y="141" text-anchor="middle" font-size="17" font-weight="700" fill="#222222">A</text>
+<rect x="612" y="71.0" width="50" height="34" rx="5" fill="#ffffff" stroke="#8a8781" stroke-width="1.6"/>
+<text x="637.0" y="94" text-anchor="middle" font-size="17" font-weight="700" fill="#222222">B</text>
+<rect x="612" y="165.0" width="50" height="34" rx="5" fill="#ffffff" stroke="#8a8781" stroke-width="1.6"/>
+<text x="637.0" y="188" text-anchor="middle" font-size="17" font-weight="700" fill="#222222">C</text>
+<text x="812.0" y="28" text-anchor="middle" font-size="15" font-weight="600" fill="#222222">Convergente-divergente</text>
+<text x="812.0" y="48" text-anchor="middle" font-size="12.5" fill="#6b6862">A y B → C y D</text>
+<line x1="696" y1="14" x2="696" y2="208" stroke="#e2e0da" stroke-width="1"/>
+<line x1="780" y1="88" x2="844" y2="88" stroke="#8a8781" stroke-width="1.6" marker-end="url(#punta)"/>
+<line x1="780" y1="88" x2="844" y2="182" stroke="#8a8781" stroke-width="1.6" marker-end="url(#punta)"/>
+<line x1="780" y1="182" x2="844" y2="88" stroke="#8a8781" stroke-width="1.6" marker-end="url(#punta)"/>
+<line x1="780" y1="182" x2="844" y2="182" stroke="#8a8781" stroke-width="1.6" marker-end="url(#punta)"/>
+<rect x="730" y="71.0" width="50" height="34" rx="5" fill="#ffffff" stroke="#8a8781" stroke-width="1.6"/>
+<text x="755.0" y="94" text-anchor="middle" font-size="17" font-weight="700" fill="#222222">A</text>
+<rect x="730" y="165.0" width="50" height="34" rx="5" fill="#ffffff" stroke="#8a8781" stroke-width="1.6"/>
+<text x="755.0" y="188" text-anchor="middle" font-size="17" font-weight="700" fill="#222222">B</text>
+<rect x="844" y="71.0" width="50" height="34" rx="5" fill="#ffffff" stroke="#8a8781" stroke-width="1.6"/>
+<text x="869.0" y="94" text-anchor="middle" font-size="17" font-weight="700" fill="#222222">C</text>
+<rect x="844" y="165.0" width="50" height="34" rx="5" fill="#ffffff" stroke="#8a8781" stroke-width="1.6"/>
+<text x="869.0" y="188" text-anchor="middle" font-size="17" font-weight="700" fill="#222222">D</text>
+</svg>

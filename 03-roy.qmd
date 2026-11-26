@@ -61,6 +61,10 @@ Mirada de cerca, una red ROY está hecha de unas pocas piezas que se repiten. Lo
 - **Divergente:** varias actividades pueden empezar al terminar una. A → B y A → C.
 - **Convergente-divergente:** varias actividades empiezan al terminar varias otras. A y B preceden a C y a D.
 
+La figura -@fig-roy-prelaciones dibuja los cuatro en una red ROY.
+
+![Los cuatro tipos de prelación en una red ROY. Figura propia, generada con `figuras/03-prelaciones.py`.](figuras/03-prelaciones.svg){#fig-roy-prelaciones fig-alt="Cuatro paneles con cajas y flechas de izquierda a derecha. Lineal: A va a B. Convergente: A y B van a C. Divergente: A va a B y a C. Convergente-divergente: A va a C y a D, y B también va a C y a D, con dos flechas que se cruzan."}
+
 Los tipos no son una curiosidad de vocabulario. La guía del PMI llama **convergencia de caminos** a una actividad con varias predecesoras y **divergencia** a una con varias sucesoras, y advierte que son las de más riesgo: a una actividad convergente la puede retrasar cualquiera de sus predecesoras, y una divergente retrasa a todas sus sucesoras [@pmi2025, guía, p. 127]. La convergencia volverá a aparecer en los capítulos 8 y 9, cuando las duraciones sean inciertas.
 
 Para clasificar los nodos no contaremos las flechas de Inicio ni las de Fin: son de la red, no del proyecto.
