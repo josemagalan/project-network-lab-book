@@ -191,7 +191,7 @@ Para seguir el recorrido básico, continúa por el capítulo «La red PERT y las
 
 ## Orden topológico y dibujo por capas [[Avanzado]{.largo}[A]{.corto}]{.nivel .avanzado} {#sec-roy-topologico}
 
-**Existe si y solo si no hay ciclos.** Si la red tiene un ciclo, ninguna de sus actividades puede ir la primera: cada una espera a otra del ciclo, y no hay orden topológico. Si no hay ciclos, siempre hay al menos una actividad sin predecesoras pendientes, porque si no, recorriendo predecesoras hacia atrás volveríamos a pasar por una actividad ya vista, y eso sería un ciclo. Se pone esa actividad la primera, se quita de la red y se repite.
+**Existe si y solo si no hay ciclos**, es decir, si la red es un grafo dirigido acíclico o DAG (sección -@sec-enunciado-transitiva). Si la red tiene un ciclo, ninguna de sus actividades puede ir la primera: cada una espera a otra del ciclo, y no hay orden topológico. Si no hay ciclos, siempre hay al menos una actividad sin predecesoras pendientes, porque si no, recorriendo predecesoras hacia atrás volveríamos a pasar por una actividad ya vista, y eso sería un ciclo. Se pone esa actividad la primera, se quita de la red y se repite.
 
 Ese razonamiento es un algoritmo, y Kahn lo publicó en 1962 pensando precisamente en las redes PERT. Explicaba que, en el cálculo de una red PERT, ordenarla topológicamente era la parte más difícil desde el punto de vista computacional, y que la solución manual, numerar los sucesos de modo que los números crezcan a lo largo de cada camino, se volvía inmanejable en redes grandes que se revisan periódicamente [@kahn1962, p. 558]. Su método lleva la cuenta de cuántas predecesoras le quedan a cada elemento: los que llegan a 0 pasan a la lista ordenada, y su salida descuenta una predecesora a cada uno de sus sucesores [@kahn1962, p. 559]. Con él estimaba ordenar una red PERT de 30 000 actividades en menos de una hora de un IBM 7090 [@kahn1962, p. 558].
 
@@ -205,6 +205,8 @@ mientras listas no esté vacía:
         si cuenta[Y] = 0, añadir Y a listas
 si el orden no tiene todas las actividades: hay un ciclo
 ```
+
+En el lenguaje de los grafos, el algoritmo hace dos cosas a la vez: si el grafo es un DAG, lo ordena; si no lo es, lo descubre, porque las actividades de un ciclo nunca llegan a cuenta 0.
 
 El portal usa este método con un desempate: cuando hay varias actividades listas, saca primero la de nombre menor. Así, el mismo proyecto da siempre el mismo orden, el primero en orden alfabético de entre todos los posibles. Los niveles salen del mismo recorrido: cada actividad toma 1 más el nivel más alto de sus predecesoras, que ya están calculadas.
 

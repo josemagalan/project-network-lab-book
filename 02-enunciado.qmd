@@ -241,7 +241,7 @@ Para seguir el recorrido básico, continúa por el [capítulo «La red ROY»](03
 
 ## Cierre y reducción transitiva [[Avanzado]{.largo}[A]{.corto}]{.nivel .avanzado} {#sec-enunciado-transitiva}
 
-Las ideas de la sección -@sec-enunciado-validar tienen nombre en la teoría de grafos. Una tabla de precedencias es un **grafo dirigido**: las actividades son los vértices y cada precedencia X → Y es un arco.
+Las ideas de la sección -@sec-enunciado-validar tienen nombre en la teoría de grafos. Una tabla de precedencias es un **grafo dirigido**: las actividades son los vértices y cada precedencia X → Y es un arco. Si la tabla es válida, el grafo no tiene ciclos: es un **grafo dirigido acíclico**, o **DAG** por sus siglas en inglés (*directed acyclic graph*). Es el nombre con el que aparece en cualquier texto de algoritmos, y el que usaremos en el nivel avanzado de los capítulos siguientes.
 
 - El **cierre transitivo** del grafo es el grafo que tiene un arco X → Y siempre que se pueda ir de X a Y siguiendo arcos. Contiene todas las precedencias, las escritas y las transitivas.
 - Una **reducción transitiva** es un grafo con el menor número de arcos que tiene el mismo cierre transitivo. Es la tabla depurada.
