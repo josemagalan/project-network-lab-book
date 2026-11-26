@@ -180,7 +180,7 @@ B → E → I → J → K dura 3 + 4 + 2 + 3 + 1 = 13 días, y D → K, 8 + 1 = 
 - *Red ROY* y *red PERT* son dibujos; *PERT* es también un método de estimación con tres tiempos, y *CPM*, el cálculo del camino crítico.
 - La duración del proyecto la marca su camino más largo, el camino crítico: en Mecánicas del Sureste, B → E → I → J → K, de 13 días.
 
-Para seguir el recorrido básico, continúa por el capítulo «Del enunciado a la tabla» (en preparación). En este capítulo la tabla venía dada; allí aprenderás a sacarla de un enunciado.
+Para seguir el recorrido básico, continúa por el [capítulo «Del enunciado a la tabla»](02-enunciado.qmd). En este capítulo la tabla venía dada; allí aprenderás a sacarla de un enunciado.
 
 ## Ampliaciones [[Para saber más]{.largo}[+]{.corto}]{.nivel .saber-mas} {#sec-redes-ampliaciones}
 

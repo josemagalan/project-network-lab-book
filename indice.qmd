@@ -2,16 +2,17 @@
 
 <!-- Archivo generado por filtros/indices.py en cada «quarto render» (pre-render). No lo edites a mano: los cambios se perderían. Para cambiar el contenido, cambia los capítulos; para cambiar el formato, cambia el script. -->
 
-El libro tiene 1 capítulos y 5 secciones: 4 de nivel [[Básico]{.largo}[B]{.corto}]{.nivel .basico}, 0 de nivel [[Avanzado]{.largo}[A]{.corto}]{.nivel .avanzado} y 1 de nivel [[Para saber más]{.largo}[+]{.corto}]{.nivel .saber-mas}. El **recorrido básico** son las secciones azules: se leen seguidas, capítulo a capítulo, sin las demás. Las avanzadas amplían el recorrido básico y suelen apoyarse en él; «Para saber más» cierra cada capítulo con lecturas y temas que el libro no desarrolla.
+El libro tiene 2 capítulos y 11 secciones: 8 de nivel [[Básico]{.largo}[B]{.corto}]{.nivel .basico}, 1 de nivel [[Avanzado]{.largo}[A]{.corto}]{.nivel .avanzado} y 2 de nivel [[Para saber más]{.largo}[+]{.corto}]{.nivel .saber-mas}. El **recorrido básico** son las secciones azules: se leen seguidas, capítulo a capítulo, sin las demás. Las avanzadas amplían el recorrido básico y suelen apoyarse en él; «Para saber más» cierra cada capítulo con lecturas y temas que el libro no desarrolla.
 
-Las actividades —2 ejemplos reproducibles, 1 cajas «En el portal» y 3 ejercicios— están listadas en el [índice de actividades](actividades.qmd), por capítulo y por pestaña del portal.
+Las actividades —5 ejemplos reproducibles, 3 cajas «En el portal» y 8 ejercicios— están listadas en el [índice de actividades](actividades.qmd), por capítulo y por pestaña del portal.
 
 ## El libro de un vistazo {.unnumbered #vistazo}
 
 | Capítulo | B | A | + | Ejemplos | En el portal | Ejercicios |
 |---|:-:|:-:|:-:|:-:|:-:|:-:|
 | [1. Proyectos, actividades y redes](01-redes.qmd) | 4 | 0 | 1 | 2 | 1 | 3 |
-| **Total** | **4** | **0** | **1** | **2** | **1** | **3** |
+| [2. Del enunciado a la tabla](02-enunciado.qmd) | 4 | 1 | 1 | 3 | 2 | 5 |
+| **Total** | **8** | **1** | **2** | **5** | **3** | **8** |
 
 ## 1. Proyectos, actividades y redes {.unnumbered #cap-1}
 
@@ -20,3 +21,12 @@ Las actividades —2 ejemplos reproducibles, 1 cajas «En el portal» y 3 ejerci
 - [1.3 Una red, dos lenguajes](01-redes.qmd#sec-redes-dos-lenguajes) [[B]{.corto}]{.nivel .basico .solo-corto}
 - [1.4 Las preguntas que responde una red](01-redes.qmd#sec-redes-preguntas) [[B]{.corto}]{.nivel .basico .solo-corto}
 - [1.5 Ampliaciones](01-redes.qmd#sec-redes-ampliaciones) [[+]{.corto}]{.nivel .saber-mas .solo-corto}
+
+## 2. Del enunciado a la tabla {.unnumbered #cap-2}
+
+- [2.1 Leer un enunciado](02-enunciado.qmd#sec-enunciado-leer) [[B]{.corto}]{.nivel .basico .solo-corto}
+- [2.2 Muchas maneras de decir A → B](02-enunciado.qmd#sec-enunciado-frases) [[B]{.corto}]{.nivel .basico .solo-corto}
+- [2.3 Predecesoras, sucesoras y matriz](02-enunciado.qmd#sec-enunciado-formas) [[B]{.corto}]{.nivel .basico .solo-corto}
+- [2.4 Validar y depurar la tabla](02-enunciado.qmd#sec-enunciado-validar) [[B]{.corto}]{.nivel .basico .solo-corto}
+- [2.5 Cierre y reducción transitiva](02-enunciado.qmd#sec-enunciado-transitiva) [[A]{.corto}]{.nivel .avanzado .solo-corto}
+- [2.6 Ampliaciones](02-enunciado.qmd#sec-enunciado-ampliaciones) [[+]{.corto}]{.nivel .saber-mas .solo-corto}

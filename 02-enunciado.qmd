@@ -1,0 +1,322 @@
+# Del enunciado a la tabla {#sec-enunciado}
+
+<!-- Seguimiento interno (no visible): primer borrador del 2026-11-26, con el esquema aprobado por el autor tras la revisión crítica de un agente (la pestaña abre Electrona por defecto, así que todos los enlaces llevan st; ej6 no nombra las actividades, de ahí la mudanza en 2.1; «es lo primero/lo último» solo fijan iniciales y finales; el congreso, con ciclo si se lee mal y redundancias si se lee bien, pasa a 2.4 en dos pasos; una redundancia es un aviso; el portal calcula el cierre por orden topológico, no con Roy–Warshall). Estados del portal comprobados el 2026-11-26 en una copia de project-network-lab 9f55e73 servida en local (Chromium sin interfaz): la ruta paso a paso de la mudanza tiene 26 pasos y pregunta las precedencias de cada frase en modo predicción; la tabla de la mudanza con A → E da el aviso «A → E es redundante: A → B → E ya la implica», iniciales A y D, finales F y G; la matriz de ej6 tiene vacías las filas A, B, C y D y la columna K. Soluciones comprobadas con js/core/project.js y js/core/precheck.js: ej6 por predecesoras; mudanza; congreso mal leído (ciclo A, C, B) y bien leído (A → B y C → D redundantes; tabla depurada igual que la de referencia de statements.js); ejercicio de 2.5 (A → C redundante; el cierre añade A → D y B → D). Enunciados citados literalmente de js/core/statements.js (mudanza, lanzamiento, cocina, congreso y Electrona), contenido docente CC BY 4.0 del portal. Roy (1959b) y Warshall (1962), citados de forma indirecta a través de Bouyssou y Vanderpooten (2019, p. 5): no se han conseguido los originales. Aho, Garey y Ullman (1972), sin conseguir: la unicidad de la reducción transitiva se justifica en el texto sin citarlos. -->
+
+**Portal:** [Project Network Lab](https://josemagalan.github.io/project-network-lab/), pestaña [Del enunciado a la tabla](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=m0&st=mudanza){target="_blank"}.
+
+::: {.callout-warning .objetivos title="Objetivos del capítulo"}
+Al terminar el recorrido básico de este capítulo podrás:
+
+- localizar en un enunciado las actividades, las duraciones y las frases que dan precedencias, y las que no dan ninguna;
+- traducir a la forma A → B las distintas maneras de expresar una precedencia, en el sentido correcto;
+- escribir la misma tabla por predecesoras, por sucesoras y como matriz, y reconocer en ella las actividades iniciales y finales;
+- detectar ciclos y precedencias redundantes, y depurar la tabla.
+:::
+
+## Leer un enunciado [[Básico]{.largo}[B]{.corto}]{.nivel .basico} {#sec-enunciado-leer}
+
+¿De dónde sale la tabla de precedencias?
+
+En el capítulo anterior la tabla venía dada. En la práctica, casi nunca es así: alguien describe el proyecto con palabras, en una reunión, en un informe o en el enunciado de un ejercicio, y quien planifica tiene que convertir esas palabras en una tabla. Es el primer paso, y también el más fácil de hacer mal: una precedencia que falta, o que se lee al revés, cambia todo lo que se calcula después.
+
+Un enunciado contiene tres tipos de información, y conviene buscarlos por separado:
+
+- **Actividades:** los trabajos del proyecto, con su nombre y, a menudo, una letra que las identifica.
+- **Duraciones:** cuánto tarda cada actividad, con su unidad (días, semanas…).
+- **Frases de dependencia:** las que dicen que una actividad tiene que esperar a otra. Cada una da una o varias precedencias. Hay frases que parecen de dependencia y no lo son, como veremos en la sección siguiente.
+
+Escribiremos una precedencia como **A → B**: A tiene que terminar antes de que empiece B. Es la relación de fin a comienzo del capítulo 1, la única que usaremos hasta el capítulo 11.
+
+Este es el enunciado de la mudanza de un laboratorio, uno de los que trae el portal:
+
+> Un grupo de investigación cambia de edificio. Primero hay que hacer el inventario de los equipos (A, 3 días). Una vez hecho el inventario, se puede embalar el vidrio y desconectar los equipos: embalar el material de vidrio (B) lleva 2 días y desconectar y embalar los equipos grandes (C), otros 2 días. B y C usan la misma furgoneta de la universidad, pero el orden da igual. Mientras tanto, el servicio técnico tiene que preparar el laboratorio nuevo (D, 5 días); D puede ir en paralelo con A, B y C. El transporte empieza cuando acaban B, C y D: transportarlo todo (E) se hace en 1 día. Evidentemente, el transporte no puede empezar antes del inventario. En cuanto el laboratorio nuevo está preparado, hay que revisar su seguridad (H, 1 día). F y G siguen a E: instalar y calibrar los equipos (F) lleva 3 días y desembalar el vidrio (G), 1 día. Antes de instalar los equipos hay que haber revisado la seguridad.
+
+::: {.callout-tip .ejemplo #ejemplo-enunciado-mudanza title="Ejemplo reproducible · La mudanza, frase a frase"}
+**Datos.** El enunciado de la mudanza.
+
+**Predice.** Antes de abrirlo, subraya en el texto las actividades, las duraciones y las frases de dependencia. ¿Cuántas actividades hay? ¿Qué precedencias da cada frase?
+
+[Abrir: la ruta paso a paso de la mudanza](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=m0&st=mudanza&mm=route&pred=1){.abrir target="_blank"}
+
+La ruta recorre el texto fragmento a fragmento. Con el modo predicción activado, en cada frase de dependencia te pregunta qué precedencias da antes de mostrar la respuesta, y a la derecha va creciendo la tabla.
+
+<details>
+<summary>**Ver el resultado**</summary>
+
+Hay ocho actividades, de la A a la H; el enunciado no las presenta en orden alfabético, porque H aparece antes que F y G. Las frases de dependencia dan:
+
+| Frase | Precedencias |
+|---|---|
+| «Una vez hecho el inventario, se puede embalar el vidrio y desconectar los equipos» | A → B, A → C |
+| «El transporte empieza cuando acaban B, C y D» | B → E, C → E, D → E |
+| «Evidentemente, el transporte no puede empezar antes del inventario» | A → E |
+| «En cuanto el laboratorio nuevo está preparado, hay que revisar su seguridad» | D → H |
+| «F y G siguen a E» | E → F, E → G |
+| «Antes de instalar los equipos hay que haber revisado la seguridad» | H → F |
+
+Dos frases no dan ninguna: la de la furgoneta y la de «D puede ir en paralelo con A, B y C». Y A → E es correcta, pero no hacía falta escribirla; en la sección -@sec-enunciado-validar veremos por qué.
+</details>
+:::
+
+::: {.callout-note .en-app title="En el portal · Del enunciado a la tabla, «Practicar»"}
+[Explorar la mudanza en «Practicar»](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=m0&st=mudanza){.explorar target="_blank"}
+
+- Pulsa **Subrayar** y marca en el texto una actividad, una duración y una frase de dependencia. Cada subrayado pregunta qué da: la actividad y su letra, la duración, o las precedencias de la frase.
+- Lo que subrayas pasa a la tabla de la derecha. También puedes escribir la tabla directamente, sin subrayar.
+- Pulsa **Comprobar** para comparar tu tabla con la del enunciado. La corrección dice qué falta, qué sobra y qué está al revés.
+:::
+
+## Muchas maneras de decir A → B [[Básico]{.largo}[B]{.corto}]{.nivel .basico} {#sec-enunciado-frases}
+
+¿Por qué no basta con buscar la palabra «precede»?
+
+Porque la misma precedencia se puede decir de muchas maneras. Todas estas frases dan **A → B**:
+
+- «A precede a B».
+- «B sigue a A».
+- «B no puede empezar hasta que acabe A».
+- «B empieza cuando acaba A».
+- «Antes de B hay que hacer A».
+- «En cuanto termina A, se puede hacer B».
+- «Una vez terminado A, se puede hacer B».
+- «B depende de A».
+- «B no puede empezar sin saber el resultado de A».
+
+Hay que fijarse en el **sentido**. «B sigue a A» nombra primero a B, pero B va después: leída deprisa, da B → A, que es justo la contraria. Una precedencia al revés no siempre se nota en la tabla, pero cambia el proyecto y, a veces, crea un ciclo imposible de cumplir (sección -@sec-enunciado-validar).
+
+Otras precedencias no se dicen con una frase de dependencia, sino que se deducen de lo que hace cada actividad. En la reforma de una cocina, «Con la cocina vacía, el electricista puede renovar la instalación eléctrica» dice que la instalación espera a desmontar la cocina vieja, aunque no lo diga con esas palabras. Cuantas menos frases explícitas tiene un enunciado, más hay que razonar sobre el trabajo.
+
+Y hay frases que parecen de dependencia, pero **no dan ninguna precedencia**:
+
+- **«Ir en paralelo» o «a la vez».** Dice precisamente que las dos actividades no se esperan.
+- **Compartir un recurso.** Que el electricista y el pintor usen la misma escalera, o que B y C usen la misma furgoneta, no obliga a hacer una antes que otra: es una limitación de recursos, no de orden. Cómo se planifica con recursos limitados se verá en el capítulo 13.
+
+:::: {.callout-note .ejercicio #ejercicio-enunciado-frases title="Ejercicio · Traducir frases"}
+Escribe las precedencias que da cada frase, o «ninguna». Las cuatro primeras son del lanzamiento de un producto: estudio de mercado (A), diseño (B), fijar el precio (C), campaña de publicidad (D), fabricar la primera serie (E) y lanzamiento (F). Las otras cuatro, de la reforma de la cocina: desmontar la cocina vieja (A), instalación eléctrica (B), tuberías (C), alicatar las paredes (D), pintar el techo (E) y montar los muebles (F).
+
+1. «El diseño y el precio dependen del estudio de mercado.»
+2. «La campaña no puede empezar sin saber el precio.»
+3. «Fabricar y hacer la campaña pueden ir a la vez.»
+4. «F sigue a D y a E.»
+5. «Con la cocina vacía, el electricista puede renovar la instalación eléctrica (3 días) y el fontanero cambiar las tuberías (2 días).»
+6. «El electricista y el pintor comparten la misma escalera, pero se organizan sin problema.»
+7. «En cuanto la cocina esté desmontada, el pintor puede pintar el techo en 1 día.»
+8. «Los muebles se montan cuando las paredes están alicatadas y el techo pintado.»
+
+<details>
+<summary>**Ver la solución**</summary>
+
+1. A → B y A → C.
+2. C → D.
+3. Ninguna: van en paralelo.
+4. D → F y E → F. Cuidado con el sentido: F va después.
+5. A → B y A → C. La frase no nombra la actividad A; la deduce de «con la cocina vacía».
+6. Ninguna: es un recurso compartido.
+7. A → E.
+8. D → F y E → F.
+</details>
+::::
+
+::: {.callout-note .en-app title="En el portal · Del enunciado a la tabla, «Ruta paso a paso»"}
+[Explorar el lanzamiento paso a paso](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=m0&st=lanzamiento&mm=route&pred=1){.explorar target="_blank"}
+
+- Recorre el enunciado completo del lanzamiento con el modo predicción. Fíjate en las dos últimas frases, «el lanzamiento es lo último» y «lo primero es el estudio de mercado»: las verás en la sección siguiente.
+- Cambia de enunciado en el selector **Enunciado** y repite con la reforma de la cocina, que no usa letras.
+:::
+
+## Predecesoras, sucesoras y matriz [[Básico]{.largo}[B]{.corto}]{.nivel .basico} {#sec-enunciado-formas}
+
+¿Hay una sola forma de escribir la tabla?
+
+No: hay tres, y las tres dicen lo mismo. En el capítulo 1 escribimos la tabla de Mecánicas del Sureste **por sucesoras**: para cada actividad, las que van inmediatamente después. La forma más habitual, y la que usa el portal por defecto, es **por predecesoras**: para cada actividad, las que tienen que terminar antes de que empiece.
+
+Los nombres varían según el texto. Las **predecesoras** también se llaman *precedentes*, y las **sucesoras**, *posteriores*, que es como las llama el portal. Los apuntes de los que sale Mecánicas del Sureste hablan de **prelaciones**, y escriben las precedencias con el signo <: «A, B < E» quiere decir que A y B preceden a E.
+
+:::: {.callout-note .ejercicio #ejercicio-enunciado-predecesoras title="Ejercicio · De sucesoras a predecesoras"}
+Escribe la tabla de Mecánicas del Sureste (tabla -@tbl-redes-mecanicas, en el capítulo 1) por predecesoras. Truco: recorre la tabla de sucesoras y, cada vez que veas que X tiene como sucesora a Y, apunta X en la fila de Y.
+
+<details>
+<summary>**Ver la solución**</summary>
+
+| Actividad | A | B | C | D | E | F | G | H | I | J | K |
+|---|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| Duración (días) | 2 | 3 | 2 | 8 | 4 | 3 | 2 | 1 | 2 | 3 | 1 |
+| Predecesoras | — | — | — | — | A, B | B | B, C | E, F | E, F, G | I | D, H, J |
+</details>
+::::
+
+La tercera forma es la **matriz de precedencias**: una fila y una columna por actividad, y una marca en la casilla de la fila Y y la columna X cuando X precede a Y. Así la dibuja el portal: **fila, la actividad; columna, su predecesora**. La de Mecánicas del Sureste es esta:
+
+| | A | B | C | D | E | F | G | H | I | J | K |
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| **A** | | | | | | | | | | | |
+| **B** | | | | | | | | | | | |
+| **C** | | | | | | | | | | | |
+| **D** | | | | | | | | | | | |
+| **E** | ● | ● | | | | | | | | | |
+| **F** | | ● | | | | | | | | | |
+| **G** | | ● | ● | | | | | | | | |
+| **H** | | | | | ● | ● | | | | | |
+| **I** | | | | | ● | ● | ● | | | | |
+| **J** | | | | | | | | | ● | | |
+| **K** | | | | ● | | | | ● | | ● | |
+
+: Matriz de precedencias de Mecánicas del Sureste. Fila: la actividad; columna: su predecesora. {#tbl-enunciado-matriz}
+
+La matriz ocupa más que la lista, pero se lee de un vistazo. Cada fila es la lista de predecesoras de su actividad, y cada columna, la lista de sucesoras. Por eso una **fila vacía** es una **actividad inicial**, que puede empezar sin esperar a nadie (A, B, C y D), y una **columna vacía** es una **actividad final**, a la que no espera nadie (K).
+
+Algunos enunciados dicen expresamente cuál es la primera o la última: «lo primero es el estudio de mercado», «el lanzamiento es lo último». Esas frases no añaden ninguna precedencia necesaria: «el lanzamiento es lo último» se cumple en cuanto el lanzamiento no tiene sucesoras. Lo que sí hacen es dar una pista para comprobar la tabla: si el enunciado dice que A es la primera, A tiene que ser la **única** actividad inicial. Y al revés, cuidado con leer demasiado en las palabras: la mudanza empieza diciendo «Primero hay que hacer el inventario», pero D, preparar el laboratorio nuevo, tampoco espera a nadie. La mudanza tiene dos actividades iniciales, A y D.
+
+::: {.callout-tip .ejemplo #ejemplo-enunciado-matriz title="Ejemplo reproducible · La matriz en el portal"}
+**Datos.** La tabla de Mecánicas del Sureste por predecesoras, en la vista de matriz.
+
+**Predice.** ¿Qué filas de la matriz estarán vacías? ¿Y qué columnas? ¿Qué actividades iniciales y finales dirá la validación?
+
+[Abrir: la matriz de Mecánicas del Sureste](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=m0&st=ej6&tv=matrix&t=A%2C2%2C%2C%3BB%2C3%2C%2C%3BC%2C2%2C%2C%3BD%2C8%2C%2C%3BE%2C4%2CA%252C%2520B%2C%3BF%2C3%2CB%2C%3BG%2C2%2CB%252C%2520C%2C%3BH%2C1%2CE%252C%2520F%2C%3BI%2C2%2CE%252C%2520F%252C%2520G%2C%3BJ%2C3%2CI%2C%3BK%2C1%2CD%252C%2520H%252C%2520J%2C){.abrir target="_blank"}
+
+La matriz se puede editar: marca o desmarca una casilla y mira cómo cambian la lista (botón **Lista**) y la validación.
+
+<details>
+<summary>**Ver el resultado**</summary>
+
+Están vacías las filas de A, B, C y D, y la columna de K. La validación lo confirma: «Iniciales: A, B, C, D · Finales: K». Además dice «Sin ciclos ni precedencias redundantes»: es lo que comprueba la sección siguiente.
+</details>
+:::
+
+## Validar y depurar la tabla [[Básico]{.largo}[B]{.corto}]{.nivel .basico} {#sec-enunciado-validar}
+
+Una tabla puede estar bien escrita y, aun así, tener dos problemas: decir más de lo necesario o pedir algo imposible.
+
+**Precedencias transitivas y redundantes.** Si A → B y B → E, entonces A también va antes que E, aunque ninguna frase lo diga: es una precedencia **transitiva**, que sale de encadenar otras. En la mudanza, «el transporte no puede empezar antes del inventario» da A → E, que ya estaba implicada por A → B → E (y por A → C → E). Una precedencia así se llama **redundante**: escribirla no cambia el proyecto, porque las demás ya la exigen.
+
+Una redundancia **no es un error**. La tabla con A → E describe el mismo proyecto que la tabla sin ella, y los tiempos y las holguras que se calculen serán los mismos. Pero conviene quitarla antes de dibujar. Cada precedencia redundante es una flecha de más en la red ROY, y en la red PERT puede obligar a dibujar ficticias que no hacen falta (capítulo 4). La tabla sin ninguna precedencia redundante es la **tabla depurada**: dice lo mismo que la original y no le sobra nada.
+
+Todo esto vale para las relaciones de fin a comienzo sin desfase, las únicas que usamos de momento. Con desfases (capítulo 11), A → B → C ya no implica necesariamente lo mismo que A → C.
+
+**Ciclos.** Un **ciclo** es una cadena de precedencias que vuelve a su punto de partida: A → C, C → B y B → A. Cada actividad del ciclo tendría que esperar a terminar ella misma, así que el proyecto no podría empezar nunca. Un ciclo no es un aviso, sino un **error**: casi siempre viene de una frase leída al revés, y hay que corregirlo antes de seguir. Con un ciclo tampoco hay tabla depurada, porque no tiene sentido preguntarse qué precedencias sobran en un proyecto imposible.
+
+::: {.callout-tip .ejemplo #ejemplo-enunciado-mudanza-depurar title="Ejemplo reproducible · La redundancia de la mudanza"}
+**Datos.** La tabla de la mudanza tal como sale de leer todas las frases, con A → E incluida: E tiene como predecesoras A, B, C y D.
+
+**Predice.** ¿Qué dirá la validación? ¿Será correcta la tabla al compararla con el enunciado?
+
+[Abrir: la tabla de la mudanza con A → E](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=m0&st=mudanza&t=A%2C3%2C%2C%3BB%2C2%2CA%2C%3BC%2C2%2CA%2C%3BD%2C5%2C%2C%3BE%2C1%2CA%252C%2520B%252C%2520C%252C%2520D%2C%3BF%2C3%2CE%252C%2520H%2C%3BG%2C1%2CE%2C%3BH%2C1%2CD%2C){.abrir target="_blank"}
+
+Después pulsa **Comprobar** y, por último, **Ver la tabla depurada**.
+
+<details>
+<summary>**Ver el resultado**</summary>
+
+La validación da un aviso: «A → E es redundante: A → B → E ya la implica». Al pulsar el aviso, el portal marca ese camino. También indica las actividades iniciales y finales: «Iniciales: A, D · Finales: F, G». Al comprobar, la tabla es correcta, con el aviso de la redundancia: coincide con la del enunciado en todo lo que implica. La tabla depurada es la misma sin A en las predecesoras de E.
+</details>
+:::
+
+:::: {.callout-note .ejercicio #ejercicio-enunciado-congreso title="Ejercicio · El congreso"}
+Un departamento organiza un congreso con siete tareas: elegir la fecha y la sede (A), enviar las invitaciones a los ponentes (B), diseñar la web del congreso (C), abrir las inscripciones (D), contratar el catering (E), imprimir el programa (F) y celebrar el congreso (G). El enunciado dice:
+
+> B sigue a A, y C no puede empezar hasta que acabe A. Las invitaciones no se envían hasta que la web está terminada, porque llevan su enlace. D empieza cuando acaban B y C. Antes de E hay que hacer D, para saber cuántas personas vienen. Una vez terminado B, se puede hacer F. E y F pueden ir en paralelo. E y F preceden a G. Resumiendo: todo empieza por A y G es lo último.
+
+1. Un compañero ha leído «B sigue a A» como B → A. Con el resto de las frases bien leídas, ¿qué le pasa a su tabla?
+2. Escribe la tabla bien leída, por predecesoras, con todas las precedencias que dan las frases.
+3. ¿Qué precedencias son redundantes? Escribe la tabla depurada.
+
+<details>
+<summary>**Ver la solución**</summary>
+
+1. Tiene un ciclo: A → C (C espera a A), C → B (las invitaciones esperan a la web) y B → A. Ninguna de las tres actividades podría empezar.
+2. A: ninguna; B: A, C; C: A; D: B, C; E: D; F: B; G: E, F. «Todo empieza por A» y «G es lo último» no añaden ninguna precedencia necesaria: A es la única inicial y G la única final.
+3. A → B es redundante, porque A → C → B ya la implica; y C → D, porque C → B → D. La tabla depurada es: A: ninguna; B: C; C: A; D: B; E: D; F: B; G: E, F. Fíjate en que la frase que más cuesta leer, «B sigue a A», es justo la que da una precedencia redundante: bien leída, sobra; mal leída, rompe el proyecto.
+</details>
+::::
+
+## Resumen {.unnumbered #resumen}
+
+- Un enunciado da tres tipos de información: actividades, duraciones y frases de dependencia. Cada frase de dependencia da una o varias precedencias A → B.
+- La misma precedencia se dice de muchas maneras, y hay que leerla en el sentido correcto. «En paralelo», «a la vez» y los recursos compartidos no dan precedencias.
+- La tabla se escribe por predecesoras, por sucesoras o como matriz. En la matriz, una fila vacía es una actividad inicial y una columna vacía, una final.
+- Una precedencia redundante es la que otras ya implican: no es un error, pero conviene quitarla antes de dibujar. La tabla sin redundancias es la tabla depurada.
+- Un ciclo es un error: el proyecto no podría empezar. Casi siempre viene de una frase leída al revés.
+
+Para seguir el recorrido básico, continúa por el capítulo «La red ROY» (en preparación), donde la tabla depurada se convierte en una red.
+
+## Cierre y reducción transitiva [[Avanzado]{.largo}[A]{.corto}]{.nivel .avanzado} {#sec-enunciado-transitiva}
+
+Las ideas de la sección -@sec-enunciado-validar tienen nombre en la teoría de grafos. Una tabla de precedencias es un **grafo dirigido**: las actividades son los vértices y cada precedencia X → Y es un arco.
+
+- El **cierre transitivo** del grafo es el grafo que tiene un arco X → Y siempre que se pueda ir de X a Y siguiendo arcos. Contiene todas las precedencias, las escritas y las transitivas.
+- Una **reducción transitiva** es un grafo con el menor número de arcos que tiene el mismo cierre transitivo. Es la tabla depurada.
+
+Dos tablas describen el mismo proyecto si tienen el mismo cierre transitivo, aunque una tenga redundancias y la otra no. Por eso el portal no compara la tabla del alumno con la del enunciado casilla a casilla, sino por lo que implican las dos: una tabla con redundancias que, por lo demás, coincide se da por buena, con un aviso por cada redundancia.
+
+**La reducción es única si no hay ciclos.** En un grafo sin ciclos, un arco X → Y es redundante si y solo si hay otro camino de X a Y. Si se quitan a la vez todos los arcos redundantes, el cierre no cambia. Cualquier camino que usara un arco quitado se puede desviar por un camino más largo que lo evita, y como en un grafo sin ciclos los caminos no pueden alargarse indefinidamente, el desvío termina usando solo arcos que se quedan. Así que hay una sola tabla depurada. Con ciclos no es así: en un grafo con los seis arcos posibles entre A, B y C, tanto A → B → C → A como A → C → B → A conservan el cierre, y ninguna de las dos es mejor que la otra. Es otra razón para corregir los ciclos antes de depurar.
+
+**El algoritmo de Roy y Warshall.** Para calcular el cierre transitivo de una matriz hay un algoritmo clásico, que Bernard Roy publicó en 1959 y Stephen Warshall en 1962, de forma independiente [@roy1959b; @warshall1962; citados en @bouyssou2019, p. 5]. Se escribe la matriz de forma que la casilla (X, Y) vale 1 si X → Y. Ojo: es la **traspuesta** de la matriz del portal, que pone la actividad en la fila y su predecesora en la columna. El algoritmo toma cada actividad K, una tras otra, y para cada par (X, Y) aplica una regla: si X llega a K y K llega a Y, entonces X llega a Y.
+
+```
+para cada actividad K:
+    para cada actividad X:
+        para cada actividad Y:
+            si M[X][K] = 1 y M[K][Y] = 1, entonces M[X][Y] ← 1
+```
+
+Al terminar, M es el cierre transitivo. Con n actividades, el algoritmo hace n³ comprobaciones, y no necesita que la tabla esté ordenada. Si hay un ciclo, lo delata: alguna actividad acaba llegando a sí misma, y la casilla (X, X) de su diagonal vale 1.
+
+El portal usa otro método, más directo cuando no hay ciclos. Primero ordena las actividades de modo que cada una vaya después de sus predecesoras (un **orden topológico**, que veremos en el capítulo 3). Después recorre ese orden al revés: lo que alcanza una actividad es lo que alcanzan sus sucesoras, más las propias sucesoras. Y marca X → Y como redundante si desde X se llega a otra predecesora de Y.
+
+:::: {.callout-note .ejercicio #ejercicio-enunciado-warshall title="Ejercicio · Roy y Warshall a mano"}
+Un proyecto tiene cuatro actividades y estas precedencias: A → B, A → C, B → C y C → D.
+
+1. Escribe la matriz M (fila X, columna Y, un 1 si X → Y) y aplica el algoritmo con K = A, B, C y D, por ese orden. ¿Qué casillas pasan de 0 a 1, y con qué K?
+2. ¿Hay alguna precedencia redundante? Escribe la tabla depurada.
+
+<details>
+<summary>**Ver la solución**</summary>
+
+1. Al principio hay un 1 en (A, B), (A, C), (B, C) y (C, D).
+    - K = A: ninguna actividad llega a A, así que no cambia nada.
+    - K = B: A llega a B, y B llega a C; pero (A, C) ya vale 1.
+    - K = C: llegan a C las actividades A y B, y C llega a D. Pasan a valer 1 las casillas (A, D) y (B, D).
+    - K = D: D no llega a nadie, así que no cambia nada.
+
+    El cierre transitivo añade A → D y B → D: precedencias que nadie escribió, pero que la tabla exige.
+2. A → C es redundante: sin ella, A sigue llegando a C por A → B → C. La tabla depurada tiene A → B, B → C y C → D: es una cadena.
+</details>
+::::
+
+## Ampliaciones [[Para saber más]{.largo}[+]{.corto}]{.nivel .saber-mas} {#sec-enunciado-ampliaciones}
+
+**Electrona: un enunciado sin frases de dependencia.** Al abrir la pestaña «Del enunciado a la tabla», el portal muestra el ejercicio 5 de los apuntes, Electrona. Describe las once fases de fabricación de un producto XYZ, y ninguna frase dice qué espera a qué: todas las precedencias hay que deducirlas de lo que hace cada fase. Es el tipo de enunciado más parecido a un proyecto real, en el que nadie escribe las precedencias por nosotros.
+
+:::: {.callout-note .ejercicio #ejercicio-enunciado-electrona title="Ejercicio · Electrona"}
+Las fases de fabricación del producto XYZ, con su duración en días, son: A) aprovisionamiento de materiales para fabricar los componentes X e Y (3); B) puesta a punto de la maquinaria que elabora los componentes X, Y y Z (1); C) aprovisionamiento de materiales para fabricar el componente Z (2); D) fabricar el componente Y (7); E) fabricar el componente Z (5); F) fabricar el componente X (6); G) transportar el componente X a la segunda sección (1); H) ensamblar los componentes Y y Z (2); I) transportar el subproducto YZ, ya ensamblado, a la segunda sección (1); J) ensamblar el componente X con el subproducto YZ, para obtener el producto final XYZ (3); K) envasado del producto (1).
+
+Escribe la tabla por predecesoras, justificando cada precedencia con lo que hace la fase.
+
+[Abrir: Electrona en el portal](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=m0&st=ej5){.abrir target="_blank"}
+
+<details>
+<summary>**Ver la solución**</summary>
+
+- A, B y C no esperan a nadie.
+- D (fabricar Y) espera a sus materiales y a la maquinaria: A, B. F (fabricar X), igual: A, B. E (fabricar Z) espera a la maquinaria y a sus materiales: B, C.
+- G (transportar X) espera a que X esté fabricado: F.
+- H (ensamblar Y y Z) espera a los dos componentes: D, E. I (transportar YZ) espera al ensamblaje: H.
+- J (ensamblaje final, en la segunda sección) espera a que hayan llegado X e YZ: G, I.
+- K (envasar) espera al producto final: J.
+
+Es la tabla validada por el autor para el portal. Pulsa **Comprobar** con tu tabla para compararla.
+</details>
+::::
+
+**Matrices y grafos.** El algoritmo de Roy y Warshall no es una rareza: Roy publicó a finales de los años cincuenta varios resultados pioneros sobre conexión y transitividad en grafos, en los mismos años en que desarrollaba el método de los potenciales del capítulo 1 [@bouyssou2019, p. 5].
+
+::: {.callout-note .mas-portal title="Más en el portal"}
+- **Enunciado al azar.** En el selector **Enunciado**, la opción **Enunciado al azar** escribe uno nuevo en uno de cuatro contextos (reformar una vivienda, lanzar un producto, organizar un congreso o mudar un laboratorio) y en tres niveles. En el difícil, el texto va en prosa, sin letras, con un recurso compartido y una precedencia redundante escrita a propósito.
+- **Abrir la tabla depurada** directamente como red ROY, como red PERT o en el taller, con los botones de debajo de la validación. Es el paso a los capítulos 3 y 4.
+- **Preparar un enunciado.** El profesorado puede pegar su propio texto, subrayarlo y escribir la solución, y compartirlo con un enlace. Se explica en la segunda parte del libro.
+:::
+
+## Referencias del capítulo {.unnumbered #referencias}
+
+::: {.referencias-capitulo #refs}
+:::

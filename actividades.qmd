@@ -6,6 +6,19 @@ Aquí están todas las cajas de trabajo del libro. Los **ejemplos reproducibles*
 
 ## Por pestaña del portal {.unnumbered #por-pestana}
 
+### Del enunciado a la tabla {.unnumbered #h-m0}
+
+3 ejemplos reproducibles, 2 cajas «En el portal» y 1 ejercicio.
+
+| Actividad | Título | Sección | Nivel |
+|---|---|:-:|:-:|
+| [Ejemplo 2.1](02-enunciado.qmd#ejemplo-enunciado-mudanza) | La mudanza, frase a frase | [2.1](02-enunciado.qmd#sec-enunciado-leer) | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [En el portal](02-enunciado.qmd#sec-enunciado-leer) | «Practicar» | [2.1](02-enunciado.qmd#sec-enunciado-leer) | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [En el portal](02-enunciado.qmd#sec-enunciado-frases) | «Ruta paso a paso» | [2.2](02-enunciado.qmd#sec-enunciado-frases) | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejemplo 2.3](02-enunciado.qmd#ejemplo-enunciado-matriz) | La matriz en el portal | [2.3](02-enunciado.qmd#sec-enunciado-formas) | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejemplo 2.4](02-enunciado.qmd#ejemplo-enunciado-mudanza-depurar) | La redundancia de la mudanza | [2.4](02-enunciado.qmd#sec-enunciado-validar) | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejercicio 2.6](02-enunciado.qmd#ejercicio-enunciado-electrona) | Electrona | [2.6](02-enunciado.qmd#sec-enunciado-ampliaciones) | [[+]{.corto}]{.nivel .saber-mas .solo-corto} |
+
 ### Ruta guiada {.unnumbered #h-route}
 
 2 ejemplos reproducibles y 1 caja «En el portal».
@@ -28,3 +41,18 @@ Aquí están todas las cajas de trabajo del libro. Los **ejemplos reproducibles*
 | [Ejercicio 1.3](01-redes.qmd#ejercicio-redes-dos-lenguajes) | Buscar las esperas | [1.3](01-redes.qmd#sec-redes-dos-lenguajes) | — | [[B]{.corto}]{.nivel .basico .solo-corto} |
 | [Ejercicio 1.4](01-redes.qmd#ejercicio-redes-preguntas) | Predice · El camino más largo | [1.4](01-redes.qmd#sec-redes-preguntas) | — | [[B]{.corto}]{.nivel .basico .solo-corto} |
 | [En el portal](01-redes.qmd#sec-redes-preguntas) | «Camino crítico» | [1.4](01-redes.qmd#sec-redes-preguntas) | Ruta guiada | [[B]{.corto}]{.nivel .basico .solo-corto} |
+
+### 2. Del enunciado a la tabla {.unnumbered #a-cap-2}
+
+| Actividad | Título | Sección | Pestaña | Nivel |
+|---|---|:-:|---|:-:|
+| [Ejemplo 2.1](02-enunciado.qmd#ejemplo-enunciado-mudanza) | La mudanza, frase a frase | [2.1](02-enunciado.qmd#sec-enunciado-leer) | Del enunciado a la tabla | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [En el portal](02-enunciado.qmd#sec-enunciado-leer) | «Practicar» | [2.1](02-enunciado.qmd#sec-enunciado-leer) | Del enunciado a la tabla | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejercicio 2.2](02-enunciado.qmd#ejercicio-enunciado-frases) | Traducir frases | [2.2](02-enunciado.qmd#sec-enunciado-frases) | — | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [En el portal](02-enunciado.qmd#sec-enunciado-frases) | «Ruta paso a paso» | [2.2](02-enunciado.qmd#sec-enunciado-frases) | Del enunciado a la tabla | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejercicio 2.3](02-enunciado.qmd#ejercicio-enunciado-predecesoras) | De sucesoras a predecesoras | [2.3](02-enunciado.qmd#sec-enunciado-formas) | — | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejemplo 2.3](02-enunciado.qmd#ejemplo-enunciado-matriz) | La matriz en el portal | [2.3](02-enunciado.qmd#sec-enunciado-formas) | Del enunciado a la tabla | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejemplo 2.4](02-enunciado.qmd#ejemplo-enunciado-mudanza-depurar) | La redundancia de la mudanza | [2.4](02-enunciado.qmd#sec-enunciado-validar) | Del enunciado a la tabla | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejercicio 2.4](02-enunciado.qmd#ejercicio-enunciado-congreso) | El congreso | [2.4](02-enunciado.qmd#sec-enunciado-validar) | — | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejercicio 2.5](02-enunciado.qmd#ejercicio-enunciado-warshall) | Roy y Warshall a mano | [2.5](02-enunciado.qmd#sec-enunciado-transitiva) | — | [[A]{.corto}]{.nivel .avanzado .solo-corto} |
+| [Ejercicio 2.6](02-enunciado.qmd#ejercicio-enunciado-electrona) | Electrona | [2.6](02-enunciado.qmd#sec-enunciado-ampliaciones) | Del enunciado a la tabla | [[+]{.corto}]{.nivel .saber-mas .solo-corto} |
