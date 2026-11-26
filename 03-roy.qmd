@@ -187,7 +187,7 @@ Si no los encuentras todos, **Ver los errores** los marca en la red.
 - Un orden topológico pone cada actividad después de sus predecesoras. No es único, y es el punto de partida de los cálculos.
 - Al comprobar una red, una flecha redundante es un aviso; las flechas al revés, las que sobran, las que faltan y los ciclos son errores.
 
-Para seguir el recorrido básico, continúa por el capítulo «La red PERT y las ficticias» (en preparación).
+Para seguir el recorrido básico, continúa por el [capítulo «La red PERT y las ficticias»](04-pert.qmd), donde las actividades pasan a las flechas.
 
 ## Orden topológico y dibujo por capas [[Avanzado]{.largo}[A]{.corto}]{.nivel .avanzado} {#sec-roy-topologico}
 

@@ -21,7 +21,7 @@ Aquí están todas las cajas de trabajo del libro. Los **ejemplos reproducibles*
 
 ### Ruta guiada {.unnumbered #h-route}
 
-3 ejemplos reproducibles y 1 caja «En el portal».
+7 ejemplos reproducibles, 2 cajas «En el portal» y 2 ejercicios.
 
 | Actividad | Título | Sección | Nivel |
 |---|---|:-:|:-:|
@@ -29,22 +29,31 @@ Aquí están todas las cajas de trabajo del libro. Los **ejemplos reproducibles*
 | [Ejemplo 1.3](01-redes.qmd#ejemplo-redes-dos-lenguajes) | La misma actividad en las dos redes | [1.3](01-redes.qmd#sec-redes-dos-lenguajes) | [[B]{.corto}]{.nivel .basico .solo-corto} |
 | [En el portal](01-redes.qmd#sec-redes-preguntas) | «Camino crítico» | [1.4](01-redes.qmd#sec-redes-preguntas) | [[B]{.corto}]{.nivel .basico .solo-corto} |
 | [Ejemplo 3.4](03-roy.qmd#ejemplo-roy-reto) | El Reto ROY | [3.4](03-roy.qmd#sec-roy-comprobar) | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejemplo 4.1](04-pert.qmd#ejemplo-pert-progresivo) | Mecánicas del Sureste, flecha a flecha | [4.1](04-pert.qmd#sec-pert-flechas) | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [En el portal](04-pert.qmd#sec-pert-flechas) | «Lado a lado» | [4.1](04-pert.qmd#sec-pert-flechas) | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejemplo 4.2](04-pert.qmd#ejemplo-pert-reglas) | Las reglas en Mecánicas del Sureste | [4.2](04-pert.qmd#sec-pert-reglas) | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejercicio 4.2](04-pert.qmd#ejercicio-pert-ej7) | Iguales y compartidos | [4.2](04-pert.qmd#sec-pert-reglas) | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejemplo 4.3](04-pert.qmd#ejemplo-pert-numerar) | Numerar Mecánicas del Sureste | [4.3](04-pert.qmd#sec-pert-numerar) | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejemplo 4.4](04-pert.qmd#ejemplo-pert-reto) | El Reto de ficticias | [4.4](04-pert.qmd#sec-pert-comprobar) | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejercicio 4.5](04-pert.qmd#ejercicio-pert-tipo) | Una ficticia menos | [4.5](04-pert.qmd#sec-pert-cuantas) | [[A]{.corto}]{.nivel .avanzado .solo-corto} |
 
 ### Taller {.unnumbered #h-work}
 
-1 ejemplo reproducible.
+1 ejemplo reproducible y 1 ejercicio.
 
 | Actividad | Título | Sección | Nivel |
 |---|---|:-:|:-:|
 | [Ejemplo 3.1](03-roy.qmd#ejemplo-roy-mudanza) | La red ROY de la mudanza | [3.1](03-roy.qmd#sec-roy-dibujar) | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejercicio 4.3](04-pert.qmd#ejercicio-pert-mudanza) | La red PERT de la mudanza | [4.3](04-pert.qmd#sec-pert-numerar) | [[B]{.corto}]{.nivel .basico .solo-corto} |
 
 ### Ejercicios {.unnumbered #h-ex}
 
-1 ejercicio.
+2 ejercicios.
 
 | Actividad | Título | Sección | Nivel |
 |---|---|:-:|:-:|
 | [Ejercicio 3.4](03-roy.qmd#ejercicio-roy-detective) | El detective | [3.4](03-roy.qmd#sec-roy-comprobar) | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejercicio 4.4](04-pert.qmd#ejercicio-pert-detective) | El detective PERT | [4.4](04-pert.qmd#sec-pert-comprobar) | [[B]{.corto}]{.nivel .basico .solo-corto} |
 
 ## Por capítulo {.unnumbered #por-capitulo}
 
@@ -84,3 +93,18 @@ Aquí están todas las cajas de trabajo del libro. Los **ejemplos reproducibles*
 | [Ejemplo 3.4](03-roy.qmd#ejemplo-roy-reto) | El Reto ROY | [3.4](03-roy.qmd#sec-roy-comprobar) | Ruta guiada | [[B]{.corto}]{.nivel .basico .solo-corto} |
 | [Ejercicio 3.4](03-roy.qmd#ejercicio-roy-detective) | El detective | [3.4](03-roy.qmd#sec-roy-comprobar) | Ejercicios | [[B]{.corto}]{.nivel .basico .solo-corto} |
 | [Ejercicio 3.5](03-roy.qmd#ejercicio-roy-kahn) | Kahn a mano | [3.5](03-roy.qmd#sec-roy-topologico) | — | [[A]{.corto}]{.nivel .avanzado .solo-corto} |
+
+### 4. La red PERT y las ficticias {.unnumbered #a-cap-4}
+
+| Actividad | Título | Sección | Pestaña | Nivel |
+|---|---|:-:|---|:-:|
+| [Ejemplo 4.1](04-pert.qmd#ejemplo-pert-progresivo) | Mecánicas del Sureste, flecha a flecha | [4.1](04-pert.qmd#sec-pert-flechas) | Ruta guiada | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [En el portal](04-pert.qmd#sec-pert-flechas) | «Lado a lado» | [4.1](04-pert.qmd#sec-pert-flechas) | Ruta guiada | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejercicio 4.1](04-pert.qmd#ejercicio-pert-hace-falta) | ¿Hace falta una ficticia? | [4.1](04-pert.qmd#sec-pert-flechas) | — | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejemplo 4.2](04-pert.qmd#ejemplo-pert-reglas) | Las reglas en Mecánicas del Sureste | [4.2](04-pert.qmd#sec-pert-reglas) | Ruta guiada | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejercicio 4.2](04-pert.qmd#ejercicio-pert-ej7) | Iguales y compartidos | [4.2](04-pert.qmd#sec-pert-reglas) | Ruta guiada | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejemplo 4.3](04-pert.qmd#ejemplo-pert-numerar) | Numerar Mecánicas del Sureste | [4.3](04-pert.qmd#sec-pert-numerar) | Ruta guiada | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejercicio 4.3](04-pert.qmd#ejercicio-pert-mudanza) | La red PERT de la mudanza | [4.3](04-pert.qmd#sec-pert-numerar) | Taller | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejemplo 4.4](04-pert.qmd#ejemplo-pert-reto) | El Reto de ficticias | [4.4](04-pert.qmd#sec-pert-comprobar) | Ruta guiada | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejercicio 4.4](04-pert.qmd#ejercicio-pert-detective) | El detective PERT | [4.4](04-pert.qmd#sec-pert-comprobar) | Ejercicios | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejercicio 4.5](04-pert.qmd#ejercicio-pert-tipo) | Una ficticia menos | [4.5](04-pert.qmd#sec-pert-cuantas) | Ruta guiada | [[A]{.corto}]{.nivel .avanzado .solo-corto} |

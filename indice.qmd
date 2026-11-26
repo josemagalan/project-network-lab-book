@@ -2,9 +2,9 @@
 
 <!-- Archivo generado por filtros/indices.py en cada «quarto render» (pre-render). No lo edites a mano: los cambios se perderían. Para cambiar el contenido, cambia los capítulos; para cambiar el formato, cambia el script. -->
 
-El libro tiene 3 capítulos y 17 secciones: 12 de nivel [[Básico]{.largo}[B]{.corto}]{.nivel .basico}, 2 de nivel [[Avanzado]{.largo}[A]{.corto}]{.nivel .avanzado} y 3 de nivel [[Para saber más]{.largo}[+]{.corto}]{.nivel .saber-mas}. El **recorrido básico** son las secciones azules: se leen seguidas, capítulo a capítulo, sin las demás. Las avanzadas amplían el recorrido básico y suelen apoyarse en él; «Para saber más» cierra cada capítulo con lecturas y temas que el libro no desarrolla.
+El libro tiene 4 capítulos y 23 secciones: 16 de nivel [[Básico]{.largo}[B]{.corto}]{.nivel .basico}, 3 de nivel [[Avanzado]{.largo}[A]{.corto}]{.nivel .avanzado} y 4 de nivel [[Para saber más]{.largo}[+]{.corto}]{.nivel .saber-mas}. El **recorrido básico** son las secciones azules: se leen seguidas, capítulo a capítulo, sin las demás. Las avanzadas amplían el recorrido básico y suelen apoyarse en él; «Para saber más» cierra cada capítulo con lecturas y temas que el libro no desarrolla.
 
-Las actividades —7 ejemplos reproducibles, 3 cajas «En el portal» y 12 ejercicios— están listadas en el [índice de actividades](actividades.qmd), por capítulo y por pestaña del portal.
+Las actividades —11 ejemplos reproducibles, 4 cajas «En el portal» y 17 ejercicios— están listadas en el [índice de actividades](actividades.qmd), por capítulo y por pestaña del portal.
 
 ## El libro de un vistazo {.unnumbered #vistazo}
 
@@ -13,7 +13,8 @@ Las actividades —7 ejemplos reproducibles, 3 cajas «En el portal» y 12 ejerc
 | [1. Proyectos, actividades y redes](01-redes.qmd) | 4 | 0 | 1 | 2 | 1 | 3 |
 | [2. Del enunciado a la tabla](02-enunciado.qmd) | 4 | 1 | 1 | 3 | 2 | 5 |
 | [3. La red ROY](03-roy.qmd) | 4 | 1 | 1 | 2 | 0 | 4 |
-| **Total** | **12** | **2** | **3** | **7** | **3** | **12** |
+| [4. La red PERT y las ficticias](04-pert.qmd) | 4 | 1 | 1 | 4 | 1 | 5 |
+| **Total** | **16** | **3** | **4** | **11** | **4** | **17** |
 
 ## 1. Proyectos, actividades y redes {.unnumbered #cap-1}
 
@@ -40,3 +41,12 @@ Las actividades —7 ejemplos reproducibles, 3 cajas «En el portal» y 12 ejerc
 - [3.4 Comprobar una red dibujada](03-roy.qmd#sec-roy-comprobar) [[B]{.corto}]{.nivel .basico .solo-corto}
 - [3.5 Orden topológico y dibujo por capas](03-roy.qmd#sec-roy-topologico) [[A]{.corto}]{.nivel .avanzado .solo-corto}
 - [3.6 Ampliaciones](03-roy.qmd#sec-roy-ampliaciones) [[+]{.corto}]{.nivel .saber-mas .solo-corto}
+
+## 4. La red PERT y las ficticias {.unnumbered #cap-4}
+
+- [4.1 Actividades en flechas](04-pert.qmd#sec-pert-flechas) [[B]{.corto}]{.nivel .basico .solo-corto}
+- [4.2 Las reglas de los conjuntos](04-pert.qmd#sec-pert-reglas) [[B]{.corto}]{.nivel .basico .solo-corto}
+- [4.3 Numerar los sucesos](04-pert.qmd#sec-pert-numerar) [[B]{.corto}]{.nivel .basico .solo-corto}
+- [4.4 Comprobar una red PERT](04-pert.qmd#sec-pert-comprobar) [[B]{.corto}]{.nivel .basico .solo-corto}
+- [4.5 Cuántas ficticias hacen falta](04-pert.qmd#sec-pert-cuantas) [[A]{.corto}]{.nivel .avanzado .solo-corto}
+- [4.6 Ampliaciones](04-pert.qmd#sec-pert-ampliaciones) [[+]{.corto}]{.nivel .saber-mas .solo-corto}

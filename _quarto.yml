@@ -84,6 +84,7 @@ book:
         - 01-redes.qmd
         - 02-enunciado.qmd
         - 03-roy.qmd
+        - 04-pert.qmd
     - actividades.qmd       # generado por filtros/indices.py
     - avisos.qmd            # siempre al final: los capítulos nuevos van antes
 
