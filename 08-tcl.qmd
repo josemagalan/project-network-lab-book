@@ -1,0 +1,410 @@
+# El TCL y sus trampas {#sec-tcl}
+
+<!-- Seguimiento interno (no visible): primer borrador del 2026-11-27, con el esquema revisado por un agente crítico y aprobado por el autor (memoria/esquemas/08-tcl.md, D025): Mecánicas con los tres tiempos del capítulo 7 como tabla propia de M6 (el mismo ut), plazo de 16 días (el que propone el portal, ⌈μ + σ⌉) y 15 en [A] 8.6; demostración intuitiva del TCL al principio de 8.1 (dados, figura 08-sumas.svg, caso «Pocas actividades»); 8.5 con la tabla de los cuatro proyectos; Schonberger dentro de [A] 8.6; citas indirectas de Schonberger, Clark, MacCrimmon y Ryavec, Klingel, Gutierrez y Paul, y Johnson y Schou. Cifras comprobadas con el núcleo de project-network-lab b42bbfc (tcl.exam, tcl.paths, tcl.cases, sim.run con 10 000 réplicas y semilla 2026, probgen): Mecánicas, B E I J K, μ 85/6, σ² 69/36; plazo 15: z 0,60, 0,7257 (0,7264); 16: z 1,32, 0,9066 (0,9073); 90 %: 15,94; 95 %: 16,44 (1,65: 16,45); B F I J K P(≤ 16) 0,870 (0,869 en la tabla de caminos del portal); producto de los dos 0,789, de todos 0,784; normal bivariante (ρ 0,733) 0,832, a 15 0,620; Clark 14,57; simulación beta-PERT: media 14,66, P(≤ 15) 0,612, P(≤ 15,94) 0,802, P(≤ 16) 0,813, P(≤ 17) 0,924, percentil 90 16,69, KS 0,116, semillas 1–3 0,806–0,813; con normales de examen: P(≤ 15) 0,607–0,616, P(≤ 16) 0,825–0,833; σ² del crítico con la beta-PERT 2,07 (normal con ella 0,899). kl, 25: 0,6591 (0,6577), con normales 0,583, beta-PERT 0,554 (media 24,67). hl, 47: 0,8413, con normales 0,826, beta-PERT 0,814; con triangulares 0,600 (Hillier y Lieberman, p. 1121: 0,591). tr, 17: 0,8133 (0,8145), A C 0,8716, producto 0,710, simulación 0,713 (media 15,93). Fusión (plazo 22): 1 camino 0,841; 4 a 1 día 0,683 (exacta 0,684), media 21,37; 8 a 0 días 0,249 (exacta 0,251), media 22,86; 2 a 0 días, media 21,14 (Clark 21,13). Pocas actividades (0, 0, 12) en μ + σ: 0,841 y 0,841; KS 0,118 (1), 0,053 (3), 0,028 (10), 0,016 (30); P(≤ μ) 0,596 (1); P(≤ μ + 2σ) 0,946 (1), normal 0,977; asimetría √(7/5) ≈ 1,18, 0,68 (3), 0,37 (10), 0,22 (30). Asimetría: KS 0,011 (m 6), 0,053 (m 0). Correlación, 10 × (0, 6, 12), μ + σ: ρ 0,5 0,656; 0,9 0,620. Ejercicios TCL fácil, semilla 7: z 0,09, P 0,5359; z 1,28, 26,10 (exacto 26,10). Medio, semilla 20, «La otra ruta»: B G I J 17,50 y 25/12; plazo 18: z 0,35, 0,6368 (0,6355); A C E 17,17 y 85/36: z 0,54, 0,7054 (0,7062); las dos 0,4492 (0,4488); 85 %: z 1,04, 19,00; simulación del proyecto 0,438. Estados del portal vistos el 2026-11-27 en una copia local de b42bbfc (Chromium sin interfaz): M6 con la tabla propia (cálculo de examen, plazo 16 por defecto, «Casi crítico: B–F–I–J–K (14)»; up=0.9: 15,94; ux=proj: 0,907 y 0,813, tabla de caminos, aviso de la beta-PERT), tr (0,8133; proj: 0,814, 0,713, cuenta exacta 0,710), merge por defecto (0,841, 0,683, 0,684; nota de Schonberger), few k=1 (0,841 y 0,841, KS 0,118), corr (0,620, KS 0,269), Ejercicios xk=tcl, lv=medium, sd=20, xo=1 (plazo 18 semanas, 85 %, la otra ruta A–C–E). Fuentes cotejadas: Klastorin (2004, pp. 137–140, 153–157 y 200–201); Hillier y Lieberman (2001, pp. 488–491 y 1121); Taha (2012, pp. 263–264); Nicholas y Steyn (2012, pp. 246, 251 y 270–272; número de página al pie); Domínguez Machuca et al. (1995, pp. 341–343), por OCR; Malcolm et al. (1959, pp. 654 y 658), por OCR; Williams (2002, pp. 91 y 97–99). Nicholas y Steyn (p. 251) multiplican las probabilidades de caminos que comparten actividades; no se reproduce. La simulación de Klastorin con duraciones normales (p. 144: media 27,65) no casa con el portal; queda para el capítulo 9, sin citarla. -->
+
+**Portal:** [Project Network Lab](https://josemagalan.github.io/project-network-lab/), pestaña [Duraciones inciertas](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=unc&um=m6), apartado «El TCL y sus trampas (M6)», y pestaña [Ejercicios](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=ex&xk=tcl) (Probabilidad (TCL)).
+
+::: {.callout-warning .objetivos title="Objetivos del capítulo"}
+Al terminar el recorrido básico de este capítulo podrás:
+
+- calcular la probabilidad de cumplir un plazo con la normal del camino crítico de las medias, y el plazo que corresponde a una probabilidad;
+- explicar por qué se usa una normal y qué tres aproximaciones hace el cálculo;
+- explicar la fusión de caminos y por qué baja la probabilidad de cumplir el plazo, y calcularla con dos caminos independientes;
+- reconocer los otros límites del método (pocas actividades, asimetría y correlación) y leer el resultado clásico como lo que casi siempre es: un techo.
+:::
+
+## La probabilidad de cumplir un plazo [[Básico]{.largo}[B]{.corto}]{.nivel .basico} {#sec-tcl-plazo}
+
+El cliente de Mecánicas del Sureste quiere el coche en 16 días. ¿Con qué probabilidad se lo entregan a tiempo?
+
+En el capítulo 7 calculamos la media y la varianza del camino crítico de las medias, B → E → I → J → K: μ = 85/6 ≈ 14,17 días y σ² = 69/36 ≈ 1,92 días². Con esos dos números, el PERT da la probabilidad de cumplir cualquier plazo. Antes de hacer la cuenta, hay que ver de dónde sale la curva que se usa: una **normal**.
+
+### Por qué una normal
+
+La duración de un camino es una **suma** de duraciones. El **teorema central del límite** (TCL) dice que la suma de muchas variables aleatorias independientes, sin que ninguna domine a las demás, se parece a una normal, sea cual sea la forma de cada una. Su media es la suma de las medias, y su varianza, la suma de las varianzas [@nicholas2012, pp. 270–271; @taha2012, p. 263; @klastorin2004, p. 138; @machuca1995, p. 341]. Dicho así parece magia. Se entiende mejor viéndolo.
+
+**Los dados.** Un dado es plano: cada cara sale una de cada seis veces. Con dos dados, la suma ya no es plana. El 7 sale de 6 maneras de las 36 posibles (1 + 6, 2 + 5, …, 6 + 1), y el 2 o el 12, de una sola: la suma tiene forma de triángulo. Con tres dados hay 216 combinaciones; el 10 y el 11 salen de 27 maneras cada uno, y el 3, de una. Ya es una campana. La razón es sencilla: para llegar a un extremo tienen que salir todos los dados altos, o todos bajos; para quedarse en el centro hay muchísimas combinaciones en las que unos compensan a otros.
+
+**Formas de todo tipo.** Lo mismo pasa con duraciones de cualquier forma. La figura -@fig-tcl-sumas suma 1, 2, 3 y 10 actividades iguales e independientes de tres tipos muy distintos: una uniforme, que puede durar cualquier cosa entre 0 y 12 semanas; una de solo dos valores, 6 o 10 semanas al 50 %; y una beta-PERT muy asimétrica, con a = m = 0 y b = 12. Las tres acaban en campana. La asimétrica es la que más tarda: con 3 actividades todavía se nota la cola, y con 10 ya casi no.
+
+![El teorema central del límite a la vista: sumas de 1, 2, 3 y 10 duraciones independientes de tres formas distintas (en azul) y la normal de su misma media y varianza (de trazos). Figura propia, generada con `figuras/08-sumas.py`; las sumas se calculan exactamente, sin simular.](figuras/08-sumas.svg){#fig-tcl-sumas fig-alt="Tabla de doce gráficos en tres filas y cuatro columnas. Columnas: 1 actividad, suma de 2, suma de 3 y suma de 10. Primera fila, uniforme entre 0 y 12: una línea plana, un triángulo, una campana casi exacta y una campana exacta. Segunda fila, dos valores, 6 o 10 al 50 %: dos barras iguales, tres barras de alturas 1, 2 y 1, cuatro barras y once barras con forma de campana. Tercera fila, beta-PERT (0, 0, 12): una rampa que baja desde 0, con asimetría 1,18; curvas con la joroba a la izquierda y cola a la derecha, con asimetría 0,84 y 0,68; y una campana casi simétrica con asimetría 0,37. En cada gráfico, una normal de trazos que se ajusta cada vez mejor de izquierda a derecha."}
+
+La demostración enseña también las condiciones. Hacen falta **muchas** duraciones, **independientes** y **sin que ninguna domine**: con una sola actividad, o con tres muy asimétricas, la campana todavía no está. La sección -@sec-tcl-limites vuelve sobre ello.
+
+::: {.callout-note .en-app title="En el portal · Duraciones inciertas, «El TCL y sus trampas», caso «Pocas actividades»"}
+El caso «Pocas actividades» es esta misma demostración con la beta-PERT (0, 0, 12). Con el deslizador **Actividades** en 1, el histograma de la simulación es una rampa, y la normal no se le parece. Sube hasta 30: el histograma se convierte en una campana y la normal se le pega. Debajo, la **distancia KS** mide cuánto se separan las dos (sección -@sec-tcl-limites): baja de 0,12 con 1 actividad a 0,016 con 30.
+
+[Abrir: el caso «Pocas actividades»](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=unc&um=m6&ux=few){.abrir target="_blank"}
+:::
+
+### El cálculo de examen
+
+Si la duración del proyecto es la del camino crítico de las medias, y esa duración es una normal N(μ; σ²), la probabilidad de terminar en el plazo T o antes es la de una normal. Se **tipifica**, es decir, se mide a cuántas desviaciones típicas de la media está el plazo, y se busca en la tabla de la normal estándar:
+
+```{=html}
+<p style="text-align:center"><strong>z = (T − μ) / σ &nbsp;&nbsp;&nbsp;&nbsp; P(duración ≤ T) = Φ(z)</strong></p>
+```
+
+En Mecánicas, con el plazo de 16 días:
+
+- σ = √(69/36) ≈ 1,384 días;
+- z = (16 − 14,17)/1,384 = 1,32;
+- en la tabla, Φ(1,32) = 0,9066. Sin redondear z, 0,9073.
+
+Según el cálculo de examen, el taller cumple el plazo de 16 días algo más de 9 veces de cada 10. Con 15 días, z = 0,60 y la probabilidad baja a 0,7257. Con el plazo igual a la media, z = 0 y la probabilidad es exactamente 0,5: la normal es simétrica. No es una contradicción con el capítulo 7, donde la media de una actividad asimétrica no era el 50 %: aquí se supone que la suma ya es normal.
+
+**Al revés: el plazo para una probabilidad.** Si el taller quiere prometer una fecha que cumpla el 90 % de las veces, busca en la tabla la z que deja 0,90 a su izquierda, z = 1,28, y despeja el plazo:
+
+```{=html}
+<p style="text-align:center"><strong>T = μ + z · σ = 14,17 + 1,28 · 1,384 ≈ 15,94 días</strong></p>
+```
+
+Para el 95 %, la tabla da 1,64 o 1,65 (o 1,645, entre las dos), y el plazo sale de 16,44 a 16,45 días. Los ejercicios del portal aceptan las tres.
+
+**Otras preguntas.** Con la misma normal se responde a cualquier pregunta sobre el plazo. Domínguez Machuca et al. lo hacen con un proyecto de media 80 días y varianza 20 [@machuca1995, p. 342]:
+
+- terminar el día 85 o antes: z = 5/√20 = 1,12, y P = 0,8686;
+- terminar después del día 75: 1 − P(duración ≤ 75) = 1 − 0,1314 = 0,8686;
+- terminar entre el día 90 y el 95: P(duración ≤ 95) − P(duración ≤ 90) = 0,9996 − 0,9875 = 1,21 %;
+- el plazo con un 80 % de probabilidad: z = 0,84, y 80 + 0,84 · √20 ≈ 84 días.
+
+**Empates de medias.** Si dos caminos empatan en media, el cálculo toma el de **mayor varianza**, que da la probabilidad más baja y es el más prudente [@taha2012, p. 263; @klastorin2004, p. 137; @machuca1995, p. 341]. En el ejemplo de Domínguez Machuca et al. hay dos caminos críticos de 80 días, con varianzas 16 y 20, y se usa 20 [-@machuca1995, p. 342]. El portal hace lo mismo y nombra los demás caminos empatados.
+
+La idea es tan antigua como el PERT. Malcolm et al. ya calculaban la probabilidad de llegar a tiempo a cada suceso. En su ejemplo, el suceso 50 estaba programado para la semana 82 y se esperaba en la 92, con varianza 38: la probabilidad salía de 0,05, y con valores tan bajos, concluían, el calendario está en peligro [@malcolm1959, p. 658].
+
+**Errores frecuentes.** El paso a paso del portal reconoce tres, y te avisa si escribes uno de estos valores:
+
+- sumar las desviaciones típicas de las actividades en lugar de sus varianzas (capítulo 7);
+- dividir entre la varianza, σ², en lugar de entre la desviación típica, σ;
+- dar 1 − P, la probabilidad de **no** cumplir el plazo.
+
+Y otros tres que conviene vigilar: en el plazo para una probabilidad, multiplicar z por σ² en lugar de por σ; usar la varianza de un camino que no es el crítico de las medias; y leer mal la tabla con una z negativa (Φ(−z) = 1 − Φ(z)). Sobre los redondeos: el portal da la probabilidad «de tabla», con z redondeada a dos decimales, y la exacta, y acepta las dos.
+
+::: {.callout-tip .ejemplo #ejemplo-tcl-plazo title="Ejemplo reproducible · El plazo de Mecánicas"}
+**Datos.** Mecánicas del Sureste con las tres estimaciones del capítulo 7, como tabla propia del apartado «El TCL y sus trampas». El portal propone un plazo de 16 días: la media más una desviación típica, redondeada hacia arriba.
+
+**Predice.** El paso a paso con predicción tiene cinco pasos: muestra el camino crítico de las medias y te pide μ, σ², z y la probabilidad. Escribe cada valor, pulsa **Comprobar** y después **Siguiente**. Después, cambia **Qué se calcula** a **Plazo para una probabilidad** y escribe 0,9 en **Probabilidad**: ¿qué plazo sale?
+
+[Abrir: Mecánicas en «El TCL y sus trampas», paso a paso en modo predicción](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=unc&um=m6&ue=own&ut=LYxFgiOByMpkEQsLZbERBhIiGMPGUPGcPixdhQiIUSikPHEWgYijEMIcPiMDicDHMgEUijJEh42j0mmUhkMjERFjsDGkPGsPIIsEEbm8ZI0cgcVlUPoktnBHk1IEVKjVCktFhhIqMDk8Qh5FoVHrAiJNbEUpEU1nNhoVQsZKqVUnsDstjJdmrtdIlCJFCuE3LpdgA&uw=1&pred=1){.abrir target="_blank"}
+
+<details>
+<summary>**Ver el resultado**</summary>
+
+El camino crítico de las medias es B → E → I → J → K, con μ = 14,17 y σ² = 1,92. Con el plazo de 16 días, z = 1,32 y P = 0,9066 con la tabla (0,9073 sin redondear z). Para el 90 %, z = 1,28 y el plazo es de 15,94 días. En el primer paso, el portal añade una nota: «Casi crítico: B–F–I–J–K (14)». Es el camino del capítulo 6 y del 7, y en la sección -@sec-tcl-fusion veremos por qué importa.
+</details>
+:::
+
+:::: {.callout-note .ejercicio #ejercicio-tcl-plazo title="Ejercicio · De los dados al plazo"}
+1. Cuenta de cuántas maneras sale cada suma con dos dados y dibuja el resultado. ¿Qué forma tiene?
+2. Dos actividades en serie duran 6 o 10 semanas cada una, al 50 % e independientes. ¿Qué valores puede tomar la suma, y con qué probabilidad?
+3. Vuelve al ejercicio [](#ejercicio-tres-camino) del capítulo 7 (Probabilidad (TCL), nivel fácil, semilla 7). Calcula la probabilidad de terminar en el plazo de 24 semanas y el plazo que se cumple con un 90 % de probabilidad.
+
+[Abrir: Probabilidad (TCL), nivel fácil, semilla 7](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=ex&xk=tcl&lv=easy&sd=7){.abrir target="_blank"}
+
+<details>
+<summary>**Ver la solución**</summary>
+
+1. De 2 a 12, con 1, 2, 3, 4, 5, 6, 5, 4, 3, 2 y 1 maneras de 36: un triángulo con el pico en el 7.
+2. 12, 16 o 20 semanas, con probabilidades 1/4, 1/2 y 1/4. Ya es simétrica y tiene una joroba en el centro, aunque cada actividad por separado solo tenía dos valores.
+3. Con μ = 23,83 y σ² = 113/36 ≈ 3,14 (σ ≈ 1,77): z = (24 − 23,83)/1,77 = 0,09, y P = 0,5359. Para el 90 %, z = 1,28 y el plazo es 23,83 + 1,28 · 1,77 ≈ 26,10 semanas. El portal corrige las cuatro casillas con error consecuente.
+</details>
+::::
+
+## Las tres aproximaciones del cálculo [[Básico]{.largo}[B]{.corto}]{.nivel .basico} {#sec-tcl-aproximaciones}
+
+¿Qué hay que creerse para que 0,9066 sea la probabilidad de cumplir el plazo?
+
+La duración del proyecto es la del camino más largo, y con duraciones inciertas cualquier camino puede acabar siendo el más largo. Para saber su distribución habría que calcular la del **máximo** de varios caminos, «un problema un tanto difícil», en palabras de Taha. La simplificación clásica es quedarse con el camino de mayor media [@taha2012, p. 263]. Los creadores del PERT ya sabían que esos caminos están correlacionados, porque comparten actividades, y que el cálculo exacto exigía un esfuerzo desorbitado [@malcolm1959, p. 654].
+
+Hillier y Lieberman resumen el método en **tres aproximaciones** [@hillier2001, pp. 489–490]:
+
+1. el camino crítico de las medias será el camino más largo del proyecto;
+2. las duraciones de sus actividades son estadísticamente independientes;
+3. la duración del proyecto sigue una normal, lo que el TCL justifica si el camino tiene un número de actividades que no sea demasiado pequeño, digamos al menos 5.
+
+En su ejemplo, el camino crítico de las medias dura 44 semanas, con varianza 9, y el plazo es de 47: z = 1 y P = 0,84. Avisan de que es solo una aproximación grosera y de que, por la primera aproximación, suele exagerar la probabilidad; su protagonista sospecha que la de verdad puede estar entre el 70 y el 80 % [@hillier2001, p. 491].
+
+**¿Cuántas son «muchas»?** Para Hillier y Lieberman y para Nicholas y Steyn, 5 o más [@hillier2001, p. 490; @nicholas2012, p. 271]; según Domínguez Machuca et al., la mayoría de los autores piden 10 o 15 [@machuca1995, p. 341]. El camino crítico de Mecánicas tiene 5 actividades, y una de ellas, K, dura siempre 1 día.
+
+**Independientes, en qué sentido.** La independencia es la de las duraciones, no la de las precedencias: quiere decir que lo que tarda una actividad no influye en lo que tarda otra, aunque una tenga que esperar a la otra [@nicholas2012, p. 270].
+
+| Aproximación | Qué la rompe | Caso del portal | Dónde se ve |
+|:--|:--|:--|:--|
+| 1. El crítico de las medias es el más largo | Otros caminos casi críticos | Fusión de caminos; El proyecto entero | Secciones -@sec-tcl-fusion y -@sec-tcl-cuanto |
+| 2. Duraciones independientes | Causas comunes | Correlación | Sección -@sec-tcl-limites |
+| 3. Duración normal | Pocas actividades, asimétricas | Pocas actividades; Asimetría | Secciones -@sec-tcl-plazo y -@sec-tcl-limites |
+
+: Las tres aproximaciones del cálculo de examen y los casos del apartado «El TCL y sus trampas» del portal que las ponen a prueba. {#tbl-tcl-aproximaciones}
+
+::: {.callout-tip .ejemplo #ejemplo-tcl-aproximaciones title="Ejemplo reproducible · El proyecto de Hillier y Lieberman"}
+**Datos.** El ejemplo «Reliable Construction Co. con tres tiempos» del portal, que tiene los mismos datos que el de Hillier y Lieberman, con el plazo de 47 semanas.
+
+**Predice.** ¿Qué probabilidad da el cálculo de examen? Después, pulsa «Compáralo con la simulación del proyecto entero»: ¿sube o baja?
+
+[Abrir: el ejemplo de Hillier y Lieberman en «El TCL y sus trampas»](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=unc&um=m6&ue=hl){.abrir target="_blank"}
+
+<details>
+<summary>**Ver el resultado**</summary>
+
+Con el cálculo de examen, A → B → C → E → F → J → L → N, μ = 44, σ² = 9, z = 1 y P = 0,8413. La simulación del proyecto entero baja a 0,81. La tabla de caminos explica parte de la diferencia: A → B → C → E → F → J → K → N tiene media 43, y A → B → C → I → J → L → N, 42; también pueden terminar los últimos.
+</details>
+:::
+
+:::: {.callout-note .ejercicio #ejercicio-tcl-aproximaciones title="Ejercicio · ¿Qué aproximación falla?"}
+Para cada situación, di cuál de las tres aproximaciones deja de valer:
+
+1. Dos caminos de un proyecto duran, con las medias, 30 y 29,5 días.
+2. Las cinco actividades del camino crítico las hace el mismo equipo, que está aprendiendo una técnica nueva.
+3. El camino crítico tiene dos actividades, una de ellas muy asimétrica.
+4. Las actividades del camino crítico se hacen en orden, una detrás de otra.
+
+<details>
+<summary>**Ver la solución**</summary>
+
+1. La primera: el camino de 29,5 días puede acabar siendo el más largo.
+2. La segunda: si el equipo va más lento de lo previsto, irá lento en todas; las duraciones no son independientes.
+3. La tercera: con dos actividades, y una muy asimétrica, la suma no se parece todavía a una normal.
+4. Ninguna. Que unas actividades esperen a otras es la precedencia, no la dependencia de las duraciones.
+</details>
+::::
+
+## La fusión de caminos [[Básico]{.largo}[B]{.corto}]{.nivel .basico} {#sec-tcl-fusion}
+
+¿Y si el camino que se retrasa no es el crítico?
+
+El proyecto termina cuando termina su **último** camino. Su duración es el máximo de las duraciones de los caminos, y para cumplir el plazo tienen que llegar a tiempo **todos**. Por eso la probabilidad de que el proyecto cumpla el plazo nunca es mayor que la del camino con menos probabilidad. Cada camino que llega al final con alguna posibilidad de retrasarse la baja un poco más. Es el **sesgo de la fusión** (en inglés, *merge bias*): donde se juntan varios caminos, se juntan también sus riesgos [@nicholas2012, p. 246]. Es la convergencia de caminos del capítulo 3, ahora con duraciones inciertas.
+
+El cálculo de examen mira un solo camino, así que no ve la fusión, y su probabilidad sale demasiado alta. Klastorin lo llama el mayor problema del PERT clásico: siempre que hay caminos en paralelo, da estimaciones optimistas [@klastorin2004, p. 140].
+
+**Dos caminos independientes.** Si dos caminos no comparten ninguna actividad, sus duraciones son independientes, y la probabilidad de que lleguen los dos a tiempo es el **producto** de sus probabilidades:
+
+- Dos caminos con un 50 % cada uno dan un 25 %; cinco, un 3 % [@nicholas2012, p. 246].
+- Dos tareas en paralelo con media de 30 días, y plazo de 30 días: cada una lo cumple la mitad de las veces, y el proyecto, una de cada cuatro. La probabilidad de retraso es 0,75; con siete tareas en paralelo, del 99,2 % [@klastorin2004, p. 153].
+- El ejemplo de Klastorin con dos rutas: B → D, de media 15 y varianza 5, y A → C, de media 14 y varianza 7, con un plazo de 17. El cálculo de examen solo mira B → D: P = 0,81. Pero A → C llega a tiempo con P = 0,872, y la probabilidad de que lleguen los dos es 0,81 × 0,872 ≈ 0,706 [@klastorin2004, pp. 139–140].
+
+**También crece la duración esperada.** Dos tareas en paralelo duran 6 o 10 semanas al 50 %. Cada una tiene media 8, pero el proyecto dura 6 solo si las dos duran 6, una vez de cada cuatro; las otras tres veces dura 10. Su media es 9, no 8; con tres tareas, 9,5 [@klastorin2004, pp. 200–201]. Es lo que advertían Malcolm et al.: los tiempos esperados que da el PERT son siempre demasiado pequeños [@malcolm1959, p. 654].
+
+**Mecánicas.** El primer paso del cálculo de examen ya avisaba: «Casi crítico: B–F–I–J–K (14)». Por su cuenta, ese camino cumple el plazo de 16 días con P = 0,87, **menos** que el crítico de las medias (0,91), porque tiene casi el doble de varianza. La regla de tomar el crítico de las medias ni siquiera ha elegido el camino más arriesgado. ¿Se multiplican entonces 0,91 y 0,87? Tampoco: los dos caminos comparten B, I, J y K, y si B se retrasa, se retrasan los dos. No son independientes, y multiplicar como si lo fueran da una **cota por abajo**, 0,79, no la probabilidad. La probabilidad de que lleguen los dos a tiempo está entre esa cota y la del camino con menos probabilidad, 0,87 (sección -@sec-tcl-maximo).
+
+**Cómo se mide: la simulación.** Para saber la probabilidad del proyecto entero se puede **simular**: sortear una duración para cada actividad según su curva, calcular el fin del proyecto con las fechas de siempre, repetirlo muchas veces y contar en cuántas se cumple el plazo. El portal hace 10 000 réplicas con la beta-PERT de cada actividad; con la misma semilla sale siempre lo mismo, y **Otra simulación** cambia la semilla. El capítulo 9 lo explica a fondo; aquí basta con la idea. En Mecánicas, el plazo de 16 días se cumple en el 81 % de las réplicas, frente al 91 % de la normal, y la duración media es de 14,66 días, medio día más que los 14,17 del camino crítico de las medias (figura -@fig-tcl-proyecto).
+
+![Mecánicas del Sureste con tres tiempos en el caso «El proyecto entero» del portal: el histograma de 10 000 réplicas simuladas con la beta-PERT (semilla 2026) y la normal del camino crítico de las medias, con el plazo de 16 días. Captura del portal, generada con `figuras/08-capturas.cjs`.](figuras/08-proyecto-entero.png){#fig-tcl-proyecto fig-alt="Histograma de barras azul claro entre 11 y 20 días, con el máximo hacia 14 y una cola más larga a la derecha. Encima, una curva normal roja centrada en 14,17, más alta y más estrecha que el histograma y desplazada a la izquierda. Una línea vertical marca el plazo de 16 días. Debajo: Distancia KS 0,116."}
+
+**Caminos casi críticos.** Un camino con poca holgura y mucha varianza puede volverse crítico en cualquier momento. Nicholas y Steyn lo advierten: poner demasiado énfasis en el camino crítico puede hacer olvidar los casi críticos, que pueden acabar marcando la fecha de fin [@nicholas2012, p. 251]; citan a Klingel (1966) en apoyo de que el PERT es demasiado optimista. Domínguez Machuca et al. ponen el ejemplo de una actividad con varianza 49 y solo 2 días de holgura, y aconsejan dejar un margen en el plazo [@machuca1995, pp. 342–343].
+
+**Error frecuente.** Multiplicar las probabilidades de caminos que comparten actividades como si fueran independientes. El producto solo es la probabilidad cuando los caminos no tienen ninguna actividad en común; si la tienen, es una cota por abajo.
+
+::: {.callout-tip .ejemplo #ejemplo-tcl-fusion title="Ejemplo reproducible · ¿Una sola ruta crítica?"}
+**Datos.** El ejemplo de Klastorin con dos rutas en paralelo, «¿Una sola ruta crítica?», con plazo de 17 días. Sus actividades son normales, así que la cuenta del producto es exacta.
+
+**Predice.** ¿Qué probabilidad da el cálculo de examen? ¿Y la simulación del proyecto entero? Después, abre el caso **Fusión de caminos**: con 4 caminos a 1 día del crítico, ¿cuánto baja la probabilidad? ¿Y con 8 caminos de la misma media?
+
+[Abrir: el ejemplo de las dos rutas en «El TCL y sus trampas»](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=unc&um=m6&ue=tr){.abrir target="_blank"}
+
+<details>
+<summary>**Ver el resultado**</summary>
+
+Cálculo de examen: B → D, z = 0,89 y P = 0,8133 (0,8145 sin redondear). En «El proyecto entero», la cuenta exacta da 0,710 y la simulación 0,713, con una duración media de 15,93 días en lugar de 15. En **Fusión de caminos**, el crítico es una normal de media 20 y varianza 4, y el plazo es de 22: la normal dice 0,841 hagan lo que hagan los deslizadores. Con 4 caminos a 1 día (el estado inicial), la simulación baja a 0,683 (cuenta exacta 0,684); con 8 caminos de la misma media, a 0,25, y la duración media sube a 22,86.
+</details>
+:::
+
+:::: {.callout-note .ejercicio #ejercicio-tcl-fusion title="Ejercicio · Caminos en paralelo"}
+1. Un proyecto tiene diez actividades en paralelo, independientes, que duran 10 o 31 días al 50 %, y otra más, también en paralelo, que dura siempre 21 días [@williams2002, pp. 97–98]. ¿Qué duración da el PERT clásico? ¿Con qué probabilidad dura en realidad 31 días?
+2. En la pestaña Ejercicios, el tipo «Probabilidad (TCL)», nivel medio, semilla 20, con **La otra ruta** marcado, da un proyecto de diez actividades. Calcula la probabilidad de cumplir el plazo con el camino crítico de las medias, la de la otra ruta y la de que lleguen las dos a tiempo.
+
+[Abrir: Probabilidad (TCL), nivel medio, semilla 20, con la otra ruta](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=ex&xk=tcl&lv=medium&sd=20&xo=1){.abrir target="_blank"}
+
+<details>
+<summary>**Ver la solución**</summary>
+
+1. Con las medias, cada una de las diez dura 20,5 días y la fija, 21: el camino crítico de las medias es la fija, y el PERT dice 21 días sin ninguna incertidumbre. Pero el proyecto dura 21 días solo si las diez duran 10, y eso pasa con probabilidad 0,5^10^ ≈ 0,001. Con probabilidad 0,999 dura 31 días [@williams2002, p. 98].
+2. El crítico de las medias es B → G → I → J, con μ = 17,50 y σ² = 25/12 ≈ 2,08. Con el plazo de 18 semanas, z = 0,35 y P = 0,6368. La otra ruta, A → C → E, tiene μ = 17,17 y σ² = 85/36 ≈ 2,36: z = 0,54 y P = 0,7054. Las dos rutas no comparten actividades, así que la probabilidad de que lleguen las dos a tiempo es el producto: 0,6368 × 0,7054 ≈ 0,4492. Los demás caminos del proyecto duran 10 semanas o menos, así que esa es casi la probabilidad del proyecto: la simulación da 0,44.
+</details>
+::::
+
+## Pocas actividades, asimetría y correlación [[Básico]{.largo}[B]{.corto}]{.nivel .basico} {#sec-tcl-limites}
+
+¿Y si el TCL no tiene suficiente con lo que le damos?
+
+Los tres casos de esta sección son sintéticos: un solo camino de actividades iguales, con un plazo igual a la media más una desviación típica. El portal compara la normal con la simulación de ese camino. Dos avisos para leerlos:
+
+- La normal de estos casos usa la media y la varianza de la **beta-PERT**, la curva que se sortea, y no las fórmulas de examen. Así la diferencia mide solo la forma o la correlación. Como anunciaba el capítulo 7, la varianza de la beta-PERT es unas veces mayor que la de examen (en Mecánicas) y otras menor: en (0, 0, 12) es 2,86, no 4.
+- La **distancia KS** (de Kolmogórov y Smirnov) es la mayor separación vertical entre la curva acumulada de la simulación y la de la normal. Cero es un ajuste perfecto; cuanto mayor, peor se parece la normal.
+
+**Pocas actividades.** El TCL necesita muchos sumandos. En el caso «Pocas actividades», cada actividad es una beta-PERT (0, 0, 12), muy asimétrica. Con 1 actividad, la KS es 0,12; con 3, 0,05; con 30, 0,016. Pero cuidado con la tabla de probabilidades: en el plazo del portal, μ + σ, la normal y la simulación dan las dos 0,841 por casualidad. La diferencia está en el centro y en las colas: con una actividad, la probabilidad de terminar en la media o antes es 0,60, no 0,50, y la de terminar en μ + 2σ es 0,95, no 0,98 (cifras calculadas con el núcleo del portal). Aquí la normal no siempre es optimista: cerca de la media se queda corta. La forma puede equivocarse hacia los dos lados; la fusión, solo hacia abajo.
+
+**Asimetría.** El caso «Asimetría» suma 3 actividades y mueve la más probable desde el centro (0, 6, 12) hasta el extremo (0, 0, 12). La KS pasa de 0,01 a 0,05: cuanto más asimétricas son las actividades, más tarda la suma en parecerse a una normal. Con m en el extremo, es el mismo caso que «Pocas actividades» con 3.
+
+**Correlación.** Si unas mismas circunstancias desvían a la vez varias actividades, sus duraciones no son independientes [@hillier2001, p. 489]. Williams pone el ejemplo de un sistema de sonar: lo bien o mal que se haga la definición del proyecto afecta a las cuatro actividades que vienen después [@williams2002, p. 91]. Otros ejemplos de causa común: el mismo equipo en varias actividades o el mismo mal tiempo en varias obras. Con duraciones correlacionadas, la varianza del camino suma también las covarianzas. Con n actividades iguales, de varianza σ² y correlación ρ entre cada par:
+
+```{=html}
+<p style="text-align:center"><strong>σ²(camino) = n σ² + n (n − 1) ρ σ²</strong></p>
+```
+
+Con ρ = 0 es la suma de varianzas de siempre; con ρ = 1, las desviaciones se suman, y el camino es tan incierto como una sola actividad multiplicada por n. En el caso «Correlación», 10 actividades (0, 6, 12): con ρ = 0,9, la probabilidad de cumplir el plazo baja de 0,84 a 0,62; con ρ = 0,5, a 0,66. La normal, calculada como si fueran independientes, se queda estrecha. (El portal correlaciona las actividades con una cópula gaussiana de parámetro ρ; la correlación entre las duraciones sale algo menor.)
+
+::: {.callout-tip .ejemplo #ejemplo-tcl-limites title="Ejemplo reproducible · Los tres límites"}
+**Datos.** El caso «Correlación» del apartado «El TCL y sus trampas», que se abre con 10 actividades (0, 6, 12) y ρ = 0,9.
+
+**Predice.** ¿Qué pasa con el histograma y con la probabilidad al bajar ρ a 0? Después, en **Pocas actividades**, mueve el deslizador de 1 a 30 y mira la KS; en **Asimetría**, lleva el deslizador de 0 a 1.
+
+[Abrir: el caso «Correlación»](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=unc&um=m6&ux=corr){.abrir target="_blank"}
+
+<details>
+<summary>**Ver el resultado**</summary>
+
+Con ρ = 0,9, el histograma es mucho más ancho que la normal, la simulación da 0,620 frente a 0,841 y la KS es 0,27. Con ρ = 0, el histograma se ajusta a la normal y las dos probabilidades coinciden. En «Pocas actividades», la KS baja de 0,12 a 0,016 al pasar de 1 a 30 actividades. En «Asimetría», sube de 0,01 a 0,05 al llevar m de 6 a 0.
+</details>
+:::
+
+:::: {.callout-note .ejercicio #ejercicio-tcl-limites title="Ejercicio · Correlación y desviación típica"}
+Un camino tiene 10 actividades con la misma desviación típica, σ = 1 día. Calcula la desviación típica del camino si la correlación entre cada par de actividades es ρ = 0, ρ = 0,5 y ρ = 1. ¿Qué pasa con la probabilidad de cumplir un plazo de μ + 3 días en cada caso?
+
+<details>
+<summary>**Ver la solución**</summary>
+
+Con ρ = 0, σ² = 10 y σ = √10 ≈ 3,16. Con ρ = 0,5, σ² = 10 + 10 · 9 · 0,5 = 55 y σ ≈ 7,42. Con ρ = 1, σ² = 100 y σ = 10. Con la normal, el plazo μ + 3 queda a z = 0,95, 0,40 y 0,30 desviaciones: la probabilidad pasa de 0,83 a 0,66 y 0,62. Suponer independencia cuando no la hay da una probabilidad demasiado alta.
+</details>
+::::
+
+## Cuánto se equivoca la normal [[Básico]{.largo}[B]{.corto}]{.nivel .basico} {#sec-tcl-cuanto}
+
+Entonces, ¿sirve para algo el cálculo de examen?
+
+La tabla -@tbl-tcl-cuanto compara, en los cuatro proyectos del capítulo, la probabilidad de la normal con la de la simulación del proyecto entero. La columna del medio simula con duraciones normales, con las medias y varianzas de examen: así se separa lo que se debe a la fusión de caminos de lo que se debe a la beta-PERT.
+
+| Proyecto | Plazo | Normal del camino crítico | Simulación con normales | Simulación con la beta-PERT |
+|:--|:-:|:-:|:-:|:-:|
+| Mecánicas | 16 días | 0,907 | 0,83 | 0,813 |
+| Klastorin, seis tareas | 25 semanas | 0,658 | 0,58 | 0,554 |
+| Hillier y Lieberman | 47 semanas | 0,841 | 0,83 | 0,814 |
+| Klastorin, dos rutas | 17 días | 0,815 | 0,71 | 0,713 |
+
+: Probabilidad de cumplir el plazo según la normal del camino crítico (exacta, sin redondear z) y según 10 000 réplicas simuladas con el núcleo del portal (semilla 2026). En el ejemplo de las dos rutas, las actividades ya son normales y las dos simulaciones son la misma; la cuenta exacta da 0,710. {#tbl-tcl-cuanto}
+
+Tres lecturas:
+
+- **Siempre del mismo lado.** En los cuatro, la normal da más probabilidad que la simulación: de 3 a 10 puntos más.
+- **Casi todo es fusión.** La mayor parte de la caída aparece ya simulando con normales, sin cambiar la forma de las curvas.
+- **Compartir actividades amortigua la fusión.** Los caminos de Hillier y Lieberman comparten A, B y C, y se mueven juntos: el proyecto pierde poco. Las dos rutas de Klastorin no comparten nada, y pierde mucho.
+
+La respuesta depende también de la curva que se suponga. Hillier y Lieberman simulan su proyecto con distribuciones triangulares y obtienen 0,591 [@hillier2001, p. 1121]; con la beta-PERT, el portal da 0,81. La triangular tiene las colas más pesadas (capítulo 7). El capítulo 9 permite elegir la curva de cada actividad.
+
+**Qué hacer con la normal.** Leerla como un techo, casi siempre por encima de la probabilidad real; mirar los caminos casi críticos y su varianza, no solo el crítico; reservar un margen en el plazo; y, si la decisión importa, simular.
+
+::: {.callout-tip .ejemplo #ejemplo-tcl-cuanto title="Ejemplo reproducible · El proyecto entero"}
+**Datos.** Mecánicas del Sureste en el caso «El proyecto entero», con el plazo de 16 días.
+
+**Predice.** ¿Cuánto se separan la normal y la simulación? Pulsa **Otra simulación** varias veces: ¿cuánto cambia la segunda cifra?
+
+[Abrir: Mecánicas en «El proyecto entero»](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=unc&um=m6&ue=own&ut=LYxFgiOByMpkEQsLZbERBhIiGMPGUPGcPixdhQiIUSikPHEWgYijEMIcPiMDicDHMgEUijJEh42j0mmUhkMjERFjsDGkPGsPIIsEEbm8ZI0cgcVlUPoktnBHk1IEVKjVCktFhhIqMDk8Qh5FoVHrAiJNbEUpEU1nNhoVQsZKqVUnsDstjJdmrtdIlCJFCuE3LpdgA&ux=proj){.abrir target="_blank"}
+
+<details>
+<summary>**Ver el resultado**</summary>
+
+Normal, 0,907 y media 14,17; simulación, 0,813 y media 14,66. Con otras semillas, la simulación se mueve alrededor de 0,81 (entre 0,80 y 0,82): con 10 000 réplicas, el error de muestreo es de unas 4 milésimas. La tabla de caminos muestra B → F → I → J → K con 0,869, por debajo del crítico. El portal avisa también de que la simulación sortea con la beta-PERT, cuya varianza no es la de examen.
+</details>
+:::
+
+:::: {.callout-note .ejercicio #ejercicio-tcl-cuanto title="Ejercicio · El plazo del 90 %"}
+En el ejemplo [](#ejemplo-tcl-plazo), la normal decía que un plazo de 15,94 días se cumple el 90 % de las veces. En «El proyecto entero», escribe 15,94 en **Plazo**. ¿Con qué probabilidad lo cumple la simulación? ¿Y con un plazo de 15 días?
+
+<details>
+<summary>**Ver la solución**</summary>
+
+Con 15,94 días, la simulación da 0,80: el plazo «del 90 %» solo se cumple 8 veces de cada 10. Con 15 días, la normal da 0,726 y la simulación, 0,612. Para cumplir de verdad el 90 % de las veces, harían falta unos 16,7 días (el percentil 90 de la simulación, capítulo 9).
+</details>
+::::
+
+## Resumen {.unnumbered #resumen}
+
+- El TCL dice que una suma de muchas duraciones independientes, sin que ninguna domine, se parece a una normal, sea cual sea la forma de cada una. Por eso la duración de un camino se modela con una normal de media la suma de las medias y varianza la suma de las varianzas.
+- El cálculo de examen: z = (T − μ)/σ y P = Φ(z) con el camino crítico de las medias; al revés, T = μ + z·σ. Si dos caminos empatan en media, se toma el de mayor varianza.
+- El cálculo hace tres aproximaciones: el crítico de las medias es el más largo, sus duraciones son independientes y su suma es normal.
+- La fusión de caminos: el proyecto termina con su último camino, así que su probabilidad de cumplir el plazo no pasa de la del camino con menos probabilidad, y la duración esperada crece. Con caminos independientes, las probabilidades se multiplican; si comparten actividades, el producto es solo una cota por abajo.
+- Con pocas actividades, asimétricas, la normal no se ajusta, y puede errar hacia los dos lados; con duraciones correlacionadas, se queda estrecha.
+- En la práctica, la normal del camino crítico es casi siempre un techo: en Mecánicas, 0,91 frente a 0,81. Hay que vigilar los caminos casi críticos y, si la decisión importa, simular.
+
+Para seguir el recorrido básico, continúa por el capítulo «Montecarlo e índices» (en preparación), donde la simulación de este capítulo se explica a fondo: histogramas, percentiles e índices de criticidad.
+
+## El máximo de varios caminos [[Avanzado]{.largo}[A]{.corto}]{.nivel .avanzado} {#sec-tcl-maximo}
+
+**Por qué se diluye la asimetría.** La demostración de la sección -@sec-tcl-plazo tiene una versión con números. Al sumar n actividades independientes e iguales, la media y la varianza crecen como n, pero el **coeficiente de asimetría** (el tercer momento centrado, dividido por σ³) se divide por √n. La beta-PERT (0, 0, 12) es una beta(1, 5) escalada, con asimetría √(7/5) ≈ 1,18; la suma de 3 tiene 0,68; la de 10, 0,37; la de 30, 0,22. La normal tiene 0. Por eso la KS del caso «Pocas actividades» baja más o menos como 1/√n.
+
+**Caminos que comparten actividades.** Dos caminos que comparten actividades están correlacionados, como ya advertían Malcolm et al. [-@malcolm1959, p. 654]. Su **covarianza** es la suma de las varianzas de las actividades comunes. En Mecánicas, B → E → I → J → K y B → F → I → J → K comparten B, I, J y K:
+
+- cov = 1 + 25/36 + 4/36 + 0 = 65/36 ≈ 1,81;
+- ρ = (65/36) / √(69/36 · 114/36) ≈ 0,73.
+
+**Cotas.** Con duraciones independientes, dos caminos que comparten actividades se mueven juntos: si una actividad común se retrasa, se retrasan los dos. Entonces la probabilidad de que lleguen los dos a tiempo está entre el **producto** de sus probabilidades y la **menor** de las dos. Para el proyecto entero, por debajo de eso y por encima del producto de las probabilidades de todos los caminos. En Mecánicas, con las normales de examen y el plazo de 16 días:
+
+- producto de los dos caminos, 0,789; de todos los caminos, 0,784;
+- la menor de las dos, 0,870 (B → F → I → J → K);
+- con la **normal bivariante** de los dos caminos, con ρ = 0,73, la probabilidad exacta de que lleguen los dos a tiempo es 0,832.
+
+Simulando el proyecto con duraciones normales sale lo mismo, 0,83; con la beta-PERT, 0,81.
+
+**Repartir la caída, con cuidado.** De 0,907 a 0,832, la causa es la fusión. De 0,832 a 0,813, la beta-PERT: en parte porque su varianza es mayor que la de examen (el camino crítico tiene σ² = 2,07 con la beta-PERT, frente a 1,92; con esa varianza, la normal ya daría 0,899) y en parte por la forma. El reparto depende del orden en que se descuenten las causas. Con 15 días es más limpio: la normal da 0,726, y las dos simulaciones, 0,61. Toda la caída es fusión.
+
+**La media del máximo de dos normales.** Clark (1961) dio la fórmula para la media del máximo de dos normales, X~1~ y X~2~, con covarianza cov:
+
+```{=html}
+<p style="text-align:center"><strong>E[máx] = μ₁ Φ(α) + μ₂ Φ(−α) + a φ(α), con a² = σ₁² + σ₂² − 2 cov y α = (μ₁ − μ₂)/a</strong></p>
+```
+
+donde φ es la densidad de la normal estándar. Clark es el autor del trabajo, entonces sin publicar, que Malcolm et al. citan sobre el sesgo de los tiempos esperados [-@malcolm1959, p. 654, nota]. En Mecánicas, con los dos caminos, da 14,57 días; la simulación, 14,66. Con dos caminos independientes de la misma normal, N(20; 4), da 20 + √8 · φ(0) ≈ 21,13, y el caso **Fusión de caminos** con 2 caminos y holgura 0 simula 21,14.
+
+**Por qué los tiempos esperados salen siempre cortos.** La media del máximo nunca es menor que el máximo de las medias [@klastorin2004, p. 201], y solo coinciden si no hay incertidumbre. El cálculo exacto de la distribución del máximo en una red general es NP-difícil, y las aproximaciones que se han propuesto (cotas, teoría de valores extremos, reducción de la red) apenas se usan en la práctica [@williams2002, pp. 98–99]. Por eso se simula.
+
+**Más dispersión, más retraso esperado.** Schonberger (1981) sostuvo que, con actividades en paralelo, aumentar la variabilidad de las duraciones, sin cambiar sus medias, aumenta la duración esperada del proyecto [citado por @klastorin2004, p. 155]. Klastorin lo ilustra con dos actividades en paralelo. A dura 12, 14 o 16 días, con probabilidades 0,1, 0,8 y 0,1 (media 14); B, 10 o 15 días al 50 % (media 12,5). El proyecto dura en media 14,55 días. Con A más variable (0,3, 0,4 y 0,3; la misma media), 14,65 [@klastorin2004, pp. 155–156]. En serie no cambiaría nada. Las condiciones exactas en que pasa esto las estudian Gutierrez y Paul [1998, citados por @klastorin2004, p. 156]. La lectura para quien dirige el proyecto: reducir la variabilidad de los caminos en paralelo acorta la duración esperada, aunque no cambie ninguna media. En el portal, la nota de **Fusión de caminos** lo recoge, pero sus deslizadores cambian el número de caminos, no su varianza.
+
+::: {.callout-tip .ejemplo #ejemplo-tcl-maximo title="Ejemplo reproducible · Dos caminos iguales"}
+**Datos.** El caso **Fusión de caminos** con 2 caminos y holgura 0: dos normales independientes de media 20 y varianza 4, con plazo de 22.
+
+**Predice.** Con la fórmula de Clark, ¿cuánto dura el proyecto en media? ¿Y la probabilidad de cumplir el plazo?
+
+[Abrir: la fusión de dos caminos iguales](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=unc&um=m6&ux=merge&uk=n2.s0){.abrir target="_blank"}
+
+<details>
+<summary>**Ver el resultado**</summary>
+
+Con cov = 0, a = √8 ≈ 2,83 y α = 0: E[máx] = 20 + 2,83 · 0,399 ≈ 21,13. La simulación da una media de 21,14. La probabilidad es el producto, Φ(1)² = 0,841² ≈ 0,708, frente a 0,841 de la normal de un solo camino; la simulación da 0,708.
+</details>
+:::
+
+:::: {.callout-note .ejercicio #ejercicio-tcl-maximo title="Ejercicio · Covarianza y Schonberger"}
+1. Comprueba la covarianza y la correlación de B → E → I → J → K y B → F → I → J → K con la tabla de Mecánicas del capítulo 7. ¿Qué correlación tendrían dos caminos sin actividades comunes?
+2. Rehaz a mano las dos cuentas del ejemplo de Klastorin: enumera las seis combinaciones de A y B, con su probabilidad y la duración del proyecto, y calcula la duración esperada antes y después de hacer A más variable.
+
+<details>
+<summary>**Ver la solución**</summary>
+
+1. cov = σ²(B) + σ²(I) + σ²(J) + σ²(K) = 36/36 + 25/36 + 4/36 + 0 = 65/36, y ρ = 65/√(69 · 114) ≈ 0,73. Sin actividades comunes, y con duraciones independientes, la correlación sería 0.
+2. Si B dura 10, el proyecto dura lo que A, 14 en media. Si B dura 15, dura 16 cuando A dura 16 y 15 en los demás casos: 15 + 0,1 = 15,1. Media: 0,5 · 14 + 0,5 · 15,1 = 14,55. Con A más variable, 15 + 0,3 = 15,3 cuando B dura 15, y 0,5 · 14 + 0,5 · 15,3 = 14,65.
+</details>
+::::
+
+## Ampliaciones [[Para saber más]{.largo}[+]{.corto}]{.nivel .saber-mas} {#sec-tcl-ampliaciones}
+
+**La probabilidad de cada suceso.** El PERT original no calculaba solo la probabilidad del fin del proyecto, sino la de cada suceso de la red de flechas [@malcolm1959, p. 658]. Taha hace lo mismo: para cada suceso, toma el camino más largo hasta él con las medias y calcula la probabilidad de llegar a una fecha programada [@taha2012, pp. 263–264]. Es una forma de vigilar los hitos intermedios, con las mismas aproximaciones y los mismos sesgos que el cálculo del final.
+
+**La ley de Parkinson.** El trabajo se estira hasta llenar el tiempo disponible. Klastorin muestra que poner un plazo, aunque sea razonable, puede retrasar el proyecto: si lo que podría terminar antes se estira hasta el plazo, en su ejemplo la duración esperada pasa de 24 a 25 días; y si quien va bien lo deja para el último momento, a 24,3 [@klastorin2004, pp. 153–154]. La incertidumbre no solo está en las curvas: también en cómo trabaja la gente.
+
+**La agregación de riesgos.** Al sumar n duraciones independientes, la varianza crece como n, pero la desviación típica solo como √n. Un margen para todo el camino puede ser mucho menor que la suma de los márgenes de cada actividad. Es la base de los amortiguadores de la cadena crítica [@nicholas2012, p. 272], que se verán con los recursos en el capítulo 13.
+
+**Comprimir con duraciones inciertas.** Cuando hay que acortar un proyecto con duraciones inciertas, Johnson y Schou (1990) proponen tres reglas: acortar la actividad del camino crítico de las medias con menor coste por periodo, la de mayor índice de criticidad o la de menor coste esperado por periodo [citados por @klastorin2004, p. 157]. La compresión se ve en el capítulo 12, y la criticidad, en el 9.
+
+**El primer análisis de los supuestos.** MacCrimmon y Ryavec (1964) estudiaron con detalle matemático los supuestos del PERT, actividad a actividad y en la red, y midieron sus errores. El «Aprende más» del apartado «El TCL y sus trampas» del portal los cita junto a Schonberger.
+
+::: {.callout-note .mas-portal title="Más en el portal"}
+- **El TCL y sus trampas (M6)**, en la pestaña Duraciones inciertas: el cálculo de examen, con la probabilidad para un plazo o el plazo para una probabilidad, y el paso a paso con predicción, que reconoce los errores frecuentes; la fusión de caminos, pocas actividades, asimetría y correlación, con sus deslizadores; y el proyecto entero, con la simulación, el histograma, «Ver como tabla», la distancia KS y la tabla de caminos.
+- **Los ejemplos:** el de Klastorin, el de Hillier y Lieberman, las dos rutas, las dos tareas en paralelo y cualquier tabla propia, como Mecánicas.
+- **Aprende más**, en el apartado «El TCL y sus trampas»: por qué una normal, las tres aproximaciones, la fusión de caminos, los otros límites y la simulación.
+- **Probabilidad (TCL)**, en la pestaña Ejercicios: z, probabilidad y plazo, con error consecuente, y **La otra ruta**, con la probabilidad de que lleguen dos rutas a tiempo. **Ver la solución en M6** abre el mismo proyecto en este apartado.
+- Como en el capítulo 7, el portal cita la traducción española de Klastorin (2010) y la edición de 2015 de Hillier y Lieberman; este libro cita las ediciones de 2004 y de 2001, con los mismos datos.
+:::
+
+## Referencias del capítulo {.unnumbered #referencias}
+
+::: {.referencias-capitulo #refs}
+:::

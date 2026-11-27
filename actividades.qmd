@@ -68,7 +68,7 @@ Aquí están todas las cajas de trabajo del libro. Los **ejemplos reproducibles*
 
 ### Duraciones inciertas {.unnumbered #h-unc}
 
-5 ejemplos reproducibles y 1 ejercicio.
+11 ejemplos reproducibles, 1 caja «En el portal» y 1 ejercicio.
 
 | Actividad | Título | Sección | Nivel |
 |---|---|:-:|:-:|
@@ -78,10 +78,17 @@ Aquí están todas las cajas de trabajo del libro. Los **ejemplos reproducibles*
 | [Ejemplo 7.3](07-tres-tiempos.qmd#ejemplo-tres-proyecto) | Mecánicas con las medias | [7.3](07-tres-tiempos.qmd#sec-tres-proyecto) | [[B]{.corto}]{.nivel .basico .solo-corto} |
 | [Ejemplo 7.4](07-tres-tiempos.qmd#ejemplo-tres-camino) | El camino crítico de Klastorin | [7.4](07-tres-tiempos.qmd#sec-tres-camino) | [[B]{.corto}]{.nivel .basico .solo-corto} |
 | [Ejemplo 7.6](07-tres-tiempos.qmd#ejemplo-tres-betas) | Las dos betas de A | [7.6](07-tres-tiempos.qmd#sec-tres-betas) | [[A]{.corto}]{.nivel .avanzado .solo-corto} |
+| [En el portal](08-tcl.qmd#sec-tcl-plazo) | «El TCL y sus trampas», caso «Pocas actividades» | [8.1](08-tcl.qmd#sec-tcl-plazo) | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejemplo 8.1](08-tcl.qmd#ejemplo-tcl-plazo) | El plazo de Mecánicas | [8.1](08-tcl.qmd#sec-tcl-plazo) | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejemplo 8.2](08-tcl.qmd#ejemplo-tcl-aproximaciones) | El proyecto de Hillier y Lieberman | [8.2](08-tcl.qmd#sec-tcl-aproximaciones) | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejemplo 8.3](08-tcl.qmd#ejemplo-tcl-fusion) | ¿Una sola ruta crítica? | [8.3](08-tcl.qmd#sec-tcl-fusion) | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejemplo 8.4](08-tcl.qmd#ejemplo-tcl-limites) | Los tres límites | [8.4](08-tcl.qmd#sec-tcl-limites) | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejemplo 8.5](08-tcl.qmd#ejemplo-tcl-cuanto) | El proyecto entero | [8.5](08-tcl.qmd#sec-tcl-cuanto) | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejemplo 8.6](08-tcl.qmd#ejemplo-tcl-maximo) | Dos caminos iguales | [8.6](08-tcl.qmd#sec-tcl-maximo) | [[A]{.corto}]{.nivel .avanzado .solo-corto} |
 
 ### Ejercicios {.unnumbered #h-ex}
 
-1 ejemplo reproducible y 3 ejercicios.
+1 ejemplo reproducible y 5 ejercicios.
 
 | Actividad | Título | Sección | Nivel |
 |---|---|:-:|:-:|
@@ -89,6 +96,8 @@ Aquí están todas las cajas de trabajo del libro. Los **ejemplos reproducibles*
 | [Ejercicio 4.5](04-pert.qmd#ejercicio-pert-detective) | El detective PERT | [4.5](04-pert.qmd#sec-pert-comprobar) | [[B]{.corto}]{.nivel .basico .solo-corto} |
 | [Ejemplo 5.3](05-tiempos.qmd#ejemplo-tiempos-atras) | El detective de los cálculos | [5.3](05-tiempos.qmd#sec-tiempos-atras) | [[B]{.corto}]{.nivel .basico .solo-corto} |
 | [Ejercicio 7.4](07-tres-tiempos.qmd#ejercicio-tres-camino) | Un proyecto del portal | [7.4](07-tres-tiempos.qmd#sec-tres-camino) | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejercicio 8.1](08-tcl.qmd#ejercicio-tcl-plazo) | De los dados al plazo | [8.1](08-tcl.qmd#sec-tcl-plazo) | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejercicio 8.3](08-tcl.qmd#ejercicio-tcl-fusion) | Caminos en paralelo | [8.3](08-tcl.qmd#sec-tcl-fusion) | [[B]{.corto}]{.nivel .basico .solo-corto} |
 
 ## Por capítulo {.unnumbered #por-capitulo}
 
@@ -201,3 +210,21 @@ Aquí están todas las cajas de trabajo del libro. Los **ejemplos reproducibles*
 | [Ejemplo 7.6](07-tres-tiempos.qmd#ejemplo-tres-betas) | Las dos betas de A | [7.6](07-tres-tiempos.qmd#sec-tres-betas) | Duraciones inciertas | [[A]{.corto}]{.nivel .avanzado .solo-corto} |
 | [Ejercicio 7.6](07-tres-tiempos.qmd#ejercicio-tres-betas) | ¿Más o menos varianza? | [7.6](07-tres-tiempos.qmd#sec-tres-betas) | — | [[A]{.corto}]{.nivel .avanzado .solo-corto} |
 | [Ejercicio 7.7](07-tres-tiempos.qmd#ejercicio-tres-triangular) | Con la triangular | [7.7](07-tres-tiempos.qmd#sec-tres-triangular) | — | [[A]{.corto}]{.nivel .avanzado .solo-corto} |
+
+### 8. El TCL y sus trampas {.unnumbered #a-cap-8}
+
+| Actividad | Título | Sección | Pestaña | Nivel |
+|---|---|:-:|---|:-:|
+| [En el portal](08-tcl.qmd#sec-tcl-plazo) | «El TCL y sus trampas», caso «Pocas actividades» | [8.1](08-tcl.qmd#sec-tcl-plazo) | Duraciones inciertas | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejemplo 8.1](08-tcl.qmd#ejemplo-tcl-plazo) | El plazo de Mecánicas | [8.1](08-tcl.qmd#sec-tcl-plazo) | Duraciones inciertas | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejercicio 8.1](08-tcl.qmd#ejercicio-tcl-plazo) | De los dados al plazo | [8.1](08-tcl.qmd#sec-tcl-plazo) | Ejercicios | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejemplo 8.2](08-tcl.qmd#ejemplo-tcl-aproximaciones) | El proyecto de Hillier y Lieberman | [8.2](08-tcl.qmd#sec-tcl-aproximaciones) | Duraciones inciertas | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejercicio 8.2](08-tcl.qmd#ejercicio-tcl-aproximaciones) | ¿Qué aproximación falla? | [8.2](08-tcl.qmd#sec-tcl-aproximaciones) | — | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejemplo 8.3](08-tcl.qmd#ejemplo-tcl-fusion) | ¿Una sola ruta crítica? | [8.3](08-tcl.qmd#sec-tcl-fusion) | Duraciones inciertas | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejercicio 8.3](08-tcl.qmd#ejercicio-tcl-fusion) | Caminos en paralelo | [8.3](08-tcl.qmd#sec-tcl-fusion) | Ejercicios | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejemplo 8.4](08-tcl.qmd#ejemplo-tcl-limites) | Los tres límites | [8.4](08-tcl.qmd#sec-tcl-limites) | Duraciones inciertas | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejercicio 8.4](08-tcl.qmd#ejercicio-tcl-limites) | Correlación y desviación típica | [8.4](08-tcl.qmd#sec-tcl-limites) | — | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejemplo 8.5](08-tcl.qmd#ejemplo-tcl-cuanto) | El proyecto entero | [8.5](08-tcl.qmd#sec-tcl-cuanto) | Duraciones inciertas | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejercicio 8.5](08-tcl.qmd#ejercicio-tcl-cuanto) | El plazo del 90 % | [8.5](08-tcl.qmd#sec-tcl-cuanto) | — | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejemplo 8.6](08-tcl.qmd#ejemplo-tcl-maximo) | Dos caminos iguales | [8.6](08-tcl.qmd#sec-tcl-maximo) | Duraciones inciertas | [[A]{.corto}]{.nivel .avanzado .solo-corto} |
+| [Ejercicio 8.6](08-tcl.qmd#ejercicio-tcl-maximo) | Covarianza y Schonberger | [8.6](08-tcl.qmd#sec-tcl-maximo) | — | [[A]{.corto}]{.nivel .avanzado .solo-corto} |

@@ -2,9 +2,9 @@
 
 <!-- Archivo generado por filtros/indices.py en cada «quarto render» (pre-render). No lo edites a mano: los cambios se perderían. Para cambiar el contenido, cambia los capítulos; para cambiar el formato, cambia el script. -->
 
-El libro tiene 7 capítulos y 50 secciones: 31 de nivel [[Básico]{.largo}[B]{.corto}]{.nivel .basico}, 12 de nivel [[Avanzado]{.largo}[A]{.corto}]{.nivel .avanzado} y 7 de nivel [[Para saber más]{.largo}[+]{.corto}]{.nivel .saber-mas}. El **recorrido básico** son las secciones azules: se leen seguidas, capítulo a capítulo, sin las demás. Las avanzadas amplían el recorrido básico y suelen apoyarse en él; «Para saber más» cierra cada capítulo con lecturas y temas que el libro no desarrolla.
+El libro tiene 8 capítulos y 57 secciones: 36 de nivel [[Básico]{.largo}[B]{.corto}]{.nivel .basico}, 13 de nivel [[Avanzado]{.largo}[A]{.corto}]{.nivel .avanzado} y 8 de nivel [[Para saber más]{.largo}[+]{.corto}]{.nivel .saber-mas}. El **recorrido básico** son las secciones azules: se leen seguidas, capítulo a capítulo, sin las demás. Las avanzadas amplían el recorrido básico y suelen apoyarse en él; «Para saber más» cierra cada capítulo con lecturas y temas que el libro no desarrolla.
 
-Las actividades —30 ejemplos reproducibles, 5 cajas «En el portal» y 40 ejercicios— están listadas en el [índice de actividades](actividades.qmd), por capítulo y por pestaña del portal.
+Las actividades —36 ejemplos reproducibles, 6 cajas «En el portal» y 46 ejercicios— están listadas en el [índice de actividades](actividades.qmd), por capítulo y por pestaña del portal.
 
 ## El libro de un vistazo {.unnumbered #vistazo}
 
@@ -17,7 +17,8 @@ Las actividades —30 ejemplos reproducibles, 5 cajas «En el portal» y 40 ejer
 | [5. Calcular los tiempos](05-tiempos.qmd) | 5 | 2 | 1 | 5 | 2 | 7 |
 | [6. Holguras y caminos críticos](06-holguras.qmd) | 4 | 2 | 1 | 6 | 0 | 6 |
 | [7. Duraciones inciertas: tres tiempos](07-tres-tiempos.qmd) | 5 | 2 | 1 | 5 | 0 | 6 |
-| **Total** | **31** | **12** | **7** | **30** | **5** | **40** |
+| [8. El TCL y sus trampas](08-tcl.qmd) | 5 | 1 | 1 | 6 | 1 | 6 |
+| **Total** | **36** | **13** | **8** | **36** | **6** | **46** |
 
 ## 1. Proyectos, actividades y redes {.unnumbered #cap-1}
 
@@ -89,3 +90,13 @@ Las actividades —30 ejemplos reproducibles, 5 cajas «En el portal» y 40 ejer
 - [7.6 De dónde salen las fórmulas: dos betas](07-tres-tiempos.qmd#sec-tres-betas) [[A]{.corto}]{.nivel .avanzado .solo-corto}
 - [7.7 La triangular y las estimaciones con percentiles](07-tres-tiempos.qmd#sec-tres-triangular) [[A]{.corto}]{.nivel .avanzado .solo-corto}
 - [7.8 Ampliaciones](07-tres-tiempos.qmd#sec-tres-ampliaciones) [[+]{.corto}]{.nivel .saber-mas .solo-corto}
+
+## 8. El TCL y sus trampas {.unnumbered #cap-8}
+
+- [8.1 La probabilidad de cumplir un plazo](08-tcl.qmd#sec-tcl-plazo) [[B]{.corto}]{.nivel .basico .solo-corto}
+- [8.2 Las tres aproximaciones del cálculo](08-tcl.qmd#sec-tcl-aproximaciones) [[B]{.corto}]{.nivel .basico .solo-corto}
+- [8.3 La fusión de caminos](08-tcl.qmd#sec-tcl-fusion) [[B]{.corto}]{.nivel .basico .solo-corto}
+- [8.4 Pocas actividades, asimetría y correlación](08-tcl.qmd#sec-tcl-limites) [[B]{.corto}]{.nivel .basico .solo-corto}
+- [8.5 Cuánto se equivoca la normal](08-tcl.qmd#sec-tcl-cuanto) [[B]{.corto}]{.nivel .basico .solo-corto}
+- [8.6 El máximo de varios caminos](08-tcl.qmd#sec-tcl-maximo) [[A]{.corto}]{.nivel .avanzado .solo-corto}
+- [8.7 Ampliaciones](08-tcl.qmd#sec-tcl-ampliaciones) [[+]{.corto}]{.nivel .saber-mas .solo-corto}

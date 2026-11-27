@@ -273,7 +273,7 @@ Deja para el capítulo 8 la z, la probabilidad y el plazo.
 - La media de un camino es la suma de las medias; su varianza, la suma de las varianzas si las actividades son independientes. Nunca se suman las desviaciones, y conviene no redondear antes de sumar.
 - Tomar solo el camino crítico de las medias da una duración esperada demasiado pequeña: un camino casi crítico y más incierto puede acabar mandando.
 
-Para seguir el recorrido básico, continúa por el capítulo «El TCL y sus trampas» (en preparación), donde la media y la varianza del camino crítico se convierten en la probabilidad de cumplir un plazo.
+Para seguir el recorrido básico, continúa por el [capítulo «El TCL y sus trampas»](08-tcl.qmd), donde la media y la varianza del camino crítico se convierten en la probabilidad de cumplir un plazo.
 
 ## De dónde salen las fórmulas: dos betas [[Avanzado]{.largo}[A]{.corto}]{.nivel .avanzado} {#sec-tres-betas}
 
