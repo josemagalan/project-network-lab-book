@@ -36,6 +36,8 @@ node comprobaciones/html.cjs
 node comprobaciones/comprobar.cjs
 ```
 
+Las figuras propias están en `figuras/`, junto al guion que las genera; los SVG y PNG se versionan, así que para generar el libro no hace falta ejecutar los guiones. La [portada vectorial](figuras/portada.svg) aparece en la página inicial del libro. Su [guion editable](figuras/portada.py) genera también una [adaptación horizontal](figuras/portada-horizontal.svg); la [ficha de la portada](figuras/portada.md) explica cómo regenerarla y su licencia.
+
 ## Comentarios
 
 Cada página del libro tiene el enlace «Enviar un comentario sobre esta página», que abre un formulario de GitHub (`.github/ISSUE_TEMPLATE/comentario.yml`) con la página, el capítulo y la versión ya rellenos.

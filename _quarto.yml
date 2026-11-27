@@ -14,6 +14,8 @@ project:
 book:
   title: "Proyectos a la vista"                                   # elegido por el autor el 2026-11-25 (serie con «Evolución a la vista»)
   subtitle: "Redes PERT, CPM y ROY en un laboratorio interactivo"
+  cover-image: figuras/portada.svg      # figuras/portada.py; misma composición que la de «Evolución a la vista», en violeta
+  cover-image-alt: "Portada de Proyectos a la vista. Redes PERT, CPM y ROY en un laboratorio interactivo: un panel de laboratorio con una tabla de precedencias, la misma red en ROY y en PERT con el camino crítico en violeta, un diagrama de Gantt y el riesgo del plazo."
   favicon: favicon.svg
   site-url: https://josemagalan.github.io/project-network-lab-book/
   repo-url: https://github.com/josemagalan/project-network-lab-book
