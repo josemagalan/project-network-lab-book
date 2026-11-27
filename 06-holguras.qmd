@@ -1,0 +1,361 @@
+# Holguras y caminos críticos {#sec-holguras}
+
+<!-- Seguimiento interno (no visible): primer borrador del 2026-11-27, con el esquema revisado por un agente crítico y aprobado por el autor (memoria/esquemas/06-holguras.md): la holgura total explicada con los caminos (la menor holgura de los caminos que pasan por la actividad), no como «la holgura del camino»; orden total → críticas → libre → retrasos; FF ≤ TF solo sin plazo o con plazo ≥ duración; minirred A 5 → C 2, B 3 → D 4, B → C para la cadena de críticas que no es camino crítico; ficticias críticas en la red PERT; condición exacta de las holguras sobre sucesos. Cifras comprobadas con el núcleo de project-network-lab 74055bb (cpm.solve, cpm.whatIf, aoa.build, aoa.times): Mecánicas, TF/FF/IF/SF A 1 1 1 1, C 3 1 1 3, D 4 4 4 4, F 1 1 1 1, G 2 2 0 0, H 4 4 4 4, B E I J K 0; holgura de los sucesos 0 salvo el 4 (2); caminos B E I J K 13, A E I J K 12, B F I J K 12, B G I J K 11, C G I J K 10, B E H K 9, D K 9, A E H K 8, B F H K 8. Con plazo 12 (a mano): A 0, B −1, C 2, D 3, E −1, F 0, G 1, H 3, I −1, J −1, K −1. ¿Y si…? (duración nueva → duración del proyecto, caminos críticos): C 3 → 13, B E I J K; C 4 → 13, G empieza en 4; C 5 → 13, B E I J K y C G I J K; C 6 → 14, C G I J K; H 5 → 13, B E H K y B E I J K; H 6 → 14, B E H K. Mudanza: solo G con holgura (2 en las cuatro); 4 caminos críticos (A B E F, A C E F, D E F, D H F). Mudanza con D = 3: D 2 0 0 2, H 2 2 0 0, G 2 2 2 2; caminos críticos A B E F y A C E F; con D de 4, 9 días; con D de 6, 10. Minirred: duración 7, las cuatro críticas, caminos A C y B D de 7 y B C de 5. Contraejemplo de la conjetura a: A 1, B 3, C 5, D 3 (A), E 1 (A), F 1 (B, E); E con TF 2, FF 1, SF 1, IF 0. Ejercicio 7 del portal: FF de I 6 (sucesos: 0; del suceso 8 solo sale F1), IF y SF de D 1 (sucesos: 0; al suceso 4 solo llegan F2 y F4). Condición de las holguras sobre sucesos comprobada en 28 336 actividades de redes al azar: nunca dan de más; la FF da de menos solo si del suceso j solo salen ficticias, la SF solo si al i solo llegan ficticias, la IF en cualquiera de los dos casos. Estados del portal vistos el 2026-11-27 en una copia local de 74055bb (Chromium sin interfaz): modo predicción del paso 27 (pide TF de A a K); paso 31 de la red ROY y paso 27 de la red PERT (camino crítico, con F1 y F3 en rojo); paso 25 de la red PERT (holgura de los sucesos); «¿Y si…?» con wi=C:5; paso 26 del ejercicio 7 en la red PERT. Fuentes cotejadas: PMBOK 8.ª ed., guía, p. 161; Klastorin (2004, pp. 91–92, 99 y 102); Taha (2012, pp. 255 y 257–258); Kelley y Walker (1959, p. 163) y Malcolm et al. (1959, pp. 656–657), por OCR; Domínguez Machuca et al. (1995, pp. 338–339 y 341), por OCR. -->
+
+**Portal:** [Project Network Lab](https://josemagalan.github.io/project-network-lab/), pestañas [Ruta guiada](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=route&ex=ej6&step=26) (red ROY, red PERT y «¿Y si…?»), [Taller](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=work) y [Ejercicios](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=ex&xk=calc) (Cálculo, Detective).
+
+::: {.callout-warning .objetivos title="Objetivos del capítulo"}
+Al terminar el recorrido básico de este capítulo podrás:
+
+- calcular la holgura total de cada actividad y explicarla con los caminos que pasan por ella;
+- identificar las actividades y los caminos críticos, también cuando hay varios o el proyecto tiene un plazo;
+- calcular la holgura libre y distinguirla de la total;
+- prever qué pasa en el proyecto si una actividad se retrasa o tarda más de lo previsto.
+:::
+
+## La holgura total [[Básico]{.largo}[B]{.corto}]{.nivel .basico} {#sec-holguras-total}
+
+¿Por qué G puede empezar en 6 o en 8, y E solo en 5?
+
+En el capítulo 5 vimos que en algunas actividades el comienzo temprano y el tardío coinciden, y en otras no. La diferencia es la **holgura total** (TF, *total float*):
+
+```{=html}
+<p style="text-align:center"><strong>TF = LS − ES = LF − EF</strong></p>
+```
+
+Es cuánto puede retrasarse una actividad sin retrasar el proyecto, suponiendo que lo anterior va a fechas tempranas y que lo posterior puede ir a fechas tardías [@pmi2025, guía, p. 161; @klastorin2004, p. 91]. Es el campo central de abajo de la caja de 7 campos. En la notación española del portal se escribe HT.
+
+En Mecánicas del Sureste, A tiene TF = 1 − 0 = 1; C, 3; D, 4; F, 1; G, 2; H, 4. B, E, I, J y K tienen holgura total 0.
+
+**La holgura vista desde los caminos.** La holgura de un **camino** es lo que le falta para durar lo que el proyecto: la duración del proyecto menos la del camino. La holgura total de una actividad es la **menor** de las holguras de los caminos que pasan por ella. Domínguez Machuca et al. lo explican así: la holgura total pertenece en realidad al camino de la actividad, y si la actividad está en varios caminos, es la menor de ellas [@machuca1995, p. 339].
+
+Mecánicas tiene 9 caminos de Inicio a Fin, los que el portal lista en el último paso de la ruta guiada:
+
+| Camino | Duración | Holgura del camino |
+|---|:---:|:---:|
+| B → E → I → J → K | 13 | 0 |
+| A → E → I → J → K | 12 | 1 |
+| B → F → I → J → K | 12 | 1 |
+| B → G → I → J → K | 11 | 2 |
+| C → G → I → J → K | 10 | 3 |
+| B → E → H → K | 9 | 4 |
+| D → K | 9 | 4 |
+| A → E → H → K | 8 | 5 |
+| B → F → H → K | 8 | 5 |
+
+: Los caminos de Mecánicas del Sureste, con un proyecto de 13 días. {#tbl-holguras-caminos}
+
+G está en dos caminos, con holguras 2 y 3: su holgura total es 2. C solo está en uno, con holgura 3. H está en tres, con 4, 5 y 5: su holgura total es 4.
+
+Esta manera de verlo evita un error frecuente: **sumar las holguras** de actividades de un mismo camino. C y G están las dos en C → G → I → J → K, que tiene 3 días de holgura. C tiene 3 y G tiene 2, pero entre las dos no tienen 5: si C gasta sus 3 días, G empieza 2 días tarde y se queda sin nada. La holgura de un camino es una sola, y la comparten todas sus actividades.
+
+Así se cierra, a medias, el ejercicio del capítulo 1: C puede retrasarse 3 días sin retrasar el proyecto, pero a costa de G. Lo que le cuesta a G se mide con la holgura libre, en la sección -@sec-holguras-libre.
+
+::: {.callout-tip .ejemplo #ejemplo-holguras-total title="Ejemplo reproducible · La holgura total de Mecánicas del Sureste"}
+**Datos.** Mecánicas del Sureste, con las dos pasadas terminadas.
+
+**Predice.** Calcula la holgura total de cada actividad con LS − ES. Después, comprueba las de A, F y H con la tabla de caminos.
+
+[Abrir: la holgura total en modo predicción](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=route&ex=ej6&step=26&pred=1){.abrir target="_blank"}
+
+El portal pide la holgura total de las once actividades a la vez. Escríbelas y pulsa **Comprobar**.
+
+<details>
+<summary>**Ver el resultado**</summary>
+
+A 1, B 0, C 3, D 4, E 0, F 1, G 2, H 4, I 0, J 0, K 0. Con los caminos: A está en A → E → I → J → K (holgura 1) y en A → E → H → K (5), y le queda la menor, 1. F, en B → F → I → J → K (1) y B → F → H → K (5): 1. H, en tres caminos, con 4, 5 y 5: 4.
+</details>
+:::
+
+:::: {.callout-note .ejercicio #ejercicio-holguras-total title="Ejercicio · La holgura total de la mudanza"}
+Con las fechas de la mudanza del capítulo 5:
+
+1. Calcula la holgura total de cada actividad. ¿Coincide con lo que respondiste en el ejercicio [](#ejercicio-tiempos-atras)?
+2. Repite el cálculo con D de 3 días (ejercicio [](#ejercicio-tiempos-sucesos)).
+3. En la mudanza con D de 3 días, escribe los caminos de Inicio a Fin con su holgura y comprueba con ellos la holgura total de D, H y G.
+
+[Abrir: la mudanza con D de 3 días, paso de la holgura total](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=work&t=A%2C3%2C%2CInventario%3BB%2C2%2CA%2CEmbalar%2520el%2520vidrio%3BC%2C2%2CA%2CEmbalar%2520equipos%3BD%2C3%2C%2CPreparar%2520el%2520laboratorio%3BE%2C1%2CB%252C%2520C%252C%2520D%2CTransporte%3BF%2C3%2CE%252C%2520H%2CInstalar%2520equipos%3BG%2C1%2CE%2CDesembalar%2520el%2520vidrio%3BH%2C1%2CD%2CRevisar%2520la%2520seguridad&step=20){.abrir target="_blank"}
+
+<details>
+<summary>**Ver la solución**</summary>
+
+1. Solo G tiene holgura total: LS − ES = 8 − 6 = 2. Las demás, 0. Es la G del capítulo 5, la única actividad con ES distinto de LS.
+2. D, H y G tienen 2; las demás, 0.
+3. A → B → E → F y A → C → E → F duran 9 (holgura 0); D → E → F, D → H → F, A → B → E → G y A → C → E → G, 7 (holgura 2); D → E → G, 5 (holgura 4). D está en D → E → F, D → H → F y D → E → G: holgura total 2. H, solo en D → H → F: 2. G, en tres caminos, con 2, 2 y 4: 2.
+</details>
+::::
+
+## Actividades y caminos críticos [[Básico]{.largo}[B]{.corto}]{.nivel .basico} {#sec-holguras-criticos}
+
+¿Qué actividades no pueden retrasarse ni un día?
+
+Una **actividad crítica** es la que tiene holgura total 0: cualquier retraso suyo retrasa el proyecto. Un **camino crítico** va de Inicio a Fin solo por actividades críticas, y cada una empieza justo cuando termina la anterior; su duración es la del proyecto. Kelley y Walker ya lo definían así en 1959: un trabajo es crítico si el tiempo disponible para él es igual a su duración, y si un proyecto tiene trabajos críticos, tiene al menos un camino continuo de ellos de principio a fin, el camino crítico [@kelley1959, p. 163].
+
+En Mecánicas, las críticas son B, E, I, J y K, y forman un solo camino crítico: B → E → I → J → K, el de 13 días.
+
+**La segunda condición importa.** No basta con que todas las actividades de una cadena sean críticas. En una red de cuatro actividades, A de 5 días y B de 3, sin predecesoras; C de 2, que espera a A y a B; y D de 4, que espera a B, el proyecto dura 7 días y las cuatro actividades son críticas: A → C dura 7, y B → D, también. Pero B → C solo dura 5. B termina en 3 y C no empieza hasta 5: entre las dos hay un hueco, y B → C no es un camino crítico. Es un error frecuente pensar que cualquier cadena de actividades críticas lo es.
+
+**Varios caminos críticos.** Un proyecto puede tener más de uno: todos los que duran lo mismo que el proyecto [@machuca1995, p. 339]. Aparecen con los empates del capítulo 5: cuando varias predecesoras mandan a la vez, cada una abre un camino crítico distinto. En la mudanza, B, C y D terminan en 5 y E espera a las tres; E y H terminan en 6, y F espera a las dos. El resultado son cuatro caminos críticos: A → B → E → F, A → C → E → F, D → E → F y D → H → F. Siete de sus ocho actividades son críticas; solo G no lo es.
+
+**Con un plazo.** Si la pasada hacia atrás parte de un plazo en lugar de la duración, todas las holguras totales se desplazan lo que el plazo se separa de la duración. Con un plazo más largo, ninguna actividad tiene holgura 0. Kelley y Walker solo llamaban críticos a los trabajos de un proyecto cuyo fin fijado coincide con el más temprano [@kelley1959, p. 163]; Domínguez Machuca et al. llaman críticas, en ese caso, a las de **menor** holgura [@machuca1995, p. 339]. Con un plazo más corto, la holgura total sale **negativa**: el plan no cabe en el plazo, y las actividades con holgura negativa son las que habría que acelerar [@pmi2025, guía, p. 161]. Con un plazo de 12 días, Mecánicas tiene B, E, I, J y K con holgura −1. A y F tienen holgura 0, pero no son críticas: las críticas son las de holgura mínima, −1.
+
+**En la red PERT.** Cada suceso tiene su **holgura**, el tiempo tardío menos el temprano. El artículo de 1959 que presentó PERT la llamaba *slack*, y unía los sucesos con holgura 0 para obtener el camino crítico [@malcolm1959, pp. 656–657]. En Mecánicas todos los sucesos tienen holgura 0 menos el 4, que tiene 2. El camino crítico en flechas es 1 → 2 → 3 → 5 → 6 → 7 → 8 → 9, y pasa por dos ficticias, F1 y F3, que también son críticas.
+
+Pero un suceso crítico no hace crítica a la actividad que sale de él. Para que una actividad sea crítica, además de que sus dos sucesos lo sean, el tiempo entre ellos tiene que ser igual a su duración [@taha2012, p. 255]. F va del suceso 2 al 5, los dos con holgura 0, y tiene holgura total 1: entre TE(2) = 3 y TL(5) = 7 hay 4 días, y F dura 3. En la mudanza, todos los sucesos tienen holgura 0, y G no es crítica.
+
+::: {.callout-tip .ejemplo #ejemplo-holguras-criticos title="Ejemplo reproducible · Los cuatro caminos críticos de la mudanza"}
+**Datos.** La mudanza en el taller, con las dos pasadas y las holguras calculadas.
+
+**Predice.** ¿Qué actividades son críticas? ¿Cuántos caminos críticos hay? ¿Dónde se separan y dónde se juntan?
+
+[Abrir: el camino crítico de la mudanza](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=work&t=A%2C3%2C%2CInventario%3BB%2C2%2CA%2CEmbalar%2520el%2520vidrio%3BC%2C2%2CA%2CEmbalar%2520equipos%3BD%2C5%2C%2CPreparar%2520el%2520laboratorio%3BE%2C1%2CB%252C%2520C%252C%2520D%2CTransporte%3BF%2C3%2CE%252C%2520H%2CInstalar%2520equipos%3BG%2C1%2CE%2CDesembalar%2520el%2520vidrio%3BH%2C1%2CD%2CRevisar%2520la%2520seguridad&step=24){.abrir target="_blank"}
+
+<details>
+<summary>**Ver el resultado**</summary>
+
+Todas menos G son críticas, y hay cuatro caminos críticos: A → B → E → F, A → C → E → F, D → E → F y D → H → F. Se separan al empezar, en A y D, y después de A, en B y C; se juntan en E y en F. El panel del paso dice cuántos caminos críticos hay, y la tabla de resultados los lista, con su duración, 9 días.
+</details>
+:::
+
+:::: {.callout-note .ejercicio #ejercicio-holguras-criticos title="Ejercicio · Cadenas y sucesos críticos"}
+1. En la red de cuatro actividades del texto (A 5 y B 3, sin predecesoras; C 2, que espera a A y B; D 4, que espera a B), calcula las cuatro fechas y la holgura total de cada actividad. ¿Cuántos caminos críticos hay?
+2. En la red PERT de Mecánicas (figura -@fig-redes-pert), ¿qué sucesos son críticos? ¿Qué flechas, ficticias incluidas, forman el camino crítico?
+3. A, D, F y H unen sucesos críticos. ¿Por qué ninguna de ellas es crítica?
+
+[Abrir: la red de cuatro actividades en el taller](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=work&t=A%2C5%2C%2C%3BB%2C3%2C%2C%3BC%2C2%2CA%252C%2520B%2C%3BD%2C4%2CB%2C&step=16){.abrir target="_blank"}
+
+<details>
+<summary>**Ver la solución**</summary>
+
+1. ES, EF, LS, LF: A 0, 5, 0, 5; B 0, 3, 0, 3; C 5, 7, 5, 7; D 3, 7, 3, 7. Las cuatro tienen holgura total 0. Hay dos caminos críticos, A → C y B → D. B → C dura 5 y no es crítico: B termina en 3 y C empieza en 5.
+2. Todos menos el 4. El camino crítico es B (1, 2), F1 (2, 3), E (3, 5), F3 (5, 6), I (6, 7), J (7, 8) y K (8, 9).
+3. Porque el tiempo entre sus sucesos es mayor que su duración. A va del 1 al 3: tiene 3 días y dura 2. D, del 1 al 8: tiene 12 y dura 8. F, del 2 al 5: tiene 4 y dura 3. H, del 5 al 8: tiene 5 y dura 1. Las diferencias son sus holguras totales: 1, 4, 1 y 4.
+</details>
+::::
+
+## La holgura libre [[Básico]{.largo}[B]{.corto}]{.nivel .basico} {#sec-holguras-libre}
+
+¿Cuánto puede retrasarse una actividad sin molestar a nadie?
+
+La holgura total dice cuánto puede retrasarse una actividad sin retrasar el **proyecto**, pero puede retrasar a sus sucesoras. La **holgura libre** (FF, *free float*; HL en la notación española) es cuánto puede retrasarse sin retrasar el comienzo temprano de **ninguna sucesora** [@klastorin2004, p. 91]:
+
+```{=html}
+<p style="text-align:center"><strong>FF = mín { ES de las sucesoras } − EF</strong></p>
+```
+
+Para las actividades finales, la sucesora es Fin, cuyo ES es la duración del proyecto.
+
+En Mecánicas, C tiene holgura total 3, pero holgura libre 1: G empieza como pronto en 3, porque también espera a B, y C termina en 2. Si C se retrasa 1 día, G sigue empezando en 3; si se retrasa más, G empieza más tarde. G, en cambio, tiene holgura libre 2, igual que la total: I empieza en 7 porque espera a E, y G termina en 5.
+
+Una actividad tiene holgura libre cuando **sus sucesoras esperan además a otra predecesora que termina más tarde**. No depende de dónde esté en la cadena, sino de quién manda en sus sucesoras. Por eso la holgura de un camino suele estar «guardada» en su última actividad antes de juntarse con otro camino: en C → G → I, los 3 días de holgura del camino se reparten en 1 de holgura libre de C y 2 de G.
+
+La holgura libre nunca es mayor que la total si la pasada hacia atrás parte de la duración, o de un plazo más largo. Con un plazo más corto, sí puede serlo: con el plazo de 12 días, B tiene holgura total −1 y holgura libre 0.
+
+Taha propone usar las dos holguras como una **señal roja** al programar las actividades no críticas: si la holgura libre de una actividad es menor que la total, retrasarla más allá de su holgura libre obliga a retrasar también las actividades que la siguen [@taha2012, pp. 257–258]. La línea discontinua del Gantt del portal es la holgura total: para mover una barra sin mover ninguna otra, solo vale la libre.
+
+::: {.callout-tip .ejemplo #ejemplo-holguras-libre title="Ejemplo reproducible · La holgura libre de Mecánicas del Sureste"}
+**Datos.** Mecánicas del Sureste, con la holgura total ya calculada.
+
+**Predice.** ¿Qué actividades tienen holgura libre menor que la total? ¿Qué sucesora es la responsable en cada caso?
+
+[Abrir: la holgura libre en modo predicción](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=route&ex=ej6&step=27&pred=1){.abrir target="_blank"}
+
+<details>
+<summary>**Ver el resultado**</summary>
+
+Holgura libre: A 1, B 0, C 1, D 4, E 0, F 1, G 2, H 4, I 0, J 0, K 0. Solo C tiene menos holgura libre que total (1 frente a 3): su sucesora, G, empieza en 3 porque espera a B. En las demás actividades con holgura, la sucesora espera a otra que termina más tarde, y la holgura libre es igual a la total.
+</details>
+:::
+
+:::: {.callout-note .ejercicio #ejercicio-holguras-libre title="Ejercicio · Dónde está guardada la holgura"}
+En la mudanza con D de 3 días, D, H y G tienen holgura total 2.
+
+1. Calcula su holgura libre.
+2. D y H están en el mismo camino, D → H → F. ¿Dónde está «guardada» su holgura?
+3. Si D se retrasa 1 día, ¿qué actividad se mueve? ¿Y si se retrasa H 1 día?
+
+<details>
+<summary>**Ver la solución**</summary>
+
+1. D: sus sucesoras, E y H, empiezan como pronto en 5 y en 3; D termina en 3: FF = mín {5, 3} − 3 = 0. H: su sucesora, F, empieza en 6 porque espera a E; H termina en 4: FF = 2. G: es final; Fin empieza en 9, y G termina en 7: FF = 2.
+2. En H, la última actividad del camino antes de juntarse con E → F.
+3. Si D se retrasa 1 día, H empieza en 4 en lugar de 3: se mueve H, pero no F ni el proyecto. Si H se retrasa 1 día, no se mueve nada: F sigue empezando en 6.
+</details>
+::::
+
+## ¿Y si se retrasa una actividad? [[Básico]{.largo}[B]{.corto}]{.nivel .basico} {#sec-holguras-retrasos}
+
+¿Qué pasa en el proyecto si una actividad empieza tarde, o tarda más de lo previsto?
+
+Con las dos holguras se puede prever el efecto de un retraso en una sola actividad:
+
+- **Hasta su holgura libre**, no se mueve nada más.
+- **Entre la libre y la total**, se retrasan algunas sucesoras, pero el proyecto no.
+- **Más allá de la total**, el proyecto se retrasa lo que el retraso pase de la holgura total.
+
+Domínguez Machuca et al. advierten de lo que pasa entre medias: una actividad no crítica que se retrasa tanto como su holgura se convierte en crítica, gasta la holgura de su camino, y ese camino se vuelve crítico también [@machuca1995, p. 341]. Por eso las actividades con poca holgura merecen tanta atención como las críticas.
+
+Dos avisos. Los tramos valen para **un** retraso: si se retrasan dos actividades del mismo camino, gastan la misma holgura, y los retrasos se suman. Y no es lo mismo **empezar tarde** que **tardar más**. Las dos cosas mueven igual el fin de la actividad, pero si la actividad tarda más, todas las fechas se recalculan con la nueva duración: su holgura total baja lo que haya crecido la duración, y con ella la de las actividades que comparten sus caminos. Si se pregunta por la nueva holgura de la actividad, no vale la antigua.
+
+::: {.callout-tip .ejemplo #ejemplo-holguras-retrasos title="Ejemplo reproducible · ¿Y si C tarda más?"}
+**Datos.** Mecánicas del Sureste. C dura 2 días y tiene holgura total 3 y libre 1.
+
+**Predice.** ¿Qué pasa si C dura 3 días? ¿Y 4, 5 o 6? Para cada caso: ¿cuánto dura el proyecto, cuándo empieza G y cuántos caminos críticos hay?
+
+[Abrir: Mecánicas con C de 5 días](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=route&ex=ej6&step=31&wi=C:5){.abrir target="_blank"}
+
+El enlace abre la ruta guiada con C de 5 días, con el botón **¿Y si…?** ya aplicado. Pulsa **¿Y si…?** para probar las otras duraciones; **Volver a los datos originales** deshace el cambio.
+
+<details>
+<summary>**Ver el resultado**</summary>
+
+- **C de 3 días** (1 más, su holgura libre): G sigue empezando en 3. No cambia nada más; el único camino crítico es B → E → I → J → K.
+- **C de 4 días**: G empieza en 4, un día tarde, pero termina en 6 e I sigue empezando en 7. El proyecto sigue durando 13 días.
+- **C de 5 días** (3 más, su holgura total): el proyecto sigue durando 13 días, pero C y G se vuelven críticas, y hay dos caminos críticos, B → E → I → J → K y C → G → I → J → K.
+- **C de 6 días**: el proyecto dura 14, un día más, el que pasa de la holgura total. Ahora el único camino crítico es C → G → I → J → K, y B y E ya tienen holgura.
+</details>
+:::
+
+:::: {.callout-note .ejercicio #ejercicio-holguras-retrasos title="Ejercicio · Retrasos en la mudanza y en Mecánicas"}
+1. En la mudanza con D de 3 días (holgura total 2 y libre 0), D empieza 1, 2 o 3 días tarde. ¿Qué actividades se mueven en cada caso? ¿Cuánto dura el proyecto?
+2. En Mecánicas, ¿hasta cuántos días puede durar H sin retrasar el proyecto? ¿Qué camino crítico aparece entonces?
+3. Mecánicas tiene un plazo de 12 días. Calcula la holgura total de cada actividad. ¿Cuáles son críticas?
+
+<details>
+<summary>**Ver la solución**</summary>
+
+1. Con 1 día, D va de 1 a 4 y H, de 4 a 5; F sigue empezando en 6 y el proyecto dura 9. Con 2 días, D va de 2 a 5, H de 5 a 6, y E sigue empezando en 5: el proyecto dura 9, pero D y H se vuelven críticas, y D → E → F y D → H → F vuelven a ser caminos críticos, como en la mudanza original. Con 3 días, D termina en 6, E y H empiezan en 6, y el proyecto dura 10.
+2. Hasta 5 días: su holgura total es 4. Con 5 días, B → E → H → K dura 13 y es un segundo camino crítico. Con 6, el proyecto dura 14, y B → E → H → K es el único crítico. Compruébalo con **¿Y si…?**.
+3. Todas las holguras totales bajan 1: A 0, B −1, C 2, D 3, E −1, F 0, G 1, H 3, I −1, J −1, K −1. Las críticas son las de holgura mínima, −1: B, E, I, J y K, el mismo camino de siempre, que no cabe en el plazo. A y F tienen holgura 0, pero no son críticas.
+</details>
+::::
+
+## Resumen {.unnumbered #resumen}
+
+- La holgura total, TF = LS − ES, es cuánto puede retrasarse una actividad sin retrasar el proyecto. Es la menor de las holguras de los caminos que pasan por ella, y las actividades de un mismo camino comparten la de ese camino: no se suman.
+- Una actividad es crítica si su holgura total es 0 (o la mínima, si hay un plazo). Un camino crítico va de Inicio a Fin por actividades críticas, cada una empezando cuando termina la anterior. Puede haber varios.
+- Con un plazo más corto que la duración, las holguras totales salen negativas.
+- En la red PERT, los sucesos tienen holgura TL − TE. Un suceso crítico no hace crítica a la actividad que sale de él; las ficticias también pueden ser críticas.
+- La holgura libre, FF = mín ES de las sucesoras − EF, es cuánto puede retrasarse una actividad sin retrasar a ninguna sucesora.
+- Un retraso hasta la holgura libre no mueve nada; hasta la total, mueve sucesoras; más allá, retrasa el proyecto. Gastar holgura crea caminos críticos nuevos.
+
+Para seguir el recorrido básico, continúa por el capítulo «Duraciones inciertas: tres tiempos» (en preparación), donde las duraciones dejan de ser fijas.
+
+## Holgura independiente y de seguridad [[Avanzado]{.largo}[A]{.corto}]{.nivel .avanzado} {#sec-holguras-cuatro}
+
+El portal calcula cuatro holguras, las de Klastorin [@klastorin2004, pp. 91–92]. Las dos primeras ya las conocemos; las otras dos cambian lo que se supone de las predecesoras:
+
+| Holgura | Fórmula | Supone que las predecesoras… | …y que las sucesoras |
+|---|---|---|---|
+| Total (TF, HT) | LF − ES − d | terminan pronto | empiezan tarde |
+| Libre (FF, HL) | mín ES sucesoras − ES − d | terminan pronto | empiezan pronto |
+| De seguridad (SF, HS) | LF − máx LF predecesoras − d | terminan tarde | empiezan tarde |
+| Independiente (IF, HI) | máx (0, mín ES sucesoras − máx LF predecesoras − d) | terminan tarde | empiezan pronto |
+
+: Las cuatro holguras del portal. {#tbl-holguras-cuatro}
+
+La **holgura de seguridad** es el margen que queda aunque todas las predecesoras terminen lo más tarde posible. La **independiente** es el margen que queda en el peor caso por los dos lados: predecesoras tarde y sucesoras pronto. Como ese margen puede no existir, se acota en 0. Klastorin la presenta como lo que puede crecer la duración de la actividad sin afectar a ninguna otra [@klastorin2004, p. 92].
+
+En Mecánicas, G tiene holgura total y libre 2, pero de seguridad e independiente 0. Sus dos días existen solo si C termina pronto: si C termina en su fin tardío, 5, G ya no tiene margen. C, en cambio, no tiene predecesoras, y su holgura de seguridad es igual a la total, 3.
+
+Las cuatro son antiguas. Kelley y Walker ya daban en 1959 la holgura total, la libre, la independiente y una cuarta, la **interferente** (*interfering float*), que equivale a la diferencia entre la total y la libre: la parte de la holgura que, si se gasta, interfiere con otras actividades [@kelley1959, p. 163].
+
+**Una relación entre las cuatro.** Si llamamos IF* a la holgura independiente sin acotar en 0, es decir, mín ES sucesoras − máx LF predecesoras − d, se cumple siempre:
+
+```{=html}
+<p style="text-align:center"><strong>TF + IF* = FF + SF</strong></p>
+```
+
+Basta con escribir las cuatro fórmulas y sumar: los ES y los LF de la propia actividad se cancelan. Con G: 2 + 0 = 2 + 0. Con C: 3 + 1 = 1 + 3.
+
+::: {.callout-tip .ejemplo #ejemplo-holguras-cuatro title="Ejemplo reproducible · Una independiente más pequeña"}
+**Datos.** Un proyecto de seis actividades: A 1 día, B 3 y C 5, sin predecesoras; D 3, que espera a A; E 1, que espera a A; F 1, que espera a B y a E.
+
+**Predice.** Calcula las cuatro holguras de E. ¿Es la independiente igual a la menor entre la libre y la de seguridad?
+
+[Abrir: el proyecto de seis actividades en el taller](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=work&t=A%2C1%2C%2C%3BB%2C3%2C%2C%3BC%2C5%2C%2C%3BD%2C3%2CA%2C%3BE%2C1%2CA%2C%3BF%2C1%2CB%252C%2520E%2C&step=21){.abrir target="_blank"}
+
+<details>
+<summary>**Ver el resultado**</summary>
+
+El proyecto dura 5 días; solo C es crítica. E: ES 1, EF 2, LS 3, LF 4. Holgura total, 4 − 1 − 1 = 2. Libre: F empieza en 3, porque espera a B; 3 − 2 = 1. De seguridad: A tiene LF 2, porque D, de 3 días, tiene que empezar en 2 como muy tarde; 4 − 2 − 1 = 1. Independiente: 3 − 2 − 1 = 0. La independiente es 0, y la menor de las otras dos es 1: no son iguales. La relación sí se cumple: 2 + 0 = 1 + 1.
+</details>
+:::
+
+:::: {.callout-note .ejercicio #ejercicio-holguras-cuatro title="Ejercicio · Las conjeturas de Klastorin"}
+Klastorin propone a sus lectores demostrar o refutar dos conjeturas [@klastorin2004, p. 102]:
+
+a. La holgura independiente es la menor entre la libre y la de seguridad.
+b. La holgura total más la libre es igual a la de seguridad más la independiente.
+
+1. ¿Son ciertas? Busca contraejemplos en Mecánicas o en el ejemplo [](#ejemplo-holguras-cuatro).
+2. Demuestra, con la relación TF + IF* = FF + SF, que la holgura independiente nunca es mayor que la libre ni que la de seguridad.
+
+<details>
+<summary>**Ver la solución**</summary>
+
+1. Las dos son falsas. La b, con G de Mecánicas: 2 + 2 = 4, y 0 + 0 = 0. La a, con E del ejemplo: la independiente es 0 y la menor de las otras dos, 1. La relación verdadera es la del texto, con la libre y la de seguridad en el mismo lado.
+2. IF* = FF − (TF − SF) = SF − (TF − FF). Sin plazo, la total es mayor o igual que la libre y que la de seguridad, así que IF* ≤ FF e IF* ≤ SF. Como FF y SF no son negativas, acotar IF* en 0 no cambia la conclusión: IF ≤ mín (FF, SF). La igualdad de la conjetura a solo se da si TF = FF, si TF = SF o si una de las dos, FF o SF, es 0.
+</details>
+::::
+
+## Holguras calculadas sobre los sucesos [[Avanzado]{.largo}[A]{.corto}]{.nivel .avanzado} {#sec-holguras-sucesos}
+
+Los manuales que trabajan con la red PERT calculan las holguras de las actividades con los tiempos de los sucesos. Para la actividad que va del suceso i al j, con duración d [@taha2012, p. 257; @klastorin2004, p. 99]:
+
+- holgura total: TL(j) − TE(i) − d;
+- holgura libre: TE(j) − TE(i) − d;
+- holgura de seguridad: TL(j) − TL(i) − d;
+- holgura independiente: máx (0, TE(j) − TL(i) − d).
+
+La total es siempre exacta, porque, como vimos en el capítulo 5, ES = TE(i) y LF = TL(j). Las otras tres suponen algo más: que TE(j) es el comienzo temprano de las sucesoras, y que TL(i) es el fin tardío de las predecesoras. Eso es cierto si del suceso j sale alguna actividad y si al suceso i llega alguna. Pero si de j **solo salen ficticias**, las sucesoras empiezan al final de esas ficticias, y TE(j) puede ser menor que su comienzo; y si a i **solo llegan ficticias**, TL(i) puede ser mayor que el fin tardío de las predecesoras.
+
+Lo hemos comprobado con el núcleo del portal en más de 28 000 actividades de redes al azar: las fórmulas sobre los sucesos nunca dan más holgura de la que hay. A veces dan menos, y solo en esos casos: la libre, cuando del suceso j solo salen ficticias; la de seguridad, cuando al suceso i solo llegan ficticias; la independiente, en cualquiera de los dos. El error es prudente, porque nunca promete un margen que no existe, pero puede esconder parte del que hay.
+
+En Mecánicas no ocurre: de todos sus sucesos sale alguna actividad, y a todos llega alguna. En el ejercicio 7 del portal, sí. I va del suceso 5 al 8, empieza en 12, dura 9 y termina en 21. Del suceso 8 solo sale una ficticia de unicidad, que separa I de G y llega al suceso final, en 27. Sobre los sucesos, la holgura libre de I es TE(8) − TE(5) − 9 = 21 − 12 − 9 = 0. Pero la sucesora de I es Fin, que empieza en 27, y su holgura libre es 6. El suceso 8 solo existe para que I y G no compartan sus dos sucesos, y su tiempo temprano es el propio fin de I. El «Aprende más» de la red PERT del portal advierte de este caso.
+
+::: {.callout-tip .ejemplo #ejemplo-holguras-sucesos title="Ejemplo reproducible · Las holguras del ejercicio 7"}
+**Datos.** El ejercicio 7 del portal: A 10 días, sin predecesoras; B 8, sin predecesoras; C 5 (B); D 4 (A, B); E 12, sin predecesoras; G 6 (E); H 7 (A, E); I 9 (E); J 8 (C, D, H). Su red PERT tiene 9 sucesos y 5 ficticias.
+
+**Predice.** Calcula sobre los sucesos las holguras libre, de seguridad e independiente de D, que va del suceso 4 al 7. Al suceso 4 solo llegan dos ficticias, una desde el final de A y otra desde el final de B.
+
+[Abrir: las holguras del ejercicio 7 en la red PERT](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=route&ex=ej7&graph=aoa&step=25){.abrir target="_blank"}
+
+<details>
+<summary>**Ver el resultado**</summary>
+
+Los tiempos son TE(4) = 10, TL(4) = 15, TE(7) = 19 y TL(7) = 19. Sobre los sucesos: libre, 19 − 10 − 4 = 5; de seguridad, 19 − 15 − 4 = 0; independiente, máx (0, 19 − 15 − 4) = 0. La tabla del portal da 5, 1 y 1. La libre es exacta, porque del suceso 7 sale J. Las otras dos se quedan cortas, porque TL(4) = 15 es el comienzo tardío de D, y no el fin tardío de sus predecesoras: A puede terminar como muy tarde en 12, y B en 14. Con 14 en lugar de 15, salen 1 y 1.
+</details>
+:::
+
+:::: {.callout-note .ejercicio #ejercicio-holguras-sucesos title="Ejercicio · ¿Cuándo fallan las fórmulas?"}
+1. En el ejercicio 7, calcula sobre los sucesos la holgura libre de I y la de A, que va del suceso 1 al 2. Del suceso 2 solo salen dos ficticias. ¿Falla la fórmula en las dos?
+2. ¿Por qué no basta con que de j solo salgan ficticias para que la holgura libre salga mal?
+
+<details>
+<summary>**Ver la solución**</summary>
+
+1. I: TE(8) − TE(5) − 9 = 21 − 12 − 9 = 0, y la real es 6: falla. A: TE(2) − TE(1) − 10 = 10 − 0 − 10 = 0, y la real también es 0: las sucesoras de A, D y H, empiezan en 10 y en 12, y la menor es 10. No falla.
+2. Porque la fórmula solo se equivoca si el suceso j ocurre antes de que pueda empezar la primera sucesora. Del suceso 2 salen ficticias hacia el 4, del que sale D, y hacia el 6, del que sale H. TE(4) = 10 = TE(2): D puede empezar justo cuando termina A, y la fórmula acierta. Del suceso 8, en cambio, la ficticia lleva al suceso final, que ocurre en 27, mucho después de que I termine.
+</details>
+::::
+
+## Ampliaciones [[Para saber más]{.largo}[+]{.corto}]{.nivel .saber-mas} {#sec-holguras-ampliaciones}
+
+**Los «floaters».** Kelley y Walker llamaban *floater* al trabajo con más tiempo disponible que su duración, y explicaban por qué conviene distinguir varias holguras: unos *floaters* pueden desplazarse sin interferir con otros trabajos ni con el fin del proyecto, y otros, si se desplazan, provocan una reacción en cadena de desplazamientos aguas abajo [@kelley1959, p. 163]. Es la diferencia entre la holgura libre y la total.
+
+**¿Cuántas actividades críticas tiene un proyecto?** Domínguez Machuca et al., citando a Meredith y Mantel, afirman que en los proyectos reales las actividades críticas no suelen pasar del 10 % del total, y advierten que en los ejemplos de clase el porcentaje es mayor para simplificar [@machuca1995, p. 341]. En Mecánicas son 5 de 11, un 45 %; en la mudanza, 7 de 8.
+
+**Lo crítico, cuando las duraciones son inciertas.** Todo este capítulo supone que las duraciones son conocidas. Si no lo son, un camino con holgura pero con mucha incertidumbre puede acabar marcando el fin del proyecto. Es el tema de los capítulos 7 a 9, donde «crítica» deja de ser un sí o un no y pasa a ser una probabilidad.
+
+::: {.callout-note .mas-portal title="Más en el portal"}
+- **La lista de todos los caminos**, en el último paso de la ruta guiada o del taller, con su duración; y el **Gantt**, con la holgura total de cada actividad como línea discontinua.
+- **¿Y si…?**, en la ruta guiada y en el taller: cambia la duración de una o varias actividades y mira cómo cambian las fechas, las holguras y los caminos críticos.
+- **Cálculo**, en la pestaña Ejercicios: además de las fechas, pide las cuatro holguras, las actividades críticas y los caminos críticos, y los corrige con error consecuente.
+- **Detective**, con la red ROY o la PERT y los errores de cálculo: siembra holguras mal calculadas y actividades críticas equivocadas.
+:::
+
+## Referencias del capítulo {.unnumbered #referencias}
+
+::: {.referencias-capitulo #refs}
+:::

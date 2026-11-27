@@ -301,7 +301,7 @@ Con las fechas de los ejercicios [](#ejercicio-tiempos-delante) y [](#ejercicio-
 - Las mismas fechas se escriben en notación anglosajona o española, en cajas de 7 campos, de 4 o compactas, y en un Gantt con fechas tempranas o tardías.
 - En algunas actividades, ES = LS; en otras, no. Qué significa esa diferencia es el tema del capítulo siguiente.
 
-Para seguir el recorrido básico, continúa por el capítulo «Holguras y caminos críticos» (en preparación).
+Para seguir el recorrido básico, continúa por el [capítulo «Holguras y caminos críticos»](06-holguras.qmd), donde esa diferencia tiene nombre.
 
 ## La matriz de encadenamiento [[Avanzado]{.largo}[A]{.corto}]{.nivel .avanzado} {#sec-tiempos-matriz}
 

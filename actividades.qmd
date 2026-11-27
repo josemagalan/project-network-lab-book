@@ -21,7 +21,7 @@ Aquí están todas las cajas de trabajo del libro. Los **ejemplos reproducibles*
 
 ### Ruta guiada {.unnumbered #h-route}
 
-14 ejemplos reproducibles, 3 cajas «En el portal» y 5 ejercicios.
+18 ejemplos reproducibles, 3 cajas «En el portal» y 5 ejercicios.
 
 | Actividad | Título | Sección | Nivel |
 |---|---|:-:|:-:|
@@ -47,16 +47,24 @@ Aquí están todas las cajas de trabajo del libro. Los **ejemplos reproducibles*
 | [Ejemplo 5.5](05-tiempos.qmd#ejemplo-tiempos-leer) | La caja de 4 campos | [5.5](05-tiempos.qmd#sec-tiempos-leer) | [[B]{.corto}]{.nivel .basico .solo-corto} |
 | [En el portal](05-tiempos.qmd#sec-tiempos-leer) | «Diagrama de Gantt» | [5.5](05-tiempos.qmd#sec-tiempos-leer) | [[B]{.corto}]{.nivel .basico .solo-corto} |
 | [Ejemplo 5.6](05-tiempos.qmd#ejemplo-tiempos-matriz) | La pasada en la matriz | [5.6](05-tiempos.qmd#sec-tiempos-matriz) | [[A]{.corto}]{.nivel .avanzado .solo-corto} |
+| [Ejemplo 6.1](06-holguras.qmd#ejemplo-holguras-total) | La holgura total de Mecánicas del Sureste | [6.1](06-holguras.qmd#sec-holguras-total) | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejemplo 6.3](06-holguras.qmd#ejemplo-holguras-libre) | La holgura libre de Mecánicas del Sureste | [6.3](06-holguras.qmd#sec-holguras-libre) | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejemplo 6.4](06-holguras.qmd#ejemplo-holguras-retrasos) | ¿Y si C tarda más? | [6.4](06-holguras.qmd#sec-holguras-retrasos) | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejemplo 6.6](06-holguras.qmd#ejemplo-holguras-sucesos) | Las holguras del ejercicio 7 | [6.6](06-holguras.qmd#sec-holguras-sucesos) | [[A]{.corto}]{.nivel .avanzado .solo-corto} |
 
 ### Taller {.unnumbered #h-work}
 
-1 ejemplo reproducible y 2 ejercicios.
+3 ejemplos reproducibles y 4 ejercicios.
 
 | Actividad | Título | Sección | Nivel |
 |---|---|:-:|:-:|
 | [Ejemplo 3.1](03-roy.qmd#ejemplo-roy-mudanza) | La red ROY de la mudanza | [3.1](03-roy.qmd#sec-roy-dibujar) | [[B]{.corto}]{.nivel .basico .solo-corto} |
 | [Ejercicio 4.4](04-pert.qmd#ejercicio-pert-mudanza) | La red PERT de la mudanza | [4.4](04-pert.qmd#sec-pert-numerar) | [[B]{.corto}]{.nivel .basico .solo-corto} |
 | [Ejercicio 5.4](05-tiempos.qmd#ejercicio-tiempos-sucesos) | La mudanza, con D más corta | [5.4](05-tiempos.qmd#sec-tiempos-sucesos) | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejercicio 6.1](06-holguras.qmd#ejercicio-holguras-total) | La holgura total de la mudanza | [6.1](06-holguras.qmd#sec-holguras-total) | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejemplo 6.2](06-holguras.qmd#ejemplo-holguras-criticos) | Los cuatro caminos críticos de la mudanza | [6.2](06-holguras.qmd#sec-holguras-criticos) | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejercicio 6.2](06-holguras.qmd#ejercicio-holguras-criticos) | Cadenas y sucesos críticos | [6.2](06-holguras.qmd#sec-holguras-criticos) | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejemplo 6.5](06-holguras.qmd#ejemplo-holguras-cuatro) | Una independiente más pequeña | [6.5](06-holguras.qmd#sec-holguras-cuatro) | [[A]{.corto}]{.nivel .avanzado .solo-corto} |
 
 ### Ejercicios {.unnumbered #h-ex}
 
@@ -146,3 +154,20 @@ Aquí están todas las cajas de trabajo del libro. Los **ejemplos reproducibles*
 | [Ejemplo 5.6](05-tiempos.qmd#ejemplo-tiempos-matriz) | La pasada en la matriz | [5.6](05-tiempos.qmd#sec-tiempos-matriz) | Ruta guiada | [[A]{.corto}]{.nivel .avanzado .solo-corto} |
 | [Ejercicio 5.6](05-tiempos.qmd#ejercicio-tiempos-matriz) | La matriz de la mudanza | [5.6](05-tiempos.qmd#sec-tiempos-matriz) | — | [[A]{.corto}]{.nivel .avanzado .solo-corto} |
 | [Ejercicio 5.7](05-tiempos.qmd#ejercicio-tiempos-dag) | La escalera | [5.7](05-tiempos.qmd#sec-tiempos-dag) | — | [[A]{.corto}]{.nivel .avanzado .solo-corto} |
+
+### 6. Holguras y caminos críticos {.unnumbered #a-cap-6}
+
+| Actividad | Título | Sección | Pestaña | Nivel |
+|---|---|:-:|---|:-:|
+| [Ejemplo 6.1](06-holguras.qmd#ejemplo-holguras-total) | La holgura total de Mecánicas del Sureste | [6.1](06-holguras.qmd#sec-holguras-total) | Ruta guiada | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejercicio 6.1](06-holguras.qmd#ejercicio-holguras-total) | La holgura total de la mudanza | [6.1](06-holguras.qmd#sec-holguras-total) | Taller | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejemplo 6.2](06-holguras.qmd#ejemplo-holguras-criticos) | Los cuatro caminos críticos de la mudanza | [6.2](06-holguras.qmd#sec-holguras-criticos) | Taller | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejercicio 6.2](06-holguras.qmd#ejercicio-holguras-criticos) | Cadenas y sucesos críticos | [6.2](06-holguras.qmd#sec-holguras-criticos) | Taller | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejemplo 6.3](06-holguras.qmd#ejemplo-holguras-libre) | La holgura libre de Mecánicas del Sureste | [6.3](06-holguras.qmd#sec-holguras-libre) | Ruta guiada | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejercicio 6.3](06-holguras.qmd#ejercicio-holguras-libre) | Dónde está guardada la holgura | [6.3](06-holguras.qmd#sec-holguras-libre) | — | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejemplo 6.4](06-holguras.qmd#ejemplo-holguras-retrasos) | ¿Y si C tarda más? | [6.4](06-holguras.qmd#sec-holguras-retrasos) | Ruta guiada | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejercicio 6.4](06-holguras.qmd#ejercicio-holguras-retrasos) | Retrasos en la mudanza y en Mecánicas | [6.4](06-holguras.qmd#sec-holguras-retrasos) | — | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejemplo 6.5](06-holguras.qmd#ejemplo-holguras-cuatro) | Una independiente más pequeña | [6.5](06-holguras.qmd#sec-holguras-cuatro) | Taller | [[A]{.corto}]{.nivel .avanzado .solo-corto} |
+| [Ejercicio 6.5](06-holguras.qmd#ejercicio-holguras-cuatro) | Las conjeturas de Klastorin | [6.5](06-holguras.qmd#sec-holguras-cuatro) | — | [[A]{.corto}]{.nivel .avanzado .solo-corto} |
+| [Ejemplo 6.6](06-holguras.qmd#ejemplo-holguras-sucesos) | Las holguras del ejercicio 7 | [6.6](06-holguras.qmd#sec-holguras-sucesos) | Ruta guiada | [[A]{.corto}]{.nivel .avanzado .solo-corto} |
+| [Ejercicio 6.6](06-holguras.qmd#ejercicio-holguras-sucesos) | ¿Cuándo fallan las fórmulas? | [6.6](06-holguras.qmd#sec-holguras-sucesos) | — | [[A]{.corto}]{.nivel .avanzado .solo-corto} |

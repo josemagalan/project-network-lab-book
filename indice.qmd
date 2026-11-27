@@ -2,9 +2,9 @@
 
 <!-- Archivo generado por filtros/indices.py en cada «quarto render» (pre-render). No lo edites a mano: los cambios se perderían. Para cambiar el contenido, cambia los capítulos; para cambiar el formato, cambia el script. -->
 
-El libro tiene 5 capítulos y 35 secciones: 22 de nivel [[Básico]{.largo}[B]{.corto}]{.nivel .basico}, 8 de nivel [[Avanzado]{.largo}[A]{.corto}]{.nivel .avanzado} y 5 de nivel [[Para saber más]{.largo}[+]{.corto}]{.nivel .saber-mas}. El **recorrido básico** son las secciones azules: se leen seguidas, capítulo a capítulo, sin las demás. Las avanzadas amplían el recorrido básico y suelen apoyarse en él; «Para saber más» cierra cada capítulo con lecturas y temas que el libro no desarrolla.
+El libro tiene 6 capítulos y 42 secciones: 26 de nivel [[Básico]{.largo}[B]{.corto}]{.nivel .basico}, 10 de nivel [[Avanzado]{.largo}[A]{.corto}]{.nivel .avanzado} y 6 de nivel [[Para saber más]{.largo}[+]{.corto}]{.nivel .saber-mas}. El **recorrido básico** son las secciones azules: se leen seguidas, capítulo a capítulo, sin las demás. Las avanzadas amplían el recorrido básico y suelen apoyarse en él; «Para saber más» cierra cada capítulo con lecturas y temas que el libro no desarrolla.
 
-Las actividades —19 ejemplos reproducibles, 5 cajas «En el portal» y 28 ejercicios— están listadas en el [índice de actividades](actividades.qmd), por capítulo y por pestaña del portal.
+Las actividades —25 ejemplos reproducibles, 5 cajas «En el portal» y 34 ejercicios— están listadas en el [índice de actividades](actividades.qmd), por capítulo y por pestaña del portal.
 
 ## El libro de un vistazo {.unnumbered #vistazo}
 
@@ -15,7 +15,8 @@ Las actividades —19 ejemplos reproducibles, 5 cajas «En el portal» y 28 ejer
 | [3. La red ROY](03-roy.qmd) | 4 | 1 | 1 | 2 | 0 | 4 |
 | [4. La red PERT y las ficticias](04-pert.qmd) | 5 | 4 | 1 | 7 | 0 | 9 |
 | [5. Calcular los tiempos](05-tiempos.qmd) | 5 | 2 | 1 | 5 | 2 | 7 |
-| **Total** | **22** | **8** | **5** | **19** | **5** | **28** |
+| [6. Holguras y caminos críticos](06-holguras.qmd) | 4 | 2 | 1 | 6 | 0 | 6 |
+| **Total** | **26** | **10** | **6** | **25** | **5** | **34** |
 
 ## 1. Proyectos, actividades y redes {.unnumbered #cap-1}
 
@@ -66,3 +67,13 @@ Las actividades —19 ejemplos reproducibles, 5 cajas «En el portal» y 28 ejer
 - [5.6 La matriz de encadenamiento](05-tiempos.qmd#sec-tiempos-matriz) [[A]{.corto}]{.nivel .avanzado .solo-corto}
 - [5.7 Por qué funciona: el camino más largo](05-tiempos.qmd#sec-tiempos-dag) [[A]{.corto}]{.nivel .avanzado .solo-corto}
 - [5.8 Ampliaciones](05-tiempos.qmd#sec-tiempos-ampliaciones) [[+]{.corto}]{.nivel .saber-mas .solo-corto}
+
+## 6. Holguras y caminos críticos {.unnumbered #cap-6}
+
+- [6.1 La holgura total](06-holguras.qmd#sec-holguras-total) [[B]{.corto}]{.nivel .basico .solo-corto}
+- [6.2 Actividades y caminos críticos](06-holguras.qmd#sec-holguras-criticos) [[B]{.corto}]{.nivel .basico .solo-corto}
+- [6.3 La holgura libre](06-holguras.qmd#sec-holguras-libre) [[B]{.corto}]{.nivel .basico .solo-corto}
+- [6.4 ¿Y si se retrasa una actividad?](06-holguras.qmd#sec-holguras-retrasos) [[B]{.corto}]{.nivel .basico .solo-corto}
+- [6.5 Holgura independiente y de seguridad](06-holguras.qmd#sec-holguras-cuatro) [[A]{.corto}]{.nivel .avanzado .solo-corto}
+- [6.6 Holguras calculadas sobre los sucesos](06-holguras.qmd#sec-holguras-sucesos) [[A]{.corto}]{.nivel .avanzado .solo-corto}
+- [6.7 Ampliaciones](06-holguras.qmd#sec-holguras-ampliaciones) [[+]{.corto}]{.nivel .saber-mas .solo-corto}
