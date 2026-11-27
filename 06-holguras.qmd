@@ -1,6 +1,6 @@
 # Holguras y caminos críticos {#sec-holguras}
 
-<!-- Seguimiento interno (no visible): primer borrador del 2026-11-27, con el esquema revisado por un agente crítico y aprobado por el autor (memoria/esquemas/06-holguras.md): la holgura total explicada con los caminos (la menor holgura de los caminos que pasan por la actividad), no como «la holgura del camino»; orden total → críticas → libre → retrasos; FF ≤ TF solo sin plazo o con plazo ≥ duración; minirred A 5 → C 2, B 3 → D 4, B → C para la cadena de críticas que no es camino crítico; ficticias críticas en la red PERT; condición exacta de las holguras sobre sucesos. Cifras comprobadas con el núcleo de project-network-lab 74055bb (cpm.solve, cpm.whatIf, aoa.build, aoa.times): Mecánicas, TF/FF/IF/SF A 1 1 1 1, C 3 1 1 3, D 4 4 4 4, F 1 1 1 1, G 2 2 0 0, H 4 4 4 4, B E I J K 0; holgura de los sucesos 0 salvo el 4 (2); caminos B E I J K 13, A E I J K 12, B F I J K 12, B G I J K 11, C G I J K 10, B E H K 9, D K 9, A E H K 8, B F H K 8. Con plazo 12 (a mano): A 0, B −1, C 2, D 3, E −1, F 0, G 1, H 3, I −1, J −1, K −1. ¿Y si…? (duración nueva → duración del proyecto, caminos críticos): C 3 → 13, B E I J K; C 4 → 13, G empieza en 4; C 5 → 13, B E I J K y C G I J K; C 6 → 14, C G I J K; H 5 → 13, B E H K y B E I J K; H 6 → 14, B E H K. Mudanza: solo G con holgura (2 en las cuatro); 4 caminos críticos (A B E F, A C E F, D E F, D H F). Mudanza con D = 3: D 2 0 0 2, H 2 2 0 0, G 2 2 2 2; caminos críticos A B E F y A C E F; con D de 4, 9 días; con D de 6, 10. Minirred: duración 7, las cuatro críticas, caminos A C y B D de 7 y B C de 5. Contraejemplo de la conjetura a: A 1, B 3, C 5, D 3 (A), E 1 (A), F 1 (B, E); E con TF 2, FF 1, SF 1, IF 0. Ejercicio 7 del portal: FF de I 6 (sucesos: 0; del suceso 8 solo sale F1), IF y SF de D 1 (sucesos: 0; al suceso 4 solo llegan F2 y F4). Condición de las holguras sobre sucesos comprobada en 28 336 actividades de redes al azar: nunca dan de más; la FF da de menos solo si del suceso j solo salen ficticias, la SF solo si al i solo llegan ficticias, la IF en cualquiera de los dos casos. Estados del portal vistos el 2026-11-27 en una copia local de 74055bb (Chromium sin interfaz): modo predicción del paso 27 (pide TF de A a K); paso 31 de la red ROY y paso 27 de la red PERT (camino crítico, con F1 y F3 en rojo); paso 25 de la red PERT (holgura de los sucesos); «¿Y si…?» con wi=C:5; paso 26 del ejercicio 7 en la red PERT. Fuentes cotejadas: PMBOK 8.ª ed., guía, p. 161; Klastorin (2004, pp. 91–92, 99 y 102); Taha (2012, pp. 255 y 257–258); Kelley y Walker (1959, p. 163) y Malcolm et al. (1959, pp. 656–657), por OCR; Domínguez Machuca et al. (1995, pp. 338–339 y 341), por OCR. -->
+<!-- Seguimiento interno (no visible): primer borrador del 2026-11-27, con el esquema revisado por un agente crítico y aprobado por el autor (memoria/esquemas/06-holguras.md): la holgura total explicada con los caminos (la menor holgura de los caminos que pasan por la actividad), no como «la holgura del camino»; orden total → críticas → libre → retrasos; FF ≤ TF solo sin plazo o con plazo ≥ duración; minirred A 5 → C 2, B 3 → D 4, B → C para la cadena de críticas que no es camino crítico; ficticias críticas en la red PERT; condición exacta de las holguras sobre sucesos. Cifras comprobadas con el núcleo de project-network-lab 74055bb (cpm.solve, cpm.whatIf, aoa.build, aoa.times): Mecánicas, TF/FF/IF/SF A 1 1 1 1, C 3 1 1 3, D 4 4 4 4, F 1 1 1 1, G 2 2 0 0, H 4 4 4 4, B E I J K 0; holgura de los sucesos 0 salvo el 4 (2); caminos B E I J K 13, A E I J K 12, B F I J K 12, B G I J K 11, C G I J K 10, B E H K 9, D K 9, A E H K 8, B F H K 8. Con plazo 12 (a mano): A 0, B −1, C 2, D 3, E −1, F 0, G 1, H 3, I −1, J −1, K −1. ¿Y si…? (duración nueva → duración del proyecto, caminos críticos): C 3 → 13, B E I J K; C 4 → 13, G empieza en 4; C 5 → 13, B E I J K y C G I J K; C 6 → 14, C G I J K; H 5 → 13, B E H K y B E I J K; H 6 → 14, B E H K. Acortar (añadido el 2026-11-27 a petición del autor, asimetría del camino crítico): J 1 → 11; B 2 → 12 y B 1 → 12 (A E I J K toma el relevo); E 2 → 12 (B F I J K); H 0, C 1 y D 1 → 13; mudanza con A 2, B 1, D 4 o E 0,5 → 9, con F 2 → 8. Mudanza: solo G con holgura (2 en las cuatro); 4 caminos críticos (A B E F, A C E F, D E F, D H F). Mudanza con D = 3: D 2 0 0 2, H 2 2 0 0, G 2 2 2 2; caminos críticos A B E F y A C E F; con D de 4, 9 días; con D de 6, 10. Minirred: duración 7, las cuatro críticas, caminos A C y B D de 7 y B C de 5. Contraejemplo de la conjetura a: A 1, B 3, C 5, D 3 (A), E 1 (A), F 1 (B, E); E con TF 2, FF 1, SF 1, IF 0. Ejercicio 7 del portal: FF de I 6 (sucesos: 0; del suceso 8 solo sale F1), IF y SF de D 1 (sucesos: 0; al suceso 4 solo llegan F2 y F4). Condición de las holguras sobre sucesos comprobada en 28 336 actividades de redes al azar: nunca dan de más; la FF da de menos solo si del suceso j solo salen ficticias, la SF solo si al i solo llegan ficticias, la IF en cualquiera de los dos casos. Estados del portal vistos el 2026-11-27 en una copia local de 74055bb (Chromium sin interfaz): modo predicción del paso 27 (pide TF de A a K); paso 31 de la red ROY y paso 27 de la red PERT (camino crítico, con F1 y F3 en rojo); paso 25 de la red PERT (holgura de los sucesos); «¿Y si…?» con wi=C:5; paso 26 del ejercicio 7 en la red PERT. Fuentes cotejadas: PMBOK 8.ª ed., guía, p. 161; Klastorin (2004, pp. 91–92, 99 y 102); Taha (2012, pp. 255 y 257–258); Kelley y Walker (1959, p. 163) y Malcolm et al. (1959, pp. 656–657), por OCR; Domínguez Machuca et al. (1995, pp. 338–339 y 341), por OCR. -->
 
 **Portal:** [Project Network Lab](https://josemagalan.github.io/project-network-lab/), pestañas [Ruta guiada](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=route&ex=ej6&step=26) (red ROY, red PERT y «¿Y si…?»), [Taller](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=work) y [Ejercicios](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=ex&xk=calc) (Cálculo, Detective).
 
@@ -10,7 +10,7 @@ Al terminar el recorrido básico de este capítulo podrás:
 - calcular la holgura total de cada actividad y explicarla con los caminos que pasan por ella;
 - identificar las actividades y los caminos críticos, también cuando hay varios o el proyecto tiene un plazo;
 - calcular la holgura libre y distinguirla de la total;
-- prever qué pasa en el proyecto si una actividad se retrasa o tarda más de lo previsto.
+- prever qué pasa en el proyecto si una actividad se retrasa, tarda más de lo previsto o se acorta.
 :::
 
 ## La holgura total [[Básico]{.largo}[B]{.corto}]{.nivel .basico} {#sec-holguras-total}
@@ -185,7 +185,7 @@ En la mudanza con D de 3 días, D, H y G tienen holgura total 2.
 
 ## ¿Y si se retrasa una actividad? [[Básico]{.largo}[B]{.corto}]{.nivel .basico} {#sec-holguras-retrasos}
 
-¿Qué pasa en el proyecto si una actividad empieza tarde, o tarda más de lo previsto?
+¿Qué pasa en el proyecto si una actividad empieza tarde, o tarda más de lo previsto? ¿Y si dura menos?
 
 Con las dos holguras se puede prever el efecto de un retraso en una sola actividad:
 
@@ -196,6 +196,14 @@ Con las dos holguras se puede prever el efecto de un retraso en una sola activid
 Domínguez Machuca et al. advierten de lo que pasa entre medias: una actividad no crítica que se retrasa tanto como su holgura se convierte en crítica, gasta la holgura de su camino, y ese camino se vuelve crítico también [@machuca1995, p. 341]. Por eso las actividades con poca holgura merecen tanta atención como las críticas.
 
 Dos avisos. Los tramos valen para **un** retraso: si se retrasan dos actividades del mismo camino, gastan la misma holgura, y los retrasos se suman. Y no es lo mismo **empezar tarde** que **tardar más**. Las dos cosas mueven igual el fin de la actividad, pero si la actividad tarda más, todas las fechas se recalculan con la nueva duración: su holgura total baja lo que haya crecido la duración, y con ella la de las actividades que comparten sus caminos. Si se pregunta por la nueva holgura de la actividad, no vale la antigua.
+
+**Al revés: acortar.** Retrasar y acortar no son simétricos. Una actividad crítica que se retrasa retrasa el proyecto lo mismo, porque está en un camino que dura lo que el proyecto. Pero una actividad crítica que se acorta puede acortar el proyecto lo mismo, menos o nada:
+
+- **Lo mismo**, si su camino sigue siendo el más largo. En Mecánicas, si J pasa de 3 días a 1, el proyecto pasa de 13 a 11.
+- **Menos**, si otro camino que no pasa por ella toma el relevo. Si B pasa de 3 días a 1, B → E → I → J → K se queda en 11, pero A → E → I → J → K sigue durando 12, y el proyecto solo baja a 12.
+- **Nada**, si hay otro camino crítico que no pasa por ella. En la mudanza, acortar A, B, D o E no gana ni un día: siempre queda otro de sus cuatro caminos críticos con 9 días.
+
+La nueva duración no se ve a simple vista, pero se calcula: es la mayor entre la del camino más largo que pasa por la actividad, ya acortado, y la del camino más largo que no pasa por ella. Y acortar una actividad **no crítica** no sirve para nada: no está en ningún camino que dure lo que el proyecto, y la duración no cambia. En Mecánicas, aunque H durase 0 días, el proyecto seguiría durando 13. Cuánto cuesta acortar y qué actividades conviene elegir es el tema del capítulo 12.
 
 ::: {.callout-tip .ejemplo #ejemplo-holguras-retrasos title="Ejemplo reproducible · ¿Y si C tarda más?"}
 **Datos.** Mecánicas del Sureste. C dura 2 días y tiene holgura total 3 y libre 1.
@@ -220,6 +228,7 @@ El enlace abre la ruta guiada con C de 5 días, con el botón **¿Y si…?** ya 
 1. En la mudanza con D de 3 días (holgura total 2 y libre 0), D empieza 1, 2 o 3 días tarde. ¿Qué actividades se mueven en cada caso? ¿Cuánto dura el proyecto?
 2. En Mecánicas, ¿hasta cuántos días puede durar H sin retrasar el proyecto? ¿Qué camino crítico aparece entonces?
 3. Mecánicas tiene un plazo de 12 días. Calcula la holgura total de cada actividad. ¿Cuáles son críticas?
+4. En la mudanza original quieres terminar en 8 días acortando un día una sola actividad. ¿Cuál? ¿Por qué no sirve ninguna otra?
 
 <details>
 <summary>**Ver la solución**</summary>
@@ -227,6 +236,7 @@ El enlace abre la ruta guiada con C de 5 días, con el botón **¿Y si…?** ya 
 1. Con 1 día, D va de 1 a 4 y H, de 4 a 5; F sigue empezando en 6 y el proyecto dura 9. Con 2 días, D va de 2 a 5, H de 5 a 6, y E sigue empezando en 5: el proyecto dura 9, pero D y H se vuelven críticas, y D → E → F y D → H → F vuelven a ser caminos críticos, como en la mudanza original. Con 3 días, D termina en 6, E y H empiezan en 6, y el proyecto dura 10.
 2. Hasta 5 días: su holgura total es 4. Con 5 días, B → E → H → K dura 13 y es un segundo camino crítico. Con 6, el proyecto dura 14, y B → E → H → K es el único crítico. Compruébalo con **¿Y si…?**.
 3. Todas las holguras totales bajan 1: A 0, B −1, C 2, D 3, E −1, F 0, G 1, H 3, I −1, J −1, K −1. Las críticas son las de holgura mínima, −1: B, E, I, J y K, el mismo camino de siempre, que no cabe en el plazo. A y F tienen holgura 0, pero no son críticas.
+4. Solo F, que está en los cuatro caminos críticos: con 2 días, los cuatro bajan a 8. Si se acorta cualquier otra crítica, queda al menos un camino crítico de 9 días que no pasa por ella; por ejemplo, D → H → F si se acorta E. Y acortar G, que no es crítica, no cambia nada. Compruébalo con **¿Y si…?** en el taller del ejemplo [](#ejemplo-holguras-criticos).
 </details>
 ::::
 
@@ -238,6 +248,7 @@ El enlace abre la ruta guiada con C de 5 días, con el botón **¿Y si…?** ya 
 - En la red PERT, los sucesos tienen holgura TL − TE. Un suceso crítico no hace crítica a la actividad que sale de él; las ficticias también pueden ser críticas.
 - La holgura libre, FF = mín ES de las sucesoras − EF, es cuánto puede retrasarse una actividad sin retrasar a ninguna sucesora.
 - Un retraso hasta la holgura libre no mueve nada; hasta la total, mueve sucesoras; más allá, retrasa el proyecto. Gastar holgura crea caminos críticos nuevos.
+- Acortar no es simétrico: acortar una actividad no crítica no acorta el proyecto, y acortar una crítica lo acorta lo mismo, menos o nada, según los demás caminos.
 
 Para seguir el recorrido básico, continúa por el capítulo «Duraciones inciertas: tres tiempos» (en preparación), donde las duraciones dejan de ser fijas.
 
