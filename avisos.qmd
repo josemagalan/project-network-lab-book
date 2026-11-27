@@ -18,6 +18,10 @@ En la elaboración de este material se han utilizado asistentes de inteligencia 
 
 El texto, las figuras propias y los ejercicios se distribuyen con la licencia [Creative Commons Atribución 4.0 Internacional (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/deed.es){target="_blank"}: puedes copiarlos, adaptarlos y redistribuirlos, también con fines comerciales, siempre que cites la autoría. El código del repositorio (los guiones de las figuras, los filtros y las comprobaciones) tiene licencia MIT. La biblioteca KaTeX, el estilo de citas y el portal enlazado conservan su propia licencia; el detalle está en el [repositorio del libro](https://github.com/josemagalan/project-network-lab-book/blob/main/LICENSE-CONTENT.md){target="_blank"}.
 
+## Estadísticas de uso {#estadisticas}
+
+Para saber si este material resulta útil, el libro cuenta las páginas vistas con [GoatCounter](https://www.goatcounter.com/){target="_blank"}, un servicio de código abierto. No usa cookies ni identifica a los visitantes: todas las páginas del libro cuentan juntas, en una sola ruta, y se registran además datos generales como el navegador, el país aproximado y la página de procedencia. El total aparece en el pie de cada página y el [panel de estadísticas](https://josemagalan.goatcounter.com/){target="_blank"} es público.
+
 ## Comentarios y contacto {#contacto}
 
 Nos ayuda mucho saber qué falla: una errata, un resultado que no coincide con el del libro, un enlace o un botón que no funciona. Al final de cada página, y en el índice lateral, está el enlace **Enviar un comentario sobre esta página**. Abre un formulario de GitHub con la página y la versión del libro ya rellenas.

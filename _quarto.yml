@@ -8,6 +8,7 @@ project:
   resources:
     - vendor/
     - comentarios.js
+    - contador.js
     - favicon.svg
 
 book:
@@ -118,8 +119,11 @@ format:
     css: estilos.css
     template-partials:
       - plantillas/title-metadata.html # autores agrupados; filiaciones numeradas debajo
-    include-after-body:
-      text: '<script src="comentarios.js"></script>'
+    include-after-body:   # contador.js: páginas vistas con GoatCounter, todas en una sola ruta (avisos.qmd#estadisticas)
+      text: |
+        <script src="comentarios.js"></script>
+        <script data-goatcounter="https://josemagalan.goatcounter.com/count" data-goatcounter-settings='{"path": "/project-network-lab-book/"}' async src="https://gc.zgo.at/count.js"></script>
+        <script src="contador.js"></script>
     html-math-method:
       method: katex
       url: "vendor/katex/"   # KaTeX 0.19.0 (MIT) copiado en local
