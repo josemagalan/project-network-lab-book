@@ -88,6 +88,7 @@ book:
         - 04-pert.qmd
         - 05-tiempos.qmd
         - 06-holguras.qmd
+        - 07-tres-tiempos.qmd
     - actividades.qmd       # generado por filtros/indices.py
     - avisos.qmd            # siempre al final: los capítulos nuevos van antes
 

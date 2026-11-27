@@ -1,0 +1,369 @@
+# Duraciones inciertas: tres tiempos {#sec-tres}
+
+<!-- Seguimiento interno (no visible): primer borrador del 2026-11-27, con el esquema revisado por un agente crítico y aprobado por el autor (memoria/esquemas/07-tres-tiempos.md, D024): Mecánicas con tres tiempos propuestos por el libro, con m igual a la duración de los capítulos 5 y 6 y F (2, 3, 9); el crítico de las medias sigue siendo B E I J K (85/6 ≈ 14,17; σ² = 69/36 ≈ 1,92) y B F I J K (14,00; σ² = 114/36 ≈ 3,17) conserva 1/6 de día de holgura; el capítulo termina con μ y σ² del camino crítico de las medias (la normal, z y la probabilidad, en el capítulo 8). Cifras comprobadas con el núcleo de project-network-lab b42bbfc (threept.exam, moments, cdf, quantile; cpm.solve; probgen.candidate('tcl', 7, 'easy')): tₑ y σ² de Mecánicas A 2 4/36, B 22/6 1, C 3 64/36, D 9 100/36, E 4 4/36, F 23/6 49/36, G 2 4/36, H 1 0, I 2,5 25/36, J 3 4/36, K 1 0; con a, 9 (B E I J K); con m, 13 (B E I J K); con las medias, 14,17 (B E I J K; B F I J K 14,00; A E I J K 12,50; B G I J K 12,17; C G I J K 11,50; D K 10,00; B E H K 9,67; B F H K 9,50; A E H K 8,00); con b, 28 (B F I J K; B E I J K 24); con medias triangulares, 16,00 (B F I J K; B E I J K 15,33). Red con las medias: TF de F 1/6, de A 5/3, de C 8/3, de D 25/6, de G 2, de H 4,5. F con la beta-PERT: varianza 1,35; P(F ≤ 3) = 0,281; P(F ≤ 23/6) = 0,560; mediana 3,64; media triangular 14/3, varianza 43/18. Klastorin (ejemplo kl del portal): con a, A D 14; con m, A C E F 23; con las medias, A C E F 23,83 (σ² 8,25), A B E F 23,33 (6,67), A D 21 (5); con b, A C E F 41 (A B E F 40, A D 32); con la triangular, A B E F y A C E F 24,67. A (2, 6, 14): examen 6,67 y 4; beta-PERT 6,67 y 4,89; clásica 6,54 y 4; triangular 7,33 y 6,22. Programación (6, 11, 14): 10,67 y 1,78. Nicholas y Steyn (3, 5, 13): media 6, σ² 2,78, P(≤ 6) = 0,548 (beta-PERT) y 0,563 (clásica). Ejercicios · Probabilidad (TCL), fácil, semilla 7: A (4, 5, 10) 5,67 1; B (6, 7, 10) 7,33 0,44; C (1, 1, 1) 1 0; D (7, 9, 11) 9 0,44; E (5, 5, 6) 5,17 0,03; F (3, 6, 12) 6,5 2,25; camino B C D F, μ 23,83, σ² 113/36 ≈ 3,14 (A C D F 22,17). Estados del portal vistos el 2026-11-27 en una copia local de b42bbfc (Chromium sin interfaz): M5 con kl (tabla de comparación de A: 6,67 4; 6,67 4,89; 7,33 6,22; con uc=1, clásica 6,54 4); paso a paso con predicción (uw=1&pred=1: «Paso 1 de 12», μ de A); Mecánicas como tabla propia (ut) con ua=F (tabla 3,83 1,36; 3,83 1,35; 4,67 2,39; red con las medias, camino crítico B–E–I–J–K, TF de F 0,17); Ejercicios xk=tcl, lv=easy, sd=7 (plazo 24 semanas, probabilidad del 90 %). Fuentes cotejadas: Malcolm et al. (1959, pp. 650–652 y 654), por OCR; Klastorin (2004, pp. 48–53 y 135–137); Taha (2012, pp. 262–264); Hillier y Lieberman (2001, pp. 486–488); Nicholas y Steyn (2012, pp. 244–247 y 253–254); PMBOK 8.ª ed., guía, p. 183; Domínguez Machuca et al. (1995, pp. 336–337 y 341–343), por OCR. -->
+
+**Portal:** [Project Network Lab](https://josemagalan.github.io/project-network-lab/), pestaña [Duraciones inciertas](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=unc), apartado «Tres tiempos (M5)», y pestaña [Ejercicios](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=ex&xk=tcl) (Probabilidad (TCL)).
+
+::: {.callout-warning .objetivos title="Objetivos del capítulo"}
+Al terminar el recorrido básico de este capítulo podrás:
+
+- explicar qué significan las tres estimaciones de una actividad y por qué se piden tres;
+- calcular la media y la varianza de una actividad, y distinguir la duración más probable, la mediana y la media;
+- calcular el proyecto con las medias y la media y la varianza de un camino;
+- decir qué supone el método y en qué capítulo se revisa cada supuesto.
+:::
+
+## Una duración, tres estimaciones [[Básico]{.largo}[B]{.corto}]{.nivel .basico} {#sec-tres-estimaciones}
+
+¿Cuánto tardarías en escribir un informe?
+
+Domínguez Machuca et al. abren así el tema, y suponen que la respuesta será «depende» [@machuca1995, p. 336]. Hasta ahora, cada actividad de Mecánicas del Sureste tenía una duración fija: E dura 4 días, F dura 3. Pero nadie sabe de antemano cuánto va a tardar una actividad que todavía no se ha hecho. Como vimos en el capítulo 1, *PERT* a secas es el método que estima la duración de cada actividad con tres valores.
+
+**Por qué tres.** Los creadores del PERT, al planificar el programa Polaris, pidieron a los ingenieros tres estimaciones de cada actividad en lugar de una. Querían despegarlos del calendario que ya conocían y recoger más información sobre la dificultad y la variabilidad de cada actividad [@malcolm1959, pp. 650–651]. Las estimaciones las dan quienes mejor conocen la actividad: expertos o las personas que la van a hacer [@nicholas2012, p. 246].
+
+Las tres estimaciones son:
+
+- la **optimista**, *a*: lo que dura si todo va extremadamente bien [@taha2012, p. 262];
+- la **más probable**, *m*: la duración que más se repetiría si la actividad se hiciera muchas veces [@nicholas2012, p. 247], el punto más alto de la curva [@hillier2001, p. 486]. En estadística, la **moda**;
+- la **pesimista**, *b*: lo que dura si todo va extremadamente mal [@taha2012, p. 262].
+
+La más probable puede estar en cualquier punto entre las otras dos [@malcolm1959, p. 651]. Sobre los extremos, los manuales no dicen exactamente lo mismo. Para Hillier y Lieberman, a y b están en los extremos de lo posible [@hillier2001, p. 486]. Para Domínguez Machuca et al., la probabilidad de terminar en a, o de llegar hasta b, es como mucho del 1 % [@machuca1995, p. 337]. Y para Nicholas y Steyn, la pesimista cuenta con los problemas que es razonable esperar, pero no con catástrofes como un desastre natural [@nicholas2012, p. 247]. Lo que tienen en común es que a y b son poco probables, y m es lo normal.
+
+**La forma de la curva.** Con las tres estimaciones se dibuja una curva de probabilidad con una sola joroba, en m, y muy poca probabilidad de llegar a a o a b [@malcolm1959, p. 651]. Lo habitual es que la curva no sea simétrica: casi siempre es más fácil llegar tarde que llegar pronto. Nicholas y Steyn lo explican con un trayecto en coche: si todo va bien, se llega pronto; lo más probable es tardar un poco más; y con un atasco o una avería se puede tardar mucho más [@nicholas2012, p. 244]. La curva tiene entonces una **cola a la derecha**, larga, hacia b.
+
+El PERT supone que esa curva es una **distribución beta** [@malcolm1959, p. 651]. El portal dibuja una beta concreta, la **beta-PERT**, cuya media es exactamente la fórmula de la sección siguiente; sus parámetros se ven en la sección -@sec-tres-betas. Junto a ella dibuja la **triangular**, que sube en línea recta de a hasta m y baja de m hasta b.
+
+**Notaciones.** Este libro y el portal escriben a, m y b, como Malcolm et al. y Taha. La notación española del portal usa tₒ, tₘ y tₚ, como Klastorin con superíndices [@klastorin2004, pp. 49 y 136]; Hillier y Lieberman escriben o, m y p; y la guía del PMI, t~O~, t~M~ y t~P~, y llama al método **estimación multipunto** [@pmi2025, guía, p. 183].
+
+::: {.callout-tip .ejemplo #ejemplo-tres-curva title="Ejemplo reproducible · La curva de una actividad"}
+**Datos.** El proyecto informático de 6 tareas de Klastorin, el ejemplo por defecto de la pestaña. Su actividad A, el análisis de requisitos, tiene a = 2, m = 6 y b = 14 semanas.
+
+**Predice.** ¿Hacia qué lado tiene la cola la curva de A? ¿Qué pasa con la curva si acercas b a m? ¿Y si pones a = m = b?
+
+[Abrir: el apartado «Tres tiempos» con el ejemplo de Klastorin](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=unc){.abrir target="_blank"}
+
+<details>
+<summary>**Ver el resultado**</summary>
+
+La cola va a la derecha: de m a b hay 8 semanas, y de a a m, solo 4. Al acercar b a m, la curva se estrecha y se vuelve más simétrica. Con a = m = b no hay incertidumbre: el portal avisa de que la duración es fija y dibuja una marca en lugar de la curva. Al mover a, m o b, el proyecto pasa a ser una tabla propia; para volver, elige otra vez el ejemplo en **Proyecto**.
+</details>
+:::
+
+:::: {.callout-note .ejercicio #ejercicio-tres-estimaciones title="Ejercicio · Tres actividades"}
+Tres actividades tienen estas estimaciones (a, m, b): (1, 2, 3), (2, 3, 9) y (6, 11, 14).
+
+1. ¿Cuál es simétrica? ¿Cuál tiene la cola a la derecha y cuál a la izquierda?
+2. ¿Cuál dirías que es más incierta? Vuelve a esta pregunta después de la sección siguiente.
+
+<details>
+<summary>**Ver la solución**</summary>
+
+1. (1, 2, 3) es simétrica: m está en el centro. (2, 3, 9) tiene la cola a la derecha: de m a b hay 6 días, y de a a m, 1. (6, 11, 14) tiene la cola a la izquierda: de a a m hay 5, y de m a b, 3.
+2. La que tenga más distancia entre a y b, que es lo que mide la varianza: (6, 11, 14), con b − a = 8, aunque (2, 3, 9) tenga la cola más larga (b − a = 7). Con la fórmula de la sección siguiente, sus varianzas son 1,78 y 1,36.
+</details>
+::::
+
+## La media y la varianza de una actividad [[Básico]{.largo}[B]{.corto}]{.nivel .basico} {#sec-tres-media}
+
+Si una actividad dura entre a y b, ¿qué duración se pone en la red?
+
+**Las fórmulas.** El PERT resume las tres estimaciones en dos números, la **media** o duración esperada, tₑ, y la **varianza**, σ² [@malcolm1959, p. 652; @taha2012, p. 262; @klastorin2004, p. 136]:
+
+```{=html}
+<p style="text-align:center"><strong>tₑ = (a + 4m + b) / 6 &nbsp;&nbsp;&nbsp;&nbsp; σ² = ((b − a) / 6)²</strong></p>
+```
+
+La media pesa cuatro veces la duración más probable y una vez cada extremo. La varianza supone que entre a y b caben unas seis desviaciones típicas, σ, como en la distribución normal, que tiene el 99,73 % de sus valores entre μ − 3σ y μ + 3σ [@hillier2001, p. 486]. La desviación típica es σ = (b − a)/6, y la varianza, su cuadrado. Son las **fórmulas de examen**: así las llama el portal, porque son las que se usan para calcular a mano.
+
+En Mecánicas, F tiene a = 2, m = 3 y b = 9 días:
+
+- tₑ = (2 + 4 · 3 + 9)/6 = 23/6 ≈ 3,83 días;
+- σ = (9 − 2)/6 = 7/6 ≈ 1,17 días, y σ² = 49/36 ≈ 1,36 días².
+
+La media queda por encima de la más probable, porque la cola va a la derecha. Con la cola a la izquierda queda por debajo: la tarea de programación del capítulo 2 de Klastorin, que tarda 6 días en el mejor caso, 14 en el peor y 11 lo más probable, tiene media (6 + 44 + 14)/6 ≈ 10,67 días y σ = 8/6 ≈ 1,33 [@klastorin2004, pp. 49 y 136]. Si la actividad es simétrica, como A de Mecánicas (1, 2, 3), la media es m. Y si a = m = b, como en H y K (1, 1, 1), no hay incertidumbre: media 1 y varianza 0, sin hacer cuentas.
+
+La tabla completa de Mecánicas con tres tiempos, que usaremos en lo que queda de capítulo, es esta. La más probable es la duración de los capítulos 5 y 6. Cinco actividades tienen la cola a la derecha (B, C, D, F e I), cuatro son simétricas (A, E, G y J) y dos tienen la duración fija (H y K).
+
+| Actividad | a | m | b | tₑ | σ² |
+|:-:|:-:|:-:|:-:|:-:|:-:|
+| A | 1 | 2 | 3 | 2 | 0,11 |
+| B | 2 | 3 | 8 | 3,67 | 1 |
+| C | 1 | 2 | 9 | 3 | 1,78 |
+| D | 6 | 8 | 16 | 9 | 2,78 |
+| E | 3 | 4 | 5 | 4 | 0,11 |
+| F | 2 | 3 | 9 | 3,83 | 1,36 |
+| G | 1 | 2 | 3 | 2 | 0,11 |
+| H | 1 | 1 | 1 | 1 | 0 |
+| I | 1 | 2 | 6 | 2,5 | 0,69 |
+| J | 2 | 3 | 4 | 3 | 0,11 |
+| K | 1 | 1 | 1 | 1 | 0 |
+
+: Mecánicas del Sureste con tres tiempos, en días. Las precedencias son las de siempre. {#tbl-tres-mecanicas}
+
+**La media no es el 50 %.** Es tentador leer tₑ como la duración que tiene la mitad de probabilidad de quedarse corta y la mitad de pasarse. Solo es así si la curva es simétrica: entonces la media y la mediana coinciden [@klastorin2004, p. 53]. Con la cola a la derecha, el orden es **más probable < mediana < media**. En F, con la beta-PERT: la más probable es 3, la mediana 3,64 y la media 3,83 (figura -@fig-tres-media). F termina en 3 días o antes solo el 28 % de las veces, y en su media o antes, el 56 %.
+
+![La beta-PERT de F (a = 2, m = 3, b = 9) con la duración más probable, la mediana y la media. La zona sombreada es la probabilidad de terminar en 3 días o antes. Figura propia, generada con `figuras/07-media-mediana.py`; las cifras salen del núcleo del portal.](figuras/07-media-mediana.svg){#fig-tres-media fig-alt="Curva con una joroba en 3 y una cola larga hacia la derecha, entre 2 y 9 días. Tres líneas verticales: más probable, 3; mediana, 3,64, de trazos; y media, 3,83. El área bajo la curva entre 2 y 3 está sombreada y marcada con un 28 %. A la derecha, P(F ≤ 3) = 0,28, P(F ≤ media) = 0,56 y P(F ≤ mediana) = 0,50."}
+
+Incluso algún manual afirma que la media tiene un 50 % a cada lado [@nicholas2012, p. 247]; con su propio ejemplo, una actividad de 3, 5 y 13 días, la probabilidad de terminar en la media o antes es del 55 % con la beta-PERT. El portal no dibuja estas probabilidades en el apartado «Tres tiempos»; aquí las hemos calculado con su núcleo, y en el capítulo 9 se pueden ver simulando.
+
+**Errores frecuentes.** El paso a paso del portal reconoce tres, y te avisa si escribes uno de estos valores:
+
+- dar la desviación típica, (b − a)/6, como si fuera la varianza;
+- dar la media de la triangular, (a + m + b)/3, en lugar de la de examen, que cuenta m cuatro veces;
+- dar la varianza de la curva beta-PERT que dibuja el portal, que se parece, pero no es la fórmula de examen (sección -@sec-tres-betas).
+
+Y un cuarto que no se ve en el número: la varianza se mide en **días al cuadrado**. Es fácil escribir «8,25 semanas» para una varianza; hasta Klastorin lo hace [@klastorin2004, p. 137].
+
+::: {.callout-tip .ejemplo #ejemplo-tres-media title="Ejemplo reproducible · Paso a paso con predicción"}
+**Datos.** El proyecto de Klastorin, en el apartado «Tres tiempos», con el paso a paso y el modo predicción activados.
+
+**Predice.** Para cada actividad, el portal pide primero la media y después la varianza. Escribe tu valor, pulsa **Comprobar** y después **Siguiente**. Prueba a escribir a propósito uno de los errores frecuentes en la varianza de A.
+
+[Abrir: el paso a paso de «Tres tiempos» en modo predicción](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=unc&uw=1&pred=1){.abrir target="_blank"}
+
+<details>
+<summary>**Ver el resultado**</summary>
+
+A (2, 6, 14): media (2 + 24 + 14)/6 = 6,67 y varianza ((14 − 2)/6)² = 4. Si escribes 2, el portal te dice que es la desviación típica; si escribes 4,89, que es la varianza de la beta-PERT que se dibuja. Las demás: B 7,33 y 1,78; C 7,83 y 3,36; D 14,33 y 1; E 5 y 0,44; F 4,33 y 0,44. Son las de la figura 6.1 de Klastorin [-@klastorin2004, p. 137].
+</details>
+:::
+
+:::: {.callout-note .ejercicio #ejercicio-tres-media title="Ejercicio · Las actividades de Mecánicas con cola"}
+1. Calcula la media y la varianza de B, C, D, F e I de Mecánicas (tabla -@tbl-tres-mecanicas), como fracción y con dos decimales.
+2. ¿Por qué H y K no necesitan ningún cálculo?
+3. Vuelve al ejercicio [](#ejercicio-tres-estimaciones): ¿cuál de las tres actividades es más incierta?
+
+[Abrir: Mecánicas con tres tiempos en el portal](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=unc&ue=own&ut=LYxFgiOByMpkEQsLZbERBhIiGMPGUPGcPixdhQiIUSikPHEWgYijEMIcPiMDicDHMgEUijJEh42j0mmUhkMjERFjsDGkPGsPIIsEEbm8ZI0cgcVlUPoktnBHk1IEVKjVCktFhhIqMDk8Qh5FoVHrAiJNbEUpEU1nNhoVQsZKqVUnsDstjJdmrtdIlCJFCuE3LpdgA&ua=F){.abrir target="_blank"}
+
+<details>
+<summary>**Ver la solución**</summary>
+
+1. B: 22/6 ≈ 3,67 y 36/36 = 1. C: 18/6 = 3 y 64/36 ≈ 1,78. D: 54/6 = 9 y 100/36 ≈ 2,78. F: 23/6 ≈ 3,83 y 49/36 ≈ 1,36. I: 15/6 = 2,5 y 25/36 ≈ 0,69. El portal las muestra en las columnas μ y σ² de la tabla propia.
+2. Porque a = m = b: la duración es fija, la media es esa duración y la varianza es 0.
+3. (6, 11, 14), con varianza 64/36 ≈ 1,78, frente a 49/36 ≈ 1,36 de (2, 3, 9) y 4/36 ≈ 0,11 de (1, 2, 3). La varianza solo depende de b − a, no de hacia dónde va la cola.
+</details>
+::::
+
+## El proyecto con las medias [[Básico]{.largo}[B]{.corto}]{.nivel .basico} {#sec-tres-proyecto}
+
+Y con once actividades inciertas, ¿cuánto dura el proyecto?
+
+El PERT clásico pone en la red la media de cada actividad, como si fuera su duración fija, y calcula fechas, holguras y camino crítico como en los capítulos 5 y 6 [@klastorin2004, p. 136; @taha2012, p. 262]. Al camino crítico que sale se le llama **camino crítico de las medias**.
+
+En Mecánicas, con las duraciones más probables, el proyecto dura 13 días, y el camino crítico es B → E → I → J → K, como en el capítulo 5. Con las medias dura **14,17 días**, y el camino crítico de las medias sigue siendo el mismo (figura -@fig-tres-red). El proyecto se alarga algo más de un día porque B e I, que tienen la cola a la derecha, tienen una media mayor que su duración más probable.
+
+![Mecánicas del Sureste con tres tiempos en el apartado «Tres tiempos» del portal: la red ROY con las medias como duraciones y el camino crítico de las medias, B–E–I–J–K, en rojo. F, la actividad elegida, está marcada en naranja: tiene holgura total 0,17. Captura del portal, generada con `figuras/07-capturas.cjs`.](figuras/07-red-medias.png){#fig-tres-red fig-alt="Red ROY de Mecánicas con cajas de 7 campos. B empieza en 0 y termina en 3,67; E va de 3,67 a 7,67; I, de 7,67 a 10,17; J, de 10,17 a 13,17; y K, de 13,17 a 14,17. Esas cinco cajas y sus flechas están en rojo. F va de 3,67 a 7,5, con holgura total 0,17, recuadrada en naranja. D tiene holgura 4,17; A, 1,67; C, 2,67; G, 2; y H, 4,5."}
+
+F es la que más ha cambiado. En el capítulo 6 tenía holgura total 1: su camino, B → F → I → J → K, duraba 12 días, uno menos que el crítico. Con las medias dura 14,00, y F se queda con 1/6 de día de holgura, unas cuatro horas. La cola larga de F ha gastado casi toda su holgura.
+
+**La suma de las más probables no es lo más probable.** Planificar con las duraciones más probables parece razonable, pero cuando casi todas las colas van a la derecha, sale corto. Nicholas y Steyn lo dicen sin rodeos: aunque cada valor m pueda considerarse realista, la suma de los valores m no es nada realista, y sumar duraciones y costes más probables es una de las razones por las que los proyectos se retrasan y se pasan de presupuesto [@nicholas2012, p. 253].
+
+**Tampoco sirven los extremos.** Con todas las duraciones optimistas, Mecánicas duraría 9 días; con todas las pesimistas, 28, y el camino crítico ya no sería B → E → I → J → K (24 días), sino **B → F → I → J → K**. Que todas las actividades salgan mal a la vez es muy improbable, así que 28 días no es un plan. Pero el cálculo enseña algo: el camino crítico depende de las duraciones, y con otras duraciones puede ser otro. Hillier y Lieberman hacen el mismo ejercicio con su ejemplo, y con las pesimistas su camino crítico también cambia [@hillier2001, p. 487].
+
+::: {.callout-tip .ejemplo #ejemplo-tres-proyecto title="Ejemplo reproducible · Mecánicas con las medias"}
+**Datos.** Mecánicas del Sureste con las tres estimaciones de la tabla -@tbl-tres-mecanicas, como tabla propia del apartado «Tres tiempos». La actividad elegida es F.
+
+**Predice.** ¿Cuánto dura el proyecto con las medias? ¿Cuál es el camino crítico de las medias? ¿Cuánta holgura le queda a F?
+
+[Abrir: Mecánicas con tres tiempos en el portal](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=unc&ue=own&ut=LYxFgiOByMpkEQsLZbERBhIiGMPGUPGcPixdhQiIUSikPHEWgYijEMIcPiMDicDHMgEUijJEh42j0mmUhkMjERFjsDGkPGsPIIsEEbm8ZI0cgcVlUPoktnBHk1IEVKjVCktFhhIqMDk8Qh5FoVHrAiJNbEUpEU1nNhoVQsZKqVUnsDstjJdmrtdIlCJFCuE3LpdgA&ua=F){.abrir target="_blank"}
+
+<details>
+<summary>**Ver el resultado**</summary>
+
+14,17 días, con el camino crítico de las medias B → E → I → J → K. F tiene holgura total 0,17 (1/6 de día). Prueba a subir la b de F en la tabla: con b = 10, B → F → I → J → K empata con el crítico, y con b = 11 pasa a ser el camino crítico de las medias.
+</details>
+:::
+
+:::: {.callout-note .ejercicio #ejercicio-tres-proyecto title="Ejercicio · Cuatro proyectos de Klastorin"}
+Con el proyecto de Klastorin del ejemplo [](#ejemplo-tres-curva) (A 2, 6, 14, sin predecesoras; B 4, 7, 12 (A); C 2, 8, 13 (A); D 12, 14, 18 (A); E 3, 5, 7 (B, C); F 3, 4, 7 (E); en semanas), calcula la duración del proyecto y el camino crítico:
+
+1. con todas las duraciones optimistas;
+2. con las más probables;
+3. con las medias;
+4. con las pesimistas.
+
+<details>
+<summary>**Ver la solución**</summary>
+
+Los caminos son A → B → E → F, A → C → E → F y A → D.
+
+1. Optimistas: 12, 10 y 14. El crítico es A → D, de 14 semanas.
+2. Más probables: 22, 23 y 20. A → C → E → F, de 23.
+3. Medias: 23,33, 23,83 y 21. A → C → E → F, de 23,83 [@klastorin2004, p. 137].
+4. Pesimistas: 40, 41 y 32. A → C → E → F, de 41.
+
+Con las optimistas, el crítico es otro: D, la formación de los usuarios, es poco incierta y larga, y cuando las demás van bien, manda ella.
+</details>
+::::
+
+## Media y varianza de un camino [[Básico]{.largo}[B]{.corto}]{.nivel .basico} {#sec-tres-camino}
+
+¿Cuánto puede variar la duración de un camino?
+
+La duración de un camino es la suma de las duraciones de sus actividades. Su **media** es la suma de las medias, siempre. Su **varianza** es la suma de las varianzas si las duraciones de las actividades son **independientes**, es decir, si lo que tarda una no dice nada de lo que tarda otra [@taha2012, p. 263]. Se suman las varianzas, no las desviaciones típicas [@klastorin2004, p. 137].
+
+En Mecánicas, con los valores exactos:
+
+- B → E → I → J → K: μ = 22/6 + 4 + 2,5 + 3 + 1 = 85/6 ≈ 14,17 días, y σ² = 1 + 4/36 + 25/36 + 4/36 + 0 = 69/36 ≈ 1,92 días² (σ ≈ 1,38).
+- B → F → I → J → K: μ = 22/6 + 23/6 + 2,5 + 3 + 1 = 14 días, y σ² = 1 + 49/36 + 25/36 + 4/36 + 0 = 114/36 ≈ 3,17 días² (σ ≈ 1,78).
+
+El camino crítico de las medias es el menos incierto de los dos. El otro está a 1/6 de día y tiene casi el doble de varianza. Domínguez Machuca et al. advierten de este caso: un camino no crítico con una varianza mayor que la del crítico, y con una duración cercana, puede volverse crítico en cualquier momento, y es una posible fuente de incumplimiento de plazos [@machuca1995, pp. 342–343]. Es lo que anunciaba el capítulo 6: un camino con holgura, pero con mucha incertidumbre, puede acabar marcando el fin del proyecto. Qué probabilidad tiene cada camino de terminar a tiempo, y qué pasa con los dos a la vez, es la pregunta del capítulo 8.
+
+**Errores frecuentes.**
+
+- **Sumar desviaciones.** En B → E → I → J → K, las desviaciones son 1, 1/3, 5/6, 1/3 y 0; su suma es 2,5, y al cuadrado da 6,25, más del triple de la varianza del camino, 1,92.
+- **Redondear antes de sumar.** Con las varianzas redondeadas a dos decimales, 1 + 0,11 + 0,69 + 0,11 da 1,91, y no 1,92. Hay que sumar fracciones, o arrastrar más decimales y redondear al final.
+- **Sumar las varianzas de otro camino.** La varianza que se usa es la del camino crítico de las medias. Si dos caminos empatan en media, se toma el de mayor varianza, que es el más prudente [@klastorin2004, p. 137; @taha2012, p. 263; @machuca1995, p. 341]; se verá en el capítulo 8.
+
+**Un aviso para lo que viene.** La duración del proyecto es la del camino más largo, y con duraciones inciertas cualquiera de los caminos puede acabar siendo el más largo. Tomar solo el camino crítico de las medias es una simplificación. Malcolm et al. ya advirtieron en 1959 que da tiempos esperados que son siempre demasiado pequeños [@malcolm1959, p. 654]: el error va siempre del lado optimista. Los capítulos 8 y 9 miden cuánto.
+
+::: {.callout-tip .ejemplo #ejemplo-tres-camino title="Ejemplo reproducible · El camino crítico de Klastorin"}
+**Datos.** El proyecto de Klastorin, con las medias y las varianzas del ejemplo [](#ejemplo-tres-media).
+
+**Predice.** ¿Cuál es el camino crítico de las medias? Calcula su media y su varianza.
+
+[Abrir: el proyecto de Klastorin en «Tres tiempos»](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=unc){.abrir target="_blank"}
+
+<details>
+<summary>**Ver el resultado**</summary>
+
+A → C → E → F, con μ = 6,67 + 7,83 + 5 + 4,33 = 23,83 semanas y σ² = 4 + 3,36 + 0,44 + 0,44 = 8,25 semanas². Son las cifras de la figura 6.2 de Klastorin [-@klastorin2004, p. 137]. El portal muestra el camino crítico de las medias en el título de la red, y las fechas de cada actividad en sus cajas.
+</details>
+:::
+
+:::: {.callout-note .ejercicio #ejercicio-tres-camino title="Ejercicio · Un proyecto del portal"}
+En la pestaña Ejercicios, el tipo «Probabilidad (TCL)», nivel fácil y semilla 7, da un proyecto de seis actividades con sus tres estimaciones, en semanas.
+
+1. Rellena la media y la varianza de cada actividad, y marca el camino crítico de las medias.
+2. Calcula la media y la varianza del proyecto.
+
+Deja para el capítulo 8 la z, la probabilidad y el plazo.
+
+[Abrir: Probabilidad (TCL), nivel fácil, semilla 7](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=ex&xk=tcl&lv=easy&sd=7){.abrir target="_blank"}
+
+<details>
+<summary>**Ver la solución**</summary>
+
+1. A (4, 5, 10): 5,67 y 1. B (6, 7, 10): 7,33 y 0,44. C (1, 1, 1): 1 y 0. D (7, 9, 11): 9 y 0,44. E (5, 5, 6): 5,17 y 0,03. F (3, 6, 12): 6,5 y 2,25. El camino crítico de las medias es B → C → D → F, de 23,83 semanas; A → C → D → F dura 22,17.
+2. μ = 7,33 + 1 + 9 + 6,5 = 23,83 semanas y σ² = 16/36 + 0 + 16/36 + 81/36 = 113/36 ≈ 3,14 semanas².
+</details>
+::::
+
+## Lo que suponen las fórmulas [[Básico]{.largo}[B]{.corto}]{.nivel .basico} {#sec-tres-supuestos}
+
+¿Qué hay que creerse para usar estas fórmulas?
+
+| Supuesto | Qué dice | Dónde se revisa |
+|:--|:--|:--|
+| La forma | La duración sigue una beta entre a y b, con la joroba en m. | Secciones -@sec-tres-betas y -@sec-tres-triangular |
+| Los extremos | En el modelo, la duración nunca sale de [a, b]. En la realidad puede salir: b deja fuera las catástrofes, y si a y b se estiman como percentiles, se salen alguna vez por definición. | Sección -@sec-tres-triangular |
+| La independencia | Lo que tarda una actividad no dice nada de lo que tarda otra. Por eso se suman las varianzas. | Capítulo 8 (correlación) |
+| El camino crítico de las medias | Marca la duración del proyecto, como si los demás caminos no pudieran adelantarlo. | Capítulos 8 y 9 |
+
+: Los supuestos del PERT de tres tiempos. Los tres últimos son los del panel «Supuestos» del «Aprende más» del portal. {#tbl-tres-supuestos}
+
+**Las críticas a la estimación.** La elección de la beta fue arbitraria, aunque razonable [Clark, 1962, citado por @klastorin2004, p. 49]. Se duda de que alguien pueda estimar bien los extremos de una actividad que nunca ha vivido, y de que quien estima distinga la duración más probable de la mediana [@klastorin2004, p. 50]; Domínguez Machuca et al. reconocen que los responsables de las estimaciones no se sienten seguros con los valores extremos, porque muchas actividades se hacen pocas veces [@machuca1995, p. 337]. Y quien estima no es neutral. Si va a tener que hacer la actividad y le penalizan por pasarse, tiende a inflar su estimación [@klastorin2004, pp. 48 y 53]; quien quiere vender el proyecto tiende a quedarse corto [@nicholas2012, p. 254]. Son dos sesgos opuestos, y ninguna fórmula los corrige.
+
+## Resumen {.unnumbered #resumen}
+
+- Una duración incierta se describe con tres estimaciones: la optimista a, la más probable m (la moda) y la pesimista b. Lo habitual es que la curva tenga la cola a la derecha.
+- Las fórmulas de examen son tₑ = (a + 4m + b)/6 y σ² = ((b − a)/6)². La varianza se mide en unidades al cuadrado.
+- La media no es el 50 %: con la cola a la derecha, más probable < mediana < media.
+- El PERT calcula el proyecto con las medias. La suma de las duraciones más probables sale corta, y la de las pesimistas no es un plan; el camino crítico depende de las duraciones.
+- La media de un camino es la suma de las medias; su varianza, la suma de las varianzas si las actividades son independientes. Nunca se suman las desviaciones, y conviene no redondear antes de sumar.
+- Tomar solo el camino crítico de las medias da una duración esperada demasiado pequeña: un camino casi crítico y más incierto puede acabar mandando.
+
+Para seguir el recorrido básico, continúa por el capítulo «El TCL y sus trampas» (en preparación), donde la media y la varianza del camino crítico se convierten en la probabilidad de cumplir un plazo.
+
+## De dónde salen las fórmulas: dos betas [[Avanzado]{.largo}[A]{.corto}]{.nivel .avanzado} {#sec-tres-betas}
+
+**La beta de Malcolm et al.** El artículo que presentó el PERT supone que la duración sigue una beta, f(t) = K (t − a)^α^ (b − t)^γ^, y que su desviación típica es la sexta parte del recorrido, (b − a)/6. De ahí sacan sus dos ecuaciones [@malcolm1959, pp. 651–652]. La de la media está escrita de otra manera:
+
+```{=html}
+<p style="text-align:center"><strong>tₑ = ⅓ [2m + ½ (a + b)]</strong></p>
+```
+
+Dos tercios de la moda y un tercio del punto medio del recorrido, que es lo mismo que (a + 4m + b)/6. Un aviso de notación: los exponentes de Malcolm et al. son los parámetros habituales de la beta menos 1. Una beta(4, 4), en su notación, tiene α = γ = 3.
+
+**Ninguna beta cumple siempre las dos fórmulas.** Fijados a, m y b, hay que elegir qué beta se dibuja, y no hay ninguna que tenga a la vez, en todos los casos, la media y la varianza de examen. El portal maneja dos («Aprende más» del apartado «Tres tiempos»):
+
+- La **beta-PERT**, con parámetros α = 1 + 4(m − a)/(b − a) y β = 1 + 4(b − m)/(b − a). Su media es exactamente la de examen. Su varianza no: es (μ − a)(b − μ)/7, donde μ es la media. Si es simétrica, α = β = 3, y la varianza es (b − a)²/28, mayor que (b − a)²/36: el recorrido abarca entonces √28 ≈ 5,29 desviaciones, no 6. Es la que dibuja y simula el portal.
+- La **beta clásica**, la de Malcolm et al.: moda en m y desviación (b − a)/6. Su varianza es exactamente la de examen; su media se aparta un poco. Si es simétrica, es la beta(4, 4), y su media es m.
+
+¿Cuándo tiene la beta-PERT más varianza que la fórmula de examen? Llamando p = (m − a)/(b − a) a la posición de m en el recorrido, la beta-PERT tiene más varianza si p está entre ½ − √2/4 y ½ + √2/4, es decir, entre 0,146 y 0,854; si m está muy cerca de un extremo, tiene menos. En la actividad A de Klastorin, (2, 6, 14), la fórmula de examen da 6,67 y 4; la beta-PERT, 6,67 y 4,89; y la beta clásica, 6,54 y 4. En F de Mecánicas, (2, 3, 9), con p = 1/7 ≈ 0,143, la beta-PERT tiene varianza 1,35, un poco menos que 1,36.
+
+Esto importa en los capítulos 8 y 9: la simulación del portal sortea con la beta-PERT, así que su varianza no es exactamente la de examen, unas veces mayor y otras menor.
+
+::: {.callout-tip .ejemplo #ejemplo-tres-betas title="Ejemplo reproducible · Las dos betas de A"}
+**Datos.** La actividad A del proyecto de Klastorin, (2, 6, 14), con la beta clásica superpuesta.
+
+**Predice.** ¿Cuál de las dos betas tiene la joroba más alta? ¿Cuál tiene más varianza?
+
+[Abrir: A con la beta clásica superpuesta](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=unc&uc=1){.abrir target="_blank"}
+
+<details>
+<summary>**Ver el resultado**</summary>
+
+La beta clásica es más estrecha y tiene la joroba más alta: tiene menos varianza, 4, frente a 4,89 de la beta-PERT. La tabla de comparación lo resume: fórmula de examen 6,67 y 4; beta-PERT 6,67 y 4,89; beta clásica 6,54 y 4; triangular 7,33 y 6,22.
+</details>
+:::
+
+:::: {.callout-note .ejercicio #ejercicio-tres-betas title="Ejercicio · ¿Más o menos varianza?"}
+1. Calcula la varianza de la beta-PERT de B de Mecánicas, (2, 3, 8), con (μ − a)(b − μ)/7, y compárala con la de examen.
+2. Haz lo mismo con C, (1, 2, 9).
+3. ¿Por qué una sale mayor que la de examen y la otra menor? Compruébalo en el portal eligiendo B y C en la tabla propia de Mecánicas.
+
+<details>
+<summary>**Ver la solución**</summary>
+
+1. μ = 22/6: (22/6 − 2)(8 − 22/6)/7 = (5/3)(13/3)/7 = 65/63 ≈ 1,03, frente a 1.
+2. μ = 3: (3 − 1)(9 − 3)/7 = 12/7 ≈ 1,71, frente a 64/36 ≈ 1,78.
+3. En B, p = (3 − 2)/6 ≈ 0,167, dentro del intervalo de 0,146 a 0,854: la beta-PERT tiene más varianza. En C, p = (2 − 1)/8 = 0,125, fuera: m está tan cerca de a que la beta-PERT tiene menos.
+</details>
+::::
+
+## La triangular y las estimaciones con percentiles [[Avanzado]{.largo}[A]{.corto}]{.nivel .avanzado} {#sec-tres-triangular}
+
+**La triangular.** Con los mismos a, m y b, la distribución triangular tiene media (a + m + b)/3. Es la única fórmula que da la guía del PMI para la estimación multipunto, y la recomienda cuando faltan datos históricos o las estimaciones son de juicio [@pmi2025, guía, p. 183]. Su varianza es (a² + b² + m² − ab − am − bm)/18. La triangular da más peso a las colas que la beta: en F, su media es 14/3 ≈ 4,67, frente a 3,83, y su varianza, 43/18 ≈ 2,39, frente a 1,36.
+
+Con las medias triangulares, Mecánicas dura 16 días, y el camino crítico es **B → F → I → J → K**; B → E → I → J → K se queda en 15,33. Con la beta, el crítico de las medias era el otro. Elegir la curva cambia la duración del plan y puede cambiar el camino crítico.
+
+**Percentiles en lugar de extremos.** Como es difícil estimar los extremos, varios autores proponen pedir percentiles: por ejemplo, la duración que solo se supera un 5 % de las veces, en lugar de la pesimista. Entonces el divisor 6 ya no vale. En una normal, entre los percentiles 5 y 95 hay 3,29 desviaciones; Moder y Rodgers (1968), tras estudiar varias distribuciones, propusieron dividir entre 3,2. Perry y Greig (1975) y Pearson y Tukey (1965) dieron otras fórmulas, y Lau et al. (1996) proponen pedir cinco o siete percentiles; con ellos, además, se pide la mediana, que se estima mejor que la moda [todos citados por @klastorin2004, pp. 50–53].
+
+:::: {.callout-note .ejercicio #ejercicio-tres-triangular title="Ejercicio · Con la triangular"}
+1. Calcula las medias triangulares de Mecánicas (tabla -@tbl-tres-mecanicas). ¿Cuánto dura el proyecto y cuál es el camino crítico?
+2. Haz lo mismo con el proyecto de Klastorin.
+
+<details>
+<summary>**Ver la solución**</summary>
+
+1. A 2, B 13/3 ≈ 4,33, C 4, D 10, E 4, F 14/3 ≈ 4,67, G 2, H 1, I 3, J 3, K 1. B → F → I → J → K dura 16 y es el crítico; B → E → I → J → K, 15,33; B → G → I → J → K, 13,33.
+2. A 7,33, B 7,67, C 7,67, D 14,67, E 5, F 4,67. A → B → E → F y A → C → E → F empatan en 24,67; A → D dura 22.
+</details>
+::::
+
+## Ampliaciones [[Para saber más]{.largo}[+]{.corto}]{.nivel .saber-mas} {#sec-tres-ampliaciones}
+
+**Solo el tiempo, y un atajo.** El equipo del PERT quería evaluar a la vez el tiempo, los recursos y las prestaciones técnicas del programa, pero no encontró un criterio que los integrara, y una red de unos 10 000 sucesos hacía impracticable el cálculo. Se quedó solo con el tiempo [@malcolm1959, p. 650]. Tampoco calculó el máximo de varios caminos, porque con caminos que comparten actividades el esfuerzo era desorbitado: tomó el camino de mayor media hasta cada suceso, sabiendo que eso sesga los tiempos esperados a la baja [@malcolm1959, p. 654].
+
+**Otra versión de la historia.** Klastorin recoge el relato de Craven (2001), que era científico jefe de la Oficina de Proyectos Especiales: según él, el PERT se inventó sobre la marcha para dar a los contratistas la ilusión de que se les estaba gestionando, y el almirante Raborn le puso el nombre por el apodo de su esposa [citado por @klastorin2004, p. 135]. Es una versión menos solemne que la oficial, y encaja con lo que contaba Sapolsky en el capítulo 1.
+
+**Estimar es también un problema humano.** La mente humana tiene límites al estimar duraciones, incluso con mucha experiencia; por ejemplo, una mala experiencia reciente con una tarea lleva a estimar más largas las parecidas [Kahneman et al., 1982, y Silverman, 1991, citados por @klastorin2004, p. 48]. Nicholas y Steyn cuentan el caso del túnel del canal de la Mancha: costó el doble de lo previsto y se terminó con casi 18 meses de retraso, en parte por el optimismo con que se vendió [@nicholas2012, p. 254].
+
+**Independientes o no correlacionadas.** Para sumar varianzas no hace falta la independencia completa: basta con que las duraciones no estén correlacionadas. Si lo están, la varianza del camino suma también las covarianzas; es uno de los casos del capítulo 8.
+
+**Otras distribuciones.** El apartado «Montecarlo e índices» del portal permite elegir, actividad a actividad, otras curvas además de la beta-PERT y la triangular: uniforme, normal truncada, lognormal y discreta. Se ven en el capítulo 9.
+
+**Las fuentes de los ejemplos.** El portal cita la traducción española de Klastorin (2010) y la edición de 2015 de Hillier y Lieberman (tablas 22.4 y 22.6). Este libro cita la edición original de Klastorin [-@klastorin2004] y la de 2001 de Hillier y Lieberman, cuya tabla 10.4 [-@hillier2001, p. 488] tiene los mismos datos que el ejemplo «Reliable Construction Co.» del portal.
+
+::: {.callout-note .mas-portal title="Más en el portal"}
+- **Tres tiempos (M5)**, en la pestaña Duraciones inciertas: la curva beta-PERT y la triangular de cada actividad, con la beta clásica superpuesta si se quiere; la tabla que compara la media y la varianza de cada curva; el paso a paso con predicción, que reconoce los errores frecuentes; y la red con las medias y su camino crítico.
+- **Tus propios datos:** una tabla propia con a, m y b, **Pegar una tabla** desde una hoja de cálculo o **Partir del taller**, que copia la red del taller con a = m = b.
+- **Aprende más**, en el apartado «Tres tiempos»: de dónde salen las fórmulas, las dos betas, la triangular y los supuestos.
+- **Probabilidad (TCL)**, en la pestaña Ejercicios: proyectos generados con su semilla, que se corrigen con error consecuente. Las medias, las varianzas y el camino son de este capítulo; el resto, del siguiente.
+:::
+
+## Referencias del capítulo {.unnumbered #referencias}
+
+::: {.referencias-capitulo #refs}
+:::

@@ -66,15 +66,29 @@ Aquí están todas las cajas de trabajo del libro. Los **ejemplos reproducibles*
 | [Ejercicio 6.2](06-holguras.qmd#ejercicio-holguras-criticos) | Cadenas y sucesos críticos | [6.2](06-holguras.qmd#sec-holguras-criticos) | [[B]{.corto}]{.nivel .basico .solo-corto} |
 | [Ejemplo 6.5](06-holguras.qmd#ejemplo-holguras-cuatro) | Una independiente más pequeña | [6.5](06-holguras.qmd#sec-holguras-cuatro) | [[A]{.corto}]{.nivel .avanzado .solo-corto} |
 
+### Duraciones inciertas {.unnumbered #h-unc}
+
+5 ejemplos reproducibles y 1 ejercicio.
+
+| Actividad | Título | Sección | Nivel |
+|---|---|:-:|:-:|
+| [Ejemplo 7.1](07-tres-tiempos.qmd#ejemplo-tres-curva) | La curva de una actividad | [7.1](07-tres-tiempos.qmd#sec-tres-estimaciones) | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejemplo 7.2](07-tres-tiempos.qmd#ejemplo-tres-media) | Paso a paso con predicción | [7.2](07-tres-tiempos.qmd#sec-tres-media) | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejercicio 7.2](07-tres-tiempos.qmd#ejercicio-tres-media) | Las actividades de Mecánicas con cola | [7.2](07-tres-tiempos.qmd#sec-tres-media) | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejemplo 7.3](07-tres-tiempos.qmd#ejemplo-tres-proyecto) | Mecánicas con las medias | [7.3](07-tres-tiempos.qmd#sec-tres-proyecto) | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejemplo 7.4](07-tres-tiempos.qmd#ejemplo-tres-camino) | El camino crítico de Klastorin | [7.4](07-tres-tiempos.qmd#sec-tres-camino) | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejemplo 7.6](07-tres-tiempos.qmd#ejemplo-tres-betas) | Las dos betas de A | [7.6](07-tres-tiempos.qmd#sec-tres-betas) | [[A]{.corto}]{.nivel .avanzado .solo-corto} |
+
 ### Ejercicios {.unnumbered #h-ex}
 
-1 ejemplo reproducible y 2 ejercicios.
+1 ejemplo reproducible y 3 ejercicios.
 
 | Actividad | Título | Sección | Nivel |
 |---|---|:-:|:-:|
 | [Ejercicio 3.4](03-roy.qmd#ejercicio-roy-detective) | El detective | [3.4](03-roy.qmd#sec-roy-comprobar) | [[B]{.corto}]{.nivel .basico .solo-corto} |
 | [Ejercicio 4.5](04-pert.qmd#ejercicio-pert-detective) | El detective PERT | [4.5](04-pert.qmd#sec-pert-comprobar) | [[B]{.corto}]{.nivel .basico .solo-corto} |
 | [Ejemplo 5.3](05-tiempos.qmd#ejemplo-tiempos-atras) | El detective de los cálculos | [5.3](05-tiempos.qmd#sec-tiempos-atras) | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejercicio 7.4](07-tres-tiempos.qmd#ejercicio-tres-camino) | Un proyecto del portal | [7.4](07-tres-tiempos.qmd#sec-tres-camino) | [[B]{.corto}]{.nivel .basico .solo-corto} |
 
 ## Por capítulo {.unnumbered #por-capitulo}
 
@@ -171,3 +185,19 @@ Aquí están todas las cajas de trabajo del libro. Los **ejemplos reproducibles*
 | [Ejercicio 6.5](06-holguras.qmd#ejercicio-holguras-cuatro) | Las conjeturas de Klastorin | [6.5](06-holguras.qmd#sec-holguras-cuatro) | — | [[A]{.corto}]{.nivel .avanzado .solo-corto} |
 | [Ejemplo 6.6](06-holguras.qmd#ejemplo-holguras-sucesos) | Las holguras del ejercicio 7 | [6.6](06-holguras.qmd#sec-holguras-sucesos) | Ruta guiada | [[A]{.corto}]{.nivel .avanzado .solo-corto} |
 | [Ejercicio 6.6](06-holguras.qmd#ejercicio-holguras-sucesos) | ¿Cuándo fallan las fórmulas? | [6.6](06-holguras.qmd#sec-holguras-sucesos) | — | [[A]{.corto}]{.nivel .avanzado .solo-corto} |
+
+### 7. Duraciones inciertas: tres tiempos {.unnumbered #a-cap-7}
+
+| Actividad | Título | Sección | Pestaña | Nivel |
+|---|---|:-:|---|:-:|
+| [Ejemplo 7.1](07-tres-tiempos.qmd#ejemplo-tres-curva) | La curva de una actividad | [7.1](07-tres-tiempos.qmd#sec-tres-estimaciones) | Duraciones inciertas | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejercicio 7.1](07-tres-tiempos.qmd#ejercicio-tres-estimaciones) | Tres actividades | [7.1](07-tres-tiempos.qmd#sec-tres-estimaciones) | — | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejemplo 7.2](07-tres-tiempos.qmd#ejemplo-tres-media) | Paso a paso con predicción | [7.2](07-tres-tiempos.qmd#sec-tres-media) | Duraciones inciertas | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejercicio 7.2](07-tres-tiempos.qmd#ejercicio-tres-media) | Las actividades de Mecánicas con cola | [7.2](07-tres-tiempos.qmd#sec-tres-media) | Duraciones inciertas | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejemplo 7.3](07-tres-tiempos.qmd#ejemplo-tres-proyecto) | Mecánicas con las medias | [7.3](07-tres-tiempos.qmd#sec-tres-proyecto) | Duraciones inciertas | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejercicio 7.3](07-tres-tiempos.qmd#ejercicio-tres-proyecto) | Cuatro proyectos de Klastorin | [7.3](07-tres-tiempos.qmd#sec-tres-proyecto) | — | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejemplo 7.4](07-tres-tiempos.qmd#ejemplo-tres-camino) | El camino crítico de Klastorin | [7.4](07-tres-tiempos.qmd#sec-tres-camino) | Duraciones inciertas | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejercicio 7.4](07-tres-tiempos.qmd#ejercicio-tres-camino) | Un proyecto del portal | [7.4](07-tres-tiempos.qmd#sec-tres-camino) | Ejercicios | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejemplo 7.6](07-tres-tiempos.qmd#ejemplo-tres-betas) | Las dos betas de A | [7.6](07-tres-tiempos.qmd#sec-tres-betas) | Duraciones inciertas | [[A]{.corto}]{.nivel .avanzado .solo-corto} |
+| [Ejercicio 7.6](07-tres-tiempos.qmd#ejercicio-tres-betas) | ¿Más o menos varianza? | [7.6](07-tres-tiempos.qmd#sec-tres-betas) | — | [[A]{.corto}]{.nivel .avanzado .solo-corto} |
+| [Ejercicio 7.7](07-tres-tiempos.qmd#ejercicio-tres-triangular) | Con la triangular | [7.7](07-tres-tiempos.qmd#sec-tres-triangular) | — | [[A]{.corto}]{.nivel .avanzado .solo-corto} |

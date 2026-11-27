@@ -250,7 +250,7 @@ El enlace abre la ruta guiada con C de 5 días, con el botón **¿Y si…?** ya 
 - Un retraso hasta la holgura libre no mueve nada; hasta la total, mueve sucesoras; más allá, retrasa el proyecto. Gastar holgura crea caminos críticos nuevos.
 - Acortar no es simétrico: acortar una actividad no crítica no acorta el proyecto, y acortar una crítica lo acorta lo mismo, menos o nada, según los demás caminos.
 
-Para seguir el recorrido básico, continúa por el capítulo «Duraciones inciertas: tres tiempos» (en preparación), donde las duraciones dejan de ser fijas.
+Para seguir el recorrido básico, continúa por el [capítulo «Duraciones inciertas: tres tiempos»](07-tres-tiempos.qmd), donde las duraciones dejan de ser fijas.
 
 ## Holgura independiente y de seguridad [[Avanzado]{.largo}[A]{.corto}]{.nivel .avanzado} {#sec-holguras-cuatro}
 

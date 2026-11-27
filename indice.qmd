@@ -2,9 +2,9 @@
 
 <!-- Archivo generado por filtros/indices.py en cada «quarto render» (pre-render). No lo edites a mano: los cambios se perderían. Para cambiar el contenido, cambia los capítulos; para cambiar el formato, cambia el script. -->
 
-El libro tiene 6 capítulos y 42 secciones: 26 de nivel [[Básico]{.largo}[B]{.corto}]{.nivel .basico}, 10 de nivel [[Avanzado]{.largo}[A]{.corto}]{.nivel .avanzado} y 6 de nivel [[Para saber más]{.largo}[+]{.corto}]{.nivel .saber-mas}. El **recorrido básico** son las secciones azules: se leen seguidas, capítulo a capítulo, sin las demás. Las avanzadas amplían el recorrido básico y suelen apoyarse en él; «Para saber más» cierra cada capítulo con lecturas y temas que el libro no desarrolla.
+El libro tiene 7 capítulos y 50 secciones: 31 de nivel [[Básico]{.largo}[B]{.corto}]{.nivel .basico}, 12 de nivel [[Avanzado]{.largo}[A]{.corto}]{.nivel .avanzado} y 7 de nivel [[Para saber más]{.largo}[+]{.corto}]{.nivel .saber-mas}. El **recorrido básico** son las secciones azules: se leen seguidas, capítulo a capítulo, sin las demás. Las avanzadas amplían el recorrido básico y suelen apoyarse en él; «Para saber más» cierra cada capítulo con lecturas y temas que el libro no desarrolla.
 
-Las actividades —25 ejemplos reproducibles, 5 cajas «En el portal» y 34 ejercicios— están listadas en el [índice de actividades](actividades.qmd), por capítulo y por pestaña del portal.
+Las actividades —30 ejemplos reproducibles, 5 cajas «En el portal» y 40 ejercicios— están listadas en el [índice de actividades](actividades.qmd), por capítulo y por pestaña del portal.
 
 ## El libro de un vistazo {.unnumbered #vistazo}
 
@@ -16,7 +16,8 @@ Las actividades —25 ejemplos reproducibles, 5 cajas «En el portal» y 34 ejer
 | [4. La red PERT y las ficticias](04-pert.qmd) | 5 | 4 | 1 | 7 | 0 | 9 |
 | [5. Calcular los tiempos](05-tiempos.qmd) | 5 | 2 | 1 | 5 | 2 | 7 |
 | [6. Holguras y caminos críticos](06-holguras.qmd) | 4 | 2 | 1 | 6 | 0 | 6 |
-| **Total** | **26** | **10** | **6** | **25** | **5** | **34** |
+| [7. Duraciones inciertas: tres tiempos](07-tres-tiempos.qmd) | 5 | 2 | 1 | 5 | 0 | 6 |
+| **Total** | **31** | **12** | **7** | **30** | **5** | **40** |
 
 ## 1. Proyectos, actividades y redes {.unnumbered #cap-1}
 
@@ -77,3 +78,14 @@ Las actividades —25 ejemplos reproducibles, 5 cajas «En el portal» y 34 ejer
 - [6.5 Holgura independiente y de seguridad](06-holguras.qmd#sec-holguras-cuatro) [[A]{.corto}]{.nivel .avanzado .solo-corto}
 - [6.6 Holguras calculadas sobre los sucesos](06-holguras.qmd#sec-holguras-sucesos) [[A]{.corto}]{.nivel .avanzado .solo-corto}
 - [6.7 Ampliaciones](06-holguras.qmd#sec-holguras-ampliaciones) [[+]{.corto}]{.nivel .saber-mas .solo-corto}
+
+## 7. Duraciones inciertas: tres tiempos {.unnumbered #cap-7}
+
+- [7.1 Una duración, tres estimaciones](07-tres-tiempos.qmd#sec-tres-estimaciones) [[B]{.corto}]{.nivel .basico .solo-corto}
+- [7.2 La media y la varianza de una actividad](07-tres-tiempos.qmd#sec-tres-media) [[B]{.corto}]{.nivel .basico .solo-corto}
+- [7.3 El proyecto con las medias](07-tres-tiempos.qmd#sec-tres-proyecto) [[B]{.corto}]{.nivel .basico .solo-corto}
+- [7.4 Media y varianza de un camino](07-tres-tiempos.qmd#sec-tres-camino) [[B]{.corto}]{.nivel .basico .solo-corto}
+- [7.5 Lo que suponen las fórmulas](07-tres-tiempos.qmd#sec-tres-supuestos) [[B]{.corto}]{.nivel .basico .solo-corto}
+- [7.6 De dónde salen las fórmulas: dos betas](07-tres-tiempos.qmd#sec-tres-betas) [[A]{.corto}]{.nivel .avanzado .solo-corto}
+- [7.7 La triangular y las estimaciones con percentiles](07-tres-tiempos.qmd#sec-tres-triangular) [[A]{.corto}]{.nivel .avanzado .solo-corto}
+- [7.8 Ampliaciones](07-tres-tiempos.qmd#sec-tres-ampliaciones) [[+]{.corto}]{.nivel .saber-mas .solo-corto}
