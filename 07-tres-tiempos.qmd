@@ -104,7 +104,7 @@ La tabla completa de Mecánicas con tres tiempos, que usaremos en lo que queda d
 
 ![La beta-PERT de F (a = 2, m = 3, b = 9) con la duración más probable, la mediana y la media. La zona sombreada es la probabilidad de terminar en 3 días o antes. Figura propia, generada con `figuras/07-media-mediana.py`; las cifras salen del núcleo del portal.](figuras/07-media-mediana.svg){#fig-tres-media fig-alt="Curva con una joroba en 3 y una cola larga hacia la derecha, entre 2 y 9 días. Tres líneas verticales: más probable, 3; mediana, 3,64, de trazos; y media, 3,83. El área bajo la curva entre 2 y 3 está sombreada y marcada con un 28 %. A la derecha, P(F ≤ 3) = 0,28, P(F ≤ media) = 0,56 y P(F ≤ mediana) = 0,50."}
 
-Incluso algún manual afirma que la media tiene un 50 % a cada lado [@nicholas2012, p. 247]; con su propio ejemplo, una actividad de 3, 5 y 13 días, la probabilidad de terminar en la media o antes es del 55 % con la beta-PERT. El portal no dibuja estas probabilidades en el apartado «Tres tiempos»; aquí las hemos calculado con su núcleo, y en el capítulo 9 se pueden ver simulando.
+Con el ejemplo de Nicholas y Steyn, una actividad de 3, 5 y 13 días [@nicholas2012, p. 247], la probabilidad de terminar en la media o antes es del 55 % con la beta-PERT, y no del 50 %. El portal no dibuja estas probabilidades en el apartado «Tres tiempos»; aquí las hemos calculado con su núcleo, y en el capítulo 9 se pueden ver simulando.
 
 **Errores frecuentes.** El paso a paso del portal reconoce tres, y te avisa si escribes uno de estos valores:
 
@@ -112,7 +112,7 @@ Incluso algún manual afirma que la media tiene un 50 % a cada lado [@nicholas20
 - dar la media de la triangular, (a + m + b)/3, en lugar de la de examen, que cuenta m cuatro veces;
 - dar la varianza de la curva beta-PERT que dibuja el portal, que se parece, pero no es la fórmula de examen (sección -@sec-tres-betas).
 
-Y un cuarto que no se ve en el número: la varianza se mide en **días al cuadrado**. Es fácil escribir «8,25 semanas» para una varianza; hasta Klastorin lo hace [@klastorin2004, p. 137].
+Y un cuarto que no se ve en el número: la varianza se mide en **días al cuadrado**. Es fácil escribir, por inercia, «8,25 semanas» para una varianza que en realidad son 8,25 semanas².
 
 ::: {.callout-tip .ejemplo #ejemplo-tres-media title="Ejemplo reproducible · Paso a paso con predicción"}
 **Datos.** El proyecto de Klastorin, en el apartado «Tres tiempos», con el paso a paso y el modo predicción activados.
