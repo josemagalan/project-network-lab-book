@@ -92,6 +92,7 @@ book:
         - 06-holguras.qmd
         - 07-tres-tiempos.qmd
         - 08-tcl.qmd
+        - 09-montecarlo.qmd
     - actividades.qmd       # generado por filtros/indices.py
     - avisos.qmd            # siempre al final: los capítulos nuevos van antes
 

@@ -2,9 +2,9 @@
 
 <!-- Archivo generado por filtros/indices.py en cada «quarto render» (pre-render). No lo edites a mano: los cambios se perderían. Para cambiar el contenido, cambia los capítulos; para cambiar el formato, cambia el script. -->
 
-El libro tiene 8 capítulos y 57 secciones: 36 de nivel [[Básico]{.largo}[B]{.corto}]{.nivel .basico}, 13 de nivel [[Avanzado]{.largo}[A]{.corto}]{.nivel .avanzado} y 8 de nivel [[Para saber más]{.largo}[+]{.corto}]{.nivel .saber-mas}. El **recorrido básico** son las secciones azules: se leen seguidas, capítulo a capítulo, sin las demás. Las avanzadas amplían el recorrido básico y suelen apoyarse en él; «Para saber más» cierra cada capítulo con lecturas y temas que el libro no desarrolla.
+El libro tiene 9 capítulos y 65 secciones: 42 de nivel [[Básico]{.largo}[B]{.corto}]{.nivel .basico}, 14 de nivel [[Avanzado]{.largo}[A]{.corto}]{.nivel .avanzado} y 9 de nivel [[Para saber más]{.largo}[+]{.corto}]{.nivel .saber-mas}. El **recorrido básico** son las secciones azules: se leen seguidas, capítulo a capítulo, sin las demás. Las avanzadas amplían el recorrido básico y suelen apoyarse en él; «Para saber más» cierra cada capítulo con lecturas y temas que el libro no desarrolla.
 
-Las actividades —36 ejemplos reproducibles, 6 cajas «En el portal» y 46 ejercicios— están listadas en el [índice de actividades](actividades.qmd), por capítulo y por pestaña del portal.
+Las actividades —43 ejemplos reproducibles, 7 cajas «En el portal» y 53 ejercicios— están listadas en el [índice de actividades](actividades.qmd), por capítulo y por pestaña del portal.
 
 ## El libro de un vistazo {.unnumbered #vistazo}
 
@@ -18,7 +18,8 @@ Las actividades —36 ejemplos reproducibles, 6 cajas «En el portal» y 46 ejer
 | [6. Holguras y caminos críticos](06-holguras.qmd) | 4 | 2 | 1 | 6 | 0 | 6 |
 | [7. Duraciones inciertas: tres tiempos](07-tres-tiempos.qmd) | 5 | 2 | 1 | 5 | 0 | 6 |
 | [8. El TCL y sus trampas](08-tcl.qmd) | 5 | 1 | 1 | 6 | 1 | 6 |
-| **Total** | **36** | **13** | **8** | **36** | **6** | **46** |
+| [9. Montecarlo e índices](09-montecarlo.qmd) | 6 | 1 | 1 | 7 | 1 | 7 |
+| **Total** | **42** | **14** | **9** | **43** | **7** | **53** |
 
 ## 1. Proyectos, actividades y redes {.unnumbered #cap-1}
 
@@ -100,3 +101,14 @@ Las actividades —36 ejemplos reproducibles, 6 cajas «En el portal» y 46 ejer
 - [8.5 Cuánto se equivoca la normal](08-tcl.qmd#sec-tcl-cuanto) [[B]{.corto}]{.nivel .basico .solo-corto}
 - [8.6 El máximo de varios caminos](08-tcl.qmd#sec-tcl-maximo) [[A]{.corto}]{.nivel .avanzado .solo-corto}
 - [8.7 Ampliaciones](08-tcl.qmd#sec-tcl-ampliaciones) [[+]{.corto}]{.nivel .saber-mas .solo-corto}
+
+## 9. Montecarlo e índices {.unnumbered #cap-9}
+
+- [9.1 Simular una red](09-montecarlo.qmd#sec-mc-simular) [[B]{.corto}]{.nivel .basico .solo-corto}
+- [9.2 Leer una simulación](09-montecarlo.qmd#sec-mc-leer) [[B]{.corto}]{.nivel .basico .solo-corto}
+- [9.3 ¿Cuántas réplicas?](09-montecarlo.qmd#sec-mc-replicas) [[B]{.corto}]{.nivel .basico .solo-corto}
+- [9.4 La criticidad](09-montecarlo.qmd#sec-mc-criticidad) [[B]{.corto}]{.nivel .basico .solo-corto}
+- [9.5 La crucialidad](09-montecarlo.qmd#sec-mc-crucialidad) [[B]{.corto}]{.nivel .basico .solo-corto}
+- [9.6 La curva importa](09-montecarlo.qmd#sec-mc-curva) [[B]{.corto}]{.nivel .basico .solo-corto}
+- [9.7 Más sobre los índices](09-montecarlo.qmd#sec-mc-indices) [[A]{.corto}]{.nivel .avanzado .solo-corto}
+- [9.8 Ampliaciones](09-montecarlo.qmd#sec-mc-ampliaciones) [[+]{.corto}]{.nivel .saber-mas .solo-corto}

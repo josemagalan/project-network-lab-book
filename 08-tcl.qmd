@@ -325,7 +325,7 @@ Con 15,94 días, la simulación da 0,80: el plazo «del 90 %» solo se cumple 8 
 - Con pocas actividades, asimétricas, la normal no se ajusta, y puede errar hacia los dos lados; con duraciones correlacionadas, se queda estrecha.
 - En la práctica, la normal del camino crítico es casi siempre un techo: en Mecánicas, 0,91 frente a 0,81. Hay que vigilar los caminos casi críticos y, si la decisión importa, simular.
 
-Para seguir el recorrido básico, continúa por el capítulo «Montecarlo e índices» (en preparación), donde la simulación de este capítulo se explica a fondo: histogramas, percentiles e índices de criticidad.
+Para seguir el recorrido básico, continúa por el [capítulo «Montecarlo e índices»](09-montecarlo.qmd), donde la simulación de este capítulo se explica a fondo: histogramas, percentiles e índices de criticidad.
 
 ## El máximo de varios caminos [[Avanzado]{.largo}[A]{.corto}]{.nivel .avanzado} {#sec-tcl-maximo}
 

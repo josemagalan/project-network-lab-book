@@ -68,7 +68,7 @@ Aquí están todas las cajas de trabajo del libro. Los **ejemplos reproducibles*
 
 ### Duraciones inciertas {.unnumbered #h-unc}
 
-11 ejemplos reproducibles, 1 caja «En el portal» y 1 ejercicio.
+18 ejemplos reproducibles, 2 cajas «En el portal» y 3 ejercicios.
 
 | Actividad | Título | Sección | Nivel |
 |---|---|:-:|:-:|
@@ -85,10 +85,20 @@ Aquí están todas las cajas de trabajo del libro. Los **ejemplos reproducibles*
 | [Ejemplo 8.4](08-tcl.qmd#ejemplo-tcl-limites) | Los tres límites | [8.4](08-tcl.qmd#sec-tcl-limites) | [[B]{.corto}]{.nivel .basico .solo-corto} |
 | [Ejemplo 8.5](08-tcl.qmd#ejemplo-tcl-cuanto) | El proyecto entero | [8.5](08-tcl.qmd#sec-tcl-cuanto) | [[B]{.corto}]{.nivel .basico .solo-corto} |
 | [Ejemplo 8.6](08-tcl.qmd#ejemplo-tcl-maximo) | Dos caminos iguales | [8.6](08-tcl.qmd#sec-tcl-maximo) | [[A]{.corto}]{.nivel .avanzado .solo-corto} |
+| [Ejemplo 9.1](09-montecarlo.qmd#ejemplo-mc-simular) | Réplica a réplica | [9.1](09-montecarlo.qmd#sec-mc-simular) | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejemplo 9.2](09-montecarlo.qmd#ejemplo-mc-leer) | La duración de Mecánicas | [9.2](09-montecarlo.qmd#sec-mc-leer) | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejercicio 9.2](09-montecarlo.qmd#ejercicio-mc-leer) | Prometer un plazo | [9.2](09-montecarlo.qmd#sec-mc-leer) | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejemplo 9.3](09-montecarlo.qmd#ejemplo-mc-replicas) | De 100 a 100 000 réplicas | [9.3](09-montecarlo.qmd#sec-mc-replicas) | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejemplo 9.4](09-montecarlo.qmd#ejemplo-mc-criticidad) | Los índices de Mecánicas | [9.4](09-montecarlo.qmd#sec-mc-criticidad) | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [En el portal](09-montecarlo.qmd#sec-mc-crucialidad) | «Montecarlo e índices», F más incierta | [9.5](09-montecarlo.qmd#sec-mc-crucialidad) | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejemplo 9.5](09-montecarlo.qmd#ejemplo-mc-crucialidad) | Los cuatro ejemplos de Williams | [9.5](09-montecarlo.qmd#sec-mc-crucialidad) | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejemplo 9.6](09-montecarlo.qmd#ejemplo-mc-curva) | Mecánicas con triangulares | [9.6](09-montecarlo.qmd#sec-mc-curva) | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejercicio 9.6](09-montecarlo.qmd#ejercicio-mc-curva) | Otras curvas | [9.6](09-montecarlo.qmd#sec-mc-curva) | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejemplo 9.7](09-montecarlo.qmd#ejemplo-mc-indices) | Pearson y Spearman | [9.7](09-montecarlo.qmd#sec-mc-indices) | [[A]{.corto}]{.nivel .avanzado .solo-corto} |
 
 ### Ejercicios {.unnumbered #h-ex}
 
-1 ejemplo reproducible y 5 ejercicios.
+1 ejemplo reproducible y 7 ejercicios.
 
 | Actividad | Título | Sección | Nivel |
 |---|---|:-:|:-:|
@@ -98,6 +108,8 @@ Aquí están todas las cajas de trabajo del libro. Los **ejemplos reproducibles*
 | [Ejercicio 7.4](07-tres-tiempos.qmd#ejercicio-tres-camino) | Un proyecto del portal | [7.4](07-tres-tiempos.qmd#sec-tres-camino) | [[B]{.corto}]{.nivel .basico .solo-corto} |
 | [Ejercicio 8.1](08-tcl.qmd#ejercicio-tcl-plazo) | De los dados al plazo | [8.1](08-tcl.qmd#sec-tcl-plazo) | [[B]{.corto}]{.nivel .basico .solo-corto} |
 | [Ejercicio 8.3](08-tcl.qmd#ejercicio-tcl-fusion) | Caminos en paralelo | [8.3](08-tcl.qmd#sec-tcl-fusion) | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejercicio 9.1](09-montecarlo.qmd#ejercicio-mc-simular) | Réplicas y combinaciones a mano | [9.1](09-montecarlo.qmd#sec-mc-simular) | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejercicio 9.5](09-montecarlo.qmd#ejercicio-mc-crucialidad) | Leer los índices | [9.5](09-montecarlo.qmd#sec-mc-crucialidad) | [[B]{.corto}]{.nivel .basico .solo-corto} |
 
 ## Por capítulo {.unnumbered #por-capitulo}
 
@@ -228,3 +240,23 @@ Aquí están todas las cajas de trabajo del libro. Los **ejemplos reproducibles*
 | [Ejercicio 8.5](08-tcl.qmd#ejercicio-tcl-cuanto) | El plazo del 90 % | [8.5](08-tcl.qmd#sec-tcl-cuanto) | — | [[B]{.corto}]{.nivel .basico .solo-corto} |
 | [Ejemplo 8.6](08-tcl.qmd#ejemplo-tcl-maximo) | Dos caminos iguales | [8.6](08-tcl.qmd#sec-tcl-maximo) | Duraciones inciertas | [[A]{.corto}]{.nivel .avanzado .solo-corto} |
 | [Ejercicio 8.6](08-tcl.qmd#ejercicio-tcl-maximo) | Covarianza y Schonberger | [8.6](08-tcl.qmd#sec-tcl-maximo) | — | [[A]{.corto}]{.nivel .avanzado .solo-corto} |
+
+### 9. Montecarlo e índices {.unnumbered #a-cap-9}
+
+| Actividad | Título | Sección | Pestaña | Nivel |
+|---|---|:-:|---|:-:|
+| [Ejemplo 9.1](09-montecarlo.qmd#ejemplo-mc-simular) | Réplica a réplica | [9.1](09-montecarlo.qmd#sec-mc-simular) | Duraciones inciertas | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejercicio 9.1](09-montecarlo.qmd#ejercicio-mc-simular) | Réplicas y combinaciones a mano | [9.1](09-montecarlo.qmd#sec-mc-simular) | Ejercicios | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejemplo 9.2](09-montecarlo.qmd#ejemplo-mc-leer) | La duración de Mecánicas | [9.2](09-montecarlo.qmd#sec-mc-leer) | Duraciones inciertas | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejercicio 9.2](09-montecarlo.qmd#ejercicio-mc-leer) | Prometer un plazo | [9.2](09-montecarlo.qmd#sec-mc-leer) | Duraciones inciertas | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejemplo 9.3](09-montecarlo.qmd#ejemplo-mc-replicas) | De 100 a 100 000 réplicas | [9.3](09-montecarlo.qmd#sec-mc-replicas) | Duraciones inciertas | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejercicio 9.3](09-montecarlo.qmd#ejercicio-mc-replicas) | El error de la simulación | [9.3](09-montecarlo.qmd#sec-mc-replicas) | — | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejemplo 9.4](09-montecarlo.qmd#ejemplo-mc-criticidad) | Los índices de Mecánicas | [9.4](09-montecarlo.qmd#sec-mc-criticidad) | Duraciones inciertas | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejercicio 9.4](09-montecarlo.qmd#ejercicio-mc-criticidad) | Contar críticas | [9.4](09-montecarlo.qmd#sec-mc-criticidad) | — | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [En el portal](09-montecarlo.qmd#sec-mc-crucialidad) | «Montecarlo e índices», F más incierta | [9.5](09-montecarlo.qmd#sec-mc-crucialidad) | Duraciones inciertas | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejemplo 9.5](09-montecarlo.qmd#ejemplo-mc-crucialidad) | Los cuatro ejemplos de Williams | [9.5](09-montecarlo.qmd#sec-mc-crucialidad) | Duraciones inciertas | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejercicio 9.5](09-montecarlo.qmd#ejercicio-mc-crucialidad) | Leer los índices | [9.5](09-montecarlo.qmd#sec-mc-crucialidad) | Ejercicios | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejemplo 9.6](09-montecarlo.qmd#ejemplo-mc-curva) | Mecánicas con triangulares | [9.6](09-montecarlo.qmd#sec-mc-curva) | Duraciones inciertas | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejercicio 9.6](09-montecarlo.qmd#ejercicio-mc-curva) | Otras curvas | [9.6](09-montecarlo.qmd#sec-mc-curva) | Duraciones inciertas | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejemplo 9.7](09-montecarlo.qmd#ejemplo-mc-indices) | Pearson y Spearman | [9.7](09-montecarlo.qmd#sec-mc-indices) | Duraciones inciertas | [[A]{.corto}]{.nivel .avanzado .solo-corto} |
+| [Ejercicio 9.7](09-montecarlo.qmd#ejercicio-mc-indices) | Caminos, empates y significación | [9.7](09-montecarlo.qmd#sec-mc-indices) | — | [[A]{.corto}]{.nivel .avanzado .solo-corto} |
