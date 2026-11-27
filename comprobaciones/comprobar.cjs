@@ -11,7 +11,8 @@
  *    <!-- comprobar: URL -->, y las descodifica con el propio core/urlstate.js del portal. Falla si
  *    una dirección lleva un parámetro desconocido o un valor que el portal no acepta (en ese caso
  *    el portal abriría su estado por defecto y el ejemplo no coincidiría con el libro). Comprueba
- *    también que la página enlazada existe en el portal.
+ *    también que la página enlazada existe en el portal. Las de examen.html se descodifican con
+ *    js/exam-app.js, que tiene su propio estado.
  *
  * Uso: node comprobaciones/comprobar.cjs                 (necesita git y conexión)
  *      node comprobaciones/comprobar.cjs --sin-versiones  (solo los enlaces)
@@ -120,7 +121,11 @@ function comprobarEnlaces(dir, lista) {
     if (!fs.existsSync(path.join(dir, pagina))) { anotar('error', `el portal no tiene ${pagina}: ${url}`, archivo, linea); continue; }
     const lang = u.searchParams.get('lang');
     if (lang && !['es', 'en'].includes(lang)) anotar('error', `idioma desconocido (${lang}): ${url}`, archivo, linea);
-    if (u.hash && pagina !== 'index.html') {
+    if (u.hash && pagina === 'examen.html') {
+      // examen.html tiene su propio estado (js/exam-app.js): decode avisa de cualquier clave o valor que no vale.
+      const { warning } = require(path.join(dir, 'js', 'exam-app.js')).decode(u.hash);
+      if (warning) { anotar('error', `el examen no acepta este estado: ${url}`, archivo, linea); continue; }
+    } else if (u.hash && pagina !== 'index.html') {
       const { warning } = urlstate.decode(u.hash);
       if (warning === 'malformed' || warning === 'unknownParam') {
         anotar('error', `el portal no acepta este estado (${warning === 'malformed' ? 'valor no válido' : 'parámetro desconocido'}): ${url}`, archivo, linea);

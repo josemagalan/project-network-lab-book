@@ -1,0 +1,442 @@
+# Un caso completo: Electrona {#sec-caso}
+
+<!-- Seguimiento interno (no visible): primer borrador del 2026-11-27, con el esquema revisado por un agente crítico y aprobado por el autor («adelante con ello», memoria/esquemas/10-caso.md, D029): Electrona (enunciado ej5 de «Del enunciado a la tabla»), caso resuelto con «Predice» y un caso del portal para practicar (examen.html, nivel medio, semilla 21, sin la holgura de seguridad). Tres tiempos propuestos por el libro con m = la duración del enunciado: A (2, 3, 6), B (1, 1, 3), C (1, 2, 5), D (6, 7, 9), E (4, 5, 8), F (5, 6, 18), G 1, H (2, 2, 3), I 1, J (2, 3, 5), K 1. Plazo del cliente, 19 días (contexto del libro; también el que propone el portal, ⌈μ + σ⌉). Cifras comprobadas con el núcleo de project-network-lab 90bff5a (de b6e49ee a 90bff5a solo cambia core/resource.js): project.parse, cpm.solve y whatIf, aoa.build, mindummy.solve y aoamethods (2 ficticias y 10 sucesos con todos los métodos), threept.exam, tcl.exam y tcl.paths, m7.model, sim.run con track, m7.results, mc.indices (Pearson y Spearman) y mc.exact; exam.models y exam.document para el caso de práctica. Determinista: 17 días, crítico A D H I J K; ES/EF/LS/LF/TF/FF en la tabla del texto; IF B 1; SF B 2, C 3, F 3; sucesos (TE, TL) 1 (0, 0), 2 (1, 3), 3 (3, 3), 4 (2, 5), 5 (10, 10), 6 (9, 12), 7 (12, 12), 8 (13, 13), 9 (16, 16), 10 (17, 17); caminos ADHIJK 17, BDHIJK 15, AFGJK 14, CEHIJK 14, BEHIJK 13, BFGJK 12; whatIf B 3 → 17, B 4 → 18, F 9 → 17 (dos críticos), F 10 → 18 (A F G J K). Tres tiempos: μ 17,833, σ² 0,9722, σ 0,9860; z 1,183 (tabla 1,18 → 0,8810; exacta 0,8816); percentiles de la normal 17,83, 18,66, 19,10, 19,46; caminos (μ, σ², P normal): ADHIJK 17,83, 0,972, 0,882; AFGJK 16,33, 5,389, 0,875; BDHIJK 15,83, 0,639, 1,000; CEHIJK 15,00, 1,167, 1,000; BFGJK 14,33, 5,056, 0,981; BEHIJK 14,00, 0,833, 1,000; producto 0,756. Simulación (beta-PERT, 10⁴, semilla 2026): media 18,179 ± 0,027, σ 1,352, de 14,80 a 26,58; P(≤ 19) 0,771 ± 0,008; P(≤ 17) 0,182; (≤ 17,83) 0,431; (≤ 18) 0,487; (≤ 20) 0,911; (≤ 21) 0,965; P50 18,04, P80 19,15, P90 19,87, P95 20,62; criticidad A 0,985, B 0,001, C 0,015, D 0,762, E 0,015, F 0,223, G 0,223, H 0,777, I 0,777, J 1, K 1; caminos ADHIJK 0,762, AFGJK 0,223, CEHIJK 0,015, BDHIJK 0,001; crucialidad (Pearson) A 0,517, D 0,313, F 0,528, H 0,076, J 0,412, demás < 0,02; Spearman A 0,554, D 0,362, F 0,343, J 0,437; comienzo medio H 10,495 (10,500), J 14,020 (13,667), K 17,179 (16,833); acortar 0,1 días (10⁵, misma semilla) A 0,0982, D 0,0756, F 0,0216, J y K 0,1000, C 0,0014; F (5, 6, 12) → P 0,855; F fija en 7,83 → 0,853; A fija en 3,33 → 0,822; réplicas 10² 0,730 ± 0,087, 10³ 0,766 ± 0,026, 10⁵ 0,764 ± 0,003; triangular 19,92, P 0,400, P90 23,16; uniforme 22,01, 0,160; discreta de tres puntos exacta (6 561 combinaciones) 19,43, P(≤ 19) 0,664, P(≤ 20) 0,759. Caso de práctica (semilla 21, tabla de la propia semilla): ver la solución plegada de la sección 10.8. Fuentes cotejadas: PMI (2025, guía, pp. 47 y 60; página impresa = PDF − 97). -->
+
+**Portal:** [Project Network Lab](https://josemagalan.github.io/project-network-lab/), todas las pestañas del recorrido básico con la misma red: [Del enunciado a la tabla](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=m0&st=ej5){target="_blank"}, el [taller](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=work&t=A%2C3%2C%2CMateriales%2520de%2520X%2520e%2520Y%3BB%2C1%2C%2CPuesta%2520a%2520punto%3BC%2C2%2C%2CMateriales%2520de%2520Z%3BD%2C7%2CA%252C%2520B%2CFabricar%2520Y%3BE%2C5%2CB%252C%2520C%2CFabricar%2520Z%3BF%2C6%2CA%252C%2520B%2CFabricar%2520X%3BG%2C1%2CF%2CTransportar%2520X%3BH%2C2%2CD%252C%2520E%2CEnsamblar%2520YZ%3BI%2C1%2CH%2CTransportar%2520YZ%3BJ%2C3%2CG%252C%2520I%2CEnsamblar%2520XYZ%3BK%2C1%2CJ%2CEnvasar&step=0){target="_blank"} y [Duraciones inciertas](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=unc&um=m5&ue=own&ut=LYxFgiOByMpkEQsLZbERBhIiGUPGcPG0Ph5NMJ0MpyNJhNhlOYgMhlEBYEEkLIiLsKERCh4xl8Si0DKB1kB0MIgnJwOpuOhvlUsIcxgcRgY1mYijEajkekEikhaoMMIkUh43h45h5BFggl0DIxhMUcMZhOQglMrhhFh40h9IgY4h5CrtDsFislmEFStQiI1vq0DGNygdcr0PsNjNNls5YqYiI9EEUwwWIh5UORhNxzOBvOU4xuPJEPo0QmUDIldtkDIubMJtMRsvRZvksJOSymTh-jgeYzWcz2gtG1hhK0mnEVwyFd2-s12w2WN2mPJe4yXG5x2MJzs0qLpdgA){target="_blank"}; y la página del [examen imprimible](https://josemagalan.github.io/project-network-lab/examen.html){target="_blank"}.
+
+::: {.callout-warning .objetivos title="Objetivos del capítulo"}
+Al terminar el recorrido básico de este capítulo podrás:
+
+- llevar un proyecto de principio a fin con todo lo visto en los capítulos 2 a 9;
+- deducir las precedencias de un enunciado que no las dice, y declarar los supuestos que haces;
+- pasar de la red determinista a los tres tiempos, y de la normal a la simulación, explicando por qué cambian las respuestas;
+- resumir el análisis en un informe que responda a la dirección: qué plazo comprometer, qué vigilar y dónde actuar.
+:::
+
+Electrona, S.A., fabrica productos electrónicos y se plantea fabricar uno nuevo, XYZ, con los equipos que ya tiene. El enunciado del portal describe las once fases del proceso y pregunta qué actividades determinan la duración mínima de la fabricación y cuál es. Este capítulo añade la pregunta que de verdad le llega a quien planifica: **un cliente quiere el primer lote en 19 días; ¿se puede firmar?**
+
+Responderla bien exige todo lo visto hasta aquí, en el mismo orden que la tabla de preguntas del capítulo 1 (sección -@sec-redes-preguntas). Cada sección de este capítulo es un capítulo anterior aplicado a Electrona; la última junta las respuestas en un informe. En el lenguaje de la guía del PMI, lo que sale de aquí es un **cronograma** y, cuando lo aprueba quien tiene que aprobarlo, su **línea base**: la versión aprobada del cronograma, que sirve de referencia para comparar con lo que de verdad pasa [@pmi2025, guía, p. 47].
+
+Los resultados no se dan sin más: antes de cada uno, el texto pide una predicción. Merece la pena hacerla de verdad, con papel y lápiz.
+
+## Del enunciado a la tabla [[Básico]{.largo}[B]{.corto}]{.nivel .basico} {#sec-caso-tabla}
+
+Las fases de fabricación del producto XYZ, con su duración en días, son:
+
+- **A** · aprovisionamiento de materiales para fabricar los componentes X e Y (3);
+- **B** · puesta a punto de la maquinaria que elabora los componentes X, Y y Z (1);
+- **C** · aprovisionamiento de materiales para fabricar el componente Z (2);
+- **D** · fabricar el componente Y (7);
+- **E** · fabricar el componente Z (5);
+- **F** · fabricar el componente X (6);
+- **G** · transportar el componente X a la segunda sección (1);
+- **H** · ensamblar los componentes Y y Z (2);
+- **I** · transportar el subproducto YZ, ya ensamblado, a la segunda sección (1);
+- **J** · ensamblar el componente X con el subproducto YZ, para obtener el producto final XYZ (3);
+- **K** · envasado del producto (1).
+
+Ninguna frase dice qué espera a qué. Cada precedencia hay que deducirla de lo que hace la fase: un componente se fabrica cuando están sus materiales y la maquinaria; se transporta cuando está fabricado; se ensambla cuando han llegado las piezas. Es el ejercicio de las ampliaciones del capítulo 2 (ejercicio [](#ejercicio-enunciado-electrona)), que allí quedó fuera del recorrido básico. Esta es la tabla:
+
+| Actividad | Nombre | Duración | Predecesoras | Por qué |
+|:-:|:--|:-:|:-:|:--|
+| A | Materiales de X e Y | 3 | — | |
+| B | Puesta a punto | 1 | — | |
+| C | Materiales de Z | 2 | — | |
+| D | Fabricar Y | 7 | A, B | sus materiales y la maquinaria |
+| E | Fabricar Z | 5 | B, C | la maquinaria y sus materiales |
+| F | Fabricar X | 6 | A, B | sus materiales y la maquinaria |
+| G | Transportar X | 1 | F | X fabricado |
+| H | Ensamblar YZ | 2 | D, E | Y y Z fabricados |
+| I | Transportar YZ | 1 | H | YZ ensamblado |
+| J | Ensamblar XYZ | 3 | G, I | X e YZ en la segunda sección |
+| K | Envasar | 1 | J | el producto terminado |
+
+: La tabla de precedencias de Electrona. {#tbl-caso-tabla}
+
+Las comprobaciones del capítulo 2 salen limpias: no hay ciclos ni precedencias redundantes; A, B y C son las iniciales, y K la final.
+
+**Un supuesto que hay que escribir.** «La maquinaria que elabora los componentes X, Y y Z» es un recurso compartido, y compartir un recurso no es una precedencia (capítulo 2). Pero si fuera una sola máquina, D, E y F no podrían hacerse a la vez, y todo lo que sigue sería falso. **Este capítulo supone que hay una línea de fabricación para cada componente.** Un buen plan deja escritos sus supuestos; qué pasa cuando no se cumplen es el tema del capítulo 13, sobre recursos.
+
+::: {.callout-tip .ejemplo #ejemplo-caso-tabla title="Ejemplo reproducible · Electrona, frase a frase"}
+**Datos.** El enunciado de Electrona en «Del enunciado a la tabla», con la ruta paso a paso en modo predicción.
+
+**Predice.** ¿A qué espera H, ensamblar Y y Z? ¿Y J? Escríbelo antes de avanzar.
+
+[Abrir: Electrona, paso a paso con predicción](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=m0&st=ej5&mm=route&pred=1){.abrir target="_blank"}
+
+<details>
+<summary>**Ver el resultado**</summary>
+
+H espera a D y E: hay que tener Y y Z fabricados. J espera a G e I: el ensamblaje final se hace en la segunda sección, así que tienen que haber llegado X e YZ. El portal justifica cada precedencia con lo que hace la fase, igual que la última columna de la tabla.
+</details>
+:::
+
+:::: {.callout-note .ejercicio #ejercicio-caso-tabla title="Ejercicio · Una precedencia de más"}
+El jefe de producción añade: «el transporte de X no puede empezar antes de la puesta a punto». ¿Qué cambia en la tabla?
+
+<details>
+<summary>**Ver la solución**</summary>
+
+Nada. B → G ya está implicada por B → F y F → G: X no se puede transportar antes de fabricarlo, y no se puede fabricar antes de la puesta a punto. Es una precedencia redundante; si la escribes en la tabla del portal, la validación lo avisa. La frase es cierta, pero no hay que dibujarla.
+</details>
+::::
+
+## Las dos redes [[Básico]{.largo}[B]{.corto}]{.nivel .basico} {#sec-caso-redes}
+
+**La red ROY** (figura -@fig-caso-roy) se ordena por niveles, como en el capítulo 3: A, B y C en el primero; D, E y F en el segundo; G y H en el tercero; I, J y K, uno por nivel. Hay cinco actividades convergentes, con varias predecesoras: D, E, F, H y J. Las dos que juntan caminos largos son H, donde se encuentran Y y Z, y J, donde se encuentran X e YZ. Las dos volverán cuando las duraciones sean inciertas.
+
+![La red ROY de Electrona, con Inicio y Fin, tal como la dibuja el taller del portal (paso 2). Cada caja lleva la duración arriba; las demás casillas se llenan al calcular las fechas. Captura del portal, generada con `figuras/10-capturas.cjs`.](figuras/10-roy.png){#fig-caso-roy fig-alt="Red ROY de Electrona. Del nodo Inicio salen flechas a A, B y C. A va a F y a D; B va a F, D y E; C va a E. F va a G; D y E van a H; H va a I; G e I van a J; J va a K y K a Fin. Cada caja muestra su duración: A 3, B 1, C 2, D 7, E 5, F 6, G 1, H 2, I 1, J 3, K 1."}
+
+**La red PERT.** Antes de dibujarla, la pregunta del capítulo 4: ¿cuántas ficticias harán falta? Con las reglas de los conjuntos, se mira la tabla de posteriores. Las de A son {D, F}; las de B, {D, E, F}; las de C, {E}. Ningún par de actividades tiene las mismas posteriores, así que no hay ficticias por la regla de los conjuntos iguales. Pero las posteriores de A y las de C están **contenidas** en las de B: B termina en un suceso propio, el 2, del que salen dos ficticias, una al suceso donde empiezan D y F (F1, del 2 al 3) y otra al suceso donde empieza E (F2, del 2 al 4). F1 dice que D y F esperan también a B; F2, que E espera a B. Las dos son ficticias de dependencia; no hay ninguna de unicidad.
+
+El resultado son 2 ficticias y 10 sucesos (figura -@fig-caso-pert). No se puede hacer con menos: el comparador del portal lo confirma, y todos sus métodos, desde el dibujo progresivo hasta el mínimo exacto, dan la misma red. Electrona es fácil para todos; Mecánicas, con tres ficticias, lo era menos.
+
+![La red PERT de Electrona con los sucesos numerados (taller del portal, red PERT, paso 6). Las ficticias F1 y F2 salen del suceso 2, donde termina la puesta a punto. Captura del portal, generada con `figuras/10-capturas.cjs`.](figuras/10-pert.png){#fig-caso-pert fig-alt="Red PERT de Electrona con diez sucesos. Del suceso 1 salen A = 3 al suceso 3, B = 1 al suceso 2 y C = 2 al suceso 4. Del 2 salen dos ficticias de trazos: F1 al suceso 3 y F2 al suceso 4. Del 3 salen D = 7 al suceso 5 y F = 6 al suceso 6; del 4, E = 5 al suceso 5. Del 5 sale H = 2 al 7; del 7, I = 1 al 8; del 6, G = 1 al 8. Del 8 sale J = 3 al 9, y del 9, K = 1 al 10."}
+
+::: {.callout-tip .ejemplo #ejemplo-caso-redes title="Ejemplo reproducible · Las reglas en Electrona"}
+**Datos.** La tabla de Electrona en el taller, red PERT, en el paso de la regla de los conjuntos contenidos.
+
+**Predice.** ¿Cuántas ficticias pondrá esta regla, y desde qué actividad?
+
+[Abrir: Electrona en el taller, regla de los conjuntos contenidos](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=work&t=A%2C3%2C%2CMateriales%2520de%2520X%2520e%2520Y%3BB%2C1%2C%2CPuesta%2520a%2520punto%3BC%2C2%2C%2CMateriales%2520de%2520Z%3BD%2C7%2CA%252C%2520B%2CFabricar%2520Y%3BE%2C5%2CB%252C%2520C%2CFabricar%2520Z%3BF%2C6%2CA%252C%2520B%2CFabricar%2520X%3BG%2C1%2CF%2CTransportar%2520X%3BH%2C2%2CD%252C%2520E%2CEnsamblar%2520YZ%3BI%2C1%2CH%2CTransportar%2520YZ%3BJ%2C3%2CG%252C%2520I%2CEnsamblar%2520XYZ%3BK%2C1%2CJ%2CEnvasar&graph=aoa&step=2){.abrir target="_blank"}
+
+<details>
+<summary>**Ver el resultado**</summary>
+
+Dos, las dos desde B, que es la actividad con más posteriores: {D, F} ⊂ {D, E, F} y {E} ⊂ {D, E, F}. El paso siguiente, la regla de los conjuntos compartidos, no añade ninguna. Con **→** llegas a la red con los sucesos numerados de la figura -@fig-caso-pert.
+</details>
+:::
+
+:::: {.callout-note .ejercicio #ejercicio-caso-redes title="Ejercicio · Una ficticia no basta"}
+Alguien propone una red PERT de Electrona con una sola ficticia: B termina en el suceso donde empiezan D y F, y de ahí sale una ficticia hasta el suceso donde empieza E. ¿Qué precedencia falsa introduce?
+
+<details>
+<summary>**Ver la solución**</summary>
+
+Si B termina en el suceso de comienzo de D y F, también A termina ahí, porque D y F esperan a A. La ficticia lleva ese suceso hasta el comienzo de E, así que E esperaría también a A, y no tiene por qué: fabricar Z no necesita los materiales de X e Y. Hacen falta dos ficticias porque hay dos conjuntos de posteriores contenidos en el de B, y son distintos entre sí.
+</details>
+::::
+
+## Fechas, holguras y camino crítico [[Básico]{.largo}[B]{.corto}]{.nivel .basico} {#sec-caso-fechas}
+
+Electrona tiene seis caminos de Inicio a Fin. Antes de calcular, una predicción: ¿cuál es el más largo, y cuánto dura?
+
+La pasada hacia delante y la pasada hacia atrás del capítulo 5 dan una duración de **17 días**, y el camino crítico es **A → D → H → I → J → K** (3 + 7 + 2 + 1 + 3 + 1). Es la respuesta a la pregunta del enunciado: las actividades que determinan la duración mínima son los materiales de X e Y, fabricar Y, los dos ensamblajes, el transporte de YZ y el envasado.
+
+| | A | B | C | D | E | F | G | H | I | J | K |
+|---|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| ES | 0 | 0 | 0 | 3 | 2 | 3 | 9 | 10 | 12 | 13 | 16 |
+| EF | 3 | 1 | 2 | 10 | 7 | 9 | 10 | 12 | 13 | 16 | 17 |
+| LS | 0 | 2 | 3 | 3 | 5 | 6 | 12 | 10 | 12 | 13 | 16 |
+| LF | 3 | 3 | 5 | 10 | 10 | 12 | 13 | 12 | 13 | 16 | 17 |
+| TF | 0 | 2 | 3 | 0 | 3 | 3 | 3 | 0 | 0 | 0 | 0 |
+| FF | 0 | 1 | 0 | 0 | 3 | 0 | 3 | 0 | 0 | 0 | 0 |
+
+: Fechas y holguras de Electrona, en días. {#tbl-caso-fechas}
+
+En la red PERT, los tiempos de los sucesos (temprano y tardío) son: 1 (0, 0), 2 (1, 3), 3 (3, 3), 4 (2, 5), 5 (10, 10), 6 (9, 12), 7 (12, 12), 8 (13, 13), 9 (16, 16) y 10 (17, 17).
+
+**Cómo se leen las holguras.** La puesta a punto (B) tiene 2 días de holgura total y 1 de holgura libre. Si se retrasa 1 día, no retrasa a nadie. Si se retrasa 2, termina el día 3: D y F empiezan igualmente el día 3, porque esperan también a A, pero E empieza un día tarde; el proyecto, no. Con 3 días de retraso, se retrasa el proyecto. Las ramas C → E y A → F → G tienen 3 días de holgura cada una, y la holgura está «guardada» al final de cada rama, en E y en G (capítulo 6): C y F tienen holgura libre 0, porque consumirla retrasa a su sucesora, aunque no al proyecto.
+
+Los seis caminos, de más largo a más corto, son A D H I J K (17 días), B D H I J K (15), A F G J K (14), C E H I J K (14), B E H I J K (13) y B F G J K (12). El segundo y el tercero quedan a 2 y 3 días del crítico. Con duraciones fijas, eso parece mucho margen. Con duraciones inciertas, no tanto.
+
+![Diagrama de Gantt de Electrona a fechas tempranas. Las actividades críticas van en rojo, como en el portal; a la derecha de las demás, el rectángulo de trazos es su holgura total. Figura propia, generada con `figuras/10-gantt.py`.](figuras/10-gantt.svg){#fig-caso-gantt fig-alt="Diagrama de Gantt con once barras, de A a K, y un eje de días del 0 al 17. En rojo, las críticas: A de 0 a 3, D de 3 a 10, H de 10 a 12, I de 12 a 13, J de 13 a 16 y K de 16 a 17. En azul, con su holgura total en un rectángulo de trazos: B de 0 a 1 con holgura hasta 3; C de 0 a 2 con holgura hasta 5; E de 2 a 7 con holgura hasta 10; F de 3 a 9 con holgura hasta 12; G de 9 a 10 con holgura hasta 13."}
+
+**¿Y si…?** La herramienta del capítulo 6 da una primera pista de lo que vendrá. Si fabricar X (F) dura 9 días en lugar de 6, consume toda su holgura y hay dos caminos críticos, de 17 días. Si dura 10, el proyecto pasa a 18 días y el crítico es A → F → G → J → K. La puesta a punto, con 4 días, también haría 18, por B → D → H → I → J → K. El camino crítico no es una propiedad fija de la red: depende de las duraciones, y las duraciones nunca son tan fijas como parecen.
+
+::: {.callout-tip .ejemplo #ejemplo-caso-fechas title="Ejemplo reproducible · ¿Y si fabricar X dura 10 días?"}
+**Datos.** Electrona en el taller, en el diagrama de Gantt, con la herramienta **¿Y si…?** aplicada a F.
+
+**Predice.** Si F dura 10 días, ¿cuánto dura el proyecto? ¿Qué actividades pasan a ser críticas y cuáles dejan de serlo?
+
+[Abrir: Electrona en el taller, F = 10](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=work&t=A%2C3%2C%2CMateriales%2520de%2520X%2520e%2520Y%3BB%2C1%2C%2CPuesta%2520a%2520punto%3BC%2C2%2C%2CMateriales%2520de%2520Z%3BD%2C7%2CA%252C%2520B%2CFabricar%2520Y%3BE%2C5%2CB%252C%2520C%2CFabricar%2520Z%3BF%2C6%2CA%252C%2520B%2CFabricar%2520X%3BG%2C1%2CF%2CTransportar%2520X%3BH%2C2%2CD%252C%2520E%2CEnsamblar%2520YZ%3BI%2C1%2CH%2CTransportar%2520YZ%3BJ%2C3%2CG%252C%2520I%2CEnsamblar%2520XYZ%3BK%2C1%2CJ%2CEnvasar&step=31&wi=F:10){.abrir target="_blank"}
+
+<details>
+<summary>**Ver el resultado**</summary>
+
+18 días. Críticas: A, F, G, J y K. D, H e I dejan de serlo: ahora les sobra 1 día. Prueba también F = 9: el proyecto sigue en 17 días, pero con dos caminos críticos.
+</details>
+:::
+
+:::: {.callout-note .ejercicio #ejercicio-caso-fechas title="Ejercicio · La puesta a punto"}
+1. ¿Cuántos días puede retrasarse la puesta a punto sin retrasar ninguna otra actividad? ¿Y sin retrasar el proyecto?
+2. Los materiales de Z (C) llegan 2 días tarde. ¿A quién retrasan? ¿Y si llegan 4 días tarde?
+
+<details>
+<summary>**Ver la solución**</summary>
+
+1. Su holgura libre, 1 día, y su holgura total, 2 días.
+2. Con 2 días de retraso, C termina el día 4 y E empieza el 4 en lugar del 2: E se retrasa 2 días, pero le queda 1 de holgura y el proyecto no se mueve. Con 4 días de retraso, C consume sus 3 días de holgura total y uno más: el proyecto pasa a 18 días.
+</details>
+::::
+
+## Tres tiempos [[Básico]{.largo}[B]{.corto}]{.nivel .basico} {#sec-caso-tres}
+
+Las duraciones del enunciado salieron de «varias pruebas de fabricación». Son las más probables, pero nadie garantiza que se repitan. El jefe de producción da, además, una duración optimista y una pesimista para cada fase (tabla -@tbl-caso-tres):
+
+- Los materiales dependen de los proveedores: pueden llegar algo antes, y bastante después.
+- **X es un componente de diseño nuevo**; Y y Z se adaptan de productos que Electrona ya fabrica. Por eso fabricar X es la fase más incierta: si la serie sale mal, hay que repetirla, y en el peor caso, dos veces (b = 18 días).
+- Los transportes (G e I) y el envasado (K) son rutinarios: duran siempre lo mismo.
+- La puesta a punto y el primer ensamblaje no pueden ir mucho mejor de lo previsto, pero sí algo peor: a = m.
+
+| | A | B | C | D | E | F | G | H | I | J | K |
+|---|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| a | 2 | 1 | 1 | 6 | 4 | 5 | 1 | 2 | 1 | 2 | 1 |
+| m | 3 | 1 | 2 | 7 | 5 | 6 | 1 | 2 | 1 | 3 | 1 |
+| b | 6 | 3 | 5 | 9 | 8 | 18 | 1 | 3 | 1 | 5 | 1 |
+| tₑ | 3,33 | 1,33 | 2,33 | 7,17 | 5,33 | 7,83 | 1 | 2,17 | 1 | 3,17 | 1 |
+| σ² | 0,444 | 0,111 | 0,444 | 0,25 | 0,444 | 4,694 | 0 | 0,028 | 0 | 0,25 | 0 |
+
+: Los tres tiempos de Electrona, en días, con la media tₑ = (a + 4m + b)/6 y la varianza σ² = ((b − a)/6)² del capítulo 7. {#tbl-caso-tres}
+
+Todas las medias de las actividades inciertas suben respecto a m, porque sus curvas están sesgadas a la derecha (capítulo 7). F es la que más: de 6 a 7,83 días, con una varianza diez veces mayor que la de cualquier otra.
+
+Con las medias, ¿sigue siendo crítico A → D → H → I → J → K? Sí: dura 3,33 + 7,17 + 2,17 + 1 + 3,17 + 1 = **17,83 días**, con una varianza de 0,444 + 0,25 + 0,028 + 0 + 0,25 + 0 = **0,972** (σ ≈ 0,99). Pero A → F → G → J → K ha subido de 14 a 16,33 días, y su varianza es 5,39, más de cinco veces la del crítico. Ese camino es el protagonista de las dos secciones siguientes.
+
+::: {.callout-tip .ejemplo #ejemplo-caso-tres title="Ejemplo reproducible · Fabricar X"}
+**Datos.** Electrona con tres tiempos como tabla propia del apartado «Tres tiempos», con F elegida.
+
+**Predice.** ¿Dónde estará la media de F, a la izquierda o a la derecha de su moda? ¿Por cuánto?
+
+[Abrir: Electrona con tres tiempos, actividad F](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=unc&um=m5&ue=own&ut=LYxFgiOByMpkEQsLZbERBhIiGUPGcPG0Ph5NMJ0MpyNJhNhlOYgMhlEBYEEkLIiLsKERCh4xl8Si0DKB1kB0MIgnJwOpuOhvlUsIcxgcRgY1mYijEajkekEikhaoMMIkUh43h45h5BFggl0DIxhMUcMZhOQglMrhhFh40h9IgY4h5CrtDsFislmEFStQiI1vq0DGNygdcr0PsNjNNls5YqYiI9EEUwwWIh5UORhNxzOBvOU4xuPJEPo0QmUDIldtkDIubMJtMRsvRZvksJOSymTh-jgeYzWcz2gtG1hhK0mnEVwyFd2-s12w2WN2mPJe4yXG5x2MJzs0qLpdgA&ua=F){.abrir target="_blank"}
+
+<details>
+<summary>**Ver el resultado**</summary>
+
+A la derecha: la moda es 6 y la media, 7,83 días, casi dos días más. La curva tiene una cola muy larga hacia los 18 días. La red con las medias marca el crítico A → D → H → I → J → K, de 17,83 días.
+</details>
+:::
+
+:::: {.callout-note .ejercicio #ejercicio-caso-tres title="Ejercicio · Medias y varianzas"}
+Calcula tₑ y σ² de F, y la media y la varianza del camino A → F → G → J → K.
+
+<details>
+<summary>**Ver la solución**</summary>
+
+tₑ = (5 + 4 · 6 + 18)/6 = 47/6 ≈ 7,83 días; σ² = ((18 − 5)/6)² = (13/6)² ≈ 4,694. El camino: 3,33 + 7,83 + 1 + 3,17 + 1 = 16,33 días, y 0,444 + 4,694 + 0 + 0,25 + 0 = 5,389.
+</details>
+::::
+
+## ¿Se pueden prometer 19 días? La normal [[Básico]{.largo}[B]{.corto}]{.nivel .basico} {#sec-caso-normal}
+
+El cálculo de examen del capítulo 8 toma el camino crítico de las medias y supone que su duración es normal:
+
+$$
+z = \frac{19 - 17{,}83}{0{,}986} = 1{,}18 \qquad P(T \le 19) = 0{,}881.
+$$
+
+Con la tabla de la normal, 0,881; el portal, que no redondea z, da 0,882. Según esta cuenta, firmar 19 días es aceptar un riesgo de algo más del 10 %. Y el plazo con un 90 % de probabilidad sería 17,83 + 1,28 · 0,986 = 19,10 días.
+
+**La trampa.** El camino A → F → G → J → K, por sí solo, cumple los 19 días con una probabilidad de 0,875: casi la misma que el crítico. La normal del camino crítico no lo ve, porque sus medias suman menos, aunque su varianza sea cinco veces mayor. Pero el proyecto necesita que se cumplan **los dos**: si cada uno se cumple unas 88 veces de cada 100, el proyecto no puede llegar a 88. Es la fusión de caminos del capítulo 8.
+
+¿Cuánto baja? El capítulo 8 da dos cotas. Por arriba, la menor de las probabilidades de los caminos: 0,875. Por abajo, el producto de las probabilidades de todos los caminos, 0,882 · 0,875 · 0,981 · … = 0,756, que sería la respuesta si los caminos fueran independientes; como comparten A, J y K, es una cota por abajo. La probabilidad está entre 0,756 y 0,875, y para saber dónde hay que simular.
+
+::: {.callout-tip .ejemplo #ejemplo-caso-normal title="Ejemplo reproducible · El plazo de Electrona"}
+**Datos.** Electrona con tres tiempos en el apartado «El TCL y sus trampas», con el plazo de 19 días, en el paso a paso con predicción. Es también el plazo que propone el portal: la media más una desviación típica, redondeada hacia arriba.
+
+**Predice.** Escribe μ, σ², z y P(T ≤ 19) en cada paso antes de comprobarlos.
+
+[Abrir: Electrona, plazo de 19 días, paso a paso](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=unc&um=m6&ue=own&ut=LYxFgiOByMpkEQsLZbERBhIiGUPGcPG0Ph5NMJ0MpyNJhNhlOYgMhlEBYEEkLIiLsKERCh4xl8Si0DKB1kB0MIgnJwOpuOhvlUsIcxgcRgY1mYijEajkekEikhaoMMIkUh43h45h5BFggl0DIxhMUcMZhOQglMrhhFh40h9IgY4h5CrtDsFislmEFStQiI1vq0DGNygdcr0PsNjNNls5YqYiI9EEUwwWIh5UORhNxzOBvOU4xuPJEPo0QmUDIldtkDIubMJtMRsvRZvksJOSymTh-jgeYzWcz2gtG1hhK0mnEVwyFd2-s12w2WN2mPJe4yXG5x2MJzs0qLpdgA&ud=19&uw=1&pred=1){.abrir target="_blank"}
+[Abrir: Electrona, «El proyecto entero»](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=unc&um=m6&ue=own&ut=LYxFgiOByMpkEQsLZbERBhIiGUPGcPG0Ph5NMJ0MpyNJhNhlOYgMhlEBYEEkLIiLsKERCh4xl8Si0DKB1kB0MIgnJwOpuOhvlUsIcxgcRgY1mYijEajkekEikhaoMMIkUh43h45h5BFggl0DIxhMUcMZhOQglMrhhFh40h9IgY4h5CrtDsFislmEFStQiI1vq0DGNygdcr0PsNjNNls5YqYiI9EEUwwWIh5UORhNxzOBvOU4xuPJEPo0QmUDIldtkDIubMJtMRsvRZvksJOSymTh-jgeYzWcz2gtG1hhK0mnEVwyFd2-s12w2WN2mPJe4yXG5x2MJzs0qLpdgA&ud=19&ux=proj){.abrir target="_blank"}
+
+<details>
+<summary>**Ver el resultado**</summary>
+
+μ = 17,83, σ² = 0,972, z = 1,18 y P = 0,882. En «El proyecto entero», el histograma simulado queda claramente a la derecha de la normal: la sección siguiente lo cuenta.
+</details>
+:::
+
+:::: {.callout-note .ejercicio #ejercicio-caso-normal title="Ejercicio · El camino que no se ve"}
+1. Calcula P(T ≤ 19) para el camino A → F → G → J → K con la normal.
+2. ¿Por qué el producto de las probabilidades de los caminos no es la respuesta exacta?
+
+<details>
+<summary>**Ver la solución**</summary>
+
+1. z = (19 − 16,33)/√5,389 = 2,67/2,32 = 1,15, y P ≈ 0,875.
+2. Porque el producto supone que los caminos son independientes, y no lo son: A → D → H → I → J → K y A → F → G → J → K comparten A, J y K. Si A se alarga, se alargan los dos a la vez; los retrasos van juntos, y la probabilidad de cumplir los dos es mayor que el producto.
+</details>
+::::
+
+## La simulación [[Básico]{.largo}[B]{.corto}]{.nivel .basico} {#sec-caso-simulacion}
+
+Antes de mirar: entre las dos cotas de la sección anterior, 0,756 y 0,875, ¿dónde caerá la probabilidad de cumplir 19 días?
+
+La simulación del capítulo 9, con la beta-PERT en todas las actividades, 10 000 réplicas y la semilla 2026, da una duración media de **18,18 días** (± 0,03), frente a los 17,83 de PERT, con una desviación típica de 1,35 y réplicas entre 14,80 y 26,58 días. Y **P(T ≤ 19) = 0,771** (± 0,008), frente a 0,882 de la normal: más cerca de la cota de abajo que de la de arriba (figura -@fig-caso-duracion).
+
+![Electrona con tres tiempos en el apartado «Montecarlo e índices» del portal: histograma de las 10 000 réplicas con la normal del camino crítico de las medias, función de distribución con los percentiles y tabla de resultados, con el plazo de 19 días y el percentil 90. Captura del portal, generada con `figuras/10-capturas.cjs`.](figuras/10-duracion.png){#fig-caso-duracion fig-alt="A la izquierda, histograma de la duración simulada, entre 14 y 27 días, con la curva normal de media 17,83 superpuesta: el histograma queda desplazado a la derecha y tiene una cola larga. Una línea vertical marca el plazo de 19 días. A la derecha, arriba, la función de distribución simulada y la normal, con P50, P80 y P90 marcados; abajo, la tabla: media 18,18 frente a 17,83; desviación 1,35 frente a 0,99; P(duración ≤ 19) 0,771 frente a 0,882; P50 18,04 frente a 17,83; P80 19,15 frente a 18,66; P90 19,87 frente a 19,10."}
+
+**Qué plazo se cumple con un 90 %.** Los percentiles de la simulación son P50 = 18,04, P80 = 19,15, **P90 = 19,87** y P95 = 20,62 días; la normal daba 17,83, 18,66, 19,10 y 19,46. Para prometer con un 90 % de probabilidad hacen falta **20 días**: P(T ≤ 20) = 0,911. La media de PERT, 17,83, solo se cumple un 43 % de las veces, y la duración determinista, 17 días, un 18 %.
+
+**Dónde se pierde el tiempo.** Por el mismo argumento del capítulo 9, el retraso aparece donde se juntan caminos. En J, que espera a X (por G) y a YZ (por I), el comienzo medio en la simulación es 14,02, frente a 13,67 en la red de las medias. En H, que espera a Y y a Z, no hay diferencia apreciable: los dos llegan casi siempre a la vez que en la red de las medias, porque la rama de Z va sobrada. Casi todo el retraso medio del proyecto (0,35 días) aparece en J, igual que en I con Mecánicas.
+
+**Criticidad y crucialidad** (figura -@fig-caso-indices). J y K son críticas siempre; A, un 98,5 % de las veces; H e I, un 78 %; D, un 76 %. **F y G, solo un 22 %**: el camino A → F → G → J → K es el crítico en una réplica de cada cinco, y casi nunca lo son los demás. La crucialidad cuenta otra historia. **F (0,53) y A (0,52) están casi empatadas** en cabeza, por delante de J (0,41) y D (0,31). F es crítica pocas veces, pero cuando lo es, alarga mucho el proyecto, por su cola larga: mueve la duración del proyecto tanto como A. K, crítica siempre, tiene crucialidad 0, porque dura siempre 1 día (capítulo 9).
+
+![Electrona en la vista «Índices» del portal: tornado en espejo, con la criticidad a la izquierda y la crucialidad de Pearson a la derecha, y red ROY coloreada por criticidad. Captura del portal, generada con `figuras/10-capturas.cjs`.](figuras/10-indices.png){#fig-caso-indices fig-alt="A la izquierda, tornado en espejo ordenado por criticidad: J 1,00 y crucialidad 0,41; K 1,00 y 0,00; A 0,98 y 0,52; H 0,78 y 0,08; I 0,78 y 0,00; D 0,76 y 0,31; F 0,22 y 0,53; G 0,22 y 0,00; C 0,01 y 0,02; E 0,01 y 0,01; B 0,00 y 0,00. A la derecha, la red ROY con cada caja coloreada según su criticidad, más oscura cuanto mayor: A, D, H, I, J y K oscuras; F y G claras; B, C y E casi blancas."}
+
+**La curva importa.** Si quien dio los tres tiempos estaba pensando en una triangular, y no en la beta-PERT, la media sube a 19,92 días y P(T ≤ 19) baja a 0,40 (capítulo 9). Merece la pena preguntarlo antes de firmar.
+
+::: {.callout-tip .ejemplo #ejemplo-caso-simulacion title="Ejemplo reproducible · La simulación de Electrona"}
+**Datos.** Electrona con tres tiempos en «Montecarlo e índices», con el plazo de 19 días y el percentil 90; después, la vista **Índices**.
+
+**Predice.** Antes de abrir la vista Índices, ordena estas actividades por criticidad y por crucialidad: A, D, F y K.
+
+[Abrir: Electrona, duración del proyecto](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=unc&um=m7&ue=own&ut=LYxFgiOByMpkEQsLZbERBhIiGUPGcPG0Ph5NMJ0MpyNJhNhlOYgMhlEBYEEkLIiLsKERCh4xl8Si0DKB1kB0MIgnJwOpuOhvlUsIcxgcRgY1mYijEajkekEikhaoMMIkUh43h45h5BFggl0DIxhMUcMZhOQglMrhhFh40h9IgY4h5CrtDsFislmEFStQiI1vq0DGNygdcr0PsNjNNls5YqYiI9EEUwwWIh5UORhNxzOBvOU4xuPJEPo0QmUDIldtkDIubMJtMRsvRZvksJOSymTh-jgeYzWcz2gtG1hhK0mnEVwyFd2-s12w2WN2mPJe4yXG5x2MJzs0qLpdgA&ud=19&uv=90){.abrir target="_blank"}
+[Abrir: Electrona, vista «Índices»](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=unc&um=m7&ue=own&ut=LYxFgiOByMpkEQsLZbERBhIiGUPGcPG0Ph5NMJ0MpyNJhNhlOYgMhlEBYEEkLIiLsKERCh4xl8Si0DKB1kB0MIgnJwOpuOhvlUsIcxgcRgY1mYijEajkekEikhaoMMIkUh43h45h5BFggl0DIxhMUcMZhOQglMrhhFh40h9IgY4h5CrtDsFislmEFStQiI1vq0DGNygdcr0PsNjNNls5YqYiI9EEUwwWIh5UORhNxzOBvOU4xuPJEPo0QmUDIldtkDIubMJtMRsvRZvksJOSymTh-jgeYzWcz2gtG1hhK0mnEVwyFd2-s12w2WN2mPJe4yXG5x2MJzs0qLpdgA&ud=19&uy=idx&ui=cr){.abrir target="_blank"}
+
+<details>
+<summary>**Ver el resultado**</summary>
+
+Por criticidad: K (1), A (0,98), D (0,76), F (0,22). Por crucialidad: F (0,53), A (0,52), D (0,31), K (0). K y F intercambian los extremos: la más crítica es la menos crucial y al revés.
+</details>
+:::
+
+:::: {.callout-note .ejercicio #ejercicio-caso-simulacion title="Ejercicio · Dónde actuar"}
+Con los índices de Electrona:
+
+1. Si se pudiera acortar un poco una sola actividad, ¿cuál bajaría más la duración esperada del proyecto?
+2. Si se pudiera reducir la incertidumbre de una sola actividad, ¿cuál elegirías?
+
+<details>
+<summary>**Ver la solución**</summary>
+
+1. Las de más criticidad: J y K, siempre críticas, y A. Acortar 0,1 días cualquiera de las tres baja la media unos 0,1 días; D, 0,076; F, solo 0,022 (son aproximadamente la criticidad por 0,1, como en el capítulo 9). Otra cosa es si se pueden acortar y a qué coste: el capítulo 12.
+2. F, aunque A tenga casi la misma crucialidad. La incertidumbre de F es la que se puede reducir: es un diseño nuevo, y una prueba piloto acorta su cola. Si con esa prueba F pasara a (5, 6, 12), P(T ≤ 19) subiría de 0,77 a 0,86; si A durase siempre su media, solo a 0,82.
+</details>
+::::
+
+## El informe para la dirección [[Básico]{.largo}[B]{.corto}]{.nivel .basico} {#sec-caso-informe}
+
+Lo que se entrega a la dirección no es una red, ni un histograma: es una respuesta, con sus razones y sus supuestos. Para Electrona, cabe en una página.
+
+::: {.callout-note appearance="simple" title="Informe de plazo · Producto XYZ, primer lote"}
+**Plazo.** No conviene firmar 19 días: con las estimaciones del jefe de producción, se cumplen 3 veces de cada 4 (0,77). El cálculo de examen con la normal diría casi 9 de cada 10 (0,88), pero ignora que la fabricación de X puede alargar el proyecto por otro camino. **Proponemos 20 días**, que se cumplen 9 veces de cada 10 (0,91).
+
+**Reserva.** El cronograma de referencia (la línea base) dura 17 días, con las duraciones más probables. Comprometer 20 es dejar 3 días de reserva para contingencias: tiempo que se incluye en la línea base para los riesgos conocidos [@pmi2025, guía, p. 60]. Sobre la media de PERT, 17,83 días, la reserva es de algo más de 2 días.
+
+**Qué vigilar.** El camino de los materiales de X e Y, la fabricación de Y y los dos ensamblajes, que es crítico 3 de cada 4 veces; y la **fabricación de X**: crítica solo 1 vez de cada 5, pero con tanto peso en el plazo como los materiales. Una prueba piloto de X que acortara su peor caso de 18 a 12 días subiría la probabilidad de cumplir 19 días de 0,77 a 0,86.
+
+**Dónde acortar,** si se puede y compensa: los materiales de X e Y, el ensamblaje final y el envasado, que son críticos casi siempre. El coste de hacerlo se estudia aparte.
+
+**Supuestos.** Una línea de fabricación por componente; duraciones independientes entre sí; los tres tiempos del jefe de producción, leídos como una beta-PERT. Si varias fases dependen de una causa común (el mismo equipo, la misma máquina), el riesgo es mayor que el calculado. Si los tres tiempos se pensaron como una triangular, mucho mayor.
+
+**Seguimiento.** Volver a calcular con las duraciones reales a medida que terminen las fases, y comparar con la línea base.
+:::
+
+El informe responde, para Electrona, a todas las preguntas de la tabla del capítulo 1:
+
+| Pregunta | Respuesta para Electrona | Sección |
+|:--|:--|:-:|
+| ¿Cómo se pasa de un encargo a una red? | Deduciendo las precedencias de lo que hace cada fase; 2 ficticias en la red PERT | -@sec-caso-tabla, -@sec-caso-redes |
+| ¿Cuándo acaba el proyecto? | En 17 días con las duraciones más probables | -@sec-caso-fechas |
+| ¿Qué actividades no pueden retrasarse y cuánto margen tienen las demás? | A, D, H, I, J y K; B tiene 2 días, C, E, F y G, 3 | -@sec-caso-fechas |
+| ¿Y si las duraciones son inciertas? | 19 días se cumplen con 0,77, no con 0,88; con un 90 %, 20 días | -@sec-caso-tres a -@sec-caso-simulacion |
+| ¿Y si hay desfases, se puede pagar por acortar o hay recursos limitados? | Los capítulos 11 a 13 | — |
+
+: Las preguntas del capítulo 1, respondidas para Electrona. {#tbl-caso-preguntas}
+
+:::: {.callout-note .ejercicio #ejercicio-caso-informe title="Ejercicio · Otro plazo"}
+El cliente acepta 21 días. Reescribe el párrafo «Plazo» del informe. La simulación da P(T ≤ 21) = 0,965 y la normal, 0,9993. ¿Engaña menos la normal en este plazo?
+
+<details>
+<summary>**Ver la solución**</summary>
+
+Una posible redacción: «21 días se cumplen 96 o 97 veces de cada 100 (0,965). Es un plazo cómodo; la reserva sobre la línea base es de 4 días.»
+
+Sobre la normal: la diferencia entre 0,965 y 0,9993 parece pequeña, pero lo que importa es el riesgo de no cumplir: 3,5 % con la simulación, 0,07 % con la normal, unas 50 veces menos. En las colas, la normal engaña todavía más, si se mira el riesgo y no la probabilidad de cumplir.
+</details>
+::::
+
+## Un caso para practicar [[Básico]{.largo}[B]{.corto}]{.nivel .basico} {#sec-caso-practica}
+
+Ahora te toca a ti, con un proyecto que el libro no resuelve en el texto. La página del **examen imprimible** del portal genera, a partir de una semilla, un examen completo sobre un mismo proyecto: el enunciado, las dos redes, las fechas, las holguras, el TCL y la lectura de una simulación, con su solución y su rúbrica. Con la semilla 21 y el nivel medio sale un congreso internacional de diez tareas.
+
+:::: {.callout-note .ejercicio #ejercicio-caso-practica title="Ejercicio · El congreso, de principio a fin"}
+Abre el examen, imprímelo o cópialo, y resuélvelo entero con papel y lápiz: la tabla de predecesoras a partir del enunciado, la red ROY, la red PERT con el mínimo de ficticias, las fechas y los tiempos de los sucesos, las holguras total y libre (la columna de la holgura independiente, IF, es del nivel avanzado: puedes dejarla en blanco), el camino crítico, el TCL con las medias y, por último, la lectura de la simulación. Después, corrígelo con el documento de la solución.
+
+[Abrir: el examen del congreso (nivel medio, semilla 21)](https://josemagalan.github.io/project-network-lab/examen.html#lang=es&nota=en&ep=stmt-roy-pert-times-floats-tcl-read&sd=21&eq=floats.sf){.abrir target="_blank"}
+[Abrir: su solución](https://josemagalan.github.io/project-network-lab/examen.html#lang=es&nota=en&ep=stmt-roy-pert-times-floats-tcl-read&sd=21&eq=floats.sf&dv=o){.abrir target="_blank"}
+
+<details>
+<summary>**Ver las cifras clave**</summary>
+
+- **Tabla:** A y C sin predecesoras; B ← A; D ← A, C; E ← C; F ← B; G ← E, F; H ← E; I ← D; J ← H. La red PERT necesita 3 ficticias.
+- **Con las medias** (el examen pide las fechas con las medias, porque lleva TCL): el proyecto dura 29,5 semanas y hay **dos caminos críticos**, C → D → I y C → E → H → J. El TCL toma el de más varianza, C → D → I: μ = 29,5 y σ² = 5,58.
+- **Plazo de 30 semanas:** z = 0,21 y P = 0,583 con la normal (el enunciado da 0,5838, con la normal exacta). La simulación da **0,421**: con dos caminos críticos empatados, la fusión de caminos se nota mucho. Para prometer con un 90 %, el percentil 90 de la simulación, 33,1 semanas.
+- **Índices:** la más crítica es C (está en los dos caminos); la más crucial, D, la de más varianza.
+
+Si un resultado no coincide, busca el primer error y sigue con tu dato: la rúbrica del examen corrige con error consecuente, de modo que un fallo en una fecha no se penaliza otra vez en las que dependen de ella.
+</details>
+::::
+
+## Resumen {.unnumbered #resumen}
+
+- Un caso completo recorre todas las preguntas en orden: del enunciado a la tabla, de la tabla a las redes, de las redes a las fechas y las holguras, y de ahí a los tres tiempos, la normal y la simulación.
+- Los supuestos se escriben: en Electrona, una línea de fabricación por componente. Si no se cumplen, el plan no vale.
+- La red determinista dice qué actividades mandan con las duraciones más probables (A, D, H, I, J y K, 17 días); la incertidumbre puede cambiarlo, y un camino con poca duración y mucha varianza puede pesar tanto como el crítico.
+- La normal del camino crítico prometía 19 días con un 88 %; la simulación, con el proyecto entero, da un 77 %. Para un 90 % hacen falta 20 días.
+- La criticidad dice dónde acortar (A, J y K); la crucialidad, dónde reducir la incertidumbre (F, el componente nuevo).
+- El resultado final es un informe: un plazo con su probabilidad, una reserva sobre la línea base, qué vigilar, dónde actuar y con qué supuestos.
+
+Para seguir el recorrido básico, continúa por el capítulo de las precedencias con desfases (en preparación). Los capítulos 11 a 13 amplían el modelo y empiezan, de nuevo, por Mecánicas del Sureste.
+
+## El caso a fondo [[Avanzado]{.largo}[A]{.corto}]{.nivel .avanzado} {#sec-caso-fondo}
+
+**Las otras holguras.** La holgura independiente de B es 1 día, y la de las demás actividades, 0: B es la única con margen que no depende de cómo terminen sus predecesoras ni de cuándo empiecen sus sucesoras. Las holguras de seguridad de B, C y F son 2, 3 y 3 días, y las de E y G, 0. En la red PERT, los sucesos con holgura son el 2 (2 días), el 4 y el 6 (3 días cada uno).
+
+**El mínimo de ficticias, demostrado.** Con una sola ficticia no se puede. B tiene que llegar a dos sucesos distintos: al de comienzo de D y F, al que llega también A, y al de comienzo de E, al que llega también C. Los dos no pueden ser el mismo suceso, porque entonces E esperaría a A, o D y F a C. B termina en un solo suceso, así que al menos a uno de los dos llega por una ficticia; y si termina en uno de ellos, por ejemplo en el de D y F, la actividad que acaba allí, A, quedaría unida al otro por la ficticia que necesita B, que es justo el error del ejercicio [](#ejercicio-caso-redes). Hacen falta, pues, dos ficticias, y la red de las reglas tiene dos: es mínima. El método exacto del portal (sección -@sec-pert-cuantas) llega a lo mismo.
+
+**La varianza de F.** Con a = 5, m = 6 y b = 18, la moda está muy cerca del extremo izquierdo: (m − a)/(b − a) ≈ 0,08. En ese caso, como avisa el capítulo 7, la varianza de la beta-PERT (unos 4,12) es menor que la de la fórmula de examen (4,69). La normal del camino crítico no se entera, porque F no está en él; la simulación usa la beta-PERT de verdad.
+
+**F y A, casi empatadas.** Con Pearson, F supera a A en crucialidad en las semillas 1 a 20, pero por poco: entre 0,002 y 0,034. Con Spearman, el orden se invierte: A 0,55, J 0,44, D 0,36 y F 0,34. La cola larga de F pesa mucho en Pearson, que mide la relación lineal: unas pocas réplicas con F muy larga y el proyecto muy largo dominan la correlación. En rangos, esas réplicas pesan como las demás.
+
+**La criticidad como derivada.** Acortar 0,1 días cada actividad, con 100 000 réplicas y la misma semilla (números aleatorios comunes, capítulo 9), baja la duración media: A 0,098, D 0,076, F 0,022, J y K 0,100. Son casi exactamente la criticidad por 0,1: 0,0985, 0,0762, 0,0223 y 0,1.
+
+**Cuántas réplicas.** Con 100 réplicas, P(T ≤ 19) = 0,73 ± 0,09; con 1 000, 0,766 ± 0,026; con 100 000, 0,764 ± 0,003. Con 100 réplicas, la cifra todavía podría estar por encima de la normal.
+
+**Con discretas de tres puntos.** Si cada actividad incierta toma a, m o b con probabilidades 1/6, 4/6 y 1/6, hay 3⁸ = 6 561 combinaciones (ocho actividades inciertas), y el portal las cuenta todas: la media es 19,43 días, P(T ≤ 19) = 0,664 y P(T ≤ 20) = 0,759. La misma media por actividad que la beta-PERT y mucha más varianza, como en el capítulo 9.
+
+::: {.callout-tip .ejemplo #ejemplo-caso-fondo title="Ejemplo reproducible · Pearson y Spearman en Electrona"}
+**Datos.** Electrona en la vista **Índices**, con la **Crucialidad** de Spearman.
+
+**Predice.** ¿Seguirá F en cabeza?
+
+[Abrir: Electrona, índices con Spearman](https://josemagalan.github.io/project-network-lab/cpm.html?lang=es#v=unc&um=m7&ue=own&ut=LYxFgiOByMpkEQsLZbERBhIiGUPGcPG0Ph5NMJ0MpyNJhNhlOYgMhlEBYEEkLIiLsKERCh4xl8Si0DKB1kB0MIgnJwOpuOhvlUsIcxgcRgY1mYijEajkekEikhaoMMIkUh43h45h5BFggl0DIxhMUcMZhOQglMrhhFh40h9IgY4h5CrtDsFislmEFStQiI1vq0DGNygdcr0PsNjNNls5YqYiI9EEUwwWIh5UORhNxzOBvOU4xuPJEPo0QmUDIldtkDIubMJtMRsvRZvksJOSymTh-jgeYzWcz2gtG1hhK0mnEVwyFd2-s12w2WN2mPJe4yXG5x2MJzs0qLpdgA&ud=19&uy=idx&uo=s){.abrir target="_blank"}
+
+<details>
+<summary>**Ver el resultado**</summary>
+
+No: con Spearman, A (0,55) pasa por delante de J (0,44), D (0,36) y F (0,34).
+</details>
+:::
+
+:::: {.callout-note .ejercicio #ejercicio-caso-fondo title="Ejercicio · Holguras e índices"}
+1. ¿Por qué la holgura independiente de C es 0, si C tiene 3 días de holgura total?
+2. La criticidad de E es 0,015. ¿De qué caminos sale?
+
+<details>
+<summary>**Ver la solución**</summary>
+
+1. La holgura independiente es el margen que queda aunque las predecesoras terminen lo más tarde posible y las sucesoras empiecen lo más pronto posible. C no tiene predecesoras, así que empieza el día 0; su sucesora, E, puede empezar el día 2, que es justo cuando termina C. No queda margen: los 3 días de holgura total de C solo existen si E no empieza lo antes posible.
+2. De C → E → H → I → J → K, crítico en un 1,5 % de las réplicas; B → E → H → I → J → K no lo es nunca. Con curvas continuas no hay empates, así que la criticidad de E es la suma de las de sus caminos.
+</details>
+::::
+
+## Ampliaciones [[Para saber más]{.largo}[+]{.corto}]{.nivel .saber-mas} {#sec-caso-ampliaciones}
+
+**Electrona y las extensiones.** Los capítulos 11 a 13 empiezan con Mecánicas, pero las tres extensiones dirían algo de Electrona. Con **desfases**, el transporte de X podría empezar cuando sale la primera caja, sin esperar a que termine toda la serie: una precedencia comienzo-comienzo (capítulo 11). Con **coste–tiempo**, se podría pagar un transporte urgente de los materiales de X e Y para acortar A, que es crítica casi siempre (capítulo 12). Con **recursos**, si D, E y F usan la misma máquina, no pueden ir en paralelo, y el supuesto de la sección -@sec-caso-tabla se cae (capítulo 13); con recursos limitados, además, la criticidad deja de estar bien definida (capítulo 9).
+
+**El seguimiento.** El cronograma no se calcula una vez. La línea base sirve para comparar con lo que pasa [@pmi2025, guía, p. 47]: cuando una fase termina, su duración deja de ser incierta, y se puede volver a simular lo que queda. Si los materiales de X e Y llegan a tiempo, la probabilidad de cumplir el plazo sube; si fabricar X empieza mal, baja, y conviene saberlo pronto.
+
+**Escribir un caso propio.** Electrona viene con el portal, pero el profesorado puede preparar su propio enunciado en «Del enunciado a la tabla», con su solución, compartirlo con un enlace y llevar la tabla por el resto de pestañas. Se explica en la segunda parte del libro.
+
+::: {.callout-note .mas-portal title="Más en el portal"}
+- **El examen imprimible** (`examen.html`): un examen completo con semilla, con el enunciado, la solución y la rúbrica, y varios modelos a la vez. Las partes se eligen (de la tabla al Montecarlo, más el detective, el mínimo de ficticias y las discretas o las réplicas a mano), y cada una con sus apartados. Se explica en la segunda parte, con los bancos de Moodle.
+- **Todo se guarda en la dirección:** el taller y «Duraciones inciertas» guardan la tabla en el enlace, así que un caso se comparte con un enlace. Descargas: el proyecto en JSON y CSV, y el código en Python de la simulación.
+- **Enunciado al azar,** en «Del enunciado a la tabla»: otros enunciados para practicar el primer paso, en cuatro contextos y tres niveles.
+:::
+
+## Referencias del capítulo {.unnumbered #referencias}
+
+::: {.referencias-capitulo #refs}
+:::

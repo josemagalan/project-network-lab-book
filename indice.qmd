@@ -2,9 +2,9 @@
 
 <!-- Archivo generado por filtros/indices.py en cada «quarto render» (pre-render). No lo edites a mano: los cambios se perderían. Para cambiar el contenido, cambia los capítulos; para cambiar el formato, cambia el script. -->
 
-El libro tiene 9 capítulos y 65 secciones: 42 de nivel [[Básico]{.largo}[B]{.corto}]{.nivel .basico}, 14 de nivel [[Avanzado]{.largo}[A]{.corto}]{.nivel .avanzado} y 9 de nivel [[Para saber más]{.largo}[+]{.corto}]{.nivel .saber-mas}. El **recorrido básico** son las secciones azules: se leen seguidas, capítulo a capítulo, sin las demás. Las avanzadas amplían el recorrido básico y suelen apoyarse en él; «Para saber más» cierra cada capítulo con lecturas y temas que el libro no desarrolla.
+El libro tiene 10 capítulos y 75 secciones: 50 de nivel [[Básico]{.largo}[B]{.corto}]{.nivel .basico}, 15 de nivel [[Avanzado]{.largo}[A]{.corto}]{.nivel .avanzado} y 10 de nivel [[Para saber más]{.largo}[+]{.corto}]{.nivel .saber-mas}. El **recorrido básico** son las secciones azules: se leen seguidas, capítulo a capítulo, sin las demás. Las avanzadas amplían el recorrido básico y suelen apoyarse en él; «Para saber más» cierra cada capítulo con lecturas y temas que el libro no desarrolla.
 
-Las actividades —43 ejemplos reproducibles, 7 cajas «En el portal» y 53 ejercicios— están listadas en el [índice de actividades](actividades.qmd), por capítulo y por pestaña del portal.
+Las actividades —50 ejemplos reproducibles, 7 cajas «En el portal» y 62 ejercicios— están listadas en el [índice de actividades](actividades.qmd), por capítulo y por pestaña del portal.
 
 ## El libro de un vistazo {.unnumbered #vistazo}
 
@@ -19,7 +19,8 @@ Las actividades —43 ejemplos reproducibles, 7 cajas «En el portal» y 53 ejer
 | [7. Duraciones inciertas: tres tiempos](07-tres-tiempos.qmd) | 5 | 2 | 1 | 5 | 0 | 6 |
 | [8. El TCL y sus trampas](08-tcl.qmd) | 5 | 1 | 1 | 6 | 1 | 6 |
 | [9. Montecarlo e índices](09-montecarlo.qmd) | 6 | 1 | 1 | 7 | 1 | 7 |
-| **Total** | **42** | **14** | **9** | **43** | **7** | **53** |
+| [10. Un caso completo: Electrona](10-caso.qmd) | 8 | 1 | 1 | 7 | 0 | 9 |
+| **Total** | **50** | **15** | **10** | **50** | **7** | **62** |
 
 ## 1. Proyectos, actividades y redes {.unnumbered #cap-1}
 
@@ -112,3 +113,16 @@ Las actividades —43 ejemplos reproducibles, 7 cajas «En el portal» y 53 ejer
 - [9.6 La curva importa](09-montecarlo.qmd#sec-mc-curva) [[B]{.corto}]{.nivel .basico .solo-corto}
 - [9.7 Más sobre los índices](09-montecarlo.qmd#sec-mc-indices) [[A]{.corto}]{.nivel .avanzado .solo-corto}
 - [9.8 Ampliaciones](09-montecarlo.qmd#sec-mc-ampliaciones) [[+]{.corto}]{.nivel .saber-mas .solo-corto}
+
+## 10. Un caso completo: Electrona {.unnumbered #cap-10}
+
+- [10.1 Del enunciado a la tabla](10-caso.qmd#sec-caso-tabla) [[B]{.corto}]{.nivel .basico .solo-corto}
+- [10.2 Las dos redes](10-caso.qmd#sec-caso-redes) [[B]{.corto}]{.nivel .basico .solo-corto}
+- [10.3 Fechas, holguras y camino crítico](10-caso.qmd#sec-caso-fechas) [[B]{.corto}]{.nivel .basico .solo-corto}
+- [10.4 Tres tiempos](10-caso.qmd#sec-caso-tres) [[B]{.corto}]{.nivel .basico .solo-corto}
+- [10.5 ¿Se pueden prometer 19 días? La normal](10-caso.qmd#sec-caso-normal) [[B]{.corto}]{.nivel .basico .solo-corto}
+- [10.6 La simulación](10-caso.qmd#sec-caso-simulacion) [[B]{.corto}]{.nivel .basico .solo-corto}
+- [10.7 El informe para la dirección](10-caso.qmd#sec-caso-informe) [[B]{.corto}]{.nivel .basico .solo-corto}
+- [10.8 Un caso para practicar](10-caso.qmd#sec-caso-practica) [[B]{.corto}]{.nivel .basico .solo-corto}
+- [10.9 El caso a fondo](10-caso.qmd#sec-caso-fondo) [[A]{.corto}]{.nivel .avanzado .solo-corto}
+- [10.10 Ampliaciones](10-caso.qmd#sec-caso-ampliaciones) [[+]{.corto}]{.nivel .saber-mas .solo-corto}

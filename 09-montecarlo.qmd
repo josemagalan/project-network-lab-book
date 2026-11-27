@@ -447,7 +447,7 @@ Sube a 16,49 días, y P(≤ 16) baja a 0,439. En **Índices**, el camino más cr
 - La **crucialidad** es la correlación entre la duración de la actividad y la del proyecto. Dice dónde compensa reducir la incertidumbre. Hacen falta las dos: una actividad fija puede ser crítica siempre y tener crucialidad 0.
 - La curva que se elige para cada actividad cambia la respuesta, a veces mucho más que la fusión de caminos. Los tres tiempos tienen que interpretarse con la curva que tenía en mente quien los dio.
 
-Para seguir el recorrido básico, continúa por el capítulo del caso completo (en preparación), donde un proyecto se lleva de principio a fin con todo lo visto hasta aquí.
+Para seguir el recorrido básico, continúa por el [capítulo «Un caso completo: Electrona»](10-caso.qmd), donde un proyecto se lleva de principio a fin con todo lo visto hasta aquí.
 
 ## Más sobre los índices [[Avanzado]{.largo}[A]{.corto}]{.nivel .avanzado} {#sec-mc-indices}
 

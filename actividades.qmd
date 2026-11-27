@@ -8,7 +8,7 @@ Aquí están todas las cajas de trabajo del libro. Los **ejemplos reproducibles*
 
 ### Del enunciado a la tabla {.unnumbered #h-m0}
 
-3 ejemplos reproducibles, 2 cajas «En el portal» y 1 ejercicio.
+4 ejemplos reproducibles, 2 cajas «En el portal» y 1 ejercicio.
 
 | Actividad | Título | Sección | Nivel |
 |---|---|:-:|:-:|
@@ -18,6 +18,7 @@ Aquí están todas las cajas de trabajo del libro. Los **ejemplos reproducibles*
 | [Ejemplo 2.3](02-enunciado.qmd#ejemplo-enunciado-matriz) | La matriz en el portal | [2.3](02-enunciado.qmd#sec-enunciado-formas) | [[B]{.corto}]{.nivel .basico .solo-corto} |
 | [Ejemplo 2.4](02-enunciado.qmd#ejemplo-enunciado-mudanza-depurar) | La redundancia de la mudanza | [2.4](02-enunciado.qmd#sec-enunciado-validar) | [[B]{.corto}]{.nivel .basico .solo-corto} |
 | [Ejercicio 2.6](02-enunciado.qmd#ejercicio-enunciado-electrona) | Electrona | [2.6](02-enunciado.qmd#sec-enunciado-ampliaciones) | [[+]{.corto}]{.nivel .saber-mas .solo-corto} |
+| [Ejemplo 10.1](10-caso.qmd#ejemplo-caso-tabla) | Electrona, frase a frase | [10.1](10-caso.qmd#sec-caso-tabla) | [[B]{.corto}]{.nivel .basico .solo-corto} |
 
 ### Ruta guiada {.unnumbered #h-route}
 
@@ -54,7 +55,7 @@ Aquí están todas las cajas de trabajo del libro. Los **ejemplos reproducibles*
 
 ### Taller {.unnumbered #h-work}
 
-3 ejemplos reproducibles y 4 ejercicios.
+5 ejemplos reproducibles y 4 ejercicios.
 
 | Actividad | Título | Sección | Nivel |
 |---|---|:-:|:-:|
@@ -65,10 +66,12 @@ Aquí están todas las cajas de trabajo del libro. Los **ejemplos reproducibles*
 | [Ejemplo 6.2](06-holguras.qmd#ejemplo-holguras-criticos) | Los cuatro caminos críticos de la mudanza | [6.2](06-holguras.qmd#sec-holguras-criticos) | [[B]{.corto}]{.nivel .basico .solo-corto} |
 | [Ejercicio 6.2](06-holguras.qmd#ejercicio-holguras-criticos) | Cadenas y sucesos críticos | [6.2](06-holguras.qmd#sec-holguras-criticos) | [[B]{.corto}]{.nivel .basico .solo-corto} |
 | [Ejemplo 6.5](06-holguras.qmd#ejemplo-holguras-cuatro) | Una independiente más pequeña | [6.5](06-holguras.qmd#sec-holguras-cuatro) | [[A]{.corto}]{.nivel .avanzado .solo-corto} |
+| [Ejemplo 10.2](10-caso.qmd#ejemplo-caso-redes) | Las reglas en Electrona | [10.2](10-caso.qmd#sec-caso-redes) | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejemplo 10.3](10-caso.qmd#ejemplo-caso-fechas) | ¿Y si fabricar X dura 10 días? | [10.3](10-caso.qmd#sec-caso-fechas) | [[B]{.corto}]{.nivel .basico .solo-corto} |
 
 ### Duraciones inciertas {.unnumbered #h-unc}
 
-18 ejemplos reproducibles, 2 cajas «En el portal» y 3 ejercicios.
+22 ejemplos reproducibles, 2 cajas «En el portal» y 3 ejercicios.
 
 | Actividad | Título | Sección | Nivel |
 |---|---|:-:|:-:|
@@ -95,6 +98,10 @@ Aquí están todas las cajas de trabajo del libro. Los **ejemplos reproducibles*
 | [Ejemplo 9.6](09-montecarlo.qmd#ejemplo-mc-curva) | Mecánicas con triangulares | [9.6](09-montecarlo.qmd#sec-mc-curva) | [[B]{.corto}]{.nivel .basico .solo-corto} |
 | [Ejercicio 9.6](09-montecarlo.qmd#ejercicio-mc-curva) | Otras curvas | [9.6](09-montecarlo.qmd#sec-mc-curva) | [[B]{.corto}]{.nivel .basico .solo-corto} |
 | [Ejemplo 9.7](09-montecarlo.qmd#ejemplo-mc-indices) | Pearson y Spearman | [9.7](09-montecarlo.qmd#sec-mc-indices) | [[A]{.corto}]{.nivel .avanzado .solo-corto} |
+| [Ejemplo 10.4](10-caso.qmd#ejemplo-caso-tres) | Fabricar X | [10.4](10-caso.qmd#sec-caso-tres) | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejemplo 10.5](10-caso.qmd#ejemplo-caso-normal) | El plazo de Electrona | [10.5](10-caso.qmd#sec-caso-normal) | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejemplo 10.6](10-caso.qmd#ejemplo-caso-simulacion) | La simulación de Electrona | [10.6](10-caso.qmd#sec-caso-simulacion) | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejemplo 10.9](10-caso.qmd#ejemplo-caso-fondo) | Pearson y Spearman en Electrona | [10.9](10-caso.qmd#sec-caso-fondo) | [[A]{.corto}]{.nivel .avanzado .solo-corto} |
 
 ### Ejercicios {.unnumbered #h-ex}
 
@@ -110,6 +117,14 @@ Aquí están todas las cajas de trabajo del libro. Los **ejemplos reproducibles*
 | [Ejercicio 8.3](08-tcl.qmd#ejercicio-tcl-fusion) | Caminos en paralelo | [8.3](08-tcl.qmd#sec-tcl-fusion) | [[B]{.corto}]{.nivel .basico .solo-corto} |
 | [Ejercicio 9.1](09-montecarlo.qmd#ejercicio-mc-simular) | Réplicas y combinaciones a mano | [9.1](09-montecarlo.qmd#sec-mc-simular) | [[B]{.corto}]{.nivel .basico .solo-corto} |
 | [Ejercicio 9.5](09-montecarlo.qmd#ejercicio-mc-crucialidad) | Leer los índices | [9.5](09-montecarlo.qmd#sec-mc-crucialidad) | [[B]{.corto}]{.nivel .basico .solo-corto} |
+
+### Examen imprimible {.unnumbered #h-examen}
+
+1 ejercicio.
+
+| Actividad | Título | Sección | Nivel |
+|---|---|:-:|:-:|
+| [Ejercicio 10.8](10-caso.qmd#ejercicio-caso-practica) | El congreso, de principio a fin | [10.8](10-caso.qmd#sec-caso-practica) | [[B]{.corto}]{.nivel .basico .solo-corto} |
 
 ## Por capítulo {.unnumbered #por-capitulo}
 
@@ -260,3 +275,24 @@ Aquí están todas las cajas de trabajo del libro. Los **ejemplos reproducibles*
 | [Ejercicio 9.6](09-montecarlo.qmd#ejercicio-mc-curva) | Otras curvas | [9.6](09-montecarlo.qmd#sec-mc-curva) | Duraciones inciertas | [[B]{.corto}]{.nivel .basico .solo-corto} |
 | [Ejemplo 9.7](09-montecarlo.qmd#ejemplo-mc-indices) | Pearson y Spearman | [9.7](09-montecarlo.qmd#sec-mc-indices) | Duraciones inciertas | [[A]{.corto}]{.nivel .avanzado .solo-corto} |
 | [Ejercicio 9.7](09-montecarlo.qmd#ejercicio-mc-indices) | Caminos, empates y significación | [9.7](09-montecarlo.qmd#sec-mc-indices) | — | [[A]{.corto}]{.nivel .avanzado .solo-corto} |
+
+### 10. Un caso completo: Electrona {.unnumbered #a-cap-10}
+
+| Actividad | Título | Sección | Pestaña | Nivel |
+|---|---|:-:|---|:-:|
+| [Ejemplo 10.1](10-caso.qmd#ejemplo-caso-tabla) | Electrona, frase a frase | [10.1](10-caso.qmd#sec-caso-tabla) | Del enunciado a la tabla | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejercicio 10.1](10-caso.qmd#ejercicio-caso-tabla) | Una precedencia de más | [10.1](10-caso.qmd#sec-caso-tabla) | — | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejemplo 10.2](10-caso.qmd#ejemplo-caso-redes) | Las reglas en Electrona | [10.2](10-caso.qmd#sec-caso-redes) | Taller | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejercicio 10.2](10-caso.qmd#ejercicio-caso-redes) | Una ficticia no basta | [10.2](10-caso.qmd#sec-caso-redes) | — | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejemplo 10.3](10-caso.qmd#ejemplo-caso-fechas) | ¿Y si fabricar X dura 10 días? | [10.3](10-caso.qmd#sec-caso-fechas) | Taller | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejercicio 10.3](10-caso.qmd#ejercicio-caso-fechas) | La puesta a punto | [10.3](10-caso.qmd#sec-caso-fechas) | — | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejemplo 10.4](10-caso.qmd#ejemplo-caso-tres) | Fabricar X | [10.4](10-caso.qmd#sec-caso-tres) | Duraciones inciertas | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejercicio 10.4](10-caso.qmd#ejercicio-caso-tres) | Medias y varianzas | [10.4](10-caso.qmd#sec-caso-tres) | — | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejemplo 10.5](10-caso.qmd#ejemplo-caso-normal) | El plazo de Electrona | [10.5](10-caso.qmd#sec-caso-normal) | Duraciones inciertas | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejercicio 10.5](10-caso.qmd#ejercicio-caso-normal) | El camino que no se ve | [10.5](10-caso.qmd#sec-caso-normal) | — | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejemplo 10.6](10-caso.qmd#ejemplo-caso-simulacion) | La simulación de Electrona | [10.6](10-caso.qmd#sec-caso-simulacion) | Duraciones inciertas | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejercicio 10.6](10-caso.qmd#ejercicio-caso-simulacion) | Dónde actuar | [10.6](10-caso.qmd#sec-caso-simulacion) | — | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejercicio 10.7](10-caso.qmd#ejercicio-caso-informe) | Otro plazo | [10.7](10-caso.qmd#sec-caso-informe) | — | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejercicio 10.8](10-caso.qmd#ejercicio-caso-practica) | El congreso, de principio a fin | [10.8](10-caso.qmd#sec-caso-practica) | Examen imprimible | [[B]{.corto}]{.nivel .basico .solo-corto} |
+| [Ejemplo 10.9](10-caso.qmd#ejemplo-caso-fondo) | Pearson y Spearman en Electrona | [10.9](10-caso.qmd#sec-caso-fondo) | Duraciones inciertas | [[A]{.corto}]{.nivel .avanzado .solo-corto} |
+| [Ejercicio 10.9](10-caso.qmd#ejercicio-caso-fondo) | Holguras e índices | [10.9](10-caso.qmd#sec-caso-fondo) | — | [[A]{.corto}]{.nivel .avanzado .solo-corto} |

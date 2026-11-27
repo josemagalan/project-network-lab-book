@@ -144,7 +144,7 @@ Una red no es solo un dibujo. Sobre ella se responden las preguntas que importan
 | ¿Y si las duraciones son inciertas? | La probabilidad de cumplir un plazo | 7–9 |
 | ¿Y si las precedencias tienen desfases, se puede pagar por acortar o hay recursos limitados? | Las extensiones del modelo | 11–13 |
 
-: Las preguntas del libro y dónde se responden. El capítulo 10 las reúne todas en un caso. {#tbl-redes-preguntas}
+: Las preguntas del libro y dónde se responden. El [capítulo 10](10-caso.qmd) las reúne todas en un caso. {#tbl-redes-preguntas}
 
 La primera respuesta ya está a nuestro alcance. Si E espera a A y a B, y H espera a E, entonces B, E y H van en fila: forman un **camino** de la red, una cadena de actividades en la que cada una espera a la anterior. Un proyecto no puede terminar antes de que termine su camino más largo.
 
