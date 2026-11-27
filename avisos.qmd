@@ -18,6 +18,21 @@ En la elaboración de este material se han utilizado asistentes de inteligencia 
 
 El texto, las figuras propias y los ejercicios se distribuyen con la licencia [Creative Commons Atribución 4.0 Internacional (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/deed.es){target="_blank"}: puedes copiarlos, adaptarlos y redistribuirlos, también con fines comerciales, siempre que cites la autoría. El código del repositorio (los guiones de las figuras, los filtros y las comprobaciones) tiene licencia MIT. La biblioteca KaTeX, el estilo de citas y el portal enlazado conservan su propia licencia; el detalle está en el [repositorio del libro](https://github.com/josemagalan/project-network-lab-book/blob/main/LICENSE-CONTENT.md){target="_blank"}.
 
+## Créditos de los retratos del capítulo 9 {#creditos-retratos-mc}
+
+Las tres fotografías se atribuyen al **Los Alamos National Laboratory (LANL)**. Se reproducen sin modificaciones a partir de los archivos descargados por el autor. Las fichas de Wikimedia Commons indican su procedencia y permiten su uso con atribución y reproducción del aviso de LANL:
+
+- [Stanislaw Ulam](https://commons.wikimedia.org/wiki/File:Ulam-stanislaw_m.jpg).
+- [John von Neumann](https://commons.wikimedia.org/wiki/File:JohnvonNeumann-LosAlamos.gif).
+- [Nicholas Metropolis](https://commons.wikimedia.org/wiki/File:Nicholas_Metropolis_Los_Alamos_identity_badge_photo.jpg).
+
+<details>
+<summary>Aviso de uso de LANL (texto original)</summary>
+
+> Unless otherwise indicated, this information has been authored by an employee or employees of the Los Alamos National Security, LLC (LANS), operator of the Los Alamos National Laboratory under Contract No. DE-AC52-06NA25396 with the U.S. Department of Energy. The U.S. Government has rights to use, reproduce, and distribute this information. The public may copy and use this information without charge, provided that this Notice and any statement of authorship are reproduced on all copies. Neither the Government nor LANS makes any warranty, express or implied, or assumes any liability or responsibility for the use of this information.
+
+</details>
+
 ## Estadísticas de uso {#estadisticas}
 
 Para saber si este material resulta útil, el libro cuenta las páginas vistas con [GoatCounter](https://www.goatcounter.com/){target="_blank"}, un servicio de código abierto. No usa cookies ni identifica a los visitantes: todas las páginas del libro cuentan juntas, en una sola ruta, y se registran además datos generales como el navegador, el país aproximado y la página de procedencia. El total aparece en el pie de cada página y el [panel de estadísticas](https://josemagalan.goatcounter.com/){target="_blank"} es público.

@@ -37,7 +37,18 @@ Comprobar si hay una diagonal es fácil. El número n está en la fila de sus un
 
 ### El nombre: Montecarlo
 
-Es lo mismo que le pasó a Stanislaw Ulam en 1946. Mientras se recuperaba de una enfermedad jugando a los solitarios, se preguntó con qué probabilidad sale un solitario. Después de mucho tiempo intentando calcularla con combinatoria, pensó que sería más práctico jugarlo, por ejemplo, cien veces y contar cuántas salían. Enseguida vio que los nuevos ordenadores electrónicos podían hacer eso con problemas de física, y se lo contó a John von Neumann [@eckhardt1987, p. 131]. En Los Álamos lo aplicaron a la difusión de neutrones, con el ENIAC, uno de los primeros ordenadores electrónicos [@metropolis1987, pp. 125–128]. El nombre se lo puso Nicholas Metropolis: Ulam tenía un tío que pedía dinero prestado a la familia porque «tenía que ir a Montecarlo» [@metropolis1987, p. 127]. El primer artículo con ese nombre lo explica con el mismo ejemplo: calcular la probabilidad de que salga un solitario es una tarea «completamente intratable», y lo práctico es producir muchos ejemplos y mirar la proporción de éxitos, sabiendo que la estimación nunca queda dentro de unos límites con seguridad, sino solo, si hay muchos intentos, con mucha probabilidad [@metropolis1949, p. 336].
+Es lo mismo que le pasó a Stanislaw Ulam en 1946. Mientras se recuperaba de una enfermedad jugando a los solitarios, se preguntó con qué probabilidad sale un solitario. Después de mucho tiempo intentando calcularla con combinatoria, pensó que sería más práctico jugarlo, por ejemplo, cien veces y contar cuántas salían. Enseguida vio que los nuevos ordenadores electrónicos podían hacer eso con problemas de física, y se lo contó a John von Neumann [@eckhardt1987, p. 131]. En Los Álamos lo aplicaron a la difusión de neutrones, con el ENIAC, uno de los primeros ordenadores electrónicos [@metropolis1987, pp. 125–128]. El nombre se lo puso Nicholas Metropolis: Ulam tenía un tío que pedía dinero prestado a la familia porque «tenía que ir a Montecarlo» [@metropolis1987, p. 127]. El primer artículo con ese nombre lo explica con el mismo ejemplo: calcular la probabilidad de que salga un solitario es una tarea «completamente intratable», y lo práctico es producir muchos ejemplos y mirar la proporción de éxitos, sabiendo que la estimación nunca queda dentro de unos límites con seguridad, sino solo, si hay muchos intentos, con mucha probabilidad [@metropolis1949, p. 336]. Los tres aparecen en la figura -@fig-mc-pioneros.
+
+:::: {#fig-mc-pioneros layout-ncol=3}
+
+![Stanislaw Ulam](figuras/09-ulam.jpg){fig-alt="Retrato de Stanislaw Ulam para su identificación en Los Álamos, con traje y corbata y una placa delante del pecho."}
+
+![John von Neumann](figuras/09-von-neumann.gif){fig-alt="Retrato en blanco y negro de John von Neumann, con traje y corbata, mirando a la cámara."}
+
+![Nicholas Metropolis](figuras/09-metropolis.jpg){fig-alt="Retrato de Nicholas Metropolis para su identificación en Los Álamos, con traje y corbata y una placa delante del pecho."}
+
+Stanislaw Ulam, John von Neumann y Nicholas Metropolis. Fotografías del Los Alamos National Laboratory, vía Wikimedia Commons; [procedencia y condiciones de uso](avisos.qmd#creditos-retratos-mc).
+::::
 
 ![La sala de juego nueva del casino de Montecarlo, hacia 1890–1900. Fotocromía de la Detroit Publishing Co., en la colección de la Biblioteca del Congreso de Estados Unidos (LCCN 2001699313), de dominio público.](figuras/09-casino.jpg){#fig-mc-casino fig-alt="Fotografía antigua coloreada de una gran sala del casino de Montecarlo, vacía: techos dorados con relieves, una cúpula de cristal, cuatro lámparas de araña, pinturas en las paredes y, abajo, varias mesas de juego cubiertas de tapete verde rodeadas de sillas de madera." width=85%}
 
