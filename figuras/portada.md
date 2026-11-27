@@ -37,7 +37,8 @@ ni ilustración de terceros.
 
 La tabla, las redes, el Gantt y el histograma son esquemáticos y no reproducen la
 interfaz del portal, pero la red es coherente. Seis actividades: A (3), B (2),
-C (4, tras A), D (5, tras A y B), E (2, tras C) y F (3, tras D y E). El camino crítico
+C (4, tras A), D (5, tras A y B), E (2, tras C) y F (3, tras D y E). La red ROY lleva sus nodos Inicio y Fin, como en el capítulo 3 (Inicio es imprescindible: hay dos
+actividades iniciales). El camino crítico
 es A–C–E–F, de 12 días, en violeta; B tiene 2 días de holgura total y D, 1 (en azul,
 con la holgura de trazos en el Gantt, dibujado a fechas tempranas). La red PERT de la
 misma tabla tiene seis sucesos y una ficticia, 2 → 3, para que D espere a A y a B.

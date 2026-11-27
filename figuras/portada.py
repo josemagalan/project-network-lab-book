@@ -109,31 +109,48 @@ def tabla(x, y):
     return "".join(out)
 
 
-ROY = {"A": (302, 262), "B": (302, 352), "C": (412, 242), "D": (412, 352), "E": (522, 242), "F": (632, 302)}
-ROY_ARCOS = [("A", "C"), ("A", "D"), ("B", "D"), ("C", "E"), ("D", "F"), ("E", "F")]
-NODO_W, NODO_H = 62, 46
+# Red ROY con sus nodos Inicio y Fin (capítulo 3): imprescindible Inicio, porque hay dos actividades iniciales.
+ROY = {"Inicio": (302, 307), "A": (378, 270), "B": (378, 344), "C": (456, 242), "D": (456, 352), "E": (534, 242),
+       "F": (612, 307), "Fin": (690, 307)}
+ROY_ARCOS = [("Inicio", "A"), ("Inicio", "B"), ("A", "C"), ("A", "D"), ("B", "D"), ("C", "E"), ("D", "F"),
+             ("E", "F"), ("F", "Fin")]
+NODO_W, NODO_H = 50, 46
+HITO_W = 46
+HITOS = {"Inicio", "Fin"}
+
+
+def ancho(n):
+    return HITO_W if n in HITOS else NODO_W
+
+
+def en_camino_critico(n):
+    return n in HITOS or n in CRITICAS
 
 
 def roy():
     out = []
+    dur = {k: v for k, v, _ in ACTS}
     for a, b in ROY_ARCOS:
         (x1, y1), (x2, y2) = ROY[a], ROY[b]
-        crit = a in CRITICAS and b in CRITICAS
-        sx, sy = x1 + NODO_W, y1 + NODO_H / 2
+        crit = en_camino_critico(a) and en_camino_critico(b) and not (a == "Inicio" and b == "B")
+        sx, sy = x1 + ancho(a), y1 + NODO_H / 2
         ex, ey = x2, y2 + NODO_H / 2
         out.append(flecha(sx, sy, ex - 2, ey, VIOLET if crit else "#9fb4cf", 3 if crit else 2))
     for a, (x, y) in ROY.items():
-        d = dict((k, v) for k, v, _ in ACTS)[a]
+        if a in HITOS:
+            out.append(rect(x, y, HITO_W, NODO_H, "#ffffff", 8, INK, 2))
+            out.append(text(x + HITO_W / 2, y + 28, a, 12.5, INK, 600, 'text-anchor="middle"'))
+            continue
         crit = a in CRITICAS
         out.append(rect(x, y, NODO_W, NODO_H, VIOLET if crit else "#ffffff", 8, VIOLET if crit else BLUE, 2.5))
-        out.append(text(x + 21, y + 31, a, 23, "#ffffff" if crit else BLUE, 700, 'text-anchor="middle"'))
-        out.append(line(x + 40, y + 9, x + 40, y + NODO_H - 9, "#ffffff" if crit else LINE, 1.5))
-        out.append(text(x + 51, y + 30, d, 17, "#ffffff" if crit else INK, 500, 'text-anchor="middle"'))
+        out.append(text(x + 16, y + 31, a, 21, "#ffffff" if crit else BLUE, 700, 'text-anchor="middle"'))
+        out.append(line(x + 32, y + 9, x + 32, y + NODO_H - 9, "#ffffff" if crit else LINE, 1.5))
+        out.append(text(x + 41.5, y + 30, dur[a], 16, "#ffffff" if crit else INK, 500, 'text-anchor="middle"'))
     return "".join(out)
 
 
 # Red PERT de la misma tabla: sucesos 1–6 y una ficticia 2 → 3.
-PERT = {1: (748, 322), 2: (808, 258), 3: (808, 386), 4: (878, 258), 5: (928, 386), 6: (985, 322)}
+PERT = {1: (790, 322), 2: (842, 258), 3: (842, 386), 4: (902, 258), 5: (946, 386), 6: (992, 322)}
 PERT_ARCOS = [(1, 2, "A"), (1, 3, "B"), (2, 3, None), (2, 4, "C"), (3, 5, "D"), (4, 5, "E"), (5, 6, "F")]
 R_SUCESO = 15
 
@@ -229,8 +246,8 @@ def panel():
         label(302, 130, "02 / DIBUJA", BLUE, 16),
         text(302, 172, "Una red, dos lenguajes", 30, INK, 600),
         label(302, 220, "ROY", MUTED, 13),
-        label(720, 220, "PERT", MUTED, 13),
-        line(698, 214, 698, 418, "#d8cfd6", 1.5, 'stroke-dasharray="4 5"'),
+        label(774, 220, "PERT", MUTED, 13),
+        line(762, 214, 762, 418, "#d8cfd6", 1.5, 'stroke-dasharray="4 5"'),
         roy(),
         pert(),
         line(302, 449, 975, 449, LINE, 1.5),
